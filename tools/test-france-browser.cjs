@@ -221,7 +221,15 @@ async function run() {
         if (!intercity || !drive.moveTo(intercity.to, intercity.routeId, drive.currentKey)) {
           throw new Error('Austerlitz RER-to-Intercites transfer unavailable');
         }
-        return {station:'리옹역', destination:'몽바르', rerToMetro:'PASS', rerToIntercity:'PASS', status:'PASS'};
+        const massyService = drive.routes.find(route => route.physicalLineId === 'fr-rer-c' &&
+          route.stations[0]?.fr === 'Massy - Palaiseau' &&
+          route.stations.at(-1)?.fr === 'Pontoise');
+        if (!massyService || !drive.start(massyService)) throw new Error('Cannot board Massy–Pontoise');
+        const rerB = drive.snapshot().edges.find(edge => edge.route.physicalLineId === 'fr-rer-b');
+        if (!rerB || !drive.moveTo(rerB.to, rerB.routeId, drive.currentKey)) {
+          throw new Error('Massy RER C-to-B transfer unavailable');
+        }
+        return {station:'리옹역', destination:'몽바르', rerToMetro:'PASS', rerToIntercity:'PASS', massyRerTransfer:'PASS', status:'PASS'};
       });
       for (const country of ['jp', 'kr', 'hk', 'mo', 'tw', 'th', 'uk', 'fr']) {
         await page.evaluate(() => {const qa = globalThis.__FRANCE_QA__; qa.game.stop(false); qa.go('home');});
@@ -242,7 +250,7 @@ async function run() {
       await page.locator('#route-filter').selectOption('fr-paris-metro-3bis');
       await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));
       await page.locator('#route-filter').selectOption('fr-rer-c');
-      await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '두르당 라포레'));
+      await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '퐁투아즈'));
       report.editor = 'PASS';
     }
     assert.deepEqual(report.errors, []);

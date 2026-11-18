@@ -150,8 +150,8 @@ for (const spec of specs) {
     ...(callVariants[relationId] || []).map(variant => ({relations:[relationId], ...variant})),
   ]);
   trackSpecs.push(...(spec.compositions || []));
-  for (const {relations:relationIds, excludedCalls, serviceKo, startNode, endNode} of trackSpecs) {
-    const {relations,track} = readServiceTrack(relationIds, readRelation, excludedCalls, corrections, {startNode,endNode});
+  for (const {relations:relationIds, excludedCalls, serviceKo, startNode, endNode, joinNodes} of trackSpecs) {
+    const {relations,track} = readServiceTrack(relationIds, readRelation, excludedCalls, corrections, {startNode,endNode,joinNodes});
     const [relation] = relations;
     const relationId = relation.id;
     // Lyon’s old OSM operator label remains useful for track identity. TCL
@@ -207,6 +207,7 @@ for (const spec of specs) {
       evidence: {
         relationId, version: relation.version, timestamp: relation.timestamp, maxStationOffsetKm,
         ...(relations.length > 1 ? {relationIds} : {}),
+        ...(joinNodes ? {joinNodes} : {}),
         ...(startNode === undefined ? {} : {startNode,endNode}),
         stationNodes: track.stops.map(stop => stop.id),
         ...(serviceKo || relations.length > 1 ? {excludedCalls} : {}),
