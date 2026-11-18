@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.14] — 2026-11-18
+
+- fix(kr): connect two KTX Suseo high-speed feeder journeys on exact original OSM railway nodes * diagnose(kr): source-proven feeder OSM rail routes for three unresolved Suseo KTX pa
+
 ## [v0.11.13] — 2026-11-18
 
 - fix(kr): replace seven Honam KTX Iksan–Osong detours with OSM node-proven high-speed paths * feat(kr): solve all KTX corridor defects with source-node Dijkstra and exact original-w
