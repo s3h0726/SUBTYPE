@@ -6,6 +6,7 @@ on:
       - 'tools/repair-kr-ktx-all-alignments.cjs'
       - 'tools/test-kr-ktx-all-alignments.cjs'
       - 'tools/diagnose-kr-ktx-leftovers.cjs'
+      - 'tools/test-kr-ktx-runtime-display.cjs'
       - 'tools/build-kr-canonical.cjs'
       - '.github/workflows/ktx-full-alignment-fix.yml'
 permissions:
@@ -29,6 +30,8 @@ jobs:
           node --check tools/repair-kr-ktx-all-alignments.cjs
           node --check tools/build-kr-canonical.cjs
           node --test tools/test-kr-ktx-all-alignments.cjs tools/test-kr-ktx-track-alignment.cjs
+      - name: Verify KTX Suseo physical-track runtime geometry across all eligible patterns
+        run: node tools/test-kr-ktx-runtime-display.cjs
       - name: Diagnose remaining KTX high-speed track topology
         run: node tools/diagnose-kr-ktx-leftovers.cjs
       - name: Correct all verifiable faulty KTX station-to-station paths
