@@ -239,37 +239,52 @@ export class RouteEditor{
  renumber(){this.route.stations.forEach((station,i)=>station.id=`${this.route.code||'CT'}${String(i+1).padStart(2,'0')}`)}
  sync(){const f=new FormData(this.form);this.route.operator={...(this.route.countryId==='tw'?{zh:this.route.operator.zh}:{}),ja:f.get('operator')||'Custom Railway',en:this.route.countryId==='tw'?(this.route.operator.en||f.get('operator')||'Custom Railway'):(f.get('operator')||'Custom Railway'),ko:f.get('operator')||'커스텀 철도'};this.route.code=String(f.get('code')||'CT').toUpperCase();this.route.line={...(this.route.countryId==='tw'?{zh:f.get('lineJa')||this.route.line.zh||''}:{}),ja:f.get('lineJa')||'',ko:f.get('lineKo')||'',en:f.get('lineEn')||''};this.route.lineColor=f.get('color')||'#e84747';this.route.loop=f.get('loop')==='on';$$('.station-row',this.list).forEach((row,i)=>{if(!this.route.stations[i]?.customStation)return;this.route.stations[i]={...this.route.stations[i],...Object.fromEntries($$('input[data-field]',row).map(el=>[el.dataset.field,el.value.normalize('NFC')]))}});this.renumber()}
  render(){const f=this.form.elements;if(this.route.countryId==='tw'&&!this.taiwanOriginalLabels)this.taiwanOriginalLabels={label:f.lineJa.closest('label').firstChild.textContent,aria:f.lineJa.getAttribute('aria-label'),placeholder:f.lineJa.getAttribute('placeholder'),search:$('#station-master-search').placeholder};f.operator.value=this.route.operator.ko||this.route.operator.en||'';f.code.value=this.route.code||'CT';f.lineJa.value=this.route.countryId==='tw'?this.route.line.zh||'':this.route.line.ja||'';if(this.route.countryId==='tw'){f.lineJa.setAttribute('aria-label','번체중문 노선명');f.lineJa.placeholder='번체중문 노선명';f.lineJa.closest('label').firstChild.textContent='번체중문 / 繁體中文';$('#station-master-search').placeholder='한국어 / 繁體中文 / English';}else if(this.taiwanOriginalLabels){const prior=this.taiwanOriginalLabels;f.lineJa.closest('label').firstChild.textContent=prior.label;for(const [name,value]of[['aria-label',prior.aria],['placeholder',prior.placeholder]]){if(value===null)f.lineJa.removeAttribute(name);else f.lineJa.setAttribute(name,value)}$('#station-master-search').placeholder=prior.search;this.taiwanOriginalLabels=null;}f.lineKo.value=this.route.line.ko||'';f.lineEn.value=this.route.line.en||'';f.color.value=this.route.lineColor||'#e84747';f.loop.checked=!!this.route.loop;this.renumber();this.list.innerHTML=this.route.stations.length?this.route.stations.map((station,i)=>station.sourceStationId?`<div class="station-row master-row" draggable="true" data-index="${i}"><span class="drag-handle" aria-label="드래그하여 이동">☰</span><div class="master-station-copy"><b>${String(i+1).padStart(2,'0')} · ${station.countryId==='tw'?taiwanNameMarkup(station):escapeHtml(station.countryId==='kr'?this.stationDisplay(station):station.ja)}</b><span>${escapeHtml(this.stationDisplay(station))}</span>${station.airportIncomingTransfer?`<small class="custom-airport-arrival">✈ ${escapeHtml(station.airportIncomingTransfer.fromCode)} → ${escapeHtml(station.airportIncomingTransfer.toCode)} · ${station.airportIncomingTransfer.kind==='terminal-transfer'?'터미널 이동':'가상 항공 이동'}</small>`:''}<small>${escapeHtml(station.romaji)} · ${escapeHtml((station.operators||[]).join(' · '))}</small></div><span class="row-actions"><button type="button" data-up aria-label="위로">↑</button><button type="button" data-down aria-label="아래로">↓</button><button type="button" data-remove aria-label="삭제">×</button></span></div>`:`<div class="station-row" draggable="true" data-index="${i}"><span class="drag-handle">☰</span><input data-field="id" value="${escapeHtml(station.id)}" aria-label="역 번호"><input data-field="ja" value="${escapeHtml(station.ja)}" placeholder="공식 원문 역명" aria-label="공식 원문 역명"><input data-field="kana" value="${escapeHtml(station.kana)}" placeholder="ひらがな"><input data-field="romaji" value="${escapeHtml(station.romaji)}" placeholder="Romaji"><input data-field="ko" value="${escapeHtml(station.ko)}" placeholder="한국어 공식 원본 역명" aria-label="공식 원본 역명"><small class="station-coord">${Number.isFinite(station.latitude)?`${station.latitude.toFixed(5)}, ${station.longitude.toFixed(5)}`:'지도에서 좌표 지정 필요'}</small><span class="row-actions"><button type="button" data-up>↑</button><button type="button" data-down>↓</button><button type="button" data-remove>×</button></span></div>`).join(''):'<p class="muted">위 검색창에서 실제 역을 2개 이상 추가하세요.</p>';$('#station-count').textContent=`${this.route.stations.length} / ${MAX}`;this.draw();this.renderSaved();this.renderSearch($('#station-master-search')?.value||'');const status=$('#custom-route-summary');if(status){const n=this.route.stations.length,p=this.latestPath;status.textContent=p?`전체 ${n}개 역 · 최근 자동 연결 ${(p.distanceMeters/1000).toFixed(2)} km · 환승 ${p.transferCount}회${p.approximateEdges?' · 일부 거리 추정':''}`:`현재 ${n}개 역 · 가상 공항 이동 ${(this.route.airportTransfers||[]).length}회 · 철도 최단거리 연결`}}
- retraceEditedStops(stops){
-  const previous=structuredClone(this.route);
-  this.resetTrack();
-  if(stops.some(station=>!station.sourceStationId)){
-    this.route.stations=stops;this.renumber();this.latestPath=null;this.render();
-    toast('가상역이 포함된 목록을 수정하여 기존 자동 선형을 초기화했습니다.');return true;
-  }
-  const sourceFor=station=>this.master.find(item=>item.id===station.sourceStationId)||{...station,id:station.sourceStationId};
+ async retraceEditedStops(stops){
+  if(this.isRetracing)return false;
+  this.isRetracing=true;const previous=structuredClone(this.route),previousCountry=this.activeCountryId;
   try{
-    if(stops.length&&!this.appendStation(sourceFor(stops[0]),null,true))throw Error('첫 역 복원 실패');
-    for(let i=1;i<stops.length;i++){
-      const from=CustomShortestPath.stationKey({sourceStationId:this.route.stations.at(-1)?.sourceStationId,twTransferKey:this.route.stations.at(-1)?.twTransferKey});
-      const to=CustomShortestPath.stationKey(sourceFor(stops[i]));
-      if(stops[i].airportIncomingTransfer){
-        const meta=stops[i].airportIncomingTransfer;
-        const option=this.airportChoices().find(item=>item.fromCode===meta.fromCode&&item.toCode===meta.toCode&&item.portalId===meta.portalId&&item.targetStationKey===CustomShortestPath.stationKey(sourceFor(stops[i])));
-        if(!option||!this.addAirportTransfer(null,true,option))throw Error('공항 환승 연결이 유효하지 않습니다.');
-        continue;
-      }
-      const path=this.shortestPath.find(from,to,{maxEdges:MAX-this.route.stations.length});
-      if(!path)throw Error('역 사이의 연결 선로를 찾지 못했습니다.');
-      for(const edge of path.edges){
-        const next=edge.route.stations[edge.toIndex];
-        const source=this.master.find(item=>CustomShortestPath.stationKey(item)===edge.to)||{...next,id:next.stationMasterId||next.sourceStationId||next.id};
-        if(!this.appendStation(source,edge,true))throw Error('허용되지 않는 방향 또는 미검증 환승입니다.');
-      }
+   if(stops.some(station=>!station.sourceStationId)){
+    if(stops.some(station=>station.airportIncomingTransfer))throw Error('가상역과 공항 환승이 함께 있는 경우 역 순서를 자동 재구성할 수 없습니다.');
+    this.resetTrack();this.route.stations=stops;this.renumber();this.latestPath=null;this.render();
+    toast('가상역이 포함된 목록을 수정하여 기존 자동 선형을 초기화했습니다.');return true;
+   }
+   this.resetTrack();
+   if(stops.length){
+    const firstCountry=stops[0].countryId||previous.countryId;
+    if(!this.useCountry(firstCountry))throw Error('첫 역의 철도망을 불러오지 못했습니다.');
+    const first=this.master.find(item=>item.id===stops[0].sourceStationId)||{...stops[0],id:stops[0].sourceStationId};
+    if(!this.appendStation(first,null,true))throw Error('첫 역 복원 실패');
+   }
+   for(let i=1;i<stops.length;i++){
+    const current=this.route.stations.at(-1),targetCountry=stops[i].countryId||previous.countryId,flight=stops[i].airportIncomingTransfer;
+    if(flight){
+     if(!this.countryNetworks.has(targetCountry)||!this.countryNetworks.get(targetCountry)?.routes?.length){
+      if(!this.onLoadAirportNetwork)throw Error('도착 국가 철도망을 불러올 수 없습니다.');
+      const loaded=await this.onLoadAirportNetwork({countryId:targetCountry,toCode:flight.toCode,portalId:flight.portalId});
+      this.setRailNetwork(loaded.routes,{countryId:targetCountry});
+      this.setStationMaster(loaded.stations,{countryId:targetCountry});
+     }
+     const option=customAirportOptions(current,current.countryId||previous.countryId,this.knownRoutes(),globalThis.TRTAirportSystem)
+      .find(item=>item.fromCode===flight.fromCode&&item.toCode===flight.toCode&&item.portalId===flight.portalId&&
+       item.targetStationKey===CustomShortestPath.stationKey({sourceStationId:stops[i].sourceStationId,twTransferKey:stops[i].twTransferKey}));
+     if(!option||!this.appendVerifiedAirportTransfer(option,true))throw Error('공항 환승 구간을 실제 등록 철도역으로 복원하지 못했습니다.');
+     continue;
     }
-    this.latestPath=null;this.render();return true;
+    if(targetCountry!==current.countryId)throw Error('국경을 넘는 구간에는 공항 환승이 필요합니다.');
+    if(!this.useCountry(targetCountry))throw Error('현재 국가의 철도망이 준비되지 않았습니다.');
+    const toSource=this.master.find(item=>item.id===stops[i].sourceStationId)||{...stops[i],id:stops[i].sourceStationId};
+    const from=CustomShortestPath.stationKey(current),to=CustomShortestPath.stationKey(toSource);
+    const path=this.shortestPath.find(from,to,{maxEdges:MAX-this.route.stations.length});
+    if(!path)throw Error('역 사이의 연결 선로를 찾지 못했습니다.');
+    for(const edge of path.edges){
+     const next=edge.route.stations[edge.toIndex],source=this.master.find(item=>CustomShortestPath.stationKey(item)===edge.to)||{...next,id:next.stationMasterId||next.sourceStationId||next.id};
+     if(!this.appendStation(source,edge,true))throw Error('허용되지 않는 방향 또는 미검증 환승입니다.');
+    }
+   }
+   this.latestPath=null;this.render();return true;
   }catch(error){
-    this.route=previous;this.render();toast('역 순서 변경을 취소했습니다: '+error.message);return false;
-  }
+   this.route=previous;this.useCountry(previousCountry);this.render();toast('역 순서 변경을 취소했습니다: '+error.message);return false;
+  }finally{this.isRetracing=false}
  }
  action(e){
   const row=e.target.closest('.station-row');if(!row)return;
