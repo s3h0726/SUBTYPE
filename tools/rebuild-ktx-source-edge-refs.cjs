@@ -67,51 +67,123 @@ function refFor(a,b){
  proofCache.set(k,proof);
  return proof;
 }
-let checked=0,updated=0,checkedEdges=0,missing=[];
-const changedBatches=[];
+const {execFileSync}=require('node:child_process');
+const ORIGINAL_REF='afea304ec9aada43612aac6c7ab08095911ee905';
+const originalBatches=new Map();
+function originalBatch(name){
+ if(originalBatches.has(name))return originalBatches.get(name);
+ // The baseline commit predates the KTX geometry-only PR and retains its
+ // complete source refs. Never guess missing physical track connectivity.
+ const file='data/kr/canonical/'+name;
+ const content=execFileSync('git',['show',ORIGINAL_REF+':'+file],
+  {cwd:root,encoding:'utf8',maxBuffer:250*1024*1024});
+ const value=JSON.parse(content);
+ originalBatches.set(name,value);
+ return value;
+}
+const pointEqual=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length===2&&b.length===2&&a[0]===b[0]&&a[1]===b[1];
+const identical=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+function assemble(original,sections,refs){
+ const stations=original.stations.map(s=>({...s})),geometry=[];
+ const directedSegments=sections.map((g,i)=>({...original.directedSegments[i],geometry:g}));
+ const fullRefs=[];
+ for(let i=0;i<sections.length;i++){
+  const pts=sections[i];
+  if(!pts||pts.length<2)throw Error('EMPTY_EDGE_SECTION');
+  if(i){
+   if(!pointEqual(geometry.at(-1),pts[0]))throw Error('DISCONNECTED_SECTION_'+i);
+   geometry.push(...pts.slice(1));
+  }else{stations[0].geometryIndex=0;geometry.push(...pts)}
+  stations[i+1].geometryIndex=geometry.length-1;
+  fullRefs.push(...refs[i]);
+ }
+ if(fullRefs.length!==geometry.length-1)throw Error('EDGE_PROOF_MISMATCH '+fullRefs.length+' '+(geometry.length-1));
+ return {...structuredClone(original),stations,geometry,directedSegments,sourceEdgeRefs:fullRefs};
+}
+let checked=0,kept=0,reverted=0,keptJourneys=0,rolledBackJourneys=0,checkedEdges=0,changedBatches=[];
+const reasons={};let samples=[];
 const batches=readBatches(root);
 for(const batch of batches){
  let dirty=false;
+ const base=originalBatch(batch.name);
+ const oldRoutes=new Map(base.routes.map(r=>[r.id,r]));
  for(const route of batch.routes||[]){
-  for(const j of route.verifiedJourneys||[]){
+  const baseRoute=oldRoutes.get(route.id);
+  if(!baseRoute)continue;
+  const oldJourneys=new Map((baseRoute.verifiedJourneys||[]).map(j=>[j.id,j]));
+  for(let ji=0;ji<(route.verifiedJourneys||[]).length;ji++){
+   const j=route.verifiedJourneys[ji];
    if(j.ktxTrackCorrection?.method!=='source-backed-rail-graph-realignment')continue;
-   checked++;
-   const geometry=j.geometry||[];
-   const previous=j.sourceEdgeRefs||[];
-   if(previous.length===geometry.length-1)continue;
-   const refs=[];
-   for(let k=1;k<geometry.length;k++){
-    const ref=refFor(geometry[k-1],geometry[k]);
-    if(!ref){missing.push({batch:batch.name,route:route.id,journey:j.id,edge:k-1,
-      from:geometry[k-1],to:geometry[k]});if(missing.length>=25)break}
-    else refs.push(ref);
+   const old=oldJourneys.get(j.id);
+   if(!old)throw Error('MISSING_PRE_REPAIR_JOURNEY '+j.id);
+   if(old.stations.length!==j.stations.length||old.directedSegments.length!==j.directedSegments.length
+      ||old.stations.some((s,i)=>s.id!==j.stations[i].id||s.ko!==j.stations[i].ko)){
+    throw Error('STOP_IDENTITY_CHANGED '+j.id);
    }
-   if(missing.length)continue;
-   if(refs.length!==geometry.length-1)throw Error('PROVENANCE_COUNT_MISMATCH '+j.id);
-   j.sourceEdgeRefs=refs;
-   j.ktxTrackCorrection.sourceProofsRebuilt='all geometry edges proven against consecutive original OSM way nodes';
-   updated++;dirty=true;checkedEdges+=refs.length;
+   checked++;
+   let sections=[],proofs=[],accepted=[];
+   const oldSections=old.directedSegments;
+   for(let i=0;i<oldSections.length;i++){
+    const baseline=oldSections[i].geometry;
+    const current=j.directedSegments[i].geometry;
+    const oStart=old.stations[i].geometryIndex,oEnd=old.stations[i+1].geometryIndex;
+    const baselineRefs=old.sourceEdgeRefs.slice(oStart,oEnd);
+    if(baselineRefs.length!==baseline.length-1)throw Error('INVALID_BASELINE_PROOF '+j.id+' '+i);
+    let keptPart=false,reason=null,candidateRefs=[];
+    if(!identical(baseline,current)){
+     if(!pointEqual(baseline[0],current[0])||!pointEqual(baseline.at(-1),current.at(-1)))
+      reason='STOP_ENDPOINT_MISMATCH';
+     else for(let e=1;e<current.length;e++){
+      const proof=refFor(current[e-1],current[e]);
+      if(!proof){reason='MISSING_OSM_SOURCE_EDGE';break}
+      candidateRefs.push(proof);
+     }
+     if(!reason){
+      keptPart=true;kept++;
+      checkedEdges+=candidateRefs.length;
+      accepted.push({index:i,from:j.stations[i].ko,to:j.stations[i+1].ko,
+        edgeCount:candidateRefs.length});
+     }else{
+      reverted++;
+      reasons[reason]=(reasons[reason]||0)+1;
+      if(samples.length<20)samples.push({journeyId:j.id,leg:i,from:j.stations[i].ko,
+       to:j.stations[i+1].ko,reason});
+     }
+    }
+    sections.push(keptPart?current:baseline);
+    proofs.push(keptPart?candidateRefs:baselineRefs);
+   }
+   let result=assemble(old,sections,proofs);
+   if(accepted.length){
+    result.ktxTrackCorrection={method:'source-backed-rail-graph-realignment',
+     checkedAt:'2026-11-18',
+     sourceProofsRebuilt:'all geometry edges proven against consecutive original OSM way nodes',
+     legs:j.ktxTrackCorrection.legs.filter(x=>accepted.some(a=>a.index===x.index))};
+    keptJourneys++;
+   }else rolledBackJourneys++;
+   route.verifiedJourneys[ji]=result;
+   dirty=true;
   }
-  if(dirty&&route.verifiedJourneys?.length){
+  if(dirty){
    const first=route.verifiedJourneys[0];
-   route.geometry=first.geometry;route.stations=first.stations;route.directedSegments=first.directedSegments;
+   route.geometry=first.geometry;
+   route.stations=first.stations;
+   route.directedSegments=first.directedSegments;
    const errors=validateRoute(route);
-   if(errors.length)throw Error('CANONICAL_VALIDATION '+route.id+': '+errors.join(';'));
+   if(errors.length)throw Error('ROUTE_INVALID '+route.id+' '+errors.join('; '));
   }
  }
  if(dirty)changedBatches.push(batch);
 }
-const summary={checkedJourneys:checked,repairedJourneys:updated,checkedEdges,missingProofCount:missing.length,
-  changedBatches:changedBatches.map(b=>b.name),spatialEdges:edges.length,uniqueProofLookups:proofCache.size};
-const report={checkedAt:new Date().toISOString(),summary,missing};
+const summary={checkedJourneys:checked,retainedCorrectedJourneys:keptJourneys,
+ revertedJourneys:rolledBackJourneys,retainedLegs:kept,revertedLegs:reverted,
+ checkedNewEdges:checkedEdges,changedBatches:changedBatches.map(b=>b.name),
+ fallbackReasons:reasons,uniqueSourceEdgeLookups:proofCache.size};
+const report={checkedAt:new Date().toISOString(),baseline:ORIGINAL_REF,summary,samples};
 fs.mkdirSync(path.join(root,'reports'),{recursive:true});
 fs.writeFileSync(path.join(root,'reports/kr-ktx-source-edge-proofs-20261118.json'),JSON.stringify(report,null,2)+'\n');
 console.log('KTX_PROVENANCE_REPAIR '+JSON.stringify(summary));
-for(const x of missing)console.error('NO_VERIFIED_OSM_EDGE '+JSON.stringify(x));
-for(const x of [...new Map(missing.map(v=>[JSON.stringify([v.from,v.to]),v])).values()].slice(0,4))
- console.error('TRACK_GAP_DIAG '+JSON.stringify({from:x.from,to:x.to,nearFrom:nearbyEdges(x.from),nearTo:nearbyEdges(x.to)}));
-if(missing.length){process.exitCode=1}
-else if(process.argv.includes('--write')){
+if(process.argv.includes('--write')){
  for(const batch of changedBatches){
   fs.writeFileSync(path.join(root,'data/kr/canonical',batch.name),JSON.stringify(batch)+'\n');
   console.log('KTX_PROOF_WRITTEN '+batch.name);
