@@ -88,3 +88,20 @@ test('app bootstraps eager station masters and rail graphs for non-lazy countrie
  const krBus={id:'kr-bus',countryId:'kr',mode:'bus',stations:[{id:'1'},{id:'2'}]};
  assert.equal(run('kr',[krBus]).routes.length,0);
 });
+
+test('Korean bus and ferry catalogs are excluded before station hydration',()=>{
+ const app=read('js/app.js');
+ const a=app.indexOf('const customForeignRailCache=new Map();');
+ const b=app.indexOf('async function customForeignRailIndex(',a);
+ assert(a>=0&&b>a);
+ const context=vm.createContext({});
+ vm.runInContext(app.slice(a,b)+';globalThis.isRail=customRailEligible;',context);
+ const isRail=context.isRail;
+ assert.equal(isRail({mode:'rail',category:'high_speed_rail'}),true);
+ assert.equal(isRail({mode:'subway',category:'subway'}),true);
+ for(const mode of ['bus','airport_bus','express_bus','village_bus','river_bus','ferry']){
+  assert.equal(isRail({mode,category:'other'}),false,mode+' must not be hydrated');
+ }
+ assert.equal(isRail({mode:'other',category:'city_bus'}),false);
+ assert.match(app,/if\(countryId==='hk'\)void loadHongKongEditorNetwork\(\)/);
+});
