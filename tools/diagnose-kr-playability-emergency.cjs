@@ -42,9 +42,9 @@ if(counts.publicCandidates===0)console.error('NO_KR_PUBLIC_CANDIDATES');
 
 const vm=require('node:vm');
 const normalizeContext=vm.createContext({console,Intl,Date,URL,Blob,Response,TextDecoder,Uint8Array,Set,Map,Math,Number,JSON,RegExp,crypto:{randomUUID:()=> 'diagnostic'},hongKongRouteBlockReason:()=>null,koreanRouteBlockReason:()=>null});
-const load=file=>fs.readFileSync(path.join(root,file),'utf8').replace(/\\bimport(?=\\s|\\{)[^;]+;/g,'').replace(/\\bexport\\s+/g,'');
+const load=file=>fs.readFileSync(path.join(root,file),'utf8').replace(/\bimport(?=\s|\{)[^;]+;/g,'').replace(/\bexport\s+/g,'');
 try{
- vm.runInContext(load('js/data-loader.js')+'\\n;globalThis.__normalizeLazyLine=normalizeLazyLine;globalThis.__normalizeLine=normalizeLine;',normalizeContext,{timeout:15000});
+ vm.runInContext(load('js/data-loader.js')+'\n;globalThis.__normalizeLazyLine=normalizeLazyLine;globalThis.__normalizeLine=normalizeLine;',normalizeContext,{timeout:15000});
  let ready=0,unavailable=0,errors=[];
  for(let i=0;i<routes.length;i++){
   try{
@@ -56,7 +56,7 @@ try{
  console.log('KR_NORMALIZE_RESULT '+JSON.stringify({ready,unavailable,errors}));
 }catch(error){console.error('KR_NORMALIZE_FATAL '+String(error.stack||error))}
 try{
- vm.runInContext(load('js/korean-service-resolver.js')+'\\n'+load('js/route-integrity.js')+'\\n;globalThis.__krTest={koreanVerifiedChoices,resolveKoreanVerifiedChoice,resolvePlayableRoute};',normalizeContext,{timeout:20000});
+ vm.runInContext(load('js/korean-service-resolver.js')+'\n'+load('js/route-integrity.js')+'\\n;globalThis.__krTest={koreanVerifiedChoices,resolveKoreanVerifiedChoice,resolvePlayableRoute};',normalizeContext,{timeout:20000});
  for(const meta of sample){
   try{
    const route=decode(JSON.parse(fs.readFileSync(path.join(root,meta.lazySource),'utf8'))).route;
