@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-11-18T11:57:26.022Z",
+  "checkedAt": "2026-11-18T12:17:48.920Z",
   "method": "Read-only comparison to mapped OSM high-speed track ways; conventional service diversions are excluded; reference gaps require review",
   "summary": {
     "routes": 7,
     "journeys": 151,
     "checkedLegs": 414,
-    "matchedLegs": 314,
+    "matchedLegs": 316,
     "byStatus": {
-      "REVIEW": 67,
-      "MATCH": 84
+      "REVIEW": 66,
+      "MATCH": 85
     },
     "referenceEdges": {
       "경부고속선": 3226,
@@ -1898,62 +1898,50 @@
         "부산"
       ],
       "checkedLegs": 1,
-      "matchedLegs": 0,
-      "status": "REVIEW",
-      "issues": [
-        "INSUFFICIENT_OSM_CORRIDOR_REFERENCE"
-      ],
+      "matchedLegs": 1,
+      "status": "MATCH",
+      "issues": [],
       "legs": [
         {
           "from": "수서",
           "to": "평택지제",
           "corridor": "수서평택고속선",
-          "status": "REVIEW_REFERENCE_GAP",
-          "drawnKm": 91.16,
-          "straightKm": 52.2,
-          "coverage": 0.033,
-          "referenceDensity": 0.5,
-          "namedDensity": 0.033,
+          "status": "MATCH",
+          "drawnKm": 53.48,
+          "straightKm": 52.14,
+          "coverage": 0.8,
+          "referenceDensity": 1,
+          "namedDensity": 0.829,
           "mismatch": [
             {
-              "lat": 37.49633,
-              "lon": 127.08914,
-              "offsetKm": 1.81
+              "lat": 37.35597,
+              "lon": 127.10353,
+              "offsetKm": 1.67
             },
             {
-              "lat": 37.49163,
-              "lon": 127.07327,
-              "offsetKm": 2.816
+              "lat": 37.34248,
+              "lon": 127.10361,
+              "offsetKm": 3.17
             },
             {
-              "lat": 37.55063,
-              "lon": 127.04407,
-              "offsetKm": 3.355
+              "lat": 37.329,
+              "lon": 127.10369,
+              "offsetKm": 2.756
             },
             {
-              "lat": 37.56267,
-              "lon": 127.03837,
-              "offsetKm": 2.187
+              "lat": 37.31551,
+              "lon": 127.10377,
+              "offsetKm": 1.256
             },
             {
-              "lat": 37.55155,
-              "lon": 127.03598,
-              "offsetKm": 3.415
+              "lat": 37.27504,
+              "lon": 127.10396,
+              "offsetKm": 2.454
             },
             {
-              "lat": 37.54341,
-              "lon": 127.023,
-              "offsetKm": 4.71
-            },
-            {
-              "lat": 37.48981,
-              "lon": 126.88008,
-              "offsetKm": 4.426
-            },
-            {
-              "lat": 37.47692,
-              "lon": 126.88476,
-              "offsetKm": 2.936
+              "lat": 37.26155,
+              "lon": 127.10402,
+              "offsetKm": 1.101
             }
           ]
         }
@@ -6976,11 +6964,10 @@
         "수서"
       ],
       "checkedLegs": 2,
-      "matchedLegs": 0,
+      "matchedLegs": 1,
       "status": "REVIEW",
       "issues": [
-        "TRACK_DEVIATION_REQUIRES_REVIEW",
-        "INSUFFICIENT_OSM_CORRIDOR_REFERENCE"
+        "TRACK_DEVIATION_REQUIRES_REVIEW"
       ],
       "legs": [
         {
@@ -7040,52 +7027,42 @@
           "from": "평택지제",
           "to": "수서",
           "corridor": "수서평택고속선",
-          "status": "REVIEW_REFERENCE_GAP",
-          "drawnKm": 91.9,
-          "straightKm": 52.09,
-          "coverage": 0.033,
-          "referenceDensity": 0.508,
-          "namedDensity": 0.049,
+          "status": "MATCH",
+          "drawnKm": 53.48,
+          "straightKm": 52.14,
+          "coverage": 0.8,
+          "referenceDensity": 1,
+          "namedDensity": 0.829,
           "mismatch": [
             {
-              "lat": 37.05476,
-              "lon": 127.0526,
-              "offsetKm": 1.723
+              "lat": 37.2662,
+              "lon": 127.104,
+              "offsetKm": 1.618
             },
             {
-              "lat": 37.0682,
-              "lon": 127.0541,
-              "offsetKm": 2.224
+              "lat": 37.27969,
+              "lon": 127.10395,
+              "offsetKm": 1.937
             },
             {
-              "lat": 37.08161,
-              "lon": 127.05464,
-              "offsetKm": 3.04
+              "lat": 37.32016,
+              "lon": 127.10374,
+              "offsetKm": 1.774
             },
             {
-              "lat": 37.0944,
-              "lon": 127.06002,
-              "offsetKm": 2.982
+              "lat": 37.33365,
+              "lon": 127.10366,
+              "offsetKm": 3.274
             },
             {
-              "lat": 37.10778,
-              "lon": 127.06199,
-              "offsetKm": 2.839
+              "lat": 37.34714,
+              "lon": 127.10358,
+              "offsetKm": 2.653
             },
             {
-              "lat": 37.1212,
-              "lon": 127.06371,
-              "offsetKm": 2.763
-            },
-            {
-              "lat": 37.13462,
-              "lon": 127.06532,
-              "offsetKm": 2.678
-            },
-            {
-              "lat": 37.14805,
-              "lon": 127.06699,
-              "offsetKm": 2.566
+              "lat": 37.36063,
+              "lon": 127.1035,
+              "offsetKm": 1.153
             }
           ]
         }
