@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.4] — 2026-11-18
+
+- Merge pull request #75 from s3h0726/feature/france-rer-c-pontoise Add RER C Pontoise and Massy service patterns
+
 ## [v0.11.3] — 2026-11-18
 
 - Merge pull request #73 from s3h0726/fix/pages-enoden-following-regression Fix Pages Enoden check after free-drive following-station update
