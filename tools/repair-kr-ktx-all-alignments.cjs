@@ -88,7 +88,7 @@ function graphRoute(graph,from,to,corridor,oldKm){
  for(const e of ends)for(const id of [e.edge.ak,e.edge.bk]){
   const km=distance(e.point,graph.coord(id))+e.offset;
   const cost=km*edgePenalty(e.edge,corridor);
-  if(!endNodes.has(id)||cost<endNodes.get(id).cost)endNodes.set(id,{cost,km,wayId:e.edge.wayId});
+  if(!endNodes.has(id)||cost<endNodes.get(id).cost)endNodes.set(id,{cost,km,wayId:e.edge.wayId,fast:e.edge.fast,corridor:e.edge.corridor});
  }
  const dist=new Map(),prior=new Map(),heap=new Heap();
  for(const s of starts)for(const id of [s.edge.ak,s.edge.bk]){
@@ -115,7 +115,7 @@ function graphRoute(graph,from,to,corridor,oldKm){
   if(++steps>1000000)break;
  }
  if(!best)return {reason:'NO_CONNECTED_OSM_ROUTE',startCandidates:starts.length,endCandidates:ends.length};
- const ids=[best.id];let fast=0,named=0,total=best.tail.km;
+ const ids=[best.id];let fast=best.tail.fast?best.tail.km:0,named=best.tail.corridor===corridor?best.tail.km:0,total=best.tail.km;
  const wayIds=new Set([best.tail.wayId]);
  while(true){
   const rec=prior.get(ids[0]);if(!rec)return {reason:'BROKEN_GRAPH_PREDECESSOR'};
