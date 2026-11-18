@@ -709,6 +709,13 @@
     const key=normalize(alias);
     return key&&names.some(name=>name===key||(!shortAlias(alias)&&name.includes(key)));
   });
+  function genericAirportContext(route,airport){
+    const line=[route?.line?.ko,route?.line?.en,route?.line?.ja,route?.nameKo].join(' ');
+    if(airport.code==='HKG')return /airport express|공항철도|機場快/i.test(line);
+    if(airport.code==='MFM')return /타이파|taipa|macau|마카오|澳門|輕軌|light rail/i.test(line);
+    if(airport.code==='PUS')return /부산김해|busan.gimhae/i.test(line);
+    return /airport|공항|機場|空港/i.test(line);
+  }
   function matchesPortal(station,route,airport,portalId){
     const portal=airport?.portals?.find(item=>item.id===portalId);
     if(!portal||!station||route?.countryId!==airport.countryId)return false;
@@ -717,7 +724,7 @@
     const names=stationNames(station).map(normalize);
     if(!aliasMatch(names,portal.aliases))return false;
     if(!point&&portal.aliases.some(shortAlias)&&names.some(name=>['airport','機場','공항','공항역'].includes(name))){
-      return /airport|공항|機場|空港|수완나품|gimhae|macau|마카오/i.test([route?.line?.ko,route?.line?.en,route?.line?.ja,route?.nameKo].join(' '));
+      return genericAirportContext(route,airport);
     }
     return true;
   }
@@ -730,9 +737,7 @@
     if(!matched)return false;
     // Never treat an unrelated generic "Airport" station as a flight portal.
     if(!point&&names.some(name=>['airport','機場','공항','공항역'].includes(name))&&
-        !/airport|공항|機場|空港|apm|마카오|macau|gimhae/i.test([
-          route?.line?.ko,route?.line?.en,route?.line?.ja,route?.nameKo
-        ].join(' ')))return false;
+        !genericAirportContext(route,airport))return false;
     return true;
   }
   function detect(state){
