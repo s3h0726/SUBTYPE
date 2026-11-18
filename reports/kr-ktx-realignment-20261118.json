@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-18T03:31:10.202Z",
+  "checkedAt": "2026-11-18T03:34:52.111Z",
   "method": "OSM exact-way graph; conservative KTX-only geometries; current timetable stop lists unchanged",
   "summary": {
     "ktxJourneys": 151,
@@ -9,7 +9,7 @@
     "correctedLegInstances": 0,
     "changedBatches": [],
     "statusCounts": {
-      "SOURCE_PROOF_INSUFFICIENT": 19
+      "SOURCE_PROOF_INSUFFICIENT": 26
     }
   },
   "events": [
@@ -284,6 +284,21 @@
       "newCoverage": 0.457
     },
     {
+      "routeId": "kr-rail-continuity-gyeongbu-highspeed",
+      "journeyId": "kr-continuity-pattern-f8773714f6089a0a",
+      "from": "동대구",
+      "to": "부산",
+      "corridor": "경부고속선",
+      "accept": false,
+      "reason": "SOURCE_PROOF_INSUFFICIENT",
+      "originalKm": 115.05,
+      "correctedKm": 163.65,
+      "fastShare": 0.575,
+      "namedShare": 0.276,
+      "originalCoverage": 0.085,
+      "newCoverage": 0.618
+    },
+    {
       "routeId": "kr-rail-continuity-pohang-highspeed",
       "journeyId": "kr-continuity-pattern-429f1d1f7d4cd34c",
       "from": "평택지제",
@@ -297,6 +312,96 @@
       "namedShare": 0.068,
       "originalCoverage": 0.121,
       "newCoverage": 0.123
+    },
+    {
+      "routeId": "kr-rail-network-gyeongbu-highspeed",
+      "journeyId": "kr-network-pattern-ab7174c75e30b6f1",
+      "from": "동대구",
+      "to": "부산",
+      "corridor": "경부고속선",
+      "accept": false,
+      "reason": "SOURCE_PROOF_INSUFFICIENT",
+      "originalKm": 115.1,
+      "correctedKm": 163.65,
+      "fastShare": 0.575,
+      "namedShare": 0.277,
+      "originalCoverage": 0.099,
+      "newCoverage": 0.618
+    },
+    {
+      "routeId": "kr-rail-network-gyeongbu-highspeed",
+      "journeyId": "kr-network-pattern-7e8ee75a4f9b51bf",
+      "from": "동대구",
+      "to": "부산",
+      "corridor": "경부고속선",
+      "accept": false,
+      "reason": "SOURCE_PROOF_INSUFFICIENT",
+      "originalKm": 115.1,
+      "correctedKm": 163.65,
+      "fastShare": 0.575,
+      "namedShare": 0.277,
+      "originalCoverage": 0.099,
+      "newCoverage": 0.618
+    },
+    {
+      "routeId": "kr-rail-network-gyeongbu-highspeed",
+      "journeyId": "kr-network-pattern-00945cbe90baf8dc",
+      "from": "동대구",
+      "to": "부산",
+      "corridor": "경부고속선",
+      "accept": false,
+      "reason": "SOURCE_PROOF_INSUFFICIENT",
+      "originalKm": 115.1,
+      "correctedKm": 163.65,
+      "fastShare": 0.575,
+      "namedShare": 0.277,
+      "originalCoverage": 0.099,
+      "newCoverage": 0.618
+    },
+    {
+      "routeId": "kr-rail-network-gyeongbu-highspeed",
+      "journeyId": "kr-network-pattern-29f500c1dd994084",
+      "from": "동대구",
+      "to": "부산",
+      "corridor": "경부고속선",
+      "accept": false,
+      "reason": "SOURCE_PROOF_INSUFFICIENT",
+      "originalKm": 115.1,
+      "correctedKm": 163.65,
+      "fastShare": 0.575,
+      "namedShare": 0.277,
+      "originalCoverage": 0.099,
+      "newCoverage": 0.618
+    },
+    {
+      "routeId": "kr-rail-network-gyeongbu-highspeed",
+      "journeyId": "kr-network-pattern-3404bcd3714767b5",
+      "from": "동대구",
+      "to": "부산",
+      "corridor": "경부고속선",
+      "accept": false,
+      "reason": "SOURCE_PROOF_INSUFFICIENT",
+      "originalKm": 115.1,
+      "correctedKm": 163.65,
+      "fastShare": 0.575,
+      "namedShare": 0.277,
+      "originalCoverage": 0.099,
+      "newCoverage": 0.618
+    },
+    {
+      "routeId": "kr-rail-network-gyeongbu-highspeed",
+      "journeyId": "kr-network-pattern-d231682595721cc0",
+      "from": "동대구",
+      "to": "부산",
+      "corridor": "경부고속선",
+      "accept": false,
+      "reason": "SOURCE_PROOF_INSUFFICIENT",
+      "originalKm": 115.1,
+      "correctedKm": 163.65,
+      "fastShare": 0.575,
+      "namedShare": 0.277,
+      "originalCoverage": 0.099,
+      "newCoverage": 0.618
     }
   ]
 }
