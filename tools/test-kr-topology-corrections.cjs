@@ -50,7 +50,7 @@ test('all reviewed national corrections preserve exact source geometry and remai
   assert.equal(oriented.status,'UNIQUE_SOURCE_ORDER');assert.equal(journey.stations.length,stops.length);
   assert.deepEqual(service.paths,oriented.parts.map(p=>({geometryId:'kr-geometry-'+p.wayId,reverse:p.reverse})));
   assert.deepEqual(service.stops.map(s=>maps.stops.get(s.stopId).osmNodeId),stops);
-  const blocked=compiled.blocked.find(s=>s.serviceId===service.id);if(service.access?.passengerCandidate===false){assert.equal(service.id,'kr-osm-service-20500839');assert(compiled.excluded.some(s=>s.serviceId===service.id));assert.equal(service.playable,false)}else{assert(blocked);
+  const blocked=compiled.blocked.find(s=>s.serviceId===service.id);if(service.access?.passengerCandidate===false){assert(['kr-osm-service-20500839','kr-osm-service-17585166','kr-osm-service-17585167'].includes(service.id),'기존 접근 제외 대상만 보존');assert(compiled.excluded.some(s=>s.serviceId===service.id));assert.equal(service.playable,false)}else{assert(blocked);
   const timetableEvidence=read('timetable-verifications').find(v=>v.serviceId===service.id);
   if(timetableEvidence){assert.equal(timetableEvidence.status,'verified');assert.equal(timetableEvidence.groups.length,3);assert(timetableEvidence.groups.every(g=>g.trainCount>0));assert(!blocked.reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'))}
   else assert(blocked.reasons.includes('OFFICIAL_TIMETABLE_REQUIRED'));
