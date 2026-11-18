@@ -1,5 +1,5 @@
-import{FRANCE_CATEGORIES,franceOperatingChoices,resolveFranceChoice,franceFreeDriveRoutes}from'./france-network.js';
-import{UK_CATEGORIES,ukCategory,ukPresentation,ukOperatingChoices,resolveUKChoice,ukFreeDriveRoutes}from'./uk-network.js';
+import{FRANCE_CATEGORIES,franceOperatingChoices,resolveFranceChoice,franceFreeDriveRoutes,francePatternRoute}from'./france-network.js';
+import{UK_CATEGORIES,ukCategory,ukPresentation,ukOperatingChoices,resolveUKChoice,ukFreeDriveRoutes,ukPatternRoute}from'./uk-network.js';
 import{THAILAND_CATEGORIES,thailandPresentation,thailandNames,thailandNameText,thailandNameMarkup,thailandOperatingChoices,resolveThailandChoice}from'./thailand-network.js';
 import{getTaiwanDisplayNames,taiwanNameText,taiwanNameMarkup,taiwanDirectionNames,renderTaiwanSetupHeader,taiwanRecordMarkup}from'./taiwan-display.js';
 import{applyKoreanMenuCopy}from'./korean-menu.js';
@@ -1235,27 +1235,70 @@ const customForeignRailCache=new Map();
 async function customForeignRailIndex(targetCountry){
  if(!isCountryEnabled(targetCountry))throw new Error('지원하지 않는 목적지 국가입니다.');
  if(!customForeignRailCache.has(targetCountry)){
-  const pending=loadTransportData(targetCountry,koreaPlayMode).then(loaded=>{
+  const pending=(targetCountry===countryId&&builtin.length?Promise.resolve({lines:builtin}):loadTransportData(targetCountry,koreaPlayMode)).then(loaded=>{
    const available=(loaded.lines||[]).filter(route=>route.countryId===targetCountry&&
     route.category!=='custom'&&route.playable!==false&&route.visibility!=='internal'&&
     !['bus','village_bus','express_bus','brt','river_bus','ferry'].includes(route.mode));
-   return{catalog:available,ready:new Map(available.filter(route=>!route.lazy&&route.stations?.length>=2).map(route=>[route.id,route]))};
+   return{catalog:available,ready:new Map(available.filter(route=>!route.lazy&&route.stations?.length>=2).map(route=>[route.id,route])),pending:new Map(),failures:new Map()};
   }).catch(error=>{customForeignRailCache.delete(targetCountry);throw error});
   customForeignRailCache.set(targetCountry,pending);
  }
  return customForeignRailCache.get(targetCountry);
 }
-async function customHydrateForeignRoutes(targetCountry,candidates,limit=12){
- const cache=await customForeignRailIndex(targetCountry),pending=candidates.filter(route=>!cache.ready.has(route.id)).slice(0,limit);
- // Limit outstanding detail requests to avoid freezing the main map.
- for(let offset=0;offset<pending.length;offset+=4){
-  const results=await Promise.allSettled(pending.slice(offset,offset+4).map(hydrateRailLine));
-  for(let i=0;i<results.length;i++)if(results[i].status==='fulfilled'){
-   const route=results[i].value;
-   if(route.countryId===targetCountry&&route.stations?.length>=2&&route.playable!==false&&
-    !hongKongRouteBlockReason(route)&&!koreanRouteBlockReason(route))cache.ready.set(pending[offset+i].id,route);
-  }
+// The index lists every station, while UK/FR lazy payloads return only the
+// first service pattern. Keep all verified pattern variants for search and rail traversal.
+function customSearchValue(value){return String(value??'').normalize('NFKC').toLocaleLowerCase().replace(/[\s._\-·・'’()（）\[\]]/g,'')}
+function customSearchTerms(value){
+ if(typeof value==='string')return[value];
+ if(!value||typeof value!=='object')return[];
+ const n=value.names||{},d=value.displayNames||{};
+ return[value.ko,value.ja,value.en,value.fr,value.th,value.zh,value.kana,value.romaji,value.name,value.nameKo,value.nameJa,value.nameEn,
+  n.ko,n.ja,n.en,n.zh,n.fr,n.th,d.ko,d.en,d.zh,...(value.koAliases||[])].filter(item=>typeof item==='string'&&item.trim());
+}
+function customRailSearchRank(route,term){
+ const stops=[...(route.searchStations||[]),...(route.stationSequence||[]),...(route.stationCatalog||[]),...(route.stations||[])];
+ let score=Infinity;
+ for(const entry of stops)for(const name of customSearchTerms(entry)){
+  const normalized=customSearchValue(name);if(!normalized)continue;
+  if(normalized===term)return 0;
+  if(normalized.startsWith(term))score=Math.min(score,1);
+  else if(normalized.includes(term))score=Math.min(score,2);
  }
+ if(Number.isFinite(score))return score;
+ for(const name of [...customSearchTerms(route.line),...customSearchTerms(route.operator),route.code,route.id]){
+  if(customSearchValue(name).includes(term))return 4;
+ }
+ return Infinity;
+}
+function customExpandRailPatterns(detail){
+ if(!['uk','fr'].includes(detail?.countryId)||!Array.isArray(detail.patterns)||detail.patterns.length<2)return[detail];
+ const variants=[detail],seen=new Set([String(detail.selectedServiceId)]);
+ for(const pattern of detail.patterns){
+  if(seen.has(String(pattern.id)))continue;
+  seen.add(String(pattern.id));
+  try{
+   const route=detail.countryId==='uk'?ukPatternRoute(detail,pattern):francePatternRoute(detail,pattern);
+   if(route.stations?.length>=2)variants.push({...route,id:detail.id+'--'+pattern.id,physicalLineId:detail.id,sourceCatalogLineId:detail.id,oneWay:true,patterns:[]});
+  }catch(error){console.warn('Custom editor skipped unverified railway direction:',detail.id,pattern.id,error)}
+ }
+ return variants;
+}
+async function customHydrateForeignRoutes(targetCountry,candidates,limit=24){
+ const cache=await customForeignRailIndex(targetCountry);
+ const pending=candidates.filter(route=>route&&!cache.ready.has(route.id)).slice(0,limit);
+ const request=route=>{
+  if(!cache.pending.has(route.id)){
+   const promise=hydrateRailLine(route).then(detail=>{
+    if(detail.countryId!==targetCountry||detail.playable===false||!Array.isArray(detail.stations)||detail.stations.length<2||
+      hongKongRouteBlockReason(detail)||koreanRouteBlockReason(detail))throw Error('철도 노선 검증 실패: '+route.id);
+    for(const verified of customExpandRailPatterns(detail))cache.ready.set(verified.id,verified);
+    cache.failures.delete(route.id);
+   }).catch(error=>{cache.failures.set(route.id,error.message||String(error))}).finally(()=>cache.pending.delete(route.id));
+   cache.pending.set(route.id,promise);
+  }
+  return cache.pending.get(route.id);
+ };
+ for(let offset=0;offset<pending.length;offset+=4)await Promise.all(pending.slice(offset,offset+4).map(request));
  return cache;
 }
 function customForeignRailResult(cache,country){
@@ -1291,12 +1334,16 @@ async function loadCustomAirportNetwork({countryId:targetCountry,toCode,portalId
  return customForeignRailResult(cache,targetCountry);
 }
 async function searchCustomForeignRail({countryId:targetCountry,query}){
- const normalized=normalize(query);if(!normalized||normalized.length<2)return null;
+ const term=customSearchValue(query);if(!term||term.length<2&&!/[一-龯ぁ-んァ-ン가-힣]/u.test(term))return null;
  const cache=await customForeignRailIndex(targetCountry);
- const matches=cache.catalog.filter(route=>!cache.ready.has(route.id)&&
-  normalize([route.line?.ko,route.line?.ja,route.line?.en,...(route.searchStations||[]),...(route.stationCatalog||[]).flatMap(s=>[s.ko,s.ja,s.en])].join(' ')).includes(normalized)).slice(0,8);
- if(matches.length)await customHydrateForeignRoutes(targetCountry,matches,8);
- return customForeignRailResult(cache,targetCountry);
+ const ranked=cache.catalog.map(route=>({route,score:customRailSearchRank(route,term)}))
+  .filter(item=>Number.isFinite(item.score)).sort((a,b)=>a.score-b.score||a.route.id.localeCompare(b.route.id));
+ // Do not silently truncate to the first 8 matching route cards.
+ // Exact station-name matches come before line-name matches.
+ const candidates=ranked.filter(item=>!cache.ready.has(item.route.id)).map(item=>item.route).slice(0,32);
+ if(candidates.length)await customHydrateForeignRoutes(targetCountry,candidates,32);
+ const result=customForeignRailResult(cache,targetCountry);
+ return{...result,matchedRoutes:ranked.length,failedRoutes:ranked.filter(item=>cache.failures.has(item.route.id)).length};
 }
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list'),onLoadAirportNetwork:loadCustomAirportNetwork,onSearchForeignRail:searchCustomForeignRail});
 freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state);globalThis.TRTAirportSystem?.update(state)}}});

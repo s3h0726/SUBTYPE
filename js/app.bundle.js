@@ -4470,7 +4470,7 @@ function customAirportTransferValid(previous,arrival,transfer,countryId,routes,a
 const MAX=300;
 const blank=(i=1,geo={})=>({id:`CT${String(i).padStart(2,'0')}`,ja:'',kana:'',romaji:'',ko:'',koAliases:[],map:null,latitude:geo.latitude??null,longitude:geo.longitude??null,customStation:true});
 class RouteEditor{
- constructor({onRoutesChanged,onPlay,onSaved,onLoadAirportNetwork,onSearchForeignRail}){this.onRoutesChanged=onRoutesChanged;this.onPlay=onPlay;this.onSaved=onSaved;this.onLoadAirportNetwork=onLoadAirportNetwork;this.onSearchForeignRail=onSearchForeignRail;this.lastForeignSearchKey='';this.countryNetworks=new Map();this.airportBusy=false;this.form=$('#route-form');this.list=$('#station-editor');this.master=[];this.railRoutes=[];this.stationGraph=new Map();this.shortestPath=new CustomShortestPath();this.latestPath=null;this.route=this.fresh();this.activeCountryId=this.route.countryId;this.geo=null;this.render();this.bind()}
+ constructor({onRoutesChanged,onPlay,onSaved,onLoadAirportNetwork,onSearchForeignRail}){this.onRoutesChanged=onRoutesChanged;this.onPlay=onPlay;this.onSaved=onSaved;this.onLoadAirportNetwork=onLoadAirportNetwork;this.onSearchForeignRail=onSearchForeignRail;this.lastForeignSearchKey='';this.stationSearchStatus=null;this.searchResultLimit=30;this.countryNetworks=new Map();this.airportBusy=false;this.form=$('#route-form');this.list=$('#station-editor');this.master=[];this.railRoutes=[];this.stationGraph=new Map();this.shortestPath=new CustomShortestPath();this.latestPath=null;this.route=this.fresh();this.activeCountryId=this.route.countryId;this.geo=null;this.render();this.bind()}
  stationDisplay(station,route=this.route){
   const name=customStationNames(station,station?.countryId||this.activeCountryId||route?.countryId);
   return koreanStationDisplayName(name.korean,name.countryId,station?.segment||route);
@@ -4495,7 +4495,7 @@ class RouteEditor{
     const an=add(ak,a,route),bn=add(bk,b,route);
     if(!an||!bn)continue;
     an.edges.push({to:bk,route,fromIndex:i,toIndex:i+1});
-    if(route.countryId!=='hk'&&(route.countryId!=='kr'||route.schemaVersion!==2))bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i});
+    if(route.countryId!=='hk'&&!route.oneWay&&(route.countryId!=='kr'||route.schemaVersion!==2))bn.edges.push({to:ak,route,fromIndex:i+1,toIndex:i});
    }
   }
   this.shortestPath.setRoutes(this.railRoutes);
@@ -4533,25 +4533,66 @@ class RouteEditor{
  loadRoute(route){if(!route||koreanRouteBlockReason(route))return;this.route=structuredClone(route);this.latestPath=null;this.route.geometry ||= [];this.route.segments ||= [];this.route.airportTransfers ||= [];this.useCountry(this.route.stations.at(-1)?.countryId||this.route.countryId);this.render();void this.restoreLastCountry()}
  bind(){
   $('#new-route').addEventListener('click',()=>this.createNew());$('#add-station').addEventListener('click',()=>this.addStation());$('#save-route').addEventListener('click',()=>this.save());$('#play-custom').addEventListener('click',()=>{if(this.validate())this.onPlay(this.route)});$('#export-route').addEventListener('click',()=>this.export());$('#import-route').addEventListener('change',e=>this.import(e.target.files[0]));
-  $('#station-master-search').addEventListener('input',debounce(e=>this.renderSearch(e.target.value),70));$('#station-search-results').addEventListener('click',e=>{const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster);const shortest=e.target.closest('[data-route-to]');if(shortest)this.connectShortestPath(shortest.dataset.routeTo)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});$('#custom-airport-choices')?.addEventListener('click',e=>{const button=e.target.closest('[data-airport-choice]');if(button)void this.addAirportTransfer(button.dataset.airportChoice)});$('#custom-clear-stops')?.addEventListener('click',()=>{if(!this.route.stations.length)return;this.sync();this.resetTrack();this.latestPath=null;this.render();toast('역 목록을 초기화했습니다. 노선 정보는 유지됩니다.')});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.isComposing&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});
+  $('#station-master-search').addEventListener('input',debounce(e=>{this.searchResultLimit=30;this.renderSearch(e.target.value)},70));$('#station-search-results').addEventListener('click',e=>{if(e.target.closest('[data-search-more]')){this.searchResultLimit+=50;this.renderSearch($('#station-master-search').value);return}const button=e.target.closest('[data-add-master]');if(button)this.addMasterStation(button.dataset.addMaster);const shortest=e.target.closest('[data-route-to]');if(shortest)this.connectShortestPath(shortest.dataset.routeTo)});$('#journey-options').addEventListener('click',e=>{const button=e.target.closest('[data-journey-edge]');if(button)this.addGraphEdge(button.dataset.journeyEdge)});$('#custom-airport-choices')?.addEventListener('click',e=>{const button=e.target.closest('[data-airport-choice]');if(button)void this.addAirportTransfer(button.dataset.airportChoice)});$('#custom-clear-stops')?.addEventListener('click',()=>{if(!this.route.stations.length)return;this.sync();this.resetTrack();this.latestPath=null;this.render();toast('역 목록을 초기화했습니다. 노선 정보는 유지됩니다.')});document.addEventListener('keydown',e=>{if(e.key==='Tab'&&!e.isComposing&&document.body.dataset.currentScreen==='custom-editor'&&this.route.stations.length){const options=this.currentEdges();if(new Set(options.map(edge=>edge.route.id)).size>1){e.preventDefault();$('#journey-options').classList.toggle('transfer-open');$('#journey-options').focus?.()}}});
   this.form.addEventListener('input',debounce(()=>{this.sync();this.draw()},60));this.list.addEventListener('click',e=>this.action(e));this.list.addEventListener('dragstart',e=>{const row=e.target.closest('.station-row');if(row){this.dragIndex=+row.dataset.index;row.classList.add('dragging')}});this.list.addEventListener('dragend',e=>e.target.closest('.station-row')?.classList.remove('dragging'));this.list.addEventListener('dragover',e=>e.preventDefault());this.list.addEventListener('drop',e=>{e.preventDefault();const to=+e.target.closest('.station-row')?.dataset.index;if(Number.isInteger(to)&&to!==this.dragIndex){this.sync();const stops=this.route.stations.map(station=>structuredClone(station));const[m]=stops.splice(this.dragIndex,1);stops.splice(to,0,m);this.retraceEditedStops(stops)}});
   $('#saved-routes').addEventListener('click',e=>{const id=e.target.closest('[data-id]')?.dataset.id;if(!id)return;if(e.target.matches('[data-delete]')){if(confirm('이 노선을 삭제할까요?')){storage.deleteRoute(id);this.renderSaved();this.onRoutesChanged()}}else{const found=storage.routes().find(r=>r.id===id);if(found){this.route=structuredClone(found);this.render()}}})
  }
  async activate(){await this.restoreLastCountry();await this.switchEditorView('map');setTimeout(()=>$('#station-master-search')?.focus(),80)}
  async searchForeignStations(value){
-  if(!this.onSearchForeignRail||this.activeCountryId===this.route.countryId||normalize(value).length<2)return;
-  const country=this.activeCountryId,key=country+':'+normalize(value);
+  if(!this.onSearchForeignRail)return;
+  const q=normalize(value),country=this.activeCountryId;
+  if(!q||q.length<2&&!/[一-龯ぁ-んァ-ン가-힣]/u.test(q))return;
+  const key=country+':'+q;
   if(this.lastForeignSearchKey===key)return;
-  this.lastForeignSearchKey=key;
+  this.lastForeignSearchKey=key;this.stationSearchStatus={key,loading:true};this.renderSearch(value);
   try{
    const result=await this.onSearchForeignRail({countryId:country,query:value});
-   if(!result||country!==this.activeCountryId||normalize($('#station-master-search')?.value||'')!==normalize(value))return;
-   this.setRailNetwork(result.routes,{countryId:country,force:true});
-   this.setStationMaster(result.stations,{countryId:country,force:true});
+   if(!result||country!==this.activeCountryId||normalize($('#station-master-search')?.value||'')!==q)return;
+   // Search-driven loading must NEVER discard the airport arrival line or
+   // the rest of the railway network already used by this custom journey.
+   const before=this.countryNetworks.get(country)||{};
+   const routes=[...new Map([...(before.routes||[]),...(result.routes||[])].map(route=>[route.id,route])).values()];
+   const stationKey=station=>String(station?.twTransferKey||station?.stationMasterId||station?.sourceStationId||station?.id||'');
+   const stations=[...new Map([...(before.stations||[]),...(result.stations||[])]
+     .filter(station=>stationKey(station)).map(station=>[stationKey(station),station])).values()];
+   this.setRailNetwork(routes,{countryId:country,force:true});
+   this.setStationMaster(stations,{countryId:country,force:true});
+   this.stationSearchStatus={key,loading:false,matchedRoutes:result.matchedRoutes||0,failedRoutes:result.failedRoutes||0};
    this.renderSearch(value);
-  }catch(error){console.warn('Foreign custom-route rail search:',error)}
+  }catch(error){
+   if(country===this.activeCountryId&&normalize($('#station-master-search')?.value||'')===q){
+    this.stationSearchStatus={key,loading:false,error:error.message||String(error)};
+    this.renderSearch(value);
+   }
+   // Permit a manual retry of the exact same station name.
+   this.lastForeignSearchKey='';
+   console.warn('Custom railway station search failed:',country,value,error);
+  }
  }
- renderSearch(value){if(this.activeCountryId!==this.route.countryId)void this.searchForeignStations(value);const target=$('#station-search-results');if(!target)return;const q=normalize(value);if(!q){target.innerHTML=this.activeCountryId==='tw'?'<p>한국어·繁體中文·English 역 이름을 입력하세요.</p>':'<p>한국어·현지어·English 역명을 입력하세요.</p>';return}const matches=this.master.map(station=>{const names=[station.zh,station.names?.zh,station.ja,station.kana,station.romaji,station.ko,station.en,station.th,station.fr,station.name,station.names?.en,station.names?.ko,...(station.koAliases||[])].map(normalize),all=normalize([names.join(' '),...(station.operators||[]),...(station.lines||[]).flatMap(line=>[line.lineJa,line.lineKo,line.operatorJa])].join(' ')),rank=names.includes(q)?0:names.some(name=>name.startsWith(q))?1:names.some(name=>name.includes(q))?2:all.includes(q)?3:99;return{station,rank}}).filter(item=>item.rank<99).sort((a,b)=>a.rank-b.rank||String(a.station.ko||a.station.ja||a.station.romaji||'').localeCompare(String(b.station.ko||b.station.ja||b.station.romaji||''),'ko')).slice(0,12).map(item=>item.station);target.innerHTML=matches.length?matches.map(station=>`<article class="station-search-result"><div><b>${escapeHtml(this.stationDisplay(station)||'MISSING_KOREAN_NAME')}</b><span>${this.activeCountryId==='tw'?taiwanNameMarkup(station):escapeHtml(this.stationNativeDisplay(station))}</span><small>${escapeHtml(station.romaji||station.names?.en||station.en||'')} · ${escapeHtml((station.operators||[]).join(' · '))}</small><small>${escapeHtml((station.lines||[]).slice(0,5).map(line=>line.lineKo||line.lineJa).join(' · '))}${station.lines?.length>5?' 외':''}</small></div><div class="custom-search-actions"><button type="button" data-add-master="${escapeHtml(station.id)}">${this.route.stations.length?"＋ 인접역":"출발역 선택"}</button>${this.route.stations.length?`<button type="button" class="shortest-connect" data-route-to="${escapeHtml(station.id)}">↗ 최단거리 연결</button>`:""}</div></article>`).join(''):'<p>일치하는 실제 역이 없습니다.</p>'}
+ renderSearch(value){
+  const target=$('#station-search-results');if(!target)return;
+  const q=normalize(value);
+  if(!q){target.innerHTML=this.activeCountryId==='tw'?'<p>한국어·繁體中文·English 역 이름을 입력하세요.</p>':'<p>한국어·현지어·English 역 이름을 입력하세요.</p>';return}
+  const namesFor=station=>[station.zh,station.names?.zh,station.ja,station.kana,station.romaji,station.ko,station.en,station.th,station.fr,station.name,
+    station.names?.en,station.names?.ko,station.displayNames?.ko,station.displayNames?.en,...(station.koAliases||[])];
+  const folded=v=>v===null||v===undefined?'':normalize(v).normalize('NFKC').replace(/[\s._\-·・'’()（）\[\]]/g,'');
+  const term=folded(q);
+  const ranked=this.master.map(station=>{
+   const names=namesFor(station).map(folded),all=folded([names.join(' '),...(station.operators||[]),...(station.lines||[]).flatMap(line=>[line.lineJa,line.lineKo,line.operatorJa])].join(' '));
+   const rank=names.includes(term)?0:names.some(name=>name.startsWith(term))?1:names.some(name=>name.includes(term))?2:all.includes(term)?3:99;
+   return{station,rank};
+  }).filter(item=>item.rank<99)
+   .sort((a,b)=>a.rank-b.rank||String(a.station.ko||a.station.ja||a.station.romaji||'').localeCompare(String(b.station.ko||b.station.ja||b.station.romaji||''),'ko'))
+  const totalMatches=ranked.length,matches=ranked.slice(0,this.searchResultLimit||30).map(item=>item.station);
+  target.innerHTML=matches.length?matches.map(station=>`<article class="station-search-result"><div><b>${escapeHtml(this.stationDisplay(station)||'한국어 역명 미등록')}</b><span>${this.activeCountryId==='tw'?taiwanNameMarkup(station):escapeHtml(this.stationNativeDisplay(station))}</span><small>${escapeHtml(station.romaji||station.names?.en||station.en||'')} · ${escapeHtml((station.operators||[]).join(' · '))}</small><small>${escapeHtml((station.lines||[]).slice(0,5).map(line=>line.lineKo||line.lineJa).join(' · '))}${station.lines?.length>5?' 외':''}</small></div><div class="custom-search-actions"><button type="button" data-add-master="${escapeHtml(station.id)}">${this.route.stations.length?'＋ 인접역':'출발역 선택'}</button>${this.route.stations.length?`<button type="button" class="shortest-connect" data-route-to="${escapeHtml(station.id)}">↗ 최단거리 연결</button>`:''}</div></article>`).join(''):'<p>현재 불러온 역 목록에는 일치하는 역이 없습니다.</p>';
+  if(totalMatches>matches.length)target.insertAdjacentHTML('beforeend',`<p>일치하는 역 ${totalMatches}개 중 ${matches.length}개 표시 <button type="button" data-search-more>더 보기</button></p>`);
+  const key=this.activeCountryId+':'+q,status=this.stationSearchStatus;
+  if(status?.key===key&&status.loading)target.insertAdjacentHTML('beforeend','<p class="station-search-loading" role="status">전국 철도망에서 역을 검색하고 있습니다…</p>');
+  else if(status?.key===key&&status.error)target.insertAdjacentHTML('beforeend','<p class="station-search-error" role="status">철도 데이터 검색 실패 · 검색어를 다시 입력해 재시도하세요.</p>');
+  else if(!matches.length&&status?.key===key&&status.matchedRoutes===0)target.insertAdjacentHTML('beforeend','<p>등록된 철도역이 없습니다. 다른 한국어·현지어·영문 표기로도 검색해 보세요.</p>');
+  else if(!matches.length&&status?.key===key&&status.failedRoutes>0)target.insertAdjacentHTML('beforeend','<p>일치하는 노선을 찾았으나 일부 철도 파일을 불러오지 못했습니다.</p>');
+  if(key!==this.lastForeignSearchKey)void this.searchForeignStations(value);
+ }
  connectShortestPath(id){
   const target=this.master.find(station=>station.id===id),current=this.route.stations.at(-1);
   if(!target)return;
@@ -6289,27 +6330,70 @@ const customForeignRailCache=new Map();
 async function customForeignRailIndex(targetCountry){
  if(!isCountryEnabled(targetCountry))throw new Error('지원하지 않는 목적지 국가입니다.');
  if(!customForeignRailCache.has(targetCountry)){
-  const pending=loadTransportData(targetCountry,koreaPlayMode).then(loaded=>{
+  const pending=(targetCountry===countryId&&builtin.length?Promise.resolve({lines:builtin}):loadTransportData(targetCountry,koreaPlayMode)).then(loaded=>{
    const available=(loaded.lines||[]).filter(route=>route.countryId===targetCountry&&
     route.category!=='custom'&&route.playable!==false&&route.visibility!=='internal'&&
     !['bus','village_bus','express_bus','brt','river_bus','ferry'].includes(route.mode));
-   return{catalog:available,ready:new Map(available.filter(route=>!route.lazy&&route.stations?.length>=2).map(route=>[route.id,route]))};
+   return{catalog:available,ready:new Map(available.filter(route=>!route.lazy&&route.stations?.length>=2).map(route=>[route.id,route])),pending:new Map(),failures:new Map()};
   }).catch(error=>{customForeignRailCache.delete(targetCountry);throw error});
   customForeignRailCache.set(targetCountry,pending);
  }
  return customForeignRailCache.get(targetCountry);
 }
-async function customHydrateForeignRoutes(targetCountry,candidates,limit=12){
- const cache=await customForeignRailIndex(targetCountry),pending=candidates.filter(route=>!cache.ready.has(route.id)).slice(0,limit);
- // Limit outstanding detail requests to avoid freezing the main map.
- for(let offset=0;offset<pending.length;offset+=4){
-  const results=await Promise.allSettled(pending.slice(offset,offset+4).map(hydrateRailLine));
-  for(let i=0;i<results.length;i++)if(results[i].status==='fulfilled'){
-   const route=results[i].value;
-   if(route.countryId===targetCountry&&route.stations?.length>=2&&route.playable!==false&&
-    !hongKongRouteBlockReason(route)&&!koreanRouteBlockReason(route))cache.ready.set(pending[offset+i].id,route);
-  }
+// The index lists every station, while UK/FR lazy payloads return only the
+// first service pattern. Keep all verified pattern variants for search and rail traversal.
+function customSearchValue(value){return String(value??'').normalize('NFKC').toLocaleLowerCase().replace(/[\s._\-·・'’()（）\[\]]/g,'')}
+function customSearchTerms(value){
+ if(typeof value==='string')return[value];
+ if(!value||typeof value!=='object')return[];
+ const n=value.names||{},d=value.displayNames||{};
+ return[value.ko,value.ja,value.en,value.fr,value.th,value.zh,value.kana,value.romaji,value.name,value.nameKo,value.nameJa,value.nameEn,
+  n.ko,n.ja,n.en,n.zh,n.fr,n.th,d.ko,d.en,d.zh,...(value.koAliases||[])].filter(item=>typeof item==='string'&&item.trim());
+}
+function customRailSearchRank(route,term){
+ const stops=[...(route.searchStations||[]),...(route.stationSequence||[]),...(route.stationCatalog||[]),...(route.stations||[])];
+ let score=Infinity;
+ for(const entry of stops)for(const name of customSearchTerms(entry)){
+  const normalized=customSearchValue(name);if(!normalized)continue;
+  if(normalized===term)return 0;
+  if(normalized.startsWith(term))score=Math.min(score,1);
+  else if(normalized.includes(term))score=Math.min(score,2);
  }
+ if(Number.isFinite(score))return score;
+ for(const name of [...customSearchTerms(route.line),...customSearchTerms(route.operator),route.code,route.id]){
+  if(customSearchValue(name).includes(term))return 4;
+ }
+ return Infinity;
+}
+function customExpandRailPatterns(detail){
+ if(!['uk','fr'].includes(detail?.countryId)||!Array.isArray(detail.patterns)||detail.patterns.length<2)return[detail];
+ const variants=[detail],seen=new Set([String(detail.selectedServiceId)]);
+ for(const pattern of detail.patterns){
+  if(seen.has(String(pattern.id)))continue;
+  seen.add(String(pattern.id));
+  try{
+   const route=detail.countryId==='uk'?ukPatternRoute(detail,pattern):francePatternRoute(detail,pattern);
+   if(route.stations?.length>=2)variants.push({...route,id:detail.id+'--'+pattern.id,physicalLineId:detail.id,sourceCatalogLineId:detail.id,oneWay:true,patterns:[]});
+  }catch(error){console.warn('Custom editor skipped unverified railway direction:',detail.id,pattern.id,error)}
+ }
+ return variants;
+}
+async function customHydrateForeignRoutes(targetCountry,candidates,limit=24){
+ const cache=await customForeignRailIndex(targetCountry);
+ const pending=candidates.filter(route=>route&&!cache.ready.has(route.id)).slice(0,limit);
+ const request=route=>{
+  if(!cache.pending.has(route.id)){
+   const promise=hydrateRailLine(route).then(detail=>{
+    if(detail.countryId!==targetCountry||detail.playable===false||!Array.isArray(detail.stations)||detail.stations.length<2||
+      hongKongRouteBlockReason(detail)||koreanRouteBlockReason(detail))throw Error('철도 노선 검증 실패: '+route.id);
+    for(const verified of customExpandRailPatterns(detail))cache.ready.set(verified.id,verified);
+    cache.failures.delete(route.id);
+   }).catch(error=>{cache.failures.set(route.id,error.message||String(error))}).finally(()=>cache.pending.delete(route.id));
+   cache.pending.set(route.id,promise);
+  }
+  return cache.pending.get(route.id);
+ };
+ for(let offset=0;offset<pending.length;offset+=4)await Promise.all(pending.slice(offset,offset+4).map(request));
  return cache;
 }
 function customForeignRailResult(cache,country){
@@ -6345,12 +6429,16 @@ async function loadCustomAirportNetwork({countryId:targetCountry,toCode,portalId
  return customForeignRailResult(cache,targetCountry);
 }
 async function searchCustomForeignRail({countryId:targetCountry,query}){
- const normalized=normalize(query);if(!normalized||normalized.length<2)return null;
+ const term=customSearchValue(query);if(!term||term.length<2&&!/[一-龯ぁ-んァ-ン가-힣]/u.test(term))return null;
  const cache=await customForeignRailIndex(targetCountry);
- const matches=cache.catalog.filter(route=>!cache.ready.has(route.id)&&
-  normalize([route.line?.ko,route.line?.ja,route.line?.en,...(route.searchStations||[]),...(route.stationCatalog||[]).flatMap(s=>[s.ko,s.ja,s.en])].join(' ')).includes(normalized)).slice(0,8);
- if(matches.length)await customHydrateForeignRoutes(targetCountry,matches,8);
- return customForeignRailResult(cache,targetCountry);
+ const ranked=cache.catalog.map(route=>({route,score:customRailSearchRank(route,term)}))
+  .filter(item=>Number.isFinite(item.score)).sort((a,b)=>a.score-b.score||a.route.id.localeCompare(b.route.id));
+ // Do not silently truncate to the first 8 matching route cards.
+ // Exact station-name matches come before line-name matches.
+ const candidates=ranked.filter(item=>!cache.ready.has(item.route.id)).map(item=>item.route).slice(0,32);
+ if(candidates.length)await customHydrateForeignRoutes(targetCountry,candidates,32);
+ const result=customForeignRailResult(cache,targetCountry);
+ return{...result,matchedRoutes:ranked.length,failedRoutes:ranked.filter(item=>cache.failures.has(item.route.id)).length};
 }
 const editor=new RouteEditor({onRoutesChanged:()=>{refreshRoutes();renderCustomLibrary()},onPlay:openSetup,onSaved:()=>go('custom-list'),onLoadAirportNetwork:loadCustomAirportNetwork,onSearchForeignRail:searchCustomForeignRail});
 freeDrive=new FreeDrive({onExit:()=>go('rail-map'),onChange:state=>{if(game?.freeDriveMode){freeDriveTabIndex=0;game.renderFreeDriveState(state);renderGameFreeDriveOptions(state);globalThis.TRTAirportSystem?.update(state)}}});

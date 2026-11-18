@@ -68,3 +68,9 @@
 #screen-custom .custom-airport-choices button:disabled{opacity:.55;cursor:progress}
 #screen-custom .custom-airport-choices button small{overflow-wrap:anywhere}
 #screen-custom .custom-airport-choices{grid-template-columns:repeat(auto-fill,minmax(190px,1fr));max-height:350px}
+
+/* Station lookup feedback and paging for national / international rail indices. */
+#screen-custom .station-search-loading{padding:10px 12px;color:var(--green);font-weight:600}
+#screen-custom .station-search-error{padding:10px 12px;color:#ffba9b}
+#screen-custom [data-search-more]{margin-left:7px;border:1px solid var(--green);background:transparent;color:var(--green);border-radius:8px;padding:7px 12px;cursor:pointer}
+#screen-custom [data-search-more]:focus-visible{outline:2px solid var(--green);outline-offset:2px}
