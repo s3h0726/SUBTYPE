@@ -16,7 +16,7 @@ export function travelGeometry(route){
   // Game-map corrections are display-only; keep canonical OSM source proofs
   // and operational stop order unchanged for the gameplay route.
   const stations=route.stations,directed=Array.isArray(route.mapDisplaySegments)?route.mapDisplaySegments:route.directedSegments,points=[],offsets=[];
-  if(route.countryId==='kr'&&(route.geometryReady!==true||!Array.isArray(directed)||directed.length!==stations.length-1||!directed.every(segment=>segment.geometryStatus==='ready'&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)))return null;
+  if(route.countryId==='kr'&&route.category!=='custom'&&(route.geometryReady!==true||!Array.isArray(directed)||directed.length!==stations.length-1||!directed.every(segment=>segment.geometryStatus==='ready'&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)))return null;
   if(Array.isArray(directed)&&directed.length===stations.length-1&&directed.every((segment,i)=>segment.fromStationId===stations[i].id&&segment.toStationId===stations[i+1].id&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)){
     for(let i=0;i<directed.length;i++){
       offsets[i]=Math.max(0,points.length-1);
@@ -102,15 +102,24 @@ function centerArrivalCamera(rail,index,nextIndex,initial=false){
 function createRouteLayers(rail,route,index,options={}){
   rail.loopClosingGeometry=route.countryId==='tw'&&route.loop?route.loopClosingGeometry:null;
   clearRouteLayers(rail);const {L,map}=rail,stationPoints=latLngs(route),travel=travelGeometry(route);if(!travel)return false;const points=travel.points;rail.routeId=route.id;rail.routeKey=route.renderKey||route.id;rail.points=points;rail.stationPoints=stationPoints;rail.stationOffsets=travel.offsets;rail.segmentCache=new Map();rail.index=index;rail.nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1);
-  rail.base=L.polyline(points,{color:'#182923',weight:11,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);if(Array.isArray(route.segments))for(const segment of route.segments){const from=travel.offsets[segment.fromStation],to=travel.offsets[segment.toStation];L.polyline(points.slice(Math.min(from,to),Math.max(from,to)+1),{color:segment.lineColor,weight:7,opacity:.72,lineCap:'round'}).addTo(rail.railLayer)}
-  rail.remaining=L.polyline(points.slice(travel.offsets[index]),{color:route.lineColor,weight:7,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);
-  rail.completed=L.polyline(points.slice(0,travel.offsets[index]+1),{color:route.lineColor,weight:8,opacity:1,lineCap:'round'}).addTo(rail.railLayer);
+  const virtualStops=route.category==='custom'&&route.stations.some(station=>station.airportIncomingTransfer);
+  if(virtualStops){
+    rail.base=L.layerGroup().addTo(rail.railLayer);
+    for(let i=1;i<route.stations.length;i++){
+      const a=travel.offsets[i-1],b=travel.offsets[i],arrival=route.stations[i],air=arrival.airportIncomingTransfer;
+      const part=points.slice(Math.min(a,b),Math.max(a,b)+1);
+      if(part.length<2)part.push([arrival.latitude,arrival.longitude]);
+      L.polyline(part,{color:air?'#ffbd64':route.lineColor,weight:air?5:7,opacity:air?0.9:0.8,dashArray:air?'12 12':undefined}).addTo(rail.railLayer);
+    }
+  }else rail.base=L.polyline(points,{color:'#182923',weight:11,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);if(Array.isArray(route.segments))for(const segment of route.segments){const from=travel.offsets[segment.fromStation],to=travel.offsets[segment.toStation];L.polyline(points.slice(Math.min(from,to),Math.max(from,to)+1),{color:segment.lineColor,weight:7,opacity:.72,lineCap:'round'}).addTo(rail.railLayer)}
+  rail.remaining=L.polyline(virtualStops?[]:points.slice(travel.offsets[index]),{color:route.lineColor,weight:7,opacity:.55,lineCap:'round'}).addTo(rail.railLayer);
+  rail.completed=L.polyline(virtualStops?[]:points.slice(0,travel.offsets[index]+1),{color:route.lineColor,weight:8,opacity:1,lineCap:'round'}).addTo(rail.railLayer);
   rail.markers=route.stations.map((station,i)=>L.marker(stationPoints[i],{interactive:false,keyboard:false,zIndexOffset:i===index?500:0,icon:stationIcon(L,station,i===index?'current':i===rail.nextIndex?'next':i===index-1?'previous':'other',route.lineColor,route.countryId,route)}).addTo(rail.stationLayer));
   rail.train=L.marker(stationPoints[index],{interactive:false,keyboard:false,zIndexOffset:1000,icon:vehicleIcon(L,route)}).addTo(rail.trainLayer);
   const cameraRouteKey=rail.routeKey;requestAnimationFrame(()=>{if(rail.routeKey!==cameraRouteKey||rail.index!==index)return;map.invalidateSize({pan:false});centerArrivalCamera(rail,index,rail.nextIndex,true)});updateDebug()
 }
 function updateRouteProgress(rail,route,index,motion,options={}){
-  const nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1),currentPosition=rail.train?.getLatLng(),previous=currentPosition?[currentPosition.lat,currentPosition.lng]:rail.stationPoints[rail.index],next=rail.stationPoints[index];rail.remaining.setLatLngs(rail.points.slice(rail.stationOffsets[index]));rail.completed.setLatLngs(rail.points.slice(0,rail.stationOffsets[index]+1));
+  const nextIndex=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(index+1,route.stations.length-1),currentPosition=rail.train?.getLatLng(),previous=currentPosition?[currentPosition.lat,currentPosition.lng]:rail.stationPoints[rail.index],next=rail.stationPoints[index];const virtualStops=route.category==='custom'&&route.stations.some(station=>station.airportIncomingTransfer);rail.remaining.setLatLngs(virtualStops?[]:rail.points.slice(rail.stationOffsets[index]));rail.completed.setLatLngs(virtualStops?[]:rail.points.slice(0,rail.stationOffsets[index]+1));
   rail.markers.forEach((marker,i)=>{const kind=i===index?'current':i===nextIndex?'next':i===index-1?'previous':'other';marker.setIcon(stationIcon(rail.L,route.stations[i],kind,route.lineColor,route.countryId,route));marker.setZIndexOffset(i===index?500:0)});
   const active=route.stations[index]?.segment||route;rail.train.setIcon(vehicleIcon(rail.L,active));animateTrain(rail,previous,next,motion,index);rail.index=index;rail.nextIndex=nextIndex;rail.typingProgress=0;/* Follow the arrived station only; never pan on each keystroke. */centerArrivalCamera(rail,index,nextIndex);updateDebug()
 }
@@ -133,7 +142,7 @@ async function renderOsm(route,index,options){
     return;
   }
   hideKoreanTrainFallback(target);
-  if((route.countryId==='kr'||route.countryId==='hk')&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
+  if((route.countryId==='kr'||route.countryId==='hk')&&route.category!=='custom'&&route.geometryReady!==true){if(gameRail?.map)clearRouteLayers(gameRail);showKoreanTrainFallback(route,index,target);if(status)status.textContent='실제 선로 미검증 · 직선 경로 표시 안 함';return}
   const rail=await ensureGameMap(target),safe=Math.max(0,Math.min(index,route.stations.length-1));
   const requestedNext=Number.isInteger(options.nextRouteIndex)?options.nextRouteIndex:Math.min(safe+1,route.stations.length-1);if(rail.routeKey!==(route.renderKey||route.id)){if(createRouteLayers(rail,route,safe,options)===false){if(status)status.textContent='실제 선로 선형 없음 · 직선 대체 차단';return}}else if(rail.index!==safe||rail.nextIndex!==requestedNext)updateRouteProgress(rail,route,safe,options.motion,options);else rail.nextIndex=requestedNext;
   requestAnimationFrame(()=>rail.map.invalidateSize());if(status)status.textContent='OPENSTREETMAP · LIVE';
