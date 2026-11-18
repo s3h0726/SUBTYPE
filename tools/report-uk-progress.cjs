@@ -53,6 +53,7 @@ const report = [
   'Machine-readable reviewed calls, source URLs, sample columns, downloaded-PDF checksums and blocked candidates: data/uk/source/national/expansion-iii-service-review.json. Reimport with node tools/import-uk-reviewed-batch.cjs <review.json> <original-snapshot-directory>, then pack and build.',
   '',
   'Latest batch blockers: ' + latestReview.blocked.map(row => row.network + ' — ' + row.reason).join(' '),
+  'Resolved topology: ' + (latestReview.resolved || []).map(row => row.network + ' / ' + row.relationId + ' — ' + row.resolution).join(' '),
   '',
   '## Cumulative expansion since Mega Expansion II',
   '',

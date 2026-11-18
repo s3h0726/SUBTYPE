@@ -14,6 +14,10 @@ for(const network of reviewedBatch.networks){
   assert(pattern,'reviewed direction was not released: '+spec.relationId);
   assert.deepEqual(pattern.stationIds.map(id=>names.get(id)),spec.expectedCalls,'reviewed stops changed: '+spec.relationId);
   assert.equal(pattern.segmentIds.length,spec.expectedStops-1);
+  if(spec.expectedStopNodeIds){
+   const reached=[segments[pattern.segmentIds[0]].nodeIds[0],...pattern.segmentIds.map(id=>segments[id].nodeIds.at(-1))];
+   assert.deepEqual(reached,spec.expectedStopNodeIds,'reviewed graph must reach exact source stop nodes: '+spec.relationId);
+  }
  }
 }
 for(const old of expansionBaselines.flatMap(baseline=>baseline.routes)){

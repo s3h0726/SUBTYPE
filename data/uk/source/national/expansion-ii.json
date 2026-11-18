@@ -9397,6 +9397,44 @@
           "showStoppingPattern": true,
           "reviewNote": "Current official branch/corridor diagram and individually reviewed ordered OSM passenger-route calls; data integration, not exhaustive timetable certification.",
           "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/timetables/may-26-december-26/K3-train-times-17-May-to-12-December-2026.pdf"
+        },
+        {
+          "relationId": 21419558,
+          "expectedStops": 7,
+          "expectedCalls": [
+            "Newquay",
+            "Quintrell Downs",
+            "St. Columb Road",
+            "Roche",
+            "Bugle",
+            "Luxulyan",
+            "Par"
+          ],
+          "calls": [
+            "Newquay",
+            "Quintrell Downs",
+            "St. Columb Road",
+            "Roche",
+            "Bugle",
+            "Luxulyan",
+            "Par"
+          ],
+          "reviewedGraph": true,
+          "graphRelations": [
+            21419558
+          ],
+          "expectedStopNodeIds": [
+            12376375073,
+            14201341429,
+            13537170529,
+            13537170530,
+            7710723992,
+            13537170531,
+            14201341430
+          ],
+          "showStoppingPattern": true,
+          "reviewNote": "Official K3 Newquay→Par return services include all seven calls (request stops included). Independently labelled return relation has misordered ways; reconstruct only its original connected railway edges, respecting source one-way restrictions. Every stop is the exact original source node; zero projection offset.",
+          "officialUrl": "https://www.gwr.com/-/media/gwr-sc-website/files/timetables/may-26-december-26/K3-train-times-17-May-to-12-December-2026-v2.pdf"
         }
       ]
     },

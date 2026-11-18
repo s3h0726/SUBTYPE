@@ -35,7 +35,10 @@ for (const network of review.networks) {
     const source = JSON.parse(zlib.gunzipSync(fs.readFileSync(file)));
     const relation = source.elements.find(row => row.type === 'relation' && row.id === spec.relationId);
     assembleTrack(relation, source.elements, { activeRailOnly: true });
-    const result = spec.calls ? assembleCalls(relation, source.elements, spec.calls) : assemble(relation, source.elements);
+    const result = spec.reviewedGraph
+      ? require('./lib/uk-reviewed-graph.cjs').assembleReviewedGraph([relation], source.elements, spec.calls, spec.aliases)
+      : spec.calls ? assembleCalls(relation, source.elements, spec.calls) : assemble(relation, source.elements);
+    if (spec.expectedStopNodeIds) assert.deepEqual(result.aligned.map(index => result.refs[index]), spec.expectedStopNodeIds, 'Reviewed graph must reach each original stop node exactly');
     const calls = result.stops.map(stop => spec.stationNames?.[stop.id]?.official || stop.tags?.name || spec.unnamedStops?.[stop.id]);
     assert.deepEqual(calls, spec.expectedCalls, 'Reviewed passenger calls differ: ' + spec.relationId);
     assert.equal(calls.length, spec.expectedStops);
