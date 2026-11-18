@@ -44,19 +44,38 @@ function suseoPathBetween(track,from,to){
  const geometry=concatSuseoSegments(parts);
  return a<b?geometry:reverseSuseoGeometry(geometry);
 }
+// Through SRT trains may not call Dongtan or PyeongtaekJije. Join the
+// Suseo corridor to the existing onward railway only at the SAME original
+// OSM vertex of the SR/Gyeongbu junction; never draw a proximity chord.
+function suseoThroughJunction(track,from,to,original){
+ if(!Array.isArray(original)||original.length<2)return null;
+ if((from==='수서')===(to==='수서'))return null;
+ const full=concatSuseoSegments(track.srt.segments);
+ const junction=full.at(-1);
+ const exact=p=>Array.isArray(p)&&p.length>=2&&p[0]===junction[0]&&p[1]===junction[1];
+ if(from==='수서'){
+  const index=original.findIndex(exact);
+  if(index<0||index===original.length-1)return null;
+  return [...full,...original.slice(index+1)];
+ }
+ const index=original.findIndex(exact);
+ if(index<=0)return null;
+ return [...original.slice(0,index),...reverseSuseoGeometry(full)];
+}
 function replaceSuseoConsecutiveSegments(item,track){
  if(!item||!Array.isArray(item.stations)||item.stations.length<2||
     !Array.isArray(item.directedSegments)||item.directedSegments.length!==item.stations.length-1)return item;
  const names=item.stations.map(suseoStationName);
- if(!names.includes('수서')||(!names.includes('동탄')&&!names.includes('평택지제')))return item;
+ if(!names.includes('수서'))return item;
  const next=[],indices=[0];let didChange=false;
  for(let i=0;i<item.directedSegments.length;i++){
   const old=item.directedSegments[i],candidate=suseoPathBetween(track,names[i],names[i+1]);
-  const geometry=candidate||old.geometry;
+  const verified=candidate||suseoThroughJunction(track,names[i],names[i+1],old.geometry);
+  const geometry=verified||old.geometry;
   if(!Array.isArray(geometry)||geometry.length<2)return item;
-  next.push(candidate?{...old,geometry,geometryStatus:'ready',trackCorridorId:track.id,
+  next.push(verified?{...old,geometry,geometryStatus:'ready',trackCorridorId:track.id,
     trackSource:'OpenStreetMap',sourceWayIds:track.srt.segments.flatMap(s=>s.wayIds)}:old);
-  didChange||=!!candidate;
+  didChange||=!!verified;
   indices.push(indices.at(-1)+geometry.length-1);
  }
  if(!didChange)return item;
