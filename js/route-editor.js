@@ -299,14 +299,54 @@ export class RouteEditor{
  draw(){if(this.route.countryId==='hk'&&this.route.stations.length>=2){try{this.route=buildHongKongCustomRoute(this.route)}catch{this.route.geometryReady=false;this.route.geometry=[];this.route.directedSegments=[];this.route.playable=false;this.route.releaseStatus='INCOMPLETE'}}this.renderJourneyOptions();this.renderAirportOptions();renderSvg($('#custom-map'),this.route);this.geo?.render(this.route)}
  async switchEditorView(){if(!this.geo){this.geo=new CustomGeoMap($('#custom-geo-map'),$('#geo-map-status'),point=>this.addStation(point),(i,point)=>{Object.assign(this.route.stations[i],point);this.render()});await this.geo.init(this.route)}this.geo.render(this.route);this.geo.show()}
  validate(){this.sync();if(this.route.countryId==='hk'){try{this.route=normalizeLine(buildHongKongCustomRoute(this.route));return true}catch(error){toast(error.message);return false}}if(!this.route.line.ja&&!this.route.line.ko&&!this.route.line.en)return toast('노선명을 입력하세요.'),false;if(this.route.stations.length<2)return toast('실제 역을 최소 2개 추가해 주세요.'),false;if(this.route.loop&&this.route.stations.some(s=>s.airportIncomingTransfer))return toast('공항 환승을 포함한 노선은 순환선으로 저장할 수 없습니다.'),false;if(this.route.stations.some(station=>!station.ja||!station.ko))return toast('모든 역에 원문과 한국어 이름이 필요합니다.'),false;
-  for(let i=1;i<this.route.stations.length;i++)if(this.route.stations[i].airportIncomingTransfer&&!customAirportTransferValid(this.route.stations[i-1],this.route.stations[i],this.route.stations[i].airportIncomingTransfer,this.route.countryId,this.railRoutes,globalThis.TRTAirportSystem))return toast('공항 환승 경로가 실제 등록된 터미널 철도역과 일치하지 않습니다.'),false;if(this.route.stations.some(station=>!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))return toast('모든 역에 실제 지도 좌표가 필요합니다.'),false;if(!/^#[0-9a-f]{6}$/i.test(this.route.lineColor))return toast('노선 색상이 올바르지 않습니다.'),false;this.route=normalizeLine({...this.route,custom:true,category:'custom'},{category:'custom'});return true}
+  for(let i=1;i<this.route.stations.length;i++){
+   const previous=this.route.stations[i-1],arrival=this.route.stations[i],transfer=arrival.airportIncomingTransfer;
+   if(!transfer&&(previous.countryId||this.route.countryId)!==(arrival.countryId||this.route.countryId))
+    return toast('서로 다른 국가의 철도역은 공항 환승으로 연결해야 합니다.'),false;
+   if(transfer&&!customAirportTransferValid(previous,arrival,transfer,previous.countryId||this.route.countryId,this.knownRoutes(),globalThis.TRTAirportSystem))
+    return toast('공항 환승 경로가 실제 등록된 터미널 철도역과 일치하지 않습니다.'),false;
+  }
+  this.route.airportTransfers=this.route.stations.filter(station=>station.airportIncomingTransfer).map(station=>structuredClone(station.airportIncomingTransfer));if(this.route.stations.some(station=>!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))return toast('모든 역에 실제 지도 좌표가 필요합니다.'),false;if(!/^#[0-9a-f]{6}$/i.test(this.route.lineColor))return toast('노선 색상이 올바르지 않습니다.'),false;this.route=normalizeLine({...this.route,custom:true,category:'custom'},{category:'custom'});return true}
  save(){if(!this.validate())return;storage.saveRoute(this.route);toast('실제 철도망 여정을 저장했습니다.');this.renderSaved();this.onRoutesChanged();this.onSaved?.(this.route)}
  renderSaved(){const routes=storage.routes().filter(route=>(route.countryId||'jp')===(this.route.countryId||'jp'));$('#saved-routes').innerHTML=routes.length?routes.map(route=>`<div class="saved-item" style="--saved-color:${route.lineColor}" data-id="${route.id}"><span><b>${route.countryId==='tw'?taiwanNameMarkup(route.line):escapeHtml(route.line.ko)}</b><small>${route.stations.length}개 역</small></span><button data-delete aria-label="삭제">×</button></div>`).join(''):'<p class="muted">저장된 노선이 없습니다.</p>'}
  export(){if(!this.validate())return;const blob=new Blob([JSON.stringify({version:1,type:'custom-route',...this.route},null,2)],{type:'application/json'}),anchor=document.querySelector('#custom-route-download')||document.body.appendChild(document.createElement('a'));if(anchor.href?.startsWith('blob:'))URL.revokeObjectURL(anchor.href);anchor.id='custom-route-download';anchor.hidden=true;anchor.href=URL.createObjectURL(blob);anchor.download=`${this.route.id}.json`;anchor.click();toast('JSON 파일을 내보냈습니다.')}
- async import(file){if(!file)return;try{if(file.size>1_000_000)throw new Error('파일이 너무 큽니다.');const data=JSON.parse(await file.text());this.route=this.sanitize(data);storage.saveRoute(this.route);this.render();this.onRoutesChanged();toast('노선을 가져왔습니다.')}catch(error){toast(`가져오기 실패: ${error.message}`)}finally{$('#import-route').value=''}}
- sanitize(data){if(!data||typeof data!=='object'||!Array.isArray(data.stations))throw new Error('지원하지 않는 JSON 형식입니다.');if(data.stations.length<2||data.stations.length>MAX)throw new Error('역 수가 올바르지 않습니다.');if(data.stations.some(station=>!station?.ja||!station?.ko||!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))throw new Error('역 이름 또는 실제 좌표가 없습니다.');const route=normalizeLine({...data,id:typeof data.id==='string'&&data.id?data.id:uid('custom'),custom:true,category:'custom'},{category:'custom'});route.coverage='custom';if(route.stations.some(station=>station.airportIncomingTransfer)){
-  if(route.countryId==='hk'||route.loop)throw new Error('공항 이동이 포함된 순환선·홍콩 노선은 가져올 수 없습니다.');
-  for(let i=1;i<route.stations.length;i++)if(route.stations[i].airportIncomingTransfer&&
-   !customAirportTransferValid(route.stations[i-1],route.stations[i],route.stations[i].airportIncomingTransfer,route.countryId,this.railRoutes,globalThis.TRTAirportSystem))throw new Error('공항 환승 노선이 등록된 철도역과 일치하지 않습니다.');
- }if(route.countryId==='hk')return buildHongKongCustomRoute(route);return route}
+ async import(file){
+  if(!file)return;
+  try{
+   if(file.size>1_000_000)throw new Error('파일이 너무 큽니다.');
+   const data=JSON.parse(await file.text());
+   if(Array.isArray(data.stations)&&this.onLoadAirportNetwork){
+    const loaded=new Set();
+    for(const station of data.stations){
+     const transfer=station?.airportIncomingTransfer;
+     if(!transfer||!transfer.toCountryId)continue;
+     const key=transfer.toCountryId+':'+transfer.toCode+':'+transfer.portalId;
+     if(loaded.has(key))continue;loaded.add(key);
+     const result=await this.onLoadAirportNetwork({countryId:transfer.toCountryId,toCode:transfer.toCode,portalId:transfer.portalId});
+     this.setRailNetwork(result.routes,{countryId:transfer.toCountryId});
+     this.setStationMaster(result.stations,{countryId:transfer.toCountryId});
+    }
+   }
+   this.route=this.sanitize(data);storage.saveRoute(this.route);
+   await this.restoreLastCountry();this.render();this.onRoutesChanged();toast('국가 간 공항 환승 경로를 포함한 노선을 가져왔습니다.');
+  }catch(error){toast('가져오기 실패: '+error.message)}
+  finally{$('#import-route').value=''}
+ }
+ sanitize(data){
+  if(!data||typeof data!=='object'||!Array.isArray(data.stations))throw Error('지원하지 않는 JSON 형식입니다.');
+  if(data.stations.length<2||data.stations.length>MAX)throw Error('역 수가 올바르지 않습니다.');
+  if(data.stations.some(station=>!station?.ja||!station?.ko||!Number.isFinite(station.latitude)||!Number.isFinite(station.longitude)))throw Error('역 이름 또는 실제 좌표가 없습니다.');
+  const route=normalizeLine({...data,id:typeof data.id==='string'&&data.id?data.id:uid('custom'),custom:true,category:'custom'},{category:'custom'});
+  route.coverage='custom';
+  if(route.stations.some(station=>station.airportIncomingTransfer)&&(route.countryId==='hk'||route.loop))throw Error('공항 이동이 포함된 순환선·홍콩 출발 노선은 가져올 수 없습니다.');
+  for(let i=1;i<route.stations.length;i++){
+   const previous=route.stations[i-1],arrival=route.stations[i],flight=arrival.airportIncomingTransfer;
+   if(!flight&&(previous.countryId||route.countryId)!==(arrival.countryId||route.countryId))throw Error('항공 환승 없이 국가가 변경된 역 연결은 가져올 수 없습니다.');
+   if(flight&&!customAirportTransferValid(previous,arrival,flight,previous.countryId||route.countryId,this.knownRoutes(),globalThis.TRTAirportSystem))
+    throw Error('공항 환승이 실제 등록 공항·터미널역과 일치하지 않습니다.');
+  }
+  route.airportTransfers=route.stations.filter(station=>station.airportIncomingTransfer).map(station=>structuredClone(station.airportIncomingTransfer));
+  if(route.countryId==='hk')return buildHongKongCustomRoute(route);
+  return route;
+ }
 }
