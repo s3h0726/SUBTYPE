@@ -9,8 +9,15 @@ const physical=JSON.parse(fs.readFileSync(path.join(root,'data/kr/physical/suseo
 const graph=makeGraph(ways);
 const platform=[physical.srt.stations[2].latitude,physical.srt.stations[2].longitude];
 const exact=(a,b)=>a[0]===b[0]&&a[1]===b[1];
-const terminalEdges=[...graph.byWay.values()].flatMap(x=>[...x.values()]).filter(e=>e.corridor==='수서평택고속선'&&(exact(e.a,platform)||exact(e.b,platform)));
-console.log('SUSEO_PHYSICAL_PLATFORM_EDGES '+JSON.stringify(terminalEdges.map(e=>({way:e.evidence,oneway:e.oneway,fast:e.fast}))));
+const terminalEdges=[...graph.byWay.values()].flatMap(x=>[...x.values()])
+ .map(e=>{
+   const a=distance(e.a,platform),b=distance(e.b,platform);
+   return {...e,nearestKm:Math.min(a,b),nearPoint:a<=b?e.a:e.b};
+ })
+ .filter(e=>e.nearestKm<.035)
+ .sort((a,b)=>(Number(b.fast)-Number(a.fast))||a.nearestKm-b.nearestKm)
+ .slice(0,12);
+console.log('SUSEO_PHYSICAL_PLATFORM_EDGES '+JSON.stringify(terminalEdges.map(e=>({way:e.evidence,oneway:e.oneway,fast:e.fast,corridor:e.corridor,offsetKm:e.nearestKm,actual:e.nearPoint}))));
 const targetIds=new Set(['kr-continuity-pattern-2da7b27c4f071687',
  'kr-continuity-pattern-87065e1a5ed6544e','kr-continuity-pattern-29f666f34d1ea522']);
 const full=readBatches(root);
@@ -26,8 +33,8 @@ for(const batch of full)for(const route of batch.routes||[])for(const j of route
  const candidates=[];
  for(const edge of terminalEdges){
   if(!oldRefs.length)continue;
-  const start=inbound?{p:coords[0],ref:oldRefs[0]}:{p:platform,ref:edge.evidence};
-  const end=inbound?{p:platform,ref:edge.evidence}:{p:coords.at(-1),ref:oldRefs.at(-1)};
+  const start=inbound?{p:coords[0],ref:oldRefs[0]}:{p:edge.nearPoint,ref:edge.evidence};
+  const end=inbound?{p:edge.nearPoint,ref:edge.evidence}:{p:coords.at(-1),ref:oldRefs.at(-1)};
   const result=sourceRoute(graph,start,end,'경부고속선',originalKm);
   if(!result.geometry){candidates.push({way:edge.evidence.wayId,reason:result.reason});continue}
   candidates.push({way:edge.evidence.wayId,km:+result.km.toFixed(3),
