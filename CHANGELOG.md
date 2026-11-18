@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.12] — 2026-11-18
+
+- fix(kr): anchor verified KTX Suseo–Pyeongtaek station coordinates to actual railway platforms * fix(kr): anchor KTX Suseo station locations to actual OSM HSR platform and reject ne
+
 ## [v0.11.11] — 2026-11-18
 
 - fix(kr): enforce exact source-connected directional rail geometry for KTX audits * fix(kr): require exact original OSM track edges and respect rail direction during KTX rerouting *
