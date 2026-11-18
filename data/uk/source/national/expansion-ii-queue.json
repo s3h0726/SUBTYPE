@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-11-13",
+  "checkedAt": "2026-11-18",
   "completedInventory": "data/uk/source/national/expansion-ii.json",
   "items": [
     {
       "priority": "A1",
       "operator": "South Western Railway",
       "corridor": "Windsor, Kingston, Chessington, Island Line and Portsmouth variants",
-      "status": "pending",
-      "next": "Chessington relation 8646998 ends at Tolworth; Portsmouth Harbour fast pair has conflicting calls at Farncombe. Review operator-specific source"
+      "status": "partial",
+      "next": "Romsey loop, Farnham–Guildford and Portsmouth via Eastleigh added (6 directions). Windsor, Kingston, Chessington and Island Line remain. Chessington 8646998 ends at Tolworth; Portsmouth direct fast pair still has conflicting Farncombe calls."
     },
     {
       "priority": "A1",
@@ -27,8 +27,8 @@
       "priority": "A1",
       "operator": "Greater Anglia / Stansted Express",
       "corridor": "Hertford East, rural branches, other regular airport calls",
-      "status": "pending",
-      "next": "Stratford–Meridian Water track ways disconnected; Hertford East reverse still to resolve"
+      "status": "partial",
+      "next": "Hertford East both directions added with distinct reviewed calls (outward passes Waltham Cross). Stratford–Meridian Water still has disconnected source ways; further Ely patterns need call review."
     },
     {
       "priority": "A1",
@@ -69,8 +69,8 @@
       "priority": "A3",
       "operator": "Northern",
       "corridor": "Northumberland, Settle–Carlisle, Hope Valley, Manchester and other branches",
-      "status": "pending",
-      "next": "Northumberland relations omit new stations; Settle–Carlisle relations use unnamed Leeds stop nodes. Cumbrian Coast pairs reference a crossing and an untagged node as calls"
+      "status": "partial",
+      "next": "Buxton and Settle–Carlisle added in both directions; Leeds source stop 6589429702 identified at the real platform. Hope Valley, Mid-Cheshire, Morecambe and Glossop/Hadfield remain. Northumberland sources omit new stations; do not release them as current all-stations services."
     },
     {
       "priority": "A3",
@@ -97,8 +97,8 @@
       "priority": "A4",
       "operator": "Great Western Railway",
       "corridor": "Further local and night services",
-      "status": "pending",
-      "next": "Falmouth Maritime relation 19902608 includes disused siding 300616008. Require a continuous active path"
+      "status": "partial",
+      "next": "Severn Beach including Weston through journeys, St Ives 3/4-call patterns, Henley and Par→Newquay added (13 directions). Newquay→Par 21419558 track order conflicts with service direction; Lelant Saltings named track stop missing. Falmouth 19902608 uses disused siding 300616008; Maidenhead/Marlow and sleeper variants remain."
     },
     {
       "priority": "A5",
@@ -118,8 +118,8 @@
       "priority": "A6",
       "operator": "Avanti / Heathrow Express / LNER / Lumo",
       "corridor": "Missing reverse and branch patterns",
-      "status": "pending",
-      "next": "Baseline Avanti Manchester/Liverpool and Heathrow Express opposite directions require independent source track; extend only genuine current services"
+      "status": "partial",
+      "next": "Four independent London→Manchester/Liverpool Avanti directions added from original track and current book columns. Heathrow Express return, other WCML variants and further LNER calls still require independent source paths."
     },
     {
       "priority": "C",

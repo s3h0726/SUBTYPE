@@ -3,6 +3,8 @@
 const fs = require('node:fs');
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const baseline = read('data/uk/source/expansion-ii-baseline.json');
+const latestBaseline = read('data/uk/source/expansion-iii-baseline.json');
+const latestReview = read('data/uk/source/national/expansion-iii-service-review.json');
 const validation = read('data/uk/generated/validation.json');
 const index = read('data/uk/generated/index.json');
 const expansion = read('data/uk/source/national/expansion-ii.json');
@@ -36,7 +38,23 @@ const metrics = {
 const report = [
   '# United Kingdom railway expansion progress',
   '',
-  '## National Railway Mega Expansion II',
+  '## National Railway Mega Expansion III',
+  '',
+  'Latest batch baseline: ' + latestBaseline.commit + '. Every one of its ' + latestBaseline.metrics.playableDirections + ' directions is protected by station, service and geometry-reference hashes.',
+  '',
+  '| Metric | Before this batch | Added | Final |',
+  '| --- | ---: | ---: | ---: |',
+  ...Object.entries(metrics).map(([key, label]) =>
+    '| ' + label + ' | ' + latestBaseline.metrics[key] + ' | ' + (validation[key] - latestBaseline.metrics[key]) + ' | ' + validation[key] + ' |'),
+  '',
+  'This batch adds Romsey loop, Farnham–Guildford, Portsmouth via Eastleigh, Buxton, Settle–Carlisle, Severn Beach (including Weston-super-Mare through journeys), St Ives Bay, Regatta/Henley, Atlantic Coast and Hertford East, and independently sourced Avanti outward directions. New directions retain individual stop lists; some branch coverage remains partial.',
+  '',
+  'Targeted comparisons use current official SWR 12/23/25, Northern 20, Avanti May–December 2026, GWR branch publications and Greater Anglia passenger information. This is service data integration, not certification of every train or an exhaustive re-audit of the existing catalogue.',
+  'Machine-readable reviewed calls, source URLs, sample columns, downloaded-PDF checksums and blocked candidates: data/uk/source/national/expansion-iii-service-review.json. Reimport with node tools/import-uk-reviewed-batch.cjs <review.json> <original-snapshot-directory>, then pack and build.',
+  '',
+  'Latest batch blockers: ' + latestReview.blocked.map(row => row.network + ' — ' + row.reason).join(' '),
+  '',
+  '## Cumulative expansion since Mega Expansion II',
   '',
   'Source review through ' + [expansion.checkedAt, ...expansion.networks.map(n => n.checkedAt).filter(Boolean)].sort().at(-1) + '. This is a partial British railway catalogue.',
   'Baseline: ' + baseline.commit + ' (all ' + baseline.metrics.playableDirections + ' directions checked for preserved route, station and geometry references).',
