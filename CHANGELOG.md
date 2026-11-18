@@ -2,6 +2,17 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.0] — 2026-11-18
+
+- feat(custom): 기존 철도 구간·운행 방향을 기준으로 목적지 최단거리 자동 연결(Dijkstra)
+- feat(custom): 경유지 탐색, 거리·환승·추정 거리 요약, 사용자 지정 노선 스튜디오 UI 개편
+- fix(custom): 역 삭제·순서 변경 시 선형 재계산, 불연결 시 원복, 선형 누락 보호
+- test(custom): 노선거리 가중치·단방향·환승 식별·연결 불가 회귀 검사
+
+## [v0.12.0] — 2026-11-18
+
+- feat: expand free-drive airports and terminal station transfers (#85) * feat: expand free-drive airports and select verified terminal rail portals * feat: honor selected airport te
+
 ## [v0.11.14] — 2026-11-18
 
 - fix(kr): connect two KTX Suseo high-speed feeder journeys on exact original OSM railway nodes * diagnose(kr): source-proven feeder OSM rail routes for three unresolved Suseo KTX pa
