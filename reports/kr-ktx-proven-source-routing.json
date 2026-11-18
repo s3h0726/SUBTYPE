@@ -1,0 +1,142 @@
+{
+  "method": "source-node-directed OSM Dijkstra with source-edge references for every segment",
+  "checkedAt": "2026-11-18T11:55:33.032Z",
+  "summary": {
+    "checkedJourneys": 151,
+    "checkedLegs": 411,
+    "uniqueGraphQueries": 13,
+    "correctedJourneys": 7,
+    "correctedLegs": 7,
+    "changedBatches": [
+      "rail-continuity-recovery-batch.json"
+    ],
+    "graphEdges": 77671,
+    "statusCounts": {
+      "ENDPOINT_SOURCE_NODE_MISSING": 7,
+      "NO_PHYSICAL_HIGH_SPEED_PROOF": 93,
+      "VERIFIED_HSR_ROUTE": 7,
+      "LEGACY_MISSING_FULL_TRIP_OSM_PROOF": 1
+    }
+  },
+  "uniqueIssues": [
+    {
+      "corridor": "경부고속선",
+      "from": "대전",
+      "to": "동대구",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 38,
+      "oldKm": 159.65,
+      "newKm": 671.1,
+      "oldCoverage": 0.217,
+      "newCoverage": 0.877
+    },
+    {
+      "corridor": "호남고속선",
+      "from": "광주송정",
+      "to": "정읍",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 14,
+      "oldKm": 54.62,
+      "newKm": 54.62,
+      "oldCoverage": 0.222,
+      "newCoverage": 0.222
+    },
+    {
+      "corridor": "호남고속선",
+      "from": "정읍",
+      "to": "익산",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 14,
+      "oldKm": 43.47,
+      "newKm": 68.79,
+      "oldCoverage": 0.25,
+      "newCoverage": 0.644
+    },
+    {
+      "corridor": "경부고속선",
+      "from": "경주",
+      "to": "부산",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 9,
+      "oldKm": 112.01,
+      "newKm": 112.36,
+      "oldCoverage": 0.432,
+      "newCoverage": 0.432
+    },
+    {
+      "corridor": "호남고속선",
+      "from": "광주송정",
+      "to": "익산",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 8,
+      "oldKm": 98.09,
+      "newKm": 123.41,
+      "oldCoverage": 0.262,
+      "newCoverage": 0.463
+    },
+    {
+      "corridor": "호남고속선",
+      "from": "익산",
+      "to": "오송",
+      "reason": "VERIFIED_HSR_ROUTE",
+      "count": 7,
+      "oldKm": 118.42,
+      "newKm": 91.46,
+      "oldCoverage": 0.064,
+      "newCoverage": 1
+    },
+    {
+      "corridor": "경부고속선",
+      "from": "동대구",
+      "to": "부산",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 7,
+      "oldKm": 115.05,
+      "newKm": 167.71,
+      "oldCoverage": 0.105,
+      "newCoverage": 0.622
+    },
+    {
+      "corridor": "수서평택고속선",
+      "from": "수서",
+      "to": "평택지제",
+      "reason": "ENDPOINT_SOURCE_NODE_MISSING",
+      "count": 5,
+      "oldKm": 105.31
+    },
+    {
+      "corridor": "수서평택고속선",
+      "from": "평택지제",
+      "to": "수서",
+      "reason": "ENDPOINT_SOURCE_NODE_MISSING",
+      "count": 2,
+      "oldKm": 106.4
+    },
+    {
+      "corridor": "수서평택고속선",
+      "from": "평택지제",
+      "to": "수서",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 2,
+      "oldKm": 91.9,
+      "newKm": 91.9,
+      "oldCoverage": 0.033,
+      "newCoverage": 0.033
+    },
+    {
+      "corridor": "수서평택고속선",
+      "from": "수서",
+      "to": "평택지제",
+      "reason": "NO_PHYSICAL_HIGH_SPEED_PROOF",
+      "count": 1,
+      "oldKm": 91.16,
+      "newKm": 91.16,
+      "oldCoverage": 0.033,
+      "newCoverage": 0.033
+    },
+    {
+      "reason": "LEGACY_MISSING_FULL_TRIP_OSM_PROOF",
+      "count": 1
+    }
+  ]
+}
