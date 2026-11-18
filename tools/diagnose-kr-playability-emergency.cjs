@@ -56,7 +56,7 @@ try{
  console.log('KR_NORMALIZE_RESULT '+JSON.stringify({ready,unavailable,errors}));
 }catch(error){console.error('KR_NORMALIZE_FATAL '+String(error.stack||error))}
 try{
- vm.runInContext(load('js/korean-service-resolver.js')+'\n'+load('js/route-integrity.js')+'\\n;globalThis.__krTest={koreanVerifiedChoices,resolveKoreanVerifiedChoice,resolvePlayableRoute};',normalizeContext,{timeout:20000});
+ vm.runInContext([load('js/korean-service-resolver.js'),load('js/route-integrity.js'),';globalThis.__krTest={koreanVerifiedChoices,resolveKoreanVerifiedChoice,resolvePlayableRoute};'].join(String.fromCharCode(10)),normalizeContext,{timeout:20000});
  for(const meta of sample){
   try{
    const route=decode(JSON.parse(fs.readFileSync(path.join(root,meta.lazySource),'utf8'))).route;
