@@ -1,0 +1,21 @@
+name: Diagnose verified Gyeongju–Busan KTX high-speed centerline
+on:
+  push:
+    branches: [diag/ktx-busan-highspeed-visual-20261118]
+    paths:
+      - 'tools/diagnose-kr-ktx-busan-hsr-route.cjs'
+      - '.github/workflows/ktx-busan-hsr-source-check.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/diagnose-kr-ktx-busan-hsr-route.cjs
