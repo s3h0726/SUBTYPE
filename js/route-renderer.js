@@ -13,7 +13,9 @@ const geometryPoints=route=>Array.isArray(route.geometry)&&route.geometry.length
 const permitsApproximateMapGeometry=route=>route?.category==='custom'||['bus','village_bus','express_bus','river_bus','ferry'].includes(route?.mode);
 export function travelGeometry(route){
   if(!Array.isArray(route?.stations)||route.stations.length<2)return null;
-  const stations=route.stations,directed=route.directedSegments,points=[],offsets=[];
+  // Game-map corrections are display-only; keep canonical OSM source proofs
+  // and operational stop order unchanged for the gameplay route.
+  const stations=route.stations,directed=Array.isArray(route.mapDisplaySegments)?route.mapDisplaySegments:route.directedSegments,points=[],offsets=[];
   if(route.countryId==='kr'&&(route.geometryReady!==true||!Array.isArray(directed)||directed.length!==stations.length-1||!directed.every(segment=>segment.geometryStatus==='ready'&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)))return null;
   if(Array.isArray(directed)&&directed.length===stations.length-1&&directed.every((segment,i)=>segment.fromStationId===stations[i].id&&segment.toStationId===stations[i+1].id&&Array.isArray(segment.geometry)&&segment.geometry.length>=2)){
     for(let i=0;i<directed.length;i++){
