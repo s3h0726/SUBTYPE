@@ -44,3 +44,18 @@ test('conventional rail is not mistaken for a named high-speed line',()=>{
  assert.equal(classify({name:'경부선',railway:'rail'}).fast,false);
  assert.equal(classify({name:'경부고속선',railway:'rail'}).fast,true);
 });
+
+test('a one-way original rail way cannot be traversed backward or joined by a chord',()=>{
+ const a=[36,127],b=[36.01,127],c=[36.02,127];
+ const g=graphFromWays([{id:44,tags:{railway:'rail',name:'경부고속선',oneway:'yes'},coordinates:[a,b,c]}]);
+ const forward=graphRoute(g,a,c,'경부고속선',8);
+ const backward=graphRoute(g,c,a,'경부고속선',8);
+ assert(forward.geometry,'normal source travel must be possible');
+ assert.equal(backward.geometry,undefined);
+ assert.equal(backward.reason,'NO_CONNECTED_OSM_ROUTE');
+});
+test('a terminal point 40 metres away from the railway is rejected, not snapped by an invented chord',()=>{
+ const a=[36,127],b=[36.01,127],c=[36.02,127];
+ const g=graphFromWays([{id:45,tags:{railway:'rail',name:'경부고속선'},coordinates:[a,b,c]}]);
+ assert.equal(graphRoute(g,[36,127.0005],c,'경부고속선',8).reason,'NO_SOURCE_EDGE_SNAP');
+});
