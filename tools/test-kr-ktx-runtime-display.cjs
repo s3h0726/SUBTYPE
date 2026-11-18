@@ -39,7 +39,16 @@ for(const route of routes){
      stop:j.stations[index-1]?.ko,
      end:j.directedSegments[index-1].geometry.at(-1),
      physicalEnd:track.srt.segments[1].geometry.at(-1),
-     includesJunction:j.directedSegments[index-1].geometry.some(p=>p[0]===track.srt.segments[2].geometry.at(-1)[0]&&p[1]===track.srt.segments[2].geometry.at(-1)[1])
+     includesJunction:j.directedSegments[index-1].geometry.some(p=>p[0]===track.srt.segments[2].geometry.at(-1)[0]&&p[1]===track.srt.segments[2].geometry.at(-1)[1]),
+     nearestPhysicalJije:(()=>{
+       const target=track.srt.segments[1].geometry.at(-1),pts=j.directedSegments[index-1].geometry;
+       let best={km:Infinity,index:-1,point:null};
+       for(let k=0;k<pts.length;k++){
+        const p=pts[k],dx=(p[1]-target[1])*88.85,dy=(p[0]-target[0])*111.195,km=Math.hypot(dx,dy);
+        if(km<best.km)best={km:+km.toFixed(4),index:k,point:p};
+       }
+       return best;
+     })()
    }:null});
  }
 }
