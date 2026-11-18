@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 // Corrects only demonstrably better KTX alignments using exact OSM railway
-// edges. No guessed station sequence, arbitrary straight-line corridor, or
-// connection between unrelated OSM nodes is permitted.
+// edges (including subdivisions of the SAME source edge). No guessed
+// station sequence or connection between unrelated OSM nodes is permitted.
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
@@ -81,6 +81,19 @@ function edgePenalty(edge,corridor){
  if(edge.fast)return 5;
  return 12;
 }
+// A long OSM segment remains the same physical polyline when subdivided.
+// Avoid changing its bearing or crossing over to an unrelated railway way.
+function subdivideSourceEdges(points,maxKm=1.5){
+ const out=[points[0]];
+ for(let i=1;i<points.length;i++){
+  const a=points[i-1],b=points[i],n=Math.max(1,Math.ceil(distance(a,b)/maxKm));
+  for(let t=1;t<=n;t++){
+   const x=t/n;
+   out.push(t===n?b:[a[0]+(b[0]-a[0])*x,a[1]+(b[1]-a[1])*x]);
+  }
+ }
+ return out;
+}
 function graphRoute(graph,from,to,corridor,oldKm){
  const starts=graph.snaps(from),ends=graph.snaps(to);
  if(!starts.length||!ends.length)return {reason:'NO_SOURCE_EDGE_SNAP',startCandidates:starts.length,endCandidates:ends.length};
@@ -129,8 +142,9 @@ function graphRoute(graph,from,to,corridor,oldKm){
  const unique=[];
  for(const p of geometry)if(!same(unique.at(-1),p))unique.push(p);
  if(unique.length<2)return {reason:'EMPTY_PATH'};
- const finalKm=len(unique);
- return {geometry:unique,km:finalKm,fastShare:fast/Math.max(total,.001),namedShare:named/Math.max(total,.001),wayIds:[...wayIds],sourceSnapMaxMeters:8};
+ const finalGeometry=subdivideSourceEdges(unique);
+ const finalKm=len(finalGeometry);
+ return {geometry:finalGeometry,km:finalKm,fastShare:fast/Math.max(total,.001),namedShare:named/Math.max(total,.001),wayIds:[...wayIds],sourceSnapMaxMeters:8};
 }
 function evidence(points,corridor,tracks){
  const sample=samples(points,1.6).slice(1,-1);
@@ -260,4 +274,4 @@ function main(){
  }else console.log('DRY_RUN_ONLY');
 }
 if(require.main===module)main();
-module.exports={classify,project,graphFromWays,graphRoute,decide,rebuild};
+module.exports={classify,project,graphFromWays,graphRoute,subdivideSourceEdges,decide,rebuild};
