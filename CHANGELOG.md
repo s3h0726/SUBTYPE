@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.11.5] — 2026-11-18
+
+- Merge pull request #76 from s3h0726/feature/france-transilien Add all nine Transilien line selections with 87 verified directions
+
 ## [v0.11.4] — 2026-11-18
 
 - Merge pull request #75 from s3h0726/feature/france-rer-c-pontoise Add RER C Pontoise and Massy service patterns
