@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/repair-kr-ktx-all-alignments.cjs'
       - 'tools/test-kr-ktx-all-alignments.cjs'
+      - 'tools/diagnose-kr-ktx-leftovers.cjs'
       - 'tools/build-kr-canonical.cjs'
       - '.github/workflows/ktx-full-alignment-fix.yml'
 permissions:
@@ -28,6 +29,8 @@ jobs:
           node --check tools/repair-kr-ktx-all-alignments.cjs
           node --check tools/build-kr-canonical.cjs
           node --test tools/test-kr-ktx-all-alignments.cjs tools/test-kr-ktx-track-alignment.cjs
+      - name: Diagnose remaining KTX high-speed track topology
+        run: node tools/diagnose-kr-ktx-leftovers.cjs
       - name: Correct all verifiable faulty KTX station-to-station paths
         run: node tools/repair-kr-ktx-all-alignments.cjs --write
       - name: Recompile changed Korean service geometries and release catalog
