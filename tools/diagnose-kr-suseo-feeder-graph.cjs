@@ -17,6 +17,11 @@ const terminalEdges=[...graph.byWay.values()].flatMap(x=>[...x.values()])
  .filter(e=>e.nearestKm<.035)
  .sort((a,b)=>(Number(b.fast)-Number(a.fast))||a.nearestKm-b.nearestKm)
  .slice(0,12);
+for(const id of ['817199348','810625038','810625037','1262631295']){
+ const w=ways.find(x=>String(x.id)===id);
+ console.log('SUSEO_SOURCE_WAY_DIAG '+JSON.stringify({id,tags:w?.tags,points:w?.coordinates?.length,nodeIds:w?.nodeIds?.length,
+ graphIndexed:graph.byWay.has(id),first:w?.coordinates?.[0],last:w?.coordinates?.at(-1)}));
+}
 console.log('SUSEO_PHYSICAL_PLATFORM_EDGES '+JSON.stringify(terminalEdges.map(e=>({way:e.evidence,oneway:e.oneway,fast:e.fast,corridor:e.corridor,offsetKm:e.nearestKm,actual:e.nearPoint}))));
 const targetIds=new Set(['kr-continuity-pattern-2da7b27c4f071687',
  'kr-continuity-pattern-87065e1a5ed6544e','kr-continuity-pattern-29f666f34d1ea522']);
