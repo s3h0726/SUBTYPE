@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.6] — 2026-11-18
+
+- ci(pages): allow fresh main deployment to recover from duplicate rerun artifacts
+
 ## [v0.13.5] — 2026-11-18
 
 - fix(custom): 외국 공항에서 도착한 철도역부터 현지 검색 누락을 해결하기 위해 모든 매칭 노선을 탐색하고 최대 8개 로딩 제한 제거
