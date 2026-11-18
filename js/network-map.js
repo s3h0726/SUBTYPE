@@ -62,7 +62,7 @@ export class CustomGeoMap{
     const air=next.airportIncomingTransfer;
     const line=this.L.polyline([[prev.latitude,prev.longitude],[next.latitude,next.longitude]],{
       color:air?'#ffc478':route.lineColor,weight:air?4:6,dashArray:air?'10 9':undefined,
-      opacity:air?.kind==='virtual-flight'?.86:1
+      opacity:air?0.86:1
     }).addTo(this.layer);
     if(air)line.bindTooltip('✈ '+air.fromCode+' → '+air.toCode+' · '+(air.kind==='terminal-transfer'?'가상 터미널 이동':'가상 항공 이동'));
    }route.stations.forEach((s,i)=>{if(!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude))return;const marker=this.L.marker([s.latitude,s.longitude],{draggable:true,title:koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`}).addTo(this.layer);marker.bindTooltip(route.countryId==='tw'?taiwanNameMarkup(s):koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`);marker.on('dragend',e=>{const p=e.target.getLatLng();this.onMove(i,{latitude:+p.lat.toFixed(6),longitude:+p.lng.toFixed(6)})});this.markers.push(marker)})}
