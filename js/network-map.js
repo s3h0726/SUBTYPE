@@ -56,6 +56,15 @@ export class NetworkMap{
 export class CustomGeoMap{
  constructor(container,status,onAdd,onMove){this.container=container;this.status=status;this.onAdd=onAdd;this.onMove=onMove;this.markers=[]}
  async init(route){this.route=route;try{const L=await ensureLeaflet();this.L=L;this.map=L.map(this.container,{center:[35.6812,139.7671],zoom:11});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(this.map);this.layer=L.layerGroup().addTo(this.map);this.map.on('click',e=>this.onAdd({latitude:+e.latlng.lat.toFixed(6),longitude:+e.latlng.lng.toFixed(6)}));this.status.hidden=true;this.render(route)}catch{this.status.textContent='지도를 불러올 수 없습니다. SCHEMATIC 편집은 계속 사용할 수 있습니다.';this.status.classList.add('error')}}
- render(route){this.route=route;if(!this.L)return;this.layer.clearLayers();this.markers=[];const points=route.stations.filter(s=>Number.isFinite(s.latitude)&&Number.isFinite(s.longitude)).map(s=>[s.latitude,s.longitude]);if(points.length>1)this.L.polyline(points,{color:route.lineColor,weight:6}).addTo(this.layer);route.stations.forEach((s,i)=>{if(!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude))return;const marker=this.L.marker([s.latitude,s.longitude],{draggable:true,title:koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`}).addTo(this.layer);marker.bindTooltip(route.countryId==='tw'?taiwanNameMarkup(s):koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`);marker.on('dragend',e=>{const p=e.target.getLatLng();this.onMove(i,{latitude:+p.lat.toFixed(6),longitude:+p.lng.toFixed(6)})});this.markers.push(marker)})}
+ render(route){this.route=route;if(!this.L)return;this.layer.clearLayers();this.markers=[];const points=route.stations.filter(s=>Number.isFinite(s.latitude)&&Number.isFinite(s.longitude)).map(s=>[s.latitude,s.longitude]);if(points.length>1)for(let i=1;i<route.stations.length;i++){
+    const prev=route.stations[i-1],next=route.stations[i];
+    if(![prev.latitude,prev.longitude,next.latitude,next.longitude].every(Number.isFinite))continue;
+    const air=next.airportIncomingTransfer;
+    const line=this.L.polyline([[prev.latitude,prev.longitude],[next.latitude,next.longitude]],{
+      color:air?'#ffc478':route.lineColor,weight:air?4:6,dashArray:air?'10 9':undefined,
+      opacity:air?.kind==='virtual-flight'?.86:1
+    }).addTo(this.layer);
+    if(air)line.bindTooltip('✈ '+air.fromCode+' → '+air.toCode+' · '+(air.kind==='terminal-transfer'?'가상 터미널 이동':'가상 항공 이동'));
+   }route.stations.forEach((s,i)=>{if(!Number.isFinite(s.latitude)||!Number.isFinite(s.longitude))return;const marker=this.L.marker([s.latitude,s.longitude],{draggable:true,title:koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`}).addTo(this.layer);marker.bindTooltip(route.countryId==='tw'?taiwanNameMarkup(s):koreanStationDisplayName(route.countryId==='kr'?s.ko:s.ja||s.ko,route.countryId,s.segment||route)||`역 ${i+1}`);marker.on('dragend',e=>{const p=e.target.getLatLng();this.onMove(i,{latitude:+p.lat.toFixed(6),longitude:+p.lng.toFixed(6)})});this.markers.push(marker)})}
  show(){if(this.map)setTimeout(()=>this.map.invalidateSize(),50)}
 }
