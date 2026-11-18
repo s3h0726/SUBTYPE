@@ -1,6 +1,6 @@
 {
   "name": "subtype",
-  "version": "0.13.4",
+  "version": "0.13.5",
   "private": true,
   "scripts": {
     "test:version": "node tools/test-app-version.cjs",
@@ -94,7 +94,7 @@
     "test:jp-nameplates": "node tools/test-jp-operator-nameplates.cjs",
     "test:ohmi": "node tools/test-ohmi-rebuild.cjs",
     "test:all-nameplates": "node tools/test-all-operator-nameplates.cjs && npm run test:jp-nameplates",
-    "test:custom": "node --test tools/test-custom-shortest-path.cjs tools/test-custom-airport-routes.cjs tools/test-custom-station-names.cjs tools/test-custom-international-names.cjs"
+    "test:custom": "node --test tools/test-custom-shortest-path.cjs tools/test-custom-airport-routes.cjs tools/test-custom-station-names.cjs tools/test-custom-international-names.cjs tools/test-custom-station-search.cjs"
   },
   "devDependencies": {
     "csv-parse": "^7.0.2",
