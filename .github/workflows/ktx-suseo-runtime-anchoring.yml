@@ -1,0 +1,33 @@
+name: Verify KTX Suseo physical-stop runtime alignment
+on:
+  push:
+    branches: [fix/kr-ktx-suseo-runtime-endpoint-continuity-20261118]
+    paths:
+      - 'js/korea-suseo-pyeongtaek.js'
+      - 'tools/test-kr-ktx-runtime-display.cjs'
+      - '.github/workflows/ktx-suseo-runtime-anchoring.yml'
+permissions:
+  contents: read
+jobs:
+  source-station-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify physical Suseo-to-Pyeongtaek OSM source-way edges and existing runtime contracts
+        run: node tools/test-kr-suseo-pyeongtaek.cjs
+      - name: Verify all real KTX journeys and exact source station positions
+        run: node tools/test-kr-ktx-runtime-display.cjs
+      - name: Rebuild bundled runtime with station-position correction
+        run: node tools/build-app-bundle.js
+      - name: Check bundled source syntax
+        run: node --check js/app.bundle.js
+      - name: Audit KTX source-data consistency
+        run: |
+          node tools/audit-kr-ktx-track-alignment.cjs
+          node tools/test-kr-canonical.cjs
