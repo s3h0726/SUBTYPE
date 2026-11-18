@@ -43,5 +43,20 @@ for(const batch of readBatches(root))for(const route of batch.routes||[])for(con
    from:startCand.offset,to:endCand.match.offset,source:startCand.edge.evidence,way:endCand.e.evidence});
   else probe.push({reason:r.reason,from:startCand.offset,to:endCand.match.offset});
  }
+ const preceding=j.directedSegments[pi-2],before=j.stations[pi-2];
+ const originalRefs=j.sourceEdgeRefs.slice(before.geometryIndex,from.geometryIndex);
+ const hsrBackCandidates=[];
+ for(const cand of sources.slice(0,5)){
+  const routed=sourceRoute(graph,
+   {p:preceding.geometry[0],ref:originalRefs[0]},
+   {p:cand.point,ref:cand.edge.evidence},
+   '호남고속선',200);
+  if(!routed.geometry){hsrBackCandidates.push({reason:routed.reason});continue}
+  hsrBackCandidates.push({km:+routed.km.toFixed(3),
+   oldKm:+preceding.geometry.reduce((n,p,i)=>i?n+distance(p,preceding.geometry[i-1]):n,0).toFixed(3),
+   fast:routed.fastFraction,named:routed.namedFraction,from:preceding.geometry[0],to:cand.point,
+   wayIds:routed.wayIds.slice(0,5)});
+ }
+ console.log('KTX_CHEONAN_UPSTREAM_PROOF '+JSON.stringify(hsrBackCandidates));
  console.log('KTX_CHEONAN_HSR_ALTERNATIVE '+JSON.stringify(probe.sort((a,b)=>(a.km||1e9)-(b.km||1e9)).slice(0,20)));
 }
