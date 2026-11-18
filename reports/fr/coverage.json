@@ -4,22 +4,22 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 291,
-  "verifiedSourcePatternRecords": 291,
-  "remainingSourcePatternRecords": 12995,
-  "verifiedShareOfSourcePatternRecordsPercent": 2.190275477946711,
+  "coveredSourcePatternRecords": 303,
+  "verifiedSourcePatternRecords": 303,
+  "remainingSourcePatternRecords": 12983,
+  "verifiedShareOfSourcePatternRecordsPercent": 2.2805961162125548,
   "existingFranceLinesOnBaseline": 0,
   "catalogLines": 69,
   "operators": 9,
-  "catalogServiceFamilies": 156,
-  "playableDirections": 288,
-  "verifiedPlayableDirections": 288,
+  "catalogServiceFamilies": 161,
+  "playableDirections": 300,
+  "verifiedPlayableDirections": 300,
   "catalogDirectionsPendingVerification": 0,
-  "koreanNamedStations": 1129,
-  "stationIds": 1129,
-  "physicalStationGroups": 1088,
-  "sharedPhysicalWays": 17264,
-  "uniquePhysicalWays": 27913,
+  "koreanNamedStations": 1145,
+  "stationIds": 1145,
+  "physicalStationGroups": 1104,
+  "sharedPhysicalWays": 17863,
+  "uniquePhysicalWays": 28470,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -58,10 +58,10 @@
   },
   "trackRelations": {
     "examined": 390,
-    "matched": 274,
-    "blocked": 116
+    "matched": 284,
+    "blocked": 106
   },
-  "reviewedTrackServices": 120,
+  "reviewedTrackServices": 132,
   "byFamily": [
     {
       "family": "funicular",
@@ -187,11 +187,11 @@
       "family": "transilien",
       "sourcePatternRecords": 666,
       "catalogLines": 9,
-      "coveredSourcePatternRecords": 87,
-      "verifiedSourcePatternRecords": 87,
-      "remainingSourcePatternRecords": 579,
-      "playableDirections": 87,
-      "testedDirections": 87
+      "coveredSourcePatternRecords": 99,
+      "verifiedSourcePatternRecords": 99,
+      "remainingSourcePatternRecords": 567,
+      "playableDirections": 99,
+      "testedDirections": 99
     }
   ],
   "lines": [
@@ -544,16 +544,15 @@
       "sourceRouteId": "IDFM:C01739",
       "sourceLineId": "fr-line-37da0da4a428bc321c284197",
       "status": "PARTIALLY_IMPLEMENTED",
-      "serviceFamilies": 8,
+      "serviceFamilies": 10,
       "discoveredSchedulePatterns": 72,
-      "coveredSchedulePatterns": 13,
+      "coveredSchedulePatterns": 19,
       "remainingSourcePatternIds": [
         "fr-pattern-0349d7729e7d22f9f0a0fa1d",
         "fr-pattern-08cd0c91c5eae221204ef555",
         "fr-pattern-0fd39e142d5cf0eeaaa7e958",
         "fr-pattern-14d6b37381414023fd202e4d",
         "fr-pattern-15664989de47f3144cc68d95",
-        "fr-pattern-16ff7b2cf7d167d0a7479e20",
         "fr-pattern-243a108bd9af67e442f94bf7",
         "fr-pattern-24aa8ab4c0dec794923b94f2",
         "fr-pattern-294e9a926896d4c5bb73c87d",
@@ -566,7 +565,6 @@
         "fr-pattern-47106b69f77f75e46513867a",
         "fr-pattern-507bb57823afa5deb25cb05b",
         "fr-pattern-5154952e283441764a211457",
-        "fr-pattern-51c53d7ff5df913e151ddb8f",
         "fr-pattern-5e9dfdddbecafce532a5e2c0",
         "fr-pattern-5fe6059411c3c0b941b1d7f2",
         "fr-pattern-626bcd00aa00fcc32d5aa877",
@@ -588,12 +586,8 @@
         "fr-pattern-a26df7bcd7269086f8fd5be1",
         "fr-pattern-aaff869875903f88923537ea",
         "fr-pattern-ab621e1e1525051453e5a759",
-        "fr-pattern-b03010b8061a0fdd29f8564c",
         "fr-pattern-b06b8a15b2c1e83e9c891e38",
-        "fr-pattern-b59d755ef6d5edb82edf0f65",
         "fr-pattern-b617d977b56cb7ad29858896",
-        "fr-pattern-ba457b7dab6fe2f0d55e6e1a",
-        "fr-pattern-c76b851acc3050b7f8bd0c24",
         "fr-pattern-ca26def2622b83589960496c",
         "fr-pattern-caabe8db3a0c9c9b6b29c115",
         "fr-pattern-d62dcc6425e6f626fcaf7841",
@@ -724,6 +718,60 @@
             "fr-pattern-c30e3aafa74c0f2319ff33ca"
           ],
           "relationId": 21282184,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-09e80ee5db26a0bf919c48cf",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-b59d755ef6d5edb82edf0f65"
+          ],
+          "relationId": 6949496,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-fce9ac62094097f393702955",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-c76b851acc3050b7f8bd0c24"
+          ],
+          "relationId": 21282398,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-506b1a4634c00439af982f20",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-51c53d7ff5df913e151ddb8f"
+          ],
+          "relationId": 8001252,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ca0b416de41b595f735a18ef",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-ba457b7dab6fe2f0d55e6e1a"
+          ],
+          "relationId": 8001253,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-90cbb9df72a052f88b0c5768",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-16ff7b2cf7d167d0a7479e20"
+          ],
+          "relationId": 21213576,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1082d63b41d67ceba15dac9c",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-b03010b8061a0fdd29f8564c"
+          ],
+          "relationId": 21213711,
           "status": "VERIFIED_ADDED"
         }
       ]
@@ -1156,26 +1204,21 @@
       "id": "fr-transilien-r",
       "category": "commuter_rail",
       "regions": [
-        "11"
+        "11",
+        "24"
       ],
       "sourceRouteId": "IDFM:C01731",
       "sourceLineId": "fr-line-427abee005307538d91d4d35",
       "status": "PARTIALLY_IMPLEMENTED",
-      "serviceFamilies": 1,
+      "serviceFamilies": 4,
       "discoveredSchedulePatterns": 14,
-      "coveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 8,
       "remainingSourcePatternIds": [
-        "fr-pattern-031a8eba1ee5af52a9317292",
-        "fr-pattern-04511ad9a15fe9ac9b368f4b",
-        "fr-pattern-1d1693e052cc3f7d8127cf38",
         "fr-pattern-4de9db4e4326355f3a36c24d",
         "fr-pattern-5bdb184c7db71c57af9ea8d3",
-        "fr-pattern-6505268d2cc1790372366724",
-        "fr-pattern-9bb0080c35ec9d8716d74bea",
         "fr-pattern-9beaa2560116a70de36d985c",
         "fr-pattern-a6070e00ddec892b652b1af6",
         "fr-pattern-a66f7710b8a18f2b0cf098e6",
-        "fr-pattern-d07da3e3ca72c46df01be1f5",
         "fr-pattern-f6f51b027d1aaed698023ee9"
       ],
       "directions": [
@@ -1195,6 +1238,60 @@
             "fr-pattern-15319a2a4c545cb5b3e8be10"
           ],
           "relationId": 14075879,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-d9e19abe05bc885cd8e8d8d2",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-031a8eba1ee5af52a9317292"
+          ],
+          "relationId": 10352122,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-8a35198b2c17d5139da048a1",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-9bb0080c35ec9d8716d74bea"
+          ],
+          "relationId": 14075880,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ac74aac70abb3ad05d2ffedb",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-d07da3e3ca72c46df01be1f5"
+          ],
+          "relationId": 14076171,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a65f7854b801b55db2730ba6",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-04511ad9a15fe9ac9b368f4b"
+          ],
+          "relationId": 14076172,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-848891dbecfb38e75dfe959d",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-6505268d2cc1790372366724"
+          ],
+          "relationId": 369441,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1b61005d9ec66b70f6f1d032",
+          "scheduleResourceId": 80921,
+          "sourcePatterns": [
+            "fr-pattern-1d1693e052cc3f7d8127cf38"
+          ],
+          "relationId": 14075881,
           "status": "VERIFIED_ADDED"
         }
       ]
@@ -4888,8 +4985,8 @@
         "fr-paris-metro-13",
         "fr-paris-metro-14"
       ],
-      "playableDirections": 226,
-      "verifiedPlayableDirections": 226
+      "playableDirections": 238,
+      "verifiedPlayableDirections": 238
     },
     {
       "code": "24",
@@ -4897,15 +4994,16 @@
       "regionalFeedIds": [
         83521
       ],
-      "catalogLines": 4,
+      "catalogLines": 5,
       "catalogLineIds": [
         "fr-transilien-n",
+        "fr-transilien-r",
         "fr-rer-d",
         "fr-intercites-night-paris-toulouse",
         "fr-tgv-strasbourg-bordeaux"
       ],
-      "playableDirections": 26,
-      "verifiedPlayableDirections": 26
+      "playableDirections": 34,
+      "verifiedPlayableDirections": 34
     },
     {
       "code": "27",
@@ -4934,8 +5032,8 @@
       "catalogLineIds": [
         "fr-transilien-j"
       ],
-      "playableDirections": 13,
-      "verifiedPlayableDirections": 13
+      "playableDirections": 19,
+      "verifiedPlayableDirections": 19
     },
     {
       "code": "32",
@@ -4958,8 +5056,8 @@
         "fr-lille-metro-1",
         "fr-lille-metro-2"
       ],
-      "playableDirections": 87,
-      "verifiedPlayableDirections": 87
+      "playableDirections": 93,
+      "verifiedPlayableDirections": 93
     },
     {
       "code": "44",

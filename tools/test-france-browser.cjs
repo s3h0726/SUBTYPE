@@ -9,6 +9,7 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = path.resolve(__dirname, '..');
 const publicBase = process.env.FRANCE_PUBLIC_URL;
 const uiOnly = process.env.FRANCE_UI_ONLY === '1';
+const requestedLines = (process.env.FRANCE_ROUTE_IDS || '').split(',').filter(Boolean);
 const marker = '\n})().catch(error=>';
 const hook = '\nglobalThis.__FRANCE_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,franceFreeDriveRoutes,buildTypingModel,routes:()=>routes};\n';
 const mime = {'.html':'text/html', '.js':'text/javascript', '.json':'application/json',
@@ -129,7 +130,8 @@ async function run() {
     await page.goto(base, {waitUntil:'domcontentloaded', timeout:60000});
     await page.waitForFunction(() => globalThis.__FRANCE_QA__?.routes().some(route => route.countryId === 'fr'));
     const index = require('../data/fr/generated/index.json');
-    const lines = uiOnly ? [] : publicBase ? index.routes.filter(route => route.category === 'commuter_rail' ||
+    const lines = uiOnly ? [] : requestedLines.length ? index.routes.filter(route => requestedLines.includes(route.id))
+      : publicBase ? index.routes.filter(route => route.category === 'commuter_rail' ||
       ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
         'fr-intercites-bordeaux-marseille', 'fr-lyon-metro-b', 'fr-rennes-metro-b',
         'fr-toulouse-metro-b', 'fr-lille-metro-2', 'fr-marseille-metro-2',
@@ -139,6 +141,7 @@ async function run() {
         'fr-ter-lyon-perrache-avignon', 'fr-ter-lyon-besancon',
         'fr-intercites-night-paris-toulouse', 'fr-rer-a', 'fr-rer-b', 'fr-rer-c', 'fr-rer-d', 'fr-rer-e'].includes(route.id))
       : index.routes;
+    if (requestedLines.length) assert.equal(lines.length, new Set(requestedLines).size, 'Unknown requested France line');
     for (const line of lines) {
       await openRoute(page, line.id);
       const choices = await page.evaluate(id => {
@@ -283,7 +286,9 @@ async function run() {
     report.error = error.stack;
     process.exitCode = 1;
   } finally {
-    const name = uiOnly ? 'ui-gameplay.json' : publicBase ? 'production-gameplay.json' : 'browser-gameplay.json';
+    const name = uiOnly ? 'ui-gameplay.json' : requestedLines.length
+      ? (publicBase ? 'production-focused-gameplay.json' : 'browser-focused-gameplay.json')
+      : publicBase ? 'production-gameplay.json' : 'browser-gameplay.json';
     fs.writeFileSync(path.join(root, 'reports/fr', name), JSON.stringify(report, null, 2) + '\n');
     console.log(JSON.stringify({status:report.status, desktop:report.testedDirections.length,
       mobile:report.mobileDirections.length, freeDrive:report.freeDrive.length, error:report.error}));
