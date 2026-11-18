@@ -2,6 +2,16 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.4] — 2026-11-18
+
+- feat(custom): 국가 간 가상 공항 이동 — 도착 국가 공항 접근 철도역을 필요할 때 불러와 터미널을 검증한 후 연결
+- feat(custom): 국가별 철도 데이터 캐시 및 도착 국가의 역 검색·최단거리 연결, 다국가 경유 커스텀 노선 지원
+- fix(custom): 출발 국가에 고정된 역명 표시를 역별 국가 코드·원어·한국어 데이터로 교정 (노선 편집기, 지도, 노선도, 타이핑 화면)
+- fix(custom): 한국어 이름이 미등록된 역의 원어 표시를 보존하고, 저장 시 검증되지 않은 한국어 정답을 차단
+- fix(custom): 국제 항공 경유 편집·저장·가져오기 검증, 국가·터미널 불일치 및 허위 철도 직접 연결 차단
+- test(custom): 외국어 역명(일본·영국·프랑스·대만·홍콩·마카오·태국), 국내·국제 공항 포털, 철도 그래프 분리 검사
+- keep(kr): v0.13.3 경부고속선·행신 KTX 실제 선형 및 관련 CI 검증 보존
+
 ## [v0.13.3] — 2026-11-18
 
 - fix(kr): ship actual Hangsin and Gyeongbu KTX physical map corrections in production game bundle * ci(kr): inspect Hangsin KTX approach and south-of-Daejeon map paths * diagnose(kr
