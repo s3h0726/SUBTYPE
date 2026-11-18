@@ -104,6 +104,7 @@ let checked=0,kept=0,reverted=0,keptJourneys=0,rolledBackJourneys=0,checkedEdges
 const reasons={};let samples=[];
 const batches=readBatches(root);
 for(const batch of batches){
+ if(!(batch.routes||[]).some(route=>(route.verifiedJourneys||[]).some(j=>j.ktxTrackCorrection?.method==='source-backed-rail-graph-realignment')))continue;
  let dirty=false;
  const base=originalBatch(batch.name);
  const oldRoutes=new Map(base.routes.map(r=>[r.id,r]));
