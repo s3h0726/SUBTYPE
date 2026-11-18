@@ -18,6 +18,10 @@
 .airport-transfer-destinations button:focus-visible,#airport-transfer-close:focus-visible,.airport-transfer-confirm:focus-visible{outline:3px solid #45c985;outline-offset:2px}
 #airport-transfer-form{display:grid;gap:9px}
 #airport-transfer-form label{font-size:12px;font-weight:750}
+#airport-transfer-terminal-row{display:grid;gap:8px}
+#airport-transfer-terminal-row[hidden]{display:none!important}
+#airport-transfer-terminal{width:100%;box-sizing:border-box;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+#airport-transfer-terminal:focus-visible,#airport-transfer-answer:focus-visible{outline:3px solid #45c985;outline-offset:2px}
 #airport-transfer-answer{width:100%;box-sizing:border-box;padding:13px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-size:16px}
 .airport-transfer-confirm{padding:13px 15px;border:0;border-radius:8px;background:#45c985;color:#071b13;font-weight:800;cursor:pointer}
 .airport-transfer-confirm:disabled{opacity:.55;cursor:wait}

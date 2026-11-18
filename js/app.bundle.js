@@ -5613,7 +5613,7 @@ async function startFreeDrive(route){
 function renderHome(){syncHomeFeatured();const recordRouteId=record=>canonicalRouteId(record.lineId||record.routeId);const recent=storage.recent().filter(record=>routes.some(route=>route.id===recordRouteId(record)));document.querySelectorAll('#feature-viewport [data-feature-route]').forEach((button,index)=>{const route=routes.find(item=>item.id===button.dataset.featureRoute),card=button.closest('article'),slot=card?.querySelector('.feature-number');if(!route||!card)return;if(slot){slot.innerHTML=lineBadgeMarkup(route);slot.hidden=!slot.innerHTML}const operator=card.querySelector('[data-feature-operator]'),lineKo=card.querySelector('[data-feature-line-ko]'),lineSecondary=card.querySelector('[data-feature-line-secondary]'),stations=card.querySelector('[data-feature-stations]');if(operator)operator.innerHTML=`${lineSurfaceOperatorLogo(route,'feature-operator-logo')}<span>${route.countryId==='tw'?escapeHtml(getTaiwanDisplayNames(route.operator).ko):escapeHtml(route.operator.ko)} · ${route.loop?'순환 운행':'도심 운행'}</span>`;if(lineKo)lineKo.textContent=route.line.ko;if(lineSecondary)lineSecondary.textContent=countryId==='tw'?`${getTaiwanDisplayNames(route.line).zh} · ${route.line.en}`:countryId==='kr'?route.line.en:`${route.line.ja} · ${route.line.en}`;if(stations)stations.textContent=`${route.stationCount||route.stations.length}개 역`;const dot=$$('[data-slide-to]')[index];if(dot)dot.setAttribute('aria-label',route.line.ko)});$('#recent-list').innerHTML=recent.length?recent.slice(0,3).map(record=>{const routeId=recordRouteId(record),route=routes.find(item=>item.id===routeId),name=route?.line.ko||record.routeName||routeId;return`<button class="recent-chip" data-feature-route="${escapeHtml(routeId)}" style="--route-color:${record.color}"><span><b>${route?.countryId==='tw'?taiwanNameMarkup(route.line):escapeHtml(name)}</b><small>${formatTime(record.elapsed)} · ${record.accuracy.toFixed(1)}%</small></span></button>`}).join(''):'<p class="muted">아직 운행 기록이 없습니다.</p>'}
 /* Airport connections are separate from rail graph edges: never allow a flight
  * to bypass the adjacent-station typing rules or fabricate a railway segment. */
-async function flyFreeDriveToAirport(airport){
+async function flyFreeDriveToAirport(airport,portalId){
   const controller=globalThis.TRTAirportSystem;
   if(!controller||!airport||!isCountryEnabled(airport.countryId))throw new Error('목적지 국가가 지원되지 않습니다.');
   const previousCountry=countryId,previousState=freeDrive?.snapshot(),previousHistory=[...(freeDrive?.history||[])];
@@ -5628,19 +5628,19 @@ async function flyFreeDriveToAirport(airport){
       await reloadRailData();
       renderTransportFilters();renderOperatorFilters();renderRoutes();renderSelected();
     }
-    const options=routes.filter(route=>controller.candidate(route,airport))
+    const options=routes.filter(route=>controller.candidate(route,airport,portalId))
       .sort((a,b)=>{
         const score=route=>(route.lazy?2:0)+(/airport|공항|空港|機場/i.test([route.line?.ko,route.line?.en,route.line?.ja].join(' '))?0:1);
         return score(a)-score(b);
       });
     let destination=null;
-    for(const route of options.slice(0,24)){
+    for(const route of options.slice(0,64)){
       let detail=route;
       if(route.lazy){
         try{detail=railDataRepository.resolveRoute(await hydrateRailLine(route))}
         catch(error){console.warn('Airport arrival rail route unavailable:',route.id,error);continue}
       }
-      const index=controller.findStation(detail,airport);
+      const index=controller.findStation(detail,airport,portalId);
       if(index<0)continue;
       destination={route:detail,index};
       if(route.lazy){
@@ -5650,10 +5650,10 @@ async function flyFreeDriveToAirport(airport){
       }
       break;
     }
-    if(!destination)throw new Error(airport.name+'과 연결된 검증 가능한 철도역을 찾지 못했습니다.');
+    if(!destination)throw new Error(airport.name+'의 선택한 터미널에 연결된 등록 철도역을 찾지 못했습니다. 다른 터미널역을 선택해 주세요.');
     freeDrive.setNetwork(freeDriveNetworkRoutes());
     const live=freeDrive.routes.find(route=>route.id===destination.route.id);
-    const arrivalIndex=live?controller.findStation(live,airport):-1;
+    const arrivalIndex=live?controller.findStation(live,airport,portalId):-1;
     if(!live||arrivalIndex<0)throw new Error('도착역을 자유주행 선로망에 연결할 수 없습니다.');
     if(!freeDrive.start(live,arrivalIndex))throw new Error('공항역에서 자유주행을 시작하지 못했습니다.');
     const state=freeDrive.snapshot();
