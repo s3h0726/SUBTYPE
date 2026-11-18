@@ -1,0 +1,51 @@
+name: Correct game-map Haengsin KTX and Daejeon–Dongdaegu Gyeongbu geometry
+on:
+  push:
+    branches: [fix/ktx-haengsin-south-gyeongbu-geometry-20261118]
+    paths:
+      - 'js/ktx-gyeongbu-map-display.js'
+      - 'js/data-loader.js'
+      - 'js/korean-service-resolver.js'
+      - 'js/route-renderer.js'
+      - 'js/result-journey-map.js'
+      - 'tools/build-kr-ktx-gyeongbu-map-reference.cjs'
+      - 'tools/test-kr-ktx-gyeongbu-map-display.cjs'
+      - '.github/workflows/ktx-haengsin-south-track.yml'
+permissions:
+  contents: write
+jobs:
+  test-build-map:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate Haengsin and Gyeongbu HSR map centerlines from actual verified railway journeys
+        run: |
+          node --check tools/build-kr-ktx-gyeongbu-map-reference.cjs
+          node tools/build-kr-ktx-gyeongbu-map-reference.cjs
+      - name: Verify actual KTX map route lengths and canonical stop/service preservation
+        run: |
+          node --test tools/test-kr-ktx-gyeongbu-map-display.cjs tools/test-kr-ktx-track-alignment.cjs
+          node tools/test-kr-canonical.cjs
+      - name: Rebuild public SUBTYPE game bundle with corrected KTX map display
+        run: |
+          node tools/build-app-bundle.js
+          node --check js/app.bundle.js
+      - name: Commit map-only correction and publishable app bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/kr/physical/ktx-gyeongbu-display.json js/app.bundle.js index.html
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix(kr): draw Haengsin and south Gyeongbu KTX on verified corridor centerlines'
+            git push origin HEAD:fix/ktx-haengsin-south-gyeongbu-geometry-20261118
+          fi

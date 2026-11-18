@@ -1,6 +1,7 @@
 import{thailandPresentation,decodeThailandPayload,setThailandNameEvidence}from'./thailand-network.js';
 import{decodeRoutePayload}from'./route-payload.js';
 import{loadSuseoTrack,applySuseoTrack}from'./korea-suseo-pyeongtaek.js';
+import{loadKtxMapReference}from'./ktx-gyeongbu-map-display.js';
 import{configureUKNames,ukPresentation,ukPatternRoute}from'./uk-network.js';
 import{configureFranceNames,francePatternRoute,franceSearchNames,franceStationPresentation}from'./france-network.js';
 import{configureTaiwanNetwork,taiwanKoreanPresentation}from'./taiwan-network.js';
@@ -478,7 +479,10 @@ export async function loadTransportData(countryId='jp',koreaMode='released'){
   }
   if(FEATURE_FLAGS.koreaRoutesReset)return{country:{id:'kr',names:{ko:'대한민국',en:'South Korea'}},operators:[],lines:[],stations:[],assets:{operators:{},lines:{}},errors:[],counts:{},fallbackUsed:false,source:'korea-reset'};
   // Preload OSM high-speed track before the synchronous GTX-A choice resolver runs.
-  await loadSuseoTrack().catch(error=>console.warn('수서평택고속선 실선형 로딩 실패',error));
+  await Promise.all([
+   loadSuseoTrack().catch(error=>console.warn('수서평택고속선 실선형 로딩 실패',error)),
+   loadKtxMapReference().catch(error=>console.warn('KTX 고속선 지도 참조 로딩 실패',error))
+  ]);
   const data=globalThis.TRT_KOREA_INDEX||await fetchJson(new URL('data/kr/generated/index.json',document.baseURI));
   const lines=(data.routes||[]).filter(route=>(!route.serviceWindows||route.serviceWindows.some(koreanServiceIsCurrent))&&route.releaseStatus!=='research'&&route.playStatus!=='RESEARCH_PLAYABLE'&&!route.previewContract&&!koreanRouteBlockReason(route)).map(normalizeLazyLine),operators=data.operators||[],counts=(lines).reduce((result,route)=>({...result,[route.category]:(result[route.category]||0)+1}),{});
   return{country:data.country,operators:withEditorOperators(operators),lines,stations:[],assets:data.assets||{operators:{},lines:{}},errors:[],counts,fallbackUsed:false,source:'korea-lazy-index'}
