@@ -23,6 +23,7 @@ if(process.argv.includes('--publish')&&!rejected.length){
   const copy=structuredClone(journey);
   delete copy.geometry;
   delete copy.directedSegments;
+  delete copy.ktxTrackCorrection;
   delete copy.sourceWayIds;
   copy.stations=(copy.stations||[]).map(({geometryIndex,stopOffsetMeters,...stop})=>stop);
   return copy;
@@ -31,12 +32,20 @@ if(process.argv.includes('--publish')&&!rejected.length){
   routeId==='kr-hangang-east'&&correctedEastIds.has(oldJourney.id)
   &&newJourney.sourceWayIds?.includes(1443233864)
   &&JSON.stringify(withoutGeometry(oldJourney))===JSON.stringify(withoutGeometry(newJourney));
+ // The publish gate permits explicitly proven KTX geometry corrections only.
+ // Stop names, order, timetable metadata and the full service definition remain immutable.
+ const approvedKtxCorrection=(routeId,oldJourney,newJourney)=>
+  (routeId==='kr-rail-expansion-gyeongbu-highspeed'||routeId==='kr-rail-highspeed-honam'||/ktx|highspeed/i.test(routeId))
+  &&newJourney.ktxTrackCorrection?.method==='source-backed-rail-graph-realignment'
+  &&newJourney.ktxTrackCorrection.legs?.length>0
+  &&newJourney.ktxTrackCorrection.legs.every(leg=>Array.isArray(leg.wayIds)&&leg.wayIds.length>0)
+  &&JSON.stringify(withoutGeometry(oldJourney))===JSON.stringify(withoutGeometry(newJourney));
  const unchangedPayloads=new Set;
  const oldFile=path.join(root,'data/kr/generated/index.json');
  if(fs.existsSync(oldFile))for(const old of JSON.parse(fs.readFileSync(oldFile,'utf8')).routes||[]){
   const next=accepted.find(r=>r.id===old.id);if(!next)throw Error('기존 공개 노선 손실 차단: '+old.id);
   const stored=JSON.parse(fs.readFileSync(path.join(root,old.lazySource),'utf8')),oldPayload=decode(stored).route;
-  for(const journey of oldPayload.verifiedJourneys||[]){const retained=next.verifiedJourneys.find(j=>j.id===journey.id);if(!retained||(JSON.stringify(retained)!==JSON.stringify(journey)&&!approvedEasternBypass(old.id,journey,retained)))throw Error('기존 공개 운행계통 변경 차단: '+journey.id)}
+  for(const journey of oldPayload.verifiedJourneys||[]){const retained=next.verifiedJourneys.find(j=>j.id===journey.id);if(!retained||(JSON.stringify(retained)!==JSON.stringify(journey)&&!approvedEasternBypass(old.id,journey,retained)&&!approvedKtxCorrection(old.id,journey,retained)))throw Error('기존 공개 운행계통 변경 차단: '+journey.id)}
   // 내용과 무손실 압축 형식이 같은 파일은 다시 쓰지 않는다.
   if(stored.encoding==='subtype-route-gzip-v1'&&JSON.stringify(next)===JSON.stringify(oldPayload))unchangedPayloads.add(old.id);
  }
