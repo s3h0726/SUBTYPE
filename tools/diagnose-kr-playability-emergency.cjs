@@ -38,3 +38,31 @@ for(const meta of sample){
  console.log('KR_SAMPLE '+JSON.stringify(row));
 }
 if(counts.publicCandidates===0)console.error('NO_KR_PUBLIC_CANDIDATES');
+
+
+const vm=require('node:vm');
+const normalizeContext=vm.createContext({console,Intl,Date,URL,Blob,Response,TextDecoder,Uint8Array,Set,Map,Math,Number,JSON,RegExp,crypto:{randomUUID:()=> 'diagnostic'},hongKongRouteBlockReason:()=>null,koreanRouteBlockReason:()=>null});
+const load=file=>fs.readFileSync(path.join(root,file),'utf8').replace(/\\bimport(?=\\s|\\{)[^;]+;/g,'').replace(/\\bexport\\s+/g,'');
+try{
+ vm.runInContext(load('js/data-loader.js')+'\\n;globalThis.__normalizeLazyLine=normalizeLazyLine;globalThis.__normalizeLine=normalizeLine;',normalizeContext,{timeout:15000});
+ let ready=0,unavailable=0,errors=[];
+ for(let i=0;i<routes.length;i++){
+  try{
+   normalizeContext.rawRoute=routes[i];
+   const value=vm.runInContext('__normalizeLazyLine(rawRoute)',normalizeContext,{timeout:250});
+   if(value.geometryReady===true&&value.playable!==false)ready++;else unavailable++;
+  }catch(error){errors.push({index:i,route:routes[i].id,error:String(error.message||error)});if(errors.length>=6)break}
+ }
+ console.log('KR_NORMALIZE_RESULT '+JSON.stringify({ready,unavailable,errors}));
+}catch(error){console.error('KR_NORMALIZE_FATAL '+String(error.stack||error))}
+try{
+ vm.runInContext(load('js/korean-service-resolver.js')+'\\n'+load('js/route-integrity.js')+'\\n;globalThis.__krTest={koreanVerifiedChoices,resolveKoreanVerifiedChoice,resolvePlayableRoute};',normalizeContext,{timeout:20000});
+ for(const meta of sample){
+  try{
+   const route=decode(JSON.parse(fs.readFileSync(path.join(root,meta.lazySource),'utf8'))).route;
+   normalizeContext.rawRoute=route;
+   const outcome=vm.runInContext('(function(){const r=__normalizeLine(rawRoute);const choices=__krTest.koreanVerifiedChoices(r);if(!choices.length)return{choices:0,schemaVersion:r.schemaVersion,releaseStatus:r.releaseStatus};const resolved=__krTest.resolveKoreanVerifiedChoice(choices[0],r);const playable=__krTest.resolvePlayableRoute(resolved.route,{direction:resolved.direction,service:resolved.service});return {choices:choices.length,stations:playable.stations.length,segments:playable.segments.length,service:resolved.service.id}})()',normalizeContext,{timeout:5000});
+   console.log('KR_RUNTIME_TEST '+JSON.stringify({id:route.id,outcome}));
+  }catch(error){console.log('KR_RUNTIME_TEST '+JSON.stringify({id:meta.id,error:String(error.stack||error).slice(0,1600)}))}
+ }
+}catch(error){console.error('KR_RUNTIME_FATAL '+String(error.stack||error))}
