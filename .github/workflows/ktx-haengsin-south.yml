@@ -1,0 +1,22 @@
+name: Diagnose Haengsin-origin and south-of-Daejeon KTX map paths
+on:
+  push:
+    branches: [fix/ktx-haengsin-daejeon-south-20261118]
+    paths:
+      - 'tools/diagnose-kr-ktx-haengsin-south.cjs'
+      - '.github/workflows/ktx-haengsin-south.yml'
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Diagnose station-to-station original KTX rail way geometry
+        run: node tools/diagnose-kr-ktx-haengsin-south.cjs
