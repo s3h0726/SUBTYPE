@@ -40,7 +40,7 @@ function graphFromWays(ways){
  const edges=[];
  for(const w of ways){
   const tags=w.tags||{};
-  if(tags.railway!=='rail'||['yard','spur','siding'].includes(tags.service)||['industrial','military','test'].includes(tags.usage)||tags.disused==='yes'||tags.access==='no')continue;
+  if(!['rail','light_rail'].includes(tags.railway)||['yard','spur','siding'].includes(tags.service)||['industrial','military','test'].includes(tags.usage)||tags.disused==='yes')continue;
   const c=w.coordinates||[];
   const kind=classify(tags);
   for(let i=1;i<c.length;i++){
@@ -98,7 +98,7 @@ function subdivideSourceEdges(points,maxKm=1.5){
 function graphRoute(graph,from,to,corridor,oldKm){
  // A terminal KTX station may have several platforms: only here may the
  // source-mapped platform rail be up to 140 metres from the legacy shape.
- const snapMeters=corridor==='수서평택고속선'?140:8;
+ const snapMeters=corridor==='수서평택고속선'?140:corridor==='경부고속선'?100:8;
  const starts=graph.snaps(from,snapMeters,corridor),ends=graph.snaps(to,snapMeters,corridor);
  if(!starts.length||!ends.length)return {reason:'NO_SOURCE_EDGE_SNAP',startCandidates:starts.length,endCandidates:ends.length};
  const endNodes=new Map();
@@ -171,7 +171,7 @@ function decide(oldGeom,next,corridor,tracks){
  if(originalKm<10||straightKm<5)return {accept:false,reason:'SEGMENT_TOO_SHORT'};
  const detour=originalKm>straightKm*1.58&&originalKm-straightKm>9;
  const offset=before.density>=.6&&before.coverage<.65;
- const gap=before.density<.6&&originalKm>straightKm*1.28;
+ const gap=before.density<.6&&(originalKm>straightKm*1.28||(originalKm>30&&before.coverage<.5));
  if(!detour&&!offset&&!gap)return {accept:false,reason:'EXISTING_WITHIN_TOLERANCE'};
  if(!next.geometry)return {accept:false,reason:next.reason,originalKm:+originalKm.toFixed(2)};
  const after=evidence(next.geometry,corridor,tracks);
@@ -224,7 +224,7 @@ function main(){
       const e=evidence(geom,corridor,tracks);
       const suspected=originalKm>straightKm*1.58&&originalKm-straightKm>9
        ||e.density>=.6&&e.coverage<.65
-       ||e.density<.6&&originalKm>straightKm*1.28;
+       ||e.density<.6&&(originalKm>straightKm*1.28||(originalKm>30&&e.coverage<.5));
       const replacement=suspected?graphRoute(graph,geom[0],geom.at(-1),corridor,originalKm):{reason:'EXISTING_WITHIN_TOLERANCE'};
       cache.set(key,{replacement,decision:decide(geom,replacement,corridor,tracks)});
      }
@@ -235,7 +235,7 @@ function main(){
       segmentGeoms[i]=replacement.geometry;
       diffs.push({index:i,from:names[i],to:names[i+1],corridor,wayIds:replacement.wayIds,
        oldKm:decision.originalKm,newKm:decision.correctedKm,oldCoverage:decision.originalCoverage,
-       newCoverage:decision.newCoverage,source:'OpenStreetMap exact rail-way vertices, connected by coincident source coordinates'});
+       newCoverage:decision.newCoverage,sourceSnapMaxMeters:replacement.sourceSnapMaxMeters,source:'OpenStreetMap exact rail-way vertices, connected by coincident source coordinates'});
      }
     }
     if(!diffs.length)continue;
