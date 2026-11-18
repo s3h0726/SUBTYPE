@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.12.0] — 2026-11-18
+
+- feat: expand free-drive airports and terminal station transfers (#85) * feat: expand free-drive airports and select verified terminal rail portals * feat: honor selected airport te
+
 ## [v0.11.14] — 2026-11-18
 
 - fix(kr): connect two KTX Suseo high-speed feeder journeys on exact original OSM railway nodes * diagnose(kr): source-proven feeder OSM rail routes for three unresolved Suseo KTX pa
