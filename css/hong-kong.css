@@ -90,7 +90,9 @@
 [data-country="hk"] .hk-line-card .operator small{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:10px;line-height:1.2}
 [data-country="hk"] .hk-line-card .hk-line-native{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:clamp(13px,1.25vw,16px);line-height:1.35;white-space:normal;overflow-wrap:anywhere}
 [data-country="hk"] .hk-line-card footer{margin-top:auto}
-[data-country="hk"] #selected-line-heading .hk-selected-native{display:block;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;font-weight:800;overflow-wrap:anywhere}
+/* Use the same selected-line hierarchy as the other countries: Korean title, small native subtitle. */
+html[data-country="hk"] #selected-line-preview .selected-line-card > .hk-selected-native{display:block;margin:0 0 10px;font-size:13px;line-height:1.35;font-weight:500;color:var(--muted);overflow-wrap:anywhere;word-break:normal}
+html[data-country="hk"] #selected-line-preview .hk-selected-native [lang="zh-Hant"]{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif}
 [data-country="hk"] #screen-game.active .station-current #prompt-main{max-width:100%}
 @media(max-width:600px){
  [data-country="hk"] #screen-game.active .station-current #prompt-main{font-size:clamp(25px,6.5vw,34px)!important}
