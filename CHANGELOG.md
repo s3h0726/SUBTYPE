@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.9] — 2026-11-20
+
+- data: apply Korean names and RGB edits from web editor
+
 ## [v0.13.8] — 2026-11-19
 
 - fix: align Hong Kong route selection cards with other countries (#95) * fix(hk): align Hong Kong line cards with shared country layout * fix(hk): align Hong Kong line cards with sh
