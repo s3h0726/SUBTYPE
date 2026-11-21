@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.11] — 2026-11-21
+
+- data: apply Korean names and RGB edits from web editor
+
 ## [v0.13.10] — 2026-11-20
 
 - data: apply Korean names and RGB edits from web editor
