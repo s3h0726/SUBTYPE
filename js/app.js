@@ -695,7 +695,7 @@ function operatingDirectionLabel(choice){if(choice.kind==='uk'&&choice.direction
   if(choice.sourceRouteId==='kr-metro-2')return choice.direction==='reverse'?'내선순환':'외선순환';
   const origin=journeyStationDisplayName(choice.originNames),destination=journeyStationDisplayName(choice.destinationNames);
   if(choice.line1PatternKey&&origin&&destination&&origin!==destination){const source=choice.sourceRouteId?(builtin.find(r=>r.id===choice.sourceRouteId)||routes.find(r=>r.id===choice.sourceRouteId)):selected;return `${origin} → ${destination}${source?.line1Service?.evidenceStatus==='operator-service-confirmed'?' · 운행 확인':' · 시간표 확인 필요'}`}
-  if(origin&&destination&&origin!==destination)return`${origin} → ${destination}`;
+  if(origin&&destination&&origin!==destination)return`${origin} → ${destination}${choice.simulatedReverse?' · 게임용 역방향(시간표 미검증)':''}`;
   return choice.direction==='reverse'?'역방향':'정방향'
 }
 function configureJourneyPicker(){
