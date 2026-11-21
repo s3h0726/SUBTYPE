@@ -407,7 +407,9 @@ async function saveToGame(){
  if(file==='services')for(const row of updates){if(!row[4].trim())throw Error('운행계통 한글명을 비울 수 없습니다.');json.services[row[0]]=row[4].trim()}
  if(file==='operators')for(const row of updates)mergeChange(json.operators,row[0],row[1].trim());
  if(file==='lines'||file==='korea-lines')for(const row of updates){
- const id=row[2],color=cssToHex(row[6]);if(!colorRE.test(color))throw Error('색상은 #RRGGBB 형식이어야 합니다');
+ const id=row[2],rawColor=String(row[6]||'').trim();
+  if(!colorRE.test(rawColor))throw Error('색상은 #RRGGBB 형식이어야 합니다: '+id);
+  const color=rawColor.toUpperCase();
  json.lines[id]={...(json.lines[id]||{}),ko:row[3].trim(),color};
  }
  if(file==='stations-by-line')for(const row of updates){json.stations[row[2]]||={};mergeChange(json.stations[row[2]],row[4],row[6].trim())}
@@ -415,7 +417,7 @@ async function saveToGame(){
  const content=btoa(unescape(encodeURIComponent(JSON.stringify(json,null,2)+'\n')));
  const put=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'data: apply Korean names and RGB edits from web editor',content,sha:current.sha,branch:EDIT_BRANCH})});
  if(!put.ok){const data=await put.text();throw Error('GitHub 저장 실패: '+put.status+' '+data.slice(0,220))}
- remoteOverrides=json;original=rows.map(r=>r.slice());localStorage.removeItem('metrot-korean-edit-'+DATA_VERSION+'-'+file);refresh();
+ remoteOverrides=json;original=rows.map(r=>r.slice());localStorage.removeItem(draftKey());refresh();
  status.textContent='GitHub 저장 완료! Pages 배포 완료 후 게임에서 자동 적용됩니다.';
  alert('저장 완료! GitHub Pages 배포가 완료된 뒤 게임을 새로고침하면 적용됩니다.');
  }catch(e){status.textContent=e.message;alert(e.message)}finally{btn.disabled=false}
