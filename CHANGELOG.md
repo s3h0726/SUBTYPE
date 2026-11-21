@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.13.13] — 2026-11-21
+
+- v0.8 Add KTX route-variant labels
+
 ## [v0.13.12] — 2026-11-21
 
 - v0.8 Rename KTX service patterns by endpoints
