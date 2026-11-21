@@ -1,0 +1,43 @@
+name: Validate KTX bidirectional game choices
+on:
+  push:
+    branches: [fix/ktx-bidirectional-dedup-runtime-20261121]
+    paths:
+      - 'js/korean-service-resolver.js'
+      - 'js/ktx-gyeongbu-map-display.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-kr-ktx-operating-choices.cjs'
+      - '.github/workflows/ktx-game-directions.yml'
+  pull_request:
+    paths:
+      - 'js/korean-service-resolver.js'
+      - 'js/ktx-gyeongbu-map-display.js'
+      - 'js/app.bundle.js'
+      - 'tools/test-kr-ktx-operating-choices.cjs'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate KTX real and game-only directions without duplicate rolling stock cards
+        run: node --test tools/test-kr-ktx-operating-choices.cjs
+      - name: Validate shipped JavaScript syntax
+        run: |
+          node --check js/app.bundle.js
+          node --check tools/test-kr-ktx-operating-choices.cjs
+      - name: Check maintained modules exactly match the deployed bundle
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const bundle=fs.readFileSync('js/app.bundle.js','utf8');
+          for(const path of ['js/korean-service-resolver.js','js/ktx-gyeongbu-map-display.js']){
+            const source=fs.readFileSync(path,'utf8').replace(/\bimport(?=\s|\{)[^;]+;/g,'').replace(/\bexport\s+/g,'');
+            if(!bundle.includes(source))throw Error('Bundle is stale: '+path);
+          }
+          NODE
