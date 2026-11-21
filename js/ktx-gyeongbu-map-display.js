@@ -64,14 +64,18 @@ export function mapOnlyKtxJourneySegments(route,journey,reference=globalThis.TRT
   let key=null,minimum=Infinity;
   if(i===0&&journey.stations[0]?.ko==='행신'&&from==='행신'&&to==='서울역'){
    key='haengsinToSeoul';minimum=1.3;
-  }else if(from==='대전'&&to==='동대구'){
+  }else if(from==='대전'&&to==='동대구'||from==='동대구'&&to==='대전'){
    key='daejeonToDongdaegu';minimum=12;
   }
   if(!key)return {...segment,geometryStatus:'ready'};
   const source=segment.geometry,ref=reference.tracks[key];
   if(!Array.isArray(source)||source.length<2||!ref?.geometry||
    ktxDisplayLength(source)-ref.km<minimum)return {...segment,geometryStatus:'ready'};
-  const adapted=adaptKtxMapToStationAnchors(ref.geometry,source);
+  // This is the SAME published OSM-derived railway display reference; the
+  // reverse is visual-only and never asserts a new operational OSM way.
+  const referenceGeometry=from==='동대구'&&to==='대전'?
+   ref.geometry.slice().reverse():ref.geometry;
+  const adapted=adaptKtxMapToStationAnchors(referenceGeometry,source);
   if(!adapted)return {...segment,geometryStatus:'ready'};
   corrections++;
   return {...segment,geometry:adapted,geometryStatus:'ready',
