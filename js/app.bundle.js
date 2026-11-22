@@ -1865,7 +1865,7 @@ const reverseKtxJourney=journey=>{
   id:String(journey.service?.id||journey.id)+':game-reverse',
   stops:stations.map(station=>station.id),
   nameKo:String(journey.service?.nameKo||journey.patternName?.ko||'KTX')+
-   ' · 역방향 게임 운행(시간표 미검증)'};
+   ' · 역방향 게임 운행'};
  return {...journey,stations,geometry,directedSegments,service,
   simulatedReverse:true,timetableVerified:false,sourceJourneyId:journey.id,
   tripIds:[],officialTrainNumbers:[],operatingCalendars:[]};
