@@ -5635,16 +5635,33 @@ function routeForCatalogLine(code,requiredStations=[]){
     (meta?.ja&&(route.line?.ja||route.line?.names?.ja||'')===meta.ja)||
     (String(code)==='11503'&&route.id==='line-jr-central-minoakasaka'));
   if(!required.length)return matches[0]||null;
-  const complete=matches.find(route=>catalogRouteHasStations(route,required));
+  // A retired or non-playable physical card may be entirely covered by a
+  // verified, already registered track. Never choose the blocked copy first.
+  const complete=matches.find(route=>route.geometryReady===true&&route.playable!==false
+    &&catalogRouteHasStations(route,required));
   if(complete)return complete;
   // Some old catalog segments now belong to an existing different route
   // (Chuo local, Hokuso, Hankyu Kobe Kosoku). Do not invent geometry.
   if(required.length>=3){
-    const alternative=builtin.find(route=>route.countryId==='jp'&&route.geometryReady!==false&&route.playable!==false
+    const alternative=builtin.find(route=>route.countryId==='jp'&&route.geometryReady===true&&route.playable!==false
       &&catalogRouteHasStations(route,required));
     if(alternative)return alternative;
   }
-  return matches.find(route=>route.lazy)||matches[0]||null;
+  // Two-stop catalog sections were previously never searched on another
+  // line. E.g. JR Central's blocked 11503 Gifu–Maibara track is already
+  // present on the playable 11502. Reuse only an unambiguous candidate from
+  // the SAME operator and railway category, never an arbitrary parallel line.
+  if(required.length===2){
+    const source=matches.find(route=>route.id===`line-${code}`)||matches[0];
+    if(source?.operatorId&&source?.category){
+      const alternatives=builtin.filter(route=>route.countryId==='jp'&&route.id!==source.id
+        &&route.operatorId===source.operatorId&&route.category===source.category
+        &&route.geometryReady===true&&route.playable!==false
+        &&catalogRouteHasStations(route,required));
+      if(alternatives.length===1)return alternatives[0];
+    }
+  }
+  return matches.find(route=>catalogRouteHasStations(route,required))||matches.find(route=>route.lazy)||matches[0]||null;
 }
 // TrainLCD line IDs predate JR Central's physical-route split.
 // Split only at real common stations; preserve every surveyed stop and vertex.

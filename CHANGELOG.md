@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.15.0] — 2026-11-22
+
+- Merge remote-tracking branch 'origin/main' into feature/uk-railway-completion
+
 ## [v0.14.3] — 2026-11-22
 
 - data: apply Korean names, RGB and route-card labels from editor
