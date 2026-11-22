@@ -6,7 +6,7 @@ SUBTYPE은 실제 교통 노선과 정차역을 바탕으로 만든 **한국어 
 
 [**▶ 웹에서 플레이하기**](https://s3h0726.github.io/SUBTYPE/) · [변경 이력](CHANGELOG.md) · [문제 제보 및 제안](https://github.com/s3h0726/SUBTYPE/issues)
 
-> **현재 버전: v0.19.0 (개발 중)**  
+> **현재 버전: v0.19.0.0 (개발 중)**  
 > 설치 없이 웹 브라우저에서 플레이할 수 있습니다. 노선·역명·운행계통 데이터는 계속 확장 및 검증하고 있으며, 모든 국가의 교통망을 완전하게 재현한 것은 아닙니다.
 
 ---
@@ -104,14 +104,17 @@ python -m http.server 8080
 
 ## 버전 자동 관리
 
+SUBTYPE의 앱 버전은 **`vMAJOR.MINOR.PATCH.REVISION`** 형식(숫자 4자리, 예: `v0.19.0.0`)입니다. `package.json`의 `appVersion`이 앱·화면·릴리스 태그의 기준입니다. npm 호환성을 위해 `version`은 첫 세 자리만 저장하며 릴리스 도구가 동기화합니다.
+
 `main` 브랜치에 코드·교통 데이터·화면·개발 스크립트가 반영되면 GitHub Actions의 **Auto-release SUBTYPE version**이 새 버전을 발행합니다. 문서만 수정한 경우에는 버전을 올리지 않습니다.
 
-- **PATCH** (`v0.9.1 → v0.9.2`): 일반 코드 변경, 수정, UI 개선.
-- **MINOR** (`v0.9.2 → v0.10.0`): 커밋 제목을 `feat:` 또는 `feat(scope):`로 작성한 기능 추가.
-- **MAJOR**: 1.0.0 이상은 필요할 때 Actions에서 수동으로 지정합니다.
-- **수동 관리**: `package.json`을 직접 올린 커밋은 한 번 더 증가시키지 않고, 표시·문서·태그만 맞춥니다.
+- **REVISION (4번째 자리)** (`v0.19.0.0 → v0.19.0.1`): 일반 코드·데이터 수정과 UI 개선. `main` 반영 시 자동 증가.
+- **PATCH (3번째 자리)** (`v0.19.0.8 → v0.19.1.0`): 명시적으로 선택한 패치 릴리스. 수정번호 초기화.
+- **MINOR (2번째 자리)** (`v0.19.1.5 → v0.20.0.0`): `feat:` 또는 `feat(scope):` 커밋에 따른 기능 추가. 뒤의 두 자리 초기화.
+- **MAJOR (1번째 자리)** (`v0.20.3.4 → v1.0.0.0`): 큰 호환성·구조 변경 시 수동으로 지정.
+- **수동 관리**: `package.json`의 `appVersion`을 직접 변경한 경우 자동으로 한 번 더 올리지 않고 표시·문서·태그만 동기화합니다.
 
-릴리스 작업은 `package.json`, 웹 화면, README, CHANGELOG를 동기화하고 **`vX.Y.Z` 태그**를 생성합니다. 검증을 통과한 후 GitHub Pages 배포 작업을 시작합니다. 자동 릴리스 커밋이 다시 릴리스를 실행하지 않도록 구성했습니다. 수동 실행은 GitHub의 **Actions → Auto-release SUBTYPE version → Run workflow**에서 PATCH/MINOR/MAJOR를 선택하면 됩니다.
+릴리스 작업은 앱 버전과 npm 버전, 웹 화면, README, CHANGELOG를 동기화하고 **`vX.Y.Z.R` 태그**를 생성합니다. 검증을 통과한 후 GitHub Pages 배포 작업을 시작합니다. 자동 릴리스 커밋이 다시 릴리스를 실행하지 않도록 구성했습니다. 수동 실행은 GitHub의 **Actions → Auto-release SUBTYPE version → Run workflow**에서 REVISION/PATCH/MINOR/MAJOR를 선택하면 됩니다.
 
 ## 개발 및 검증
 
