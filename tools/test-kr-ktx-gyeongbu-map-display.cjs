@@ -46,6 +46,9 @@ test('Haengsin-origin KTX detour and Daejeon-to-Dongdaegu are corrected ONLY in 
    assert.deepEqual(Array.from(out[i].geometry[0]),Array.from(j.directedSegments[i].geometry[0]));
    assert.deepEqual(Array.from(out[i].geometry.at(-1)),Array.from(j.directedSegments[i].geometry.at(-1)));
    good[from+'-'+to]=[+len(j.directedSegments[i].geometry).toFixed(2),+len(out[i].geometry).toFixed(2)];
+  }else if(['동대구','경주'].includes(from)&&to==='부산'){
+   assert.ok(out[i].gameMapVisualCorrection,'southern non-Gupo KTX must follow the mapped high-speed railway');
+   assert.ok(Math.abs(len(out[i].geometry)-len(j.directedSegments[i].geometry))>8);
   }else assert.equal(JSON.stringify(out[i].geometry),JSON.stringify(j.directedSegments[i].geometry));
  }
  assert.ok(good['행신-서울역'][0]>=18&&good['행신-서울역'][1]<16.5);
