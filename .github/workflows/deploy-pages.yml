@@ -1,5 +1,10 @@
 name: Publish SUBTYPE runtime to Pages
 on:
+  # One-time recovery path: workflow changes produce a fresh Pages artifact,
+  # rather than rerunning an old job with duplicate github-pages artifacts.
+  push:
+    branches: [main]
+    paths: ['.github/workflows/deploy-pages.yml']
   workflow_dispatch:
   workflow_run:
     workflows: ['Publish updated Hangang east canonical data', 'Auto-release SUBTYPE version']

@@ -1,0 +1,367 @@
+{
+  "checkedOn": "2026-11-18",
+  "scope": "보관된 OSM 스냅샷의 가져오기 보정. OSM 본서버 편집 및 시간표 확인 없음.",
+  "sourceSnapshot": "2026-10-14T20:21:12Z",
+  "scannedRelations": 3511,
+  "addedCorrections": 3,
+  "added": [
+    {
+      "relationId": "17585166",
+      "nameKo": "인천국제공항 셔틀트레인: 제1터미널 → 제2터미널",
+      "reason": "MISORDERED_MEMBERS",
+      "before": "ORDERED_STOPS_NOT_ON_TRACK",
+      "after": "UNIQUE_SOURCE_ORDER",
+      "ways": 2,
+      "stops": 3,
+      "preserved": {
+        "status": "excluded",
+        "access": {
+          "number": 56,
+          "classification": "SPECIAL_AIRPORT_REVIEW",
+          "passengerCandidate": false,
+          "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단"
+        },
+        "playable": false
+      },
+      "config": {
+        "relationId": "17585166",
+        "relationSha256": "34c5772976a123ad59e1f32754e6bf89c7719928942dd60245a820d11888c23a",
+        "reviewedOn": "2026-11-18",
+        "sourceUrl": "https://www.openstreetmap.org/relation/17585166",
+        "scope": "원본 노드·회원 순서·교량 시설 오참조 보정. 운행·시간표 검증 및 공개 승인과 분리.",
+        "reason": "MISORDERED_MEMBERS",
+        "orderedMembers": [
+          {
+            "sourceIndex": 1,
+            "wayId": "1458493356",
+            "sourceVersion": 1,
+            "sourceRole": "",
+            "role": "backward"
+          },
+          {
+            "sourceIndex": 0,
+            "wayId": "484927074",
+            "sourceVersion": 5,
+            "sourceRole": "",
+            "role": "backward"
+          }
+        ]
+      }
+    },
+    {
+      "relationId": "17585167",
+      "nameKo": "인천국제공항 셔틀트레인: 제2터미널 → 제1터미널",
+      "reason": "MISORDERED_MEMBERS",
+      "before": "ORDERED_STOPS_NOT_ON_TRACK",
+      "after": "UNIQUE_SOURCE_ORDER",
+      "ways": 2,
+      "stops": 3,
+      "preserved": {
+        "status": "excluded",
+        "access": {
+          "number": 57,
+          "classification": "SPECIAL_AIRPORT_REVIEW",
+          "passengerCandidate": false,
+          "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단"
+        },
+        "playable": false
+      },
+      "config": {
+        "relationId": "17585167",
+        "relationSha256": "aecfd84899418d7f55c70c5a40ace83c6666c79e5935c8215815576f6caba877",
+        "reviewedOn": "2026-11-18",
+        "sourceUrl": "https://www.openstreetmap.org/relation/17585167",
+        "scope": "원본 노드·회원 순서·교량 시설 오참조 보정. 운행·시간표 검증 및 공개 승인과 분리.",
+        "reason": "MISORDERED_MEMBERS",
+        "orderedMembers": [
+          {
+            "sourceIndex": 1,
+            "wayId": "379901064",
+            "sourceVersion": 8,
+            "sourceRole": "",
+            "role": "backward"
+          },
+          {
+            "sourceIndex": 0,
+            "wayId": "1458493357",
+            "sourceVersion": 1,
+            "sourceRole": "",
+            "role": "backward"
+          }
+        ]
+      }
+    },
+    {
+      "relationId": "20500839",
+      "nameKo": "평택선 ITX 마음",
+      "reason": "NON_RAIL_BRIDGE_MEMBER",
+      "before": "MISSING_MEMBER_WAY",
+      "after": "UNIQUE_SOURCE_ORDER",
+      "ways": 42,
+      "stops": 2,
+      "preserved": {
+        "status": "excluded",
+        "access": {
+          "number": 62,
+          "classification": "RESEARCH_PARTIAL_OPERATING_SERVICE",
+          "passengerCandidate": false,
+          "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리."
+        },
+        "playable": false
+      },
+      "config": {
+        "relationId": "20500839",
+        "relationSha256": "13eee96e04de1bc3b58f9c24428609120912b0188082a579cc0eef1e7fa39cc9",
+        "reviewedOn": "2026-11-18",
+        "sourceUrl": "https://www.openstreetmap.org/relation/20500839",
+        "scope": "원본 노드·회원 순서·교량 시설 오참조 보정. 운행·시간표 검증 및 공개 승인과 분리.",
+        "reason": "NON_RAIL_BRIDGE_MEMBER",
+        "replacedMember": {
+          "memberIndex": 19,
+          "wayId": "1491252314",
+          "sourceVersion": 1,
+          "sourceRole": "",
+          "facilitySha256": "85b785d41282f8087913286bdb24d2dffd82bb0de7446e3cd200d1fe418fbf05"
+        },
+        "replacementWays": [
+          {
+            "wayId": "503137626",
+            "sourceVersion": 15,
+            "sha256": "dd8dec0465f7f9fe22569b331aa8f89a85d269338265f82d80458f2df793f534"
+          },
+          {
+            "wayId": "503137627",
+            "sourceVersion": 16,
+            "sha256": "a0df6f975bd0b5c39803e1945f840f5bd8e7b1d2d398ef1c538bd6f61c3417ad"
+          }
+        ]
+      }
+    }
+  ],
+  "review": [
+    {
+      "relationId": "15802275",
+      "reason": "ONEWAY_CONFLICT:712234707"
+    },
+    {
+      "relationId": "15833655",
+      "reason": "ONEWAY_CONFLICT:936301804"
+    }
+  ],
+  "sourceGeometryReview": {
+    "ways": 24679,
+    "longEdgesOver5Km": 22,
+    "edges": [
+      {
+        "wayId": "32608550",
+        "version": 15,
+        "nameKo": "경부고속선",
+        "fromNodeId": "366686232",
+        "toNodeId": "366687563",
+        "distanceKm": 9.949,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "128255707",
+        "version": 16,
+        "nameKo": "경부고속선",
+        "fromNodeId": "11348499894",
+        "toNodeId": "1417797878",
+        "distanceKm": 10.683,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "407197661",
+        "version": 10,
+        "nameKo": "경부고속선",
+        "fromNodeId": "4092335880",
+        "toNodeId": "4092335879",
+        "distanceKm": 13.322,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "456798454",
+        "version": 10,
+        "nameKo": "전라선",
+        "fromNodeId": "4530351676",
+        "toNodeId": "4530351677",
+        "distanceKm": 5.075,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "456798455",
+        "version": 10,
+        "nameKo": "전라선",
+        "fromNodeId": "4530351666",
+        "toNodeId": "4530351665",
+        "distanceKm": 5.076,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "456877525",
+        "version": 10,
+        "nameKo": "경전선",
+        "fromNodeId": "4531106534",
+        "toNodeId": "4531120755",
+        "distanceKm": 6.027,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "456877527",
+        "version": 10,
+        "nameKo": "경전선",
+        "fromNodeId": "4540732299",
+        "toNodeId": "4531106535",
+        "distanceKm": 6.026,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "460520428",
+        "version": 11,
+        "nameKo": "전라선",
+        "fromNodeId": "4561596544",
+        "toNodeId": "4561596543",
+        "distanceKm": 5.855,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "460520430",
+        "version": 11,
+        "nameKo": "전라선",
+        "fromNodeId": "4561596546",
+        "toNodeId": "4561596545",
+        "distanceKm": 5.83,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "483635714",
+        "version": 17,
+        "nameKo": "동해선",
+        "fromNodeId": "4767434217",
+        "toNodeId": "9407285395",
+        "distanceKm": 5.845,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "545483122",
+        "version": 14,
+        "nameKo": "경강선",
+        "fromNodeId": "5272031994",
+        "toNodeId": "5272031995",
+        "distanceKm": 5.135,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "545483123",
+        "version": 13,
+        "nameKo": "경강선",
+        "fromNodeId": "4883755576",
+        "toNodeId": "4883755577",
+        "distanceKm": 5.137,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "565624553",
+        "version": 33,
+        "nameKo": "수서평택고속선",
+        "fromNodeId": "11731222378",
+        "toNodeId": "3488487717",
+        "distanceKm": 5.058,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "585640073",
+        "version": 10,
+        "nameKo": "호남고속선",
+        "fromNodeId": "2092022940",
+        "toNodeId": "2092022939",
+        "distanceKm": 7.256,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "663204727",
+        "version": 16,
+        "nameKo": "중앙선",
+        "fromNodeId": "8930887216",
+        "toNodeId": "8334161643",
+        "distanceKm": 9.586,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "836084505",
+        "version": 17,
+        "nameKo": "중앙선",
+        "fromNodeId": "7803765452",
+        "toNodeId": "8288957405",
+        "distanceKm": 7.291,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "836084506",
+        "version": 17,
+        "nameKo": "중앙선",
+        "fromNodeId": "8288957406",
+        "toNodeId": "5585002430",
+        "distanceKm": 7.293,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "836084507",
+        "version": 15,
+        "nameKo": "중앙선",
+        "fromNodeId": "8930913221",
+        "toNodeId": "8930913217",
+        "distanceKm": 6.467,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "968529921",
+        "version": 17,
+        "nameKo": "수서평택고속선",
+        "fromNodeId": "7637827283",
+        "toNodeId": "11731222379",
+        "distanceKm": 5.055,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "970877038",
+        "version": 9,
+        "nameKo": "중앙선",
+        "fromNodeId": "6985248831",
+        "toNodeId": "6985248832",
+        "distanceKm": 9.17,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "1268124411",
+        "version": 9,
+        "nameKo": "수서평택고속선",
+        "fromNodeId": "3370211022",
+        "toNodeId": "11731222380",
+        "distanceKm": 7.485,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      },
+      {
+        "wayId": "1268124412",
+        "version": 10,
+        "nameKo": "수서평택고속선",
+        "fromNodeId": "11731222381",
+        "toNodeId": "7637861612",
+        "distanceKm": 7.427,
+        "status": "상세 선형 검토 필요: 긴 원본 선분만으로 오류 단정하지 않음"
+      }
+    ]
+  },
+  "validation": {
+    "topologyAndOrdering": {
+      "passed": 11,
+      "failed": 0
+    },
+    "preservationAndIdempotence": "20261118-osm-preservation-test.json",
+    "commonRegression": {
+      "passed": 23,
+      "failed": 5,
+      "scope": "기존 접근 정책·게임 모형 검사. 공개 13노선 고정 기대값·모형 메서드·ESM import 처리 불일치가 남음."
+    }
+  }
+}

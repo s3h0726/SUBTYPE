@@ -1,0 +1,40 @@
+/* Custom route-card labels edited in reports/korean-names/editor.html.
+   Keep the badge in the top-right, separate from operator branding. */
+#screen-select #route-grid.line-card-grid > .line-card > .route-user-label{
+  position:absolute;
+  z-index:3;
+  top:8px;
+  right:8px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  max-width:min(48%,120px);
+  min-height:21px;
+  padding:4px 7px;
+  border-radius:7px;
+  border:1px solid color-mix(in srgb,var(--route-label-bg) 75%,var(--route-label-fg) 25%);
+  background:var(--route-label-bg,#2676BA);
+  color:var(--route-label-fg,#FFFFFF);
+  font:800 10px/1.25 system-ui,-apple-system,"Malgun Gothic",sans-serif;
+  letter-spacing:0;
+  text-align:center;
+  white-space:normal;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+  box-shadow:0 2px 7px #00000016;
+  pointer-events:none;
+}
+#screen-select #route-grid.line-card-grid > .line-card:has(> .route-user-label) .line-card-identity > .operator{
+  max-width:50%!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card:has(> .route-user-label).selected::after,
+#screen-select #route-grid.line-card-grid > .line-card:has(> .route-user-label)[aria-pressed="true"]::after{
+  display:none!important;
+}
+@media(max-width:460px){
+  #screen-select #route-grid.line-card-grid > .line-card > .route-user-label{
+    max-width:min(52%,150px);
+    font-size:11px;
+  }
+}

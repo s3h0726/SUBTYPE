@@ -1,0 +1,19 @@
+✔ global ordered orientation retains source nodes and explicit stop order (2.0035ms)
+✔ single source way uses stop order without assuming train direction (0.3569ms)
+✔ gaps, missing members and conflicting explicit roles are not repaired (0.2544ms)
+✔ unresolved directions and closed way alternatives fail closed (0.1906ms)
+✔ role correction retains source member and stop order without mutating source (3.7834ms)
+✔ misordered members are recoverable only as a complete unbranched source chain (1.8898ms)
+✔ member reordering cannot omit a disconnected component or repeat a source member (0.5187ms)
+✔ stale source relation or way cannot silently reuse a correction (1.5961ms)
+✔ correction cannot bridge gaps, ignore a stop or run against one-way track (0.69ms)
+✔ all reviewed national corrections preserve exact source geometry and remain blocked for release (42064.127ms)
+✔ a closed bridge facility can be replaced only with pinned real rail ways and exact source stop continuity (3540.8776ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46767.483

@@ -1,0 +1,120 @@
+(node:31368) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/galax/.codex/.chatgpt-projects/g-p-6ab9a6001d408191a749cf13376025cb/SUBTYPE-rebuild/js/korean-research-resolver.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ road, rail-road ambiguity, construction, platform and station buildings cannot qualify as operating track (4.6839ms)
+✔ all twelve restricted relations are blocked through direct and saved CUSTOM identities (26.969ms)
+✖ existing thirteen public Korean routes remain visible and source policy never approves candidates (524.4713ms)
+✔ free-drive and CUSTOM graph exclude restricted source routes (23.6111ms)
+✖ Game start refuses both saved restricted IDs and restricted repository resolutions (43.9436ms)
+✔ the Pyeongtaek to Anjung leg cannot be promoted to a standalone service (5.3623ms)
+✔ directional services compile without creating reverse or local services (7.4881ms)
+✔ unreviewed OSM topology cannot publish (0.6904ms)
+✔ future and expired timetable evidence cannot publish (0.8005ms)
+✔ different train stops cannot be inferred from a timetable (0.3813ms)
+✔ duplicate IDs and missing references fail validation (0.4415ms)
+✔ track gaps are not bridged or snapped (0.359ms)
+✔ station offsets must match source nodes and visit order (0.5413ms)
+✔ national totals cannot be declared complete without an official inventory (0.2959ms)
+✔ excluded research cannot publish or satisfy the official national service inventory (0.4901ms)
+✔ rail and road co-tagging remains blocked despite otherwise complete release evidence (0.5406ms)
+✖ runtime keeps exact directions, rejects invented destinations, preserves express track (22.6259ms)
+✖ actual Game advancement and finish run exactly once in both explicit directions (22.7663ms)
+✔ normalization never manufactures an all-stops service for v2 (18.5674ms)
+✔ omitted source stops cannot make a partial route releasable (0.3985ms)
+✔ candidate trains and unverified platform metadata cannot release (0.2665ms)
+✔ a review flag cannot authorize running against source one-way track (0.4333ms)
+✔ expired national inventory does not certify coverage (0.3327ms)
+✔ timetable matching preserves identity ambiguity and never approves a train (9.9262ms)
+✔ real game route resolver preserves express geometry and repeated loop station visits (11.1797ms)
+✔ official station matching does not merge same-name places or assign approvals (7.1538ms)
+✔ returning to a loop station uses the later map visit and adjacent segment (8.23ms)
+✖ Korean journey identity and directions survive records and display endpoints (10.1923ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 23
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 986.1039
+
+✖ failing tests:
+
+test at tools\test-kr-access-policy.cjs:18:1
+✖ existing thirteen public Korean routes remain visible and source policy never approves candidates (524.4713ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8277 !== 13
+  
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-kr-access-policy.cjs:20:70)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8277,
+    expected: 13,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\test-kr-access-policy.cjs:31:1
+✖ Game start refuses both saved restricted IDs and restricted repository resolutions (43.9436ms)
+  ReferenceError [Error]: restoreKrBusLatinRoute is not defined
+      at Game.start (evalmachine.<anonymous>:14:5)
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-kr-access-policy.cjs:34:96)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tools\test-kr-network.cjs:37:1
+✖ runtime keeps exact directions, rejects invented destinations, preserves express track (22.6259ms)
+  evalmachine.<anonymous>:1
+  import{mapOnlyKtxJourneySegments}from'./ktx-gyeongbu-map-display.js';
+  ^^^^^^
+  
+  SyntaxError: Cannot use import statement outside a module
+      at new Script (node:vm:117:7)
+      at createScript (node:vm:269:10)
+      at Object.runInContext (node:vm:300:10)
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-kr-network.cjs:37:121)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tools\test-kr-network.cjs:38:1
+✖ actual Game advancement and finish run exactly once in both explicit directions (22.7663ms)
+  TypeError [Error]: this.recordHongKongAdvance is not a function
+      at Object.finish (evalmachine.<anonymous>:430:41)
+      at Object.advance (evalmachine.<anonymous>:417:607)
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-kr-network.cjs:41:114)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at tools\test-kr-network.cjs:70:1
+✖ Korean journey identity and directions survive records and display endpoints (10.1923ms)
+  evalmachine.<anonymous>:1
+  import{mapOnlyKtxJourneySegments}from'./ktx-gyeongbu-map-display.js';
+  ^^^^^^
+  
+  SyntaxError: Cannot use import statement outside a module
+      at new Script (node:vm:117:7)
+      at createScript (node:vm:269:10)
+      at Object.runInContext (node:vm:300:10)
+      at TestContext.<anonymous> (C:\Users\galax\.codex\.chatgpt-projects\g-p-6ab9a6001d408191a749cf13376025cb\SUBTYPE-rebuild\tools\test-kr-network.cjs:72:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)

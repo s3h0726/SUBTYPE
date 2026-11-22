@@ -159595,17 +159595,29 @@
     "directionId": "osm-relation-17585166",
     "paths": [
       {
-        "geometryId": "kr-geometry-484927074",
-        "reverse": false
+        "geometryId": "kr-geometry-1458493356",
+        "reverse": true
       },
       {
-        "geometryId": "kr-geometry-1458493356",
-        "reverse": false
+        "geometryId": "kr-geometry-484927074",
+        "reverse": true
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-4776751768",
+        "geometryIndex": 1,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-4776751769",
+        "geometryIndex": 2,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-6257062990",
         "geometryIndex": 3,
         "boarding": true,
         "alighting": true
@@ -159623,17 +159635,6 @@
     ],
     "issues": [
       {
-        "code": "ORDERED_STOPS_NOT_ON_TRACK"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "4776751769"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "6257062990"
-      },
-      {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
     ],
@@ -159643,7 +159644,29 @@
       "passengerCandidate": false,
       "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단"
     },
-    "playable": false
+    "playable": false,
+    "topologyCorrection": {
+      "reason": "MISORDERED_MEMBERS",
+      "relationSha256": "34c5772976a123ad59e1f32754e6bf89c7719928942dd60245a820d11888c23a",
+      "orderedMembers": [
+        {
+          "sourceIndex": 1,
+          "wayId": "1458493356",
+          "sourceVersion": 1,
+          "sourceRole": "",
+          "role": "backward"
+        },
+        {
+          "sourceIndex": 0,
+          "wayId": "484927074",
+          "sourceVersion": 5,
+          "sourceRole": "",
+          "role": "backward"
+        }
+      ],
+      "method": "complete-unbranched-source-member-chain-and-stop-order",
+      "operationalDirectionVerified": false
+    }
   },
   {
     "id": "kr-osm-service-17585167",
@@ -159657,17 +159680,29 @@
     "directionId": "osm-relation-17585167",
     "paths": [
       {
-        "geometryId": "kr-geometry-1458493357",
-        "reverse": false
+        "geometryId": "kr-geometry-379901064",
+        "reverse": true
       },
       {
-        "geometryId": "kr-geometry-379901064",
-        "reverse": false
+        "geometryId": "kr-geometry-1458493357",
+        "reverse": true
       }
     ],
     "stops": [
       {
         "stopId": "kr-osm-stop-6257062991",
+        "geometryIndex": 1,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3832481407",
+        "geometryIndex": 2,
+        "boarding": true,
+        "alighting": true
+      },
+      {
+        "stopId": "kr-osm-stop-3832481410",
         "geometryIndex": 3,
         "boarding": true,
         "alighting": true
@@ -159685,17 +159720,6 @@
     ],
     "issues": [
       {
-        "code": "ORDERED_STOPS_NOT_ON_TRACK"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "3832481407"
-      },
-      {
-        "code": "STOP_NOT_ON_ORDERED_TRACK",
-        "nodeId": "3832481410"
-      },
-      {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
     ],
@@ -159705,7 +159729,29 @@
       "passengerCandidate": false,
       "reason": "공식 출국 안내의 보안구역 셔틀: 탑승 후 제1터미널로 복귀 불가. 도착/출발 승강장 및 허용 방향 미검증으로 공개망 차단"
     },
-    "playable": false
+    "playable": false,
+    "topologyCorrection": {
+      "reason": "MISORDERED_MEMBERS",
+      "relationSha256": "aecfd84899418d7f55c70c5a40ace83c6666c79e5935c8215815576f6caba877",
+      "orderedMembers": [
+        {
+          "sourceIndex": 1,
+          "wayId": "379901064",
+          "sourceVersion": 8,
+          "sourceRole": "",
+          "role": "backward"
+        },
+        {
+          "sourceIndex": 0,
+          "wayId": "1458493357",
+          "sourceVersion": 1,
+          "sourceRole": "",
+          "role": "backward"
+        }
+      ],
+      "method": "complete-unbranched-source-member-chain-and-stop-order",
+      "operationalDirectionVerified": false
+    }
   },
   {
     "id": "kr-osm-service-17585170",
@@ -164201,6 +164247,14 @@
         "reverse": false
       },
       {
+        "geometryId": "kr-geometry-503137626",
+        "reverse": false
+      },
+      {
+        "geometryId": "kr-geometry-503137627",
+        "reverse": false
+      },
+      {
         "geometryId": "kr-geometry-1083915376",
         "reverse": false
       },
@@ -164294,7 +164348,7 @@
       },
       {
         "stopId": "kr-osm-stop-13739828932",
-        "geometryIndex": 185,
+        "geometryIndex": 189,
         "boarding": true,
         "alighting": true
       }
@@ -164311,20 +164365,6 @@
     ],
     "issues": [
       {
-        "code": "MISSING_MEMBER_WAY",
-        "wayId": "1491252314"
-      },
-      {
-        "code": "DISCONNECTED_MEMBERS",
-        "wayId": "1083915376",
-        "from": "4934729303",
-        "to": "8254184434"
-      },
-      {
-        "code": "MISSING_MEMBER_WAY",
-        "wayId": "1491252314"
-      },
-      {
         "code": "OFFICIAL_TIMETABLE_REQUIRED"
       }
     ],
@@ -164334,6 +164374,31 @@
       "passengerCandidate": false,
       "reason": "코레일 2026-09-01 서해선 공식표에서 평택→안중은 홍성 출발·홍성 종착 1242/1244/1246 열차의 중간 구간으로만 확인됨. 두 정차역을 독립 출발·종착 운행으로 생성하지 않고 연구용 선형으로 격리."
     },
-    "playable": false
+    "playable": false,
+    "topologyCorrection": {
+      "reason": "NON_RAIL_BRIDGE_MEMBER",
+      "relationSha256": "13eee96e04de1bc3b58f9c24428609120912b0188082a579cc0eef1e7fa39cc9",
+      "replacedMember": {
+        "memberIndex": 19,
+        "wayId": "1491252314",
+        "sourceVersion": 1,
+        "sourceRole": "",
+        "facilitySha256": "85b785d41282f8087913286bdb24d2dffd82bb0de7446e3cd200d1fe418fbf05"
+      },
+      "replacementWays": [
+        {
+          "wayId": "503137626",
+          "sourceVersion": 15,
+          "sha256": "dd8dec0465f7f9fe22569b331aa8f89a85d269338265f82d80458f2df793f534"
+        },
+        {
+          "wayId": "503137627",
+          "sourceVersion": 16,
+          "sha256": "a0df6f975bd0b5c39803e1945f840f5bd8e7b1d2d398ef1c538bd6f61c3417ad"
+        }
+      ],
+      "method": "pinned-bridge-footprint-and-exact-rail-node-chain",
+      "operationalDirectionVerified": false
+    }
   }
 ]

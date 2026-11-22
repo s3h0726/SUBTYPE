@@ -15,6 +15,9 @@ const names=t=>({ko:t['name:ko']||t.name||'',en:t['name:en']||''});
 const sourceId=manifest.id,ref=(kind,id)=>({sourceId,kind,id:String(id)});
 const ways=new Map(rawWays.map(w=>[w.id,w]));
 const corrections=JSON.parse(fs.readFileSync(path.join(base,'topology-corrections.json'),'utf8'));
+// 보조 스냅샷의 비선로 시설은 해시로 고정된 보정 근거로만 사용한다.
+const facilityFile=path.join(base,'source/osm-62-20261017/osm-ways.json');
+const facilityWays=new Map(fs.existsSync(facilityFile)?JSON.parse(fs.readFileSync(facilityFile,'utf8')).map(w=>[w.id,w]):[]);
 for(const c of corrections)if(!relations.some(r=>r.id===c.relationId))throw Error('MISSING_CORRECTED_RELATION:'+c.relationId);
 if(new Set(corrections.map(c=>c.relationId)).size!==corrections.length)throw Error('DUPLICATE_TOPOLOGY_CORRECTION');
 const railRoutes=relations.filter(r=>r.tags.type==='route'&&['train','subway','light_rail','tram','monorail','funicular'].includes(r.tags.route));
@@ -50,7 +53,7 @@ for(const r of railRoutes){
  const masters=masterByRoute.get(r.id)||[],master=masters.length===1?masters[0]:r;
  const lineId='kr-osm-line-'+master.id,operatorId=opId(master.tags.operator||r.tags.operator);
  if(!lines.has(lineId))lines.set(lineId,{id:lineId,names:names(master.tags),operatorIds:operatorId?[operatorId]:[],color:master.tags.colour||r.tags.colour||null,regionId:null,mode:r.tags.route,status:'candidate',sourceRefs:[ref('relation',master.id)]});
- const {members:orderedWays,evidence:topologyCorrection}=applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id));
+ const {members:orderedWays,evidence:topologyCorrection}=applyTopologyCorrection(r,ways,corrections.find(c=>c.relationId===r.id),facilityWays);
  const stopBinding=stopBindingConfigs.find(c=>c.relationId===r.id);
  const sourceStopMembers=stopBinding?require('./lib/kr-stop-bindings').bindSourceStops(r,new Map(rawNodes.map(n=>[n.id,n])),stopBinding,fs.readFileSync(path.join(base,stopBinding.officialFile))):r.members.filter(m=>m.type==='n'&&/^stop(?:_|$)/.test(m.role));
  const orientation=orientOrderedWays(orderedWays,ways,sourceStopMembers.map(m=>m.ref));

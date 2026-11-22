@@ -2,6 +2,88 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.14.1] — 2026-11-22
+
+- data: apply Korean names and RGB edits from web editor
+
+## [v0.14.0] — 2026-11-22
+
+- feat: 노선 카드 사용자 라벨 및 RGB 편집 지원 (#99) * feat: add label name and RGB data columns to Korean-name editor * feat: add live label preview, RGB picker and draft tracking * feat: render 
+
+## [v0.13.13] — 2026-11-21
+
+- v0.8 Add KTX route-variant labels
+
+## [v0.13.12] — 2026-11-21
+
+- v0.8 Rename KTX service patterns by endpoints
+
+## [v0.13.11] — 2026-11-21
+
+- data: apply Korean names and RGB edits from web editor
+
+## [v0.13.10] — 2026-11-20
+
+- data: apply Korean names and RGB edits from web editor
+
+## [v0.13.9] — 2026-11-20
+
+- data: apply Korean names and RGB edits from web editor
+
+## [v0.13.8] — 2026-11-19
+
+- fix: align Hong Kong route selection cards with other countries (#95) * fix(hk): align Hong Kong line cards with shared country layout * fix(hk): align Hong Kong line cards with sh
+
+## [v0.13.7] — 2026-11-18
+
+- data: apply Korean names and RGB edits from web editor
+
+## [v0.13.6] — 2026-11-18
+
+- ci(pages): allow fresh main deployment to recover from duplicate rerun artifacts
+
+## [v0.13.5] — 2026-11-18
+
+- fix(custom): 외국 공항에서 도착한 철도역부터 현지 검색 누락을 해결하기 위해 모든 매칭 노선을 탐색하고 최대 8개 로딩 제한 제거
+- fix(custom): 영국·프랑스의 노선별 첫 번째 운행계통만 검색하던 제한을 수정해 실제 검증된 모든 운행계통의 역 등록
+- fix(custom): 현재 국가와 타국 모두 검색어로 추가 철도 데이터를 온디맨드 로딩, 공백·하이픈·영문 대소문자 정규화
+- fix(custom): 검색 결과 로딩 중·실패 안내, 기존 철도망 보존, 검색 결과 더 보기, 단방향 선로의 잘못된 역방향 연결 차단
+- test(custom): 실제 영국·프랑스·태국 역명 인덱스 기반 다중 노선 검색 및 캐시·노선 보존 회귀 검사
+
+## [v0.13.4] — 2026-11-18
+
+- feat(custom): 국제공항 이동 후 실제 도착 국가 철도망을 확인해 커스텀 노선에 연결 (기존 KTX 보정 보존)
+- feat(custom): 출발 국가와 다른 철도망을 온디맨드로 로딩해 역 검색 및 최단거리 연결 이어가기
+- fix(custom): 외국 역의 한국어·현지어 이름을 역 검색, 노선 편집, 게임 화면, 노선도 및 지리 지도에 국가별 표시
+- fix(custom): 다른 국가를 오가는 구간은 명시적인 가상 항공 이동만 허용, 실제 공항역·터미널 검증 및 삭제·재정렬 보호
+- test(custom): 국가 간 터미널·철도역 이름·미등록 한국어 역명·가짜 항공 지름길 회귀 검사
+
+## [v0.13.3] — 2026-11-18
+
+- fix(kr): ship actual Hangsin and Gyeongbu KTX physical map corrections in production game bundle * ci(kr): inspect Hangsin KTX approach and south-of-Daejeon map paths * diagnose(kr
+
+## [v0.13.2] — 2026-11-18
+
+- Merge remote-tracking branch 'origin/main'
+
+## [v0.13.1] — 2026-11-18
+
+- feat(custom): 검증된 공항 접근 철도역에서 같은 국가의 공항으로 가상 항공·터미널 환승 구간 추가
+- feat(custom): 공항 코드 및 터미널별 선택, 점선 항공 구간, JSON 저장·역 편집 시 유효성 유지
+- fix(custom): 가상 공항 이동이 철도 최단거리 그래프에 유입되지 않도록 분리
+- test(custom): 공항역 매칭·터미널 식별·타국 연결 차단·철도 최단거리 보호 검사
+
+## [v0.13.0] — 2026-11-18
+
+- feat(custom): 기존 철도 구간·운행 방향을 기준으로 목적지 최단거리 자동 연결(Dijkstra)
+- feat(custom): 경유지 탐색, 거리·환승·추정 거리 요약, 사용자 지정 노선 스튜디오 UI 개편
+- fix(custom): 역 삭제·순서 변경 시 선형 재계산, 불연결 시 원복, 선형 누락 보호
+- test(custom): 노선거리 가중치·단방향·환승 식별·연결 불가 회귀 검사
+
+## [v0.12.0] — 2026-11-18
+
+- feat: expand free-drive airports and terminal station transfers (#85) * feat: expand free-drive airports and select verified terminal rail portals * feat: honor selected airport te
+
 ## [v0.11.14] — 2026-11-18
 
 - fix(kr): connect two KTX Suseo high-speed feeder journeys on exact original OSM railway nodes * diagnose(kr): source-proven feeder OSM rail routes for three unresolved Suseo KTX pa

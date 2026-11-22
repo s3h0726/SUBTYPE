@@ -25,3 +25,21 @@ export const escapeHtml=(v='')=>String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<
 export const formatTime=ms=>{ms=Math.max(0,Number(ms)||0);const m=Math.floor(ms/60000),s=Math.floor(ms%60000/1000),cs=Math.floor(ms%1000/10);return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(cs).padStart(2,'0')}`};
 export function toast(message){const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('show'),2200)}
 export const debounce=(fn,wait=120)=>{let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),wait)}};
+
+
+// Country-aware stop names for mixed-nationality custom routes. Never invent translations.
+export function customStationNames(station={},fallbackCountry='jp'){
+ const countryId=station.countryId||fallbackCountry,names=station.names||{};
+ const has=value=>typeof value==='string'&&!!value.trim()&&value!=='MISSING_KOREAN_NAME';
+ const choose=(...values)=>values.find(has)?.trim()||'';
+ const korean=choose(station.ko,names.ko,station.nameKo);
+ const local=countryId==='tw'||countryId==='hk'||countryId==='mo'
+  ?choose(station.zh,names.zh,station.nameZh,station.ja,names.ja,station.romaji,names.en)
+  :countryId==='th'?choose(station.th,names.th,station.nameTh,station.ja,names.ja,station.romaji,names.en)
+  :countryId==='fr'?choose(station.fr,names.fr,station.nameFr,station.ja,names.ja,station.romaji,names.en)
+  :countryId==='uk'?choose(station.en,names.en,station.romaji,station.ja,names.ja)
+  :countryId==='kr'?choose(korean,station.ja,names.ja,station.romaji)
+  :choose(station.ja,names.ja,station.romaji,names.en,station.zh,names.zh);
+ return{countryId,korean:korean||local||choose(station.name,station.id)||'역명 미등록',
+  local:local||korean||choose(station.name,station.id)||'역명 미등록',hasKorean:!!korean};
+}
