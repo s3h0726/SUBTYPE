@@ -303,3 +303,47 @@ body { line-height:1.55; }
   #screen-select #route-grid.line-card-grid {grid-template-columns:minmax(0,1fr) !important;}
   #screen-home.world-home .country-card-index {font-size:11px !important;}
 }
+
+/* Specificity safeguards for older per-country / mobile !important rules. */
+#screen-game.active .station-current .prompt-kana {
+  font-size:13px !important;
+  line-height:1.35 !important;
+}
+#screen-game.active .station-current .prompt-romaji {
+  font-size:12px !important;
+  line-height:1.35 !important;
+}
+#screen-game.active.free-drive-active .station-current #station-context,
+#screen-game.active.free-drive-active .station-current #prompt-sub {
+  font-size:12px !important;
+  line-height:1.35 !important;
+}
+#screen-game.active.free-drive-active .station-current .station-sign-input #input-status {
+  font-size:12px !important;
+  line-height:1.35 !important;
+  color:#354a3d !important;
+}
+#screen-game.active.free-drive-active .station-current .station-badge {
+  font-size:12px !important;
+}
+[data-country="hk"] #screen-game #station-line-label,
+[data-country="hk"] #screen-game .station-sign-footer {
+  font-size:12px !important;
+  line-height:1.35 !important;
+}
+[data-country="hk"] #screen-game #prompt-sub {
+  font-size:13px !important;
+}
+html[data-country="tw"] #station-sign #prompt-ko.memory-hidden {
+  font-size:12px !important;
+}
+.provider-basemap .leaflet-control-attribution {
+  font-size:11px !important;
+  line-height:1.35 !important;
+}
+@media(max-width:620px) {
+  [data-country="hk"] #screen-game .station-sign-footer,
+  [data-country="hk"] #screen-game #station-line-label {
+    font-size:11px !important;
+  }
+}
