@@ -52,7 +52,7 @@ jobs:
               if git cat-file -e "$before^{commit}" 2>/dev/null; then
                 changed="$(git diff --name-only "$before" "$GITHUB_SHA")"
                 previous_version="$(git show "$before:package.json" | node -e "let s='';process.stdin.on('data',c=>s+=c).on('end',()=>{const p=JSON.parse(s);console.log(p.appVersion||p.version+'.0')})")"
-                current_version="$(node -p "require('./package.json').appVersion || require('./package.json').appVersion + '.0'")"
+                current_version="$(node -p "require('./package.json').appVersion || require('./package.json').version + '.0'")"
                 if [[ "$previous_version" != "$current_version" ]]; then
                   # A manually selected version should not be bumped again.
                   level=sync
