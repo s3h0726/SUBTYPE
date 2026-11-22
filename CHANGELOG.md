@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.18.0] — 2026-11-22
+
+- feat: Settings 2.0 and accessible light/dark theme contrast * feat(settings): rebuild preferences as Settings 2.0 dashboard * fix(theme): normalize text contrast and style Settings
+
 ## [v0.17.2] — 2026-11-22
 
 - Merge pull request #108 from s3h0726/chore/fr-national-production-20261122 fix(pages): deploy after artifact upload completes in a separate job
