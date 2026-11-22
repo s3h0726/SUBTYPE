@@ -4,15 +4,44 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>SUBTYPE Rail Data Editor · 최신 20261011-changes73-v2</title>
+  <title>SUBTYPE · 통합 철도 데이터 편집기</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <link rel="stylesheet" href="../dev/rail-data-editor.css">
   <link rel="stylesheet" href="../dev/rail-data-editor-source.css">
+  <style>
+    [hidden] { display: none !important; }
+    .editor-modes { display:flex; align-items:center; gap:7px; margin-left:20px; }
+    .editor-modes a { color:#d2e7d9; text-decoration:none; padding:9px 14px; border-radius:9px; border:1px solid #365849; background:#10231b; font-size:13px; font-weight:700; white-space:nowrap; }
+    .editor-modes a:hover { border-color:#45d690; color:#fff; }
+    .editor-modes a[aria-current="page"] { background:#45d690; border-color:#45d690; color:#062016; }
+    .editor-modes a:focus-visible { outline:2px solid #fff; outline-offset:3px; }
+    .editor-brand span { color:#b1c7bb; font-size:13px; }
+    body[data-tool="names"] { height:100dvh; grid-template-rows:64px minmax(0,1fr); overflow:hidden; }
+    .names-workspace { min-height:0; display:flex; flex-direction:column; background:#f2f5fa; }
+    .names-note { flex:none; padding:11px 22px; background:#123025; color:#deeee4; font-size:12px; line-height:1.6; }
+    .names-frame { flex:1; min-height:0; width:100%; border:0; display:block; background:#f2f5fa; }
+    @media(max-width:850px) {
+      header { flex-wrap:wrap; gap:9px; padding:12px 16px; }
+      header .editor-brand { flex:1; }
+      header .game-link { margin-left:auto; }
+      .editor-modes { order:3; width:100%; margin:0; }
+      .editor-modes a { flex:1; text-align:center; padding:9px 7px; }
+      body[data-tool="names"] { grid-template-rows:auto minmax(0,1fr); }
+      .names-note { padding:9px 12px; }
+    }
+  </style>
 </head>
 <body>
-  <header><div><b>SUBTYPE</b><span>Rail Data Editor · 20261011-changes73-v2</span></div><a href="../index.html#home">게임으로 돌아가기</a></header>
-  <main>
+  <header>
+    <div class="editor-brand"><b>SUBTYPE</b><span>통합 데이터 편집기</span></div>
+    <nav class="editor-modes" aria-label="편집 기능 선택">
+      <a href="?tool=rail" data-tool-link="rail" aria-current="page">노선·선로 편집</a>
+      <a href="?tool=names" data-tool-link="names">한글명·RGB·라벨</a>
+    </nav>
+    <a href="../index.html#home" class="game-link">게임으로 돌아가기</a>
+  </header>
+  <main id="rail-workspace">
     <aside>
       <label>노선 검색<input id="route-search" type="search" placeholder="한국어·日本語·Romaji·코드"></label>
       <div class="source-filters" aria-label="한국어 출처 필터">
@@ -29,7 +58,52 @@
       <div id="editor-panel"></div>
     </section>
   </main>
-  <footer><span id="save-status">GitHub Pages에서는 JSON으로 내보낸 뒤 저장소에 적용해야 합니다.</span><button id="import-button">JSON 가져오기</button><input id="import-file" type="file" accept="application/json" hidden><button id="validate-button">검증</button><button id="export-button" class="primary">현재 노선 내보내기</button></footer>
+  <section id="names-workspace" class="names-workspace" aria-label="한글명·RGB·라벨 편집" hidden>
+    <div class="names-note">노선·선로 편집은 JSON 내보내기로 적용하며, 한글명·RGB·라벨 편집은 GitHub 저장 기능을 사용합니다. 두 화면의 변경 내용은 별도로 관리됩니다.</div>
+    <iframe id="names-editor-frame" class="names-frame" title="운영사·노선·운행계통·역명·RGB·라벨 편집표" referrerpolicy="same-origin"></iframe>
+  </section>
+  <footer id="rail-footer"><span id="save-status">GitHub Pages에서는 JSON으로 내보낸 뒤 저장소에 적용해야 합니다.</span><button id="import-button">JSON 가져오기</button><input id="import-file" type="file" accept="application/json" hidden><button id="validate-button">검증</button><button id="export-button" class="primary">현재 노선 내보내기</button></footer>
+  <script>
+    (() => {
+      const rail = document.querySelector('#rail-workspace');
+      const names = document.querySelector('#names-workspace');
+      const footer = document.querySelector('#rail-footer');
+      const frame = document.querySelector('#names-editor-frame');
+      const links = [...document.querySelectorAll('[data-tool-link]')];
+      let namesLoaded = false;
+      function selectTool(mode, updateAddress = false) {
+        mode = mode === 'names' ? 'names' : 'rail';
+        if (mode === 'names' && !namesLoaded) {
+          const embedded = new URL('../reports/korean-names/editor.html', location.href);
+          embedded.searchParams.set('embedded', '1');
+          const params = new URLSearchParams(location.search);
+          if (params.has('country')) embedded.searchParams.set('country', params.get('country'));
+          if (params.has('branch')) embedded.searchParams.set('branch', params.get('branch'));
+          frame.src = embedded.href;
+          namesLoaded = true;
+        }
+        document.body.dataset.tool = mode;
+        rail.hidden = mode !== 'rail';
+        footer.hidden = mode !== 'rail';
+        names.hidden = mode !== 'names';
+        for (const link of links) {
+          if (link.dataset.toolLink === mode) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        }
+        if (updateAddress) {
+          const target = new URL(location.href);
+          target.searchParams.set('tool', mode);
+          history.pushState({tool:mode}, '', target);
+        }
+      }
+      for (const link of links) link.addEventListener('click', event => {
+        event.preventDefault();
+        if (document.body.dataset.tool !== link.dataset.toolLink) selectTool(link.dataset.toolLink, true);
+      });
+      window.addEventListener('popstate', () => selectTool(new URLSearchParams(location.search).get('tool')));
+      selectTool(new URLSearchParams(location.search).get('tool'));
+    })();
+  </script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script src="../js/rail-data.js"></script>
   <script src="../js/line-workspace-data.js?v=20261011-changes73-v2"></script>
