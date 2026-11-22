@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.17.2] — 2026-11-22
+
+- Merge pull request #108 from s3h0726/chore/fr-national-production-20261122 fix(pages): deploy after artifact upload completes in a separate job
+
 ## [v0.17.1] — 2026-11-22
 
 - fix(ktx): 역방향 안내 정리 및 동대구 이남 비구포 경부고속선 지도 경로 보정 (#107) * fix(ktx): remove unverified timetable wording from game reverse label * fix(ktx): remove unverified timetable wording from 
