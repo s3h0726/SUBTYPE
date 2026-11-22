@@ -382,6 +382,8 @@ export function normalizeLine(raw={},defaults={}){
   const normalizedOperatorId=text(raw.operatorId,operatorRaw.id)||category,assetOperatorId=({'jr-east':'op-2','jr-central':'op-3','tokyo-metro':'op-18','toei':'op-119'})[normalizedOperatorId]||normalizedOperatorId;
   raw.operatorAsset=raw.operatorAsset?.asset?raw.operatorAsset:null;
   const lineJa=cleanDisplayLineName(text(lineRaw.ja,raw.nameJa,raw.japanese,raw.name,lineRaw.en,'新路線')),operatorJa=text(operatorRaw.ja,raw.operatorNameJa,raw.operatorName,operatorRaw.en,'Railway'),operatorKo=text(operatorRaw.ko),lineKo=text(lineRaw.ko);
+  const effectiveOperatorKo=text(editorNameOverrides.operators[normalizedOperatorId],operatorKo)||'MISSING_KOREAN_NAME';
+  const effectiveLineKo=text(editorLine.ko,lineKo)||'MISSING_KOREAN_NAME';
   const stationCatalog=Array.isArray(raw.stationCatalog)?raw.stationCatalog.map(applyEditedName):raw.stationCatalog;
   const directions=Array.isArray(raw.directions)?raw.directions.map(direction=>({
     ...direction,stops:Array.isArray(direction.stops)?direction.stops.map(applyEditedName):direction.stops
@@ -390,7 +392,7 @@ export function normalizeLine(raw={},defaults={}){
     ...pattern,nameKo:editableName(editorNameOverrides.services[pattern.id])||pattern.nameKo,
     stations:Array.isArray(pattern.stations)?pattern.stations.map(applyEditedName):pattern.stations
   })):raw.patterns;
-  return{...raw,stationCatalog,directions,patterns,verifiedJourneys,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{...(raw.countryId==='th'?{th:operatorRaw.th}:{}),...(raw.countryId==='tw'?{...operatorRaw,zh:text(operatorRaw.zh,operatorRaw.nameZh,operatorRaw.names?.zh)}:{}),ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:text(editorNameOverrides.operators[normalizedOperatorId],operatorKo)||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:text(editorLine.ko,lineKo)||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:editorColor,loop:!!raw.loop,lineTheme:{...lineTheme,color:editorColor},services,stations}
+  return{...raw,stationCatalog,directions,patterns,verifiedJourneys,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{...(raw.countryId==='th'?{th:operatorRaw.th}:{}),...(raw.countryId==='tw'?{...operatorRaw,zh:text(operatorRaw.zh,operatorRaw.nameZh,operatorRaw.names?.zh)}:{}),ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:effectiveOperatorKo,names:{...(operatorRaw.names||{}),ko:effectiveOperatorKo}},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:effectiveLineKo,names:{...(lineRaw.names||{}),ko:effectiveLineKo}},code:resolvedCode,lineColor:editorColor,loop:!!raw.loop,lineTheme:{...lineTheme,color:editorColor},services,stations}
 }
 function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[],services:[]},{category:raw.category});const searchStations=Array.isArray(raw.searchStations)?raw.searchStations:[];
  const editedNames=raw.countryId==='kr'?Object.values(editorNameOverrides.stations[raw.id]||{}).filter(v=>typeof v==='string'):[];
