@@ -5643,19 +5643,37 @@ function catalogRouteStationKeys(route){
   }
   return names;
 }
+// A verified common station ID may have distinct Japanese signs on different
+// lines. Include only the explicit canonical alias of that same station; do
+// not join unrelated same-named stations or rewrite the user's visible sign.
+function catalogStationNameAliases(station){
+  return [...new Set([station?.ja||station?.names?.ja,station?.canonicalStationNames?.ja]
+    .map(japaneseCatalogStationKey).filter(Boolean))];
+}
+function catalogRouteContainsStationName(route,name){
+  const key=japaneseCatalogStationKey(name);
+  return !!key&&(route?.stations?.length
+    ?route.stations.some(station=>catalogStationNameAliases(station).includes(key))
+    :catalogRouteStationKeys(route).includes(key));
+}
 function catalogRouteHasStations(route,stops){
-  const physical=catalogRouteStationKeys(route),
-    expected=stops.map(v=>japaneseCatalogStationKey(Array.isArray(v)?v[0]:v));
+  const physical=route?.stations?.length
+    ?route.stations.map(catalogStationNameAliases)
+    :catalogRouteStationKeys(route).map(name=>[name]);
+  const expected=stops.map(v=>japaneseCatalogStationKey(Array.isArray(v)?v[0]:v));
   if(expected.length<2||physical.length<2||expected.some(v=>!v))return false;
   const ordered=names=>{
     let pos=-1;
-    return expected.every(name=>{pos=names.indexOf(name,pos+1);return pos>=0});
+    return expected.every(name=>{
+      pos=names.findIndex((aliases,index)=>index>pos&&aliases.includes(name));
+      return pos>=0;
+    });
   };
   return ordered(physical)||ordered(physical.slice().reverse());
 }
 function catalogStationIndex(route,name){
   const target=japaneseCatalogStationKey(name);
-  return(route?.stations||[]).findIndex(station=>japaneseCatalogStationKey(station.ja||station.names?.ja)===target);
+  return(route?.stations||[]).findIndex(station=>catalogStationNameAliases(station).includes(target));
 }
 function routeForCatalogLine(code,requiredStations=[]){
   const catalog=globalThis.TRT_NATIONWIDE_SERVICE_CATALOG?.lines||{},meta=catalog[String(code)],
@@ -5809,8 +5827,7 @@ function catalogPatternChoice(route,pattern,reverse=false){
   const missingTrack=base.map(segment=>{
     const required=catalogRequiredStationNames(segment),physical=routeForCatalogLine(segment.lineCode,required);
     if(!physical)return null;
-    const available=new Set(catalogRouteStationKeys(physical)),
-      missing=required.filter(name=>!available.has(japaneseCatalogStationKey(name)));
+    const missing=required.filter(name=>!catalogRouteContainsStationName(physical,name));
     return missing.length?{segment,missing}:catalogRouteHasStations(physical,required)?null:{segment,missing:['정차역 순서 불일치']};
   }).find(Boolean);
   const unmatchedReason=missingTrack?.segment.lineCode==='11612'&&missingTrack.missing.includes('門司')
@@ -5862,9 +5879,8 @@ function buildCatalogResolved(choice){
     if(Number(pass)!==1&&!wanted.some(v=>japaneseCatalogStationKey(v)===japaneseCatalogStationKey(name)))wanted.push(name);
   const allowed=new Set(wanted.map(japaneseCatalogStationKey));
   const applyService=route=>{
-    const covered=new Set(route.stations.map(s=>japaneseCatalogStationKey(s.ja))),
-      missing=wanted.filter(name=>!covered.has(japaneseCatalogStationKey(name))),
-      stops=route.stations.filter(s=>allowed.has(japaneseCatalogStationKey(s.ja))).map(s=>s.id);
+    const missing=wanted.filter(name=>!catalogRouteContainsStationName(route,name)),
+      stops=route.stations.filter(s=>catalogStationNameAliases(s).some(key=>allowed.has(key))).map(s=>s.id);
     if(missing.length||stops.length<2)throw new Error('실제 선로에 연결되지 않은 정차역: '+missing.slice(0,4).join(', '));
     const service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'運行系統',
       nameKo:pattern.type?.ko||'운행계통',nameEn:pattern.type?.en||'Service',stops};
