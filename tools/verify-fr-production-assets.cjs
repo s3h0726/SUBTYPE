@@ -10,7 +10,7 @@ const base = process.env.FRANCE_PUBLIC_URL || 'https://s3h0726.github.io/SUBTYPE
 const indexPath = 'data/fr/generated/index.json';
 const index = JSON.parse(fs.readFileSync(path.join(root,indexPath),'utf8'));
 let files = [...new Set([indexPath,'js/app.bundle.js','js/france-network.js','css/france-rail.css',
-  'editor/index.html','reports/korean-names/editor.html',
+  ...(fs.existsSync(path.join(root,'editor/index.html')) ? ['editor/index.html'] : []),'reports/korean-names/editor.html',
   ...index.routes.flatMap(route => [route.lazySource,...route.geometryFiles])])];
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const report = {status:'PENDING',verifiedAt:new Date().toISOString(),base,catalogLines:index.routes.length,

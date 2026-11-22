@@ -40,14 +40,10 @@ async function openRoute(page, id) {
 }
 
 async function openNameEditor(page, base) {
-  await page.goto(new URL('reports/korean-names/editor.html?country=fr', base).href, {waitUntil:'domcontentloaded'});
-  await page.waitForURL(url => /\/editor\/(?:index\.html)?$/.test(url.pathname));
-  const frameElement = page.locator('#names-editor-frame');
-  await frameElement.waitFor({state:'visible'});
-  const frame = await (await frameElement.elementHandle()).contentFrame();
-  await frame.waitForURL(url => url.searchParams.get('embedded') === '1' && url.searchParams.get('country') === 'fr');
-  await frame.locator('[data-file="stations-by-line"]').waitFor({state:'visible'});
-  return frame;
+  // This stable table URL also works while hosted by the former iframe shell.
+  await page.goto(new URL('reports/korean-names/editor.html?country=fr&embedded=1', base).href, {waitUntil:'domcontentloaded'});
+  await page.locator('[data-file="stations-by-line"]').waitFor({state:'visible'});
+  return page;
 }
 
 async function testDirection(page, {id, key, stations}) {
@@ -191,7 +187,7 @@ async function run() {
         return {answers:'PASS',signs:'PASS',destinations:'PASS',freeDrive:'PASS',classicTransfer:'PASS',originalFrench:'PASS'};
       }, {editedName,classicId:classic.id});
       const editor = await openNameEditor(page, base);
-      report.editorEntry = 'unified-iframe';
+      report.editorEntry = 'korean-name-table';
       await editor.locator('[data-file="stations-by-line"]').click();
       for (const id of ['fr-transilien-v',classic.id]) {
         await editor.locator('#route-filter').selectOption(id);
@@ -336,7 +332,7 @@ async function run() {
         report.countries.push(country);
       }
       const editor = await openNameEditor(page, base);
-      report.editorEntry = 'unified-iframe';
+      report.editorEntry = 'korean-name-table';
       await editor.locator('[data-file="stations-by-line"]').click();
       await editor.locator('#route-filter').selectOption('fr-paris-metro-3bis');
       await editor.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));
