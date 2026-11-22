@@ -1,5 +1,6 @@
 name: Publish SUBTYPE runtime to Pages
 on:
+  # 2026-11-22: Republish the current main to ensure the PR #113 typography rollback reaches Pages.
   # One-time recovery path: workflow changes produce a fresh Pages artifact,
   # rather than rerunning an old job with duplicate github-pages artifacts.
   push:
