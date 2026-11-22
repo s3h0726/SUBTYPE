@@ -86,7 +86,14 @@ const helperStart=appSource.indexOf('function catalogConnectedSegments(segments)
 const helperEnd=appSource.indexOf('function buildCatalogResolved(choice){',helperStart);
 assert(helperStart>=0&&helperEnd>helperStart,'Shared-boundary route repair missing');
 context.routeForCatalogLine=code=>resolvedByCode.get(String(code));
-vm.runInContext(appSource.slice(helperStart,helperEnd)+';globalThis.connectCatalogSegments=catalogConnectedSegments',context);
+// The production connector now depends on canonical station name matching.
+// Load its shared helpers in this isolated test VM while keeping the verified
+// by-code physical-route lookup stub and actual railway geometry checks.
+const sharedStart=appSource.indexOf('const jpCatalogNameCache=');
+const sharedEnd=appSource.indexOf('function routeForCatalogLine(',sharedStart);
+assert(sharedStart>=0&&sharedEnd>sharedStart,'Japanese catalog matching helpers missing');
+vm.runInContext(appSource.slice(sharedStart,sharedEnd)+'\n'+
+  appSource.slice(helperStart,helperEnd)+';globalThis.connectCatalogSegments=catalogConnectedSegments',context);
 const diagnostics=[];
 for(const [code,line] of shinkansen){
  for(const pattern of line.patterns){
