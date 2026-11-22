@@ -35,6 +35,7 @@ export function isKorailOperatedRoute(route,station){
 
 export function resolveTransportStopTemplate(route,station){
   if(route?.countryId==='fr'){
+    if(route.operatorId==='fr-oslo'||route.serviceBrand?.startsWith('OUIGO'))return {key:'fr-ouigo',style:'fr-ouigo',family:'fr-korean-first',referenceSource:route.sourceUrl};
     if(route.category==='commuter_rail')return {key:'fr-transilien',style:'fr-transilien',family:'fr-korean-first',referenceSource:route.sourceUrl};
     if(route.category==='rer')return {key:'fr-rer',style:'fr-rer',family:'fr-korean-first',referenceSource:route.sourceUrl};
     const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star',

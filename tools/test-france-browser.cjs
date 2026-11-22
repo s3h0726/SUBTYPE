@@ -269,14 +269,17 @@ async function run() {
       await page.locator('#route-filter').selectOption('fr-rer-c');
       await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '퐁투아즈'));
       report.transilienEditor = [];
-      for (const line of index.routes.filter(route => route.category === 'commuter_rail')) {
+      report.franceEditor = [];
+      for (const line of index.routes) {
         const detail = JSON.parse(fs.readFileSync(path.join(root, line.lazySource), 'utf8'));
         await page.locator('#route-filter').selectOption(line.id);
         await page.waitForFunction(names => {
           const values = new Set([...document.querySelectorAll('#table input')].map(input => input.value));
           return names.every(name => values.has(name));
         }, detail.stationCatalog.map(station => station.ko));
-        report.transilienEditor.push({id:line.id, stations:detail.stationCatalog.length, status:'PASS'});
+        const result = {id:line.id, stations:detail.stationCatalog.length, status:'PASS'};
+        report.franceEditor.push(result);
+        if (line.category === 'commuter_rail') report.transilienEditor.push(result);
       }
       report.editor = 'PASS';
     }

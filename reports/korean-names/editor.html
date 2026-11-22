@@ -112,7 +112,7 @@ function applyRemote(){
  if(file==='operators'&&remoteOverrides.operators[id])row[1]=remoteOverrides.operators[id];
  if(file==='lines'||file==='korea-lines'){const v=remoteOverrides.lines[id];if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);}
  if(file==='services'){const v=remoteOverrides.services[row[0]];if(v)row[4]=v}
- if(file==='stations-by-line'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v&&v!==row[6]){row[6]=v;if(heads.includes('출처 검증'))row[heads.indexOf('출처 검증')]='편집표 별도값(원본 대조 필요)';}}
+ if(file==='stations-by-line'&&country!=='fr'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v&&v!==row[6]){row[6]=v;if(heads.includes('출처 검증'))row[heads.indexOf('출처 검증')]='편집표 별도값(원본 대조 필요)';}}
  }
 }
 function parseCSV(text){
@@ -221,6 +221,13 @@ async function routeDoc(index){
  // 게임과 같은 무손실 압축 해석기를 사용해 한국 노선 전체를 편집한다.
  const payload=await (await import('../../js/route-payload.js')).decodeRoutePayload(await response.json()),route=payload.route||payload;
  if(route.id!==id)throw Error('불일치하는 노선 상세 자료: '+id);
+ if(country==='fr'){
+  const names=await import('../../js/france-network.js?fr-shared-names-20261118');
+  names.configureFranceNames(remoteOverrides,index.stationNameGroups);
+  const present=station=>{const result=names.franceStationPresentation(station);return result.ko===station.ko?result:
+   {...result,koSource:'편집표 공통 역명',nameStatus:'편집표 별도값(원본 대조 필요)'}};
+  return {...route,stationCatalog:route.stationCatalog.map(present),stations:route.stations.map(present)};
+ }
  return koreanBusDisplayRoute(route);
 }
 function stationName(s,field){

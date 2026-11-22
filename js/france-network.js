@@ -11,10 +11,11 @@ let franceNameGroups = new Map();
 export function configureFranceNames(edits, stationNameGroups = {}) {
   franceEdits = new Map();
   franceNameGroups = new Map(Object.entries(stationNameGroups));
+  const knownGroups = new Set(franceNameGroups.values());
   for (const [line, stations] of Object.entries(edits.stations || {}).sort()) {
     if (!line.startsWith('fr-')) continue;
     for (const [id, name] of Object.entries(stations)) {
-      if (id.startsWith('fr-stop-') && typeof name === 'string' && name.trim()) {
+      if ((id.startsWith('fr-stop-') || knownGroups.has(id)) && typeof name === 'string' && name.trim()) {
         franceEdits.set(franceNameGroups.get(id) || id, name.trim());
       }
     }

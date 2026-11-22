@@ -14,6 +14,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+FAMILY_OVERRIDE_FILE = ROOT / "data/fr/source/service-family-overrides.json"
+FAMILY_OVERRIDES = {(row["sourceId"], row["routeId"]): row["family"]
+                    for row in json.loads(FAMILY_OVERRIDE_FILE.read_text(encoding="utf-8"))["routes"]}
 RAIL_MODES = {"rail", "subway", "tramway", "light_rail", "funicular", "monorail"}
 REGIONS = dict(zip(
     "11 24 27 28 32 44 52 53 75 76 84 93 94".split(),
@@ -184,6 +187,9 @@ def sncf_brand(stop_ids):
 
 
 def service_family(mode, brand, source, route):
+    reviewed_family = FAMILY_OVERRIDES.get((source["resourceId"], route["route_id"]))
+    if reviewed_family:
+        return reviewed_family
     slug = source["slug"]
     brand_key = (brand or "").lower()
     if any(x in slug for x in ("eurostar", "trenitalia", "ave-espagne")):
@@ -353,6 +359,8 @@ def inventory_source(task):
             inventory = {}
         identity = {"asOf": start.isoformat(), "archiveSha256": archive_hash,
                     "schemaVersion": 3 if source_id in {11681, 82880, 83882, 80921, 80931, 67595} else 1}
+        if any(resource == source_id for resource, _ in FAMILY_OVERRIDES):
+            identity["serviceFamilyOverridesSha256"] = sha_file(FAMILY_OVERRIDE_FILE)
         if inventory.get("snapshot") != identity:
             with zipfile.ZipFile(archive) as zip_file:
                 inventory = import_feed(Feed(zip_file), source, start)
