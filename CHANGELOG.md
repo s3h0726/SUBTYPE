@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH.REVISION` (SUBTYPE 앱의 4자리 형식; npm 패키지는 표준 3자리 SemVer 유지)
 
+## [v0.19.0.3] — 2026-11-22
+
+- refactor(editor): move rail editing into Korean-name table and retire standalone editor * feat(editor): migrate rail detail module reports/korean-names/rail-details.js * feat(edito
+
 ## [v0.19.0.2] — 2026-11-22
 
 - Merge pull request #111 from s3h0726/test/fr-national-production-evidence test(fr): record complete public checks for all 195 national additions
