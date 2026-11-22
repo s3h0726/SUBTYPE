@@ -93,6 +93,7 @@
   <link rel="stylesheet" href="./css/route-card-refresh.css?v=20261115-route-card-compact">
   <link rel="stylesheet" href="./css/route-card-labels.css?v=20261122-custom-label-rgb">
   <link rel="stylesheet" href="./css/custom-route-studio.css?v=20261118-search-stations-v1">
+  <link rel="stylesheet" href="./css/settings-v2.css?v=20261122-contrast-v1">
 </head>
 <body data-console-errors="0">
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -447,7 +448,89 @@
       </div>
     </section>
 
-    <section id="screen-settings" data-screen="settings" class="screen" aria-labelledby="settings-title"><div class="section-head"><div><p class="eyebrow">환경 설정</p><h2 id="settings-title">설정</h2><p><a class="btn ghost" href="./editor/">철도 데이터 에디터 열기</a></p></div><button class="btn text" data-nav="home">← HOME</button></div><p class="app-version-settings">현재 버전 <strong data-app-version>v0.17.2</strong> <span>· 개발 버전</span></p><form id="settings-form" class="settings-form"><fieldset><legend>화면 테마</legend><div class="segmented"><label><input type="radio" name="theme" value="dark"><span>어둡게</span></label><label><input type="radio" name="theme" value="light"><span>밝게</span></label><label><input type="radio" name="theme" value="system"><span>시스템 설정</span></label></div></fieldset><fieldset><legend>정답 입력 후</legend><div class="segmented"><label><input type="radio" name="stationAdvance" value="auto"><span>자동으로 다음 역</span></label><label><input type="radio" name="stationAdvance" value="space"><span>SPACE로 다음 역</span></label></div></fieldset><div class="korean-only-notice"><b>입력 언어 · 한국어</b><span>일본어·가나·로마자는 문제 표시 전용입니다.</span></div><input type="hidden" name="mapMode" value="geographic"><label>지도 역명<select name="stationLabel"><option value="ja">日本語</option><option value="ja-romaji">日本語 + Romaji</option></select></label><label>지도 라벨 밀도<select name="mapLabels"><option value="low">낮음</option><option value="normal">보통</option><option value="high">높음</option></select></label><label class="check"><input name="sound" type="checkbox"> 효과음 사용</label><label class="check"><input name="motion" type="checkbox"> 열차 이동 애니메이션</label><label class="check"><input name="reducedMotion" type="checkbox"> 애니메이션 줄이기</label><button class="btn primary" type="submit">설정 저장</button></form></section>
+    <section id="screen-settings" data-screen="settings" class="screen settings-screen settings-v2" aria-labelledby="settings-title">
+      <div class="settings-hero">
+        <div>
+          <p class="eyebrow">SUBTYPE / PREFERENCES</p>
+          <h2 id="settings-title">설정 <span>2.0</span></h2>
+          <p class="settings-hero-description">플레이 방식부터 지도 표시, 화면 테마까지 나에게 맞게 조정하세요.</p>
+          <p class="app-version-settings">현재 버전 <strong data-app-version>v0.17.1</strong> <span>· 환경 설정</span></p>
+        </div>
+        <button class="btn ghost settings-home" type="button" data-nav="home">← 홈으로</button>
+      </div>
+      <div class="settings-layout">
+        <aside class="settings-sidebar" aria-label="설정 메뉴">
+          <p class="settings-sidebar-label">SETTING MENU</p>
+          <nav class="settings-section-nav" aria-label="설정 카테고리">
+            <a href="#settings-appearance"><span>01</span> 화면과 테마</a>
+            <a href="#settings-gameplay"><span>02</span> 플레이 방식</a>
+            <a href="#settings-map"><span>03</span> 지도와 역명</a>
+            <a href="#settings-accessibility"><span>04</span> 소리와 접근성</a>
+          </nav>
+          <div class="settings-side-note">
+            <strong>변경사항 저장</strong>
+            <p>테마는 즉시 미리볼 수 있습니다. 선택한 설정을 계속 사용하려면 아래 저장 버튼을 누르세요.</p>
+          </div>
+          <a class="settings-editor-link" href="./editor/">철도 데이터 에디터 열기 <span aria-hidden="true">↗</span></a>
+        </aside>
+        <form id="settings-form" class="settings-form settings-v2-form">
+          <section class="settings-group" id="settings-appearance" aria-labelledby="settings-appearance-title">
+            <div class="settings-group-head"><span class="settings-group-number">01</span><div><h3 id="settings-appearance-title">화면과 테마</h3><p>화면의 밝기를 선택하거나 기기 설정에 맞춥니다.</p></div></div>
+            <fieldset class="settings-fieldset">
+              <legend>화면 테마</legend>
+              <div class="settings-theme-grid">
+                <label class="settings-theme-option">
+                  <input type="radio" name="theme" value="light">
+                  <span class="settings-theme-preview settings-theme-preview-light" aria-hidden="true"><i></i><b></b><em></em><small></small></span>
+                  <span class="settings-option-copy"><strong>라이트</strong><small>밝은 화면</small></span>
+                </label>
+                <label class="settings-theme-option">
+                  <input type="radio" name="theme" value="dark">
+                  <span class="settings-theme-preview settings-theme-preview-dark" aria-hidden="true"><i></i><b></b><em></em><small></small></span>
+                  <span class="settings-option-copy"><strong>다크</strong><small>어두운 화면</small></span>
+                </label>
+                <label class="settings-theme-option">
+                  <input type="radio" name="theme" value="system">
+                  <span class="settings-theme-preview settings-theme-preview-system" aria-hidden="true"><i></i><b></b><em></em><small></small></span>
+                  <span class="settings-option-copy"><strong>시스템</strong><small>기기 설정 사용</small></span>
+                </label>
+              </div>
+            </fieldset>
+          </section>
+          <section class="settings-group" id="settings-gameplay" aria-labelledby="settings-gameplay-title">
+            <div class="settings-group-head"><span class="settings-group-number">02</span><div><h3 id="settings-gameplay-title">플레이 방식</h3><p>정답을 입력한 다음 역으로 넘어가는 방법을 정합니다.</p></div></div>
+            <fieldset class="settings-fieldset">
+              <legend>정답 입력 후</legend>
+              <div class="settings-choice-grid">
+                <label class="settings-choice"><input type="radio" name="stationAdvance" value="auto"><span><strong>자동으로 다음 역</strong><small>정답을 입력하면 바로 진행</small></span></label>
+                <label class="settings-choice"><input type="radio" name="stationAdvance" value="space"><span><strong>SPACE로 다음 역</strong><small>스페이스바를 눌러 진행</small></span></label>
+              </div>
+            </fieldset>
+            <div class="settings-language-note"><strong>입력 언어 · 한국어</strong><span class="korean-only-notice"><span>모든 노선은 한국어 역명을 입력합니다. 다른 언어는 참고용으로 표시됩니다.</span></span></div>
+          </section>
+          <section class="settings-group" id="settings-map" aria-labelledby="settings-map-title">
+            <div class="settings-group-head"><span class="settings-group-number">03</span><div><h3 id="settings-map-title">지도와 역명</h3><p>지도에 나타나는 역 이름과 정보량을 조정합니다.</p></div></div>
+            <input type="hidden" name="mapMode" value="geographic">
+            <div class="settings-select-grid">
+              <label>지도 역명<select name="stationLabel"><option value="ja">日本語</option><option value="ja-romaji">日本語 + Romaji</option></select><small>지도에서 표시할 기본 역명 형식입니다.</small></label>
+              <label>지도 라벨 밀도<select name="mapLabels"><option value="low">낮음</option><option value="normal">보통</option><option value="high">높음</option></select><small>역명 라벨을 얼마나 자세히 보여줄지 선택합니다.</small></label>
+            </div>
+          </section>
+          <section class="settings-group" id="settings-accessibility" aria-labelledby="settings-accessibility-title">
+            <div class="settings-group-head"><span class="settings-group-number">04</span><div><h3 id="settings-accessibility-title">소리와 접근성</h3><p>몰입감과 화면 움직임을 직접 조정합니다.</p></div></div>
+            <div class="settings-toggle-list">
+              <label class="settings-toggle"><input name="sound" type="checkbox"><span><strong>효과음 사용</strong><small>입력과 진행에 따른 소리를 재생합니다.</small></span></label>
+              <label class="settings-toggle"><input name="motion" type="checkbox"><span><strong>열차 이동 애니메이션</strong><small>지도를 따라 열차가 움직이도록 표시합니다.</small></span></label>
+              <label class="settings-toggle"><input name="reducedMotion" type="checkbox"><span><strong>애니메이션 줄이기</strong><small>화면 움직임과 전환 효과를 최소화합니다.</small></span></label>
+            </div>
+          </section>
+          <div class="settings-save-bar">
+            <p id="settings-save-state" role="status" aria-live="polite">설정을 변경한 다음 저장 버튼을 눌러 주세요.</p>
+            <div class="settings-save-actions"><button id="settings-reset" class="btn ghost" type="button">기본값 복원</button><button class="btn primary" type="submit">변경사항 저장</button></div>
+          </div>
+        </form>
+      </div>
+    </section>
     <section id="screen-credits" data-screen="credits" class="screen credits-screen" aria-labelledby="credits-title"><div class="section-head"><div><p class="eyebrow">DATA & CREDITS</p><h2 id="credits-title">철도 데이터와 자산 출처</h2><p>검증일 2026-08-28 · 나무위키 canonical Korean naming policy</p></div><button class="btn text" data-nav="settings">← SETTINGS</button></div><div class="credits-grid"><article id="uk-credits"><h3>영국 철도</h3><p>Powered by TfL Open Data. 실제 선로 및 지역 철도 정차 자료: © OpenStreetMap contributors, ODbL 1.0. 한국어 역명은 SUBTYPE 편집 표기입니다. 공식 로고를 사용하지 않은 학습용 역명판입니다.</p><a href="https://tfl.gov.uk/corporate/terms-and-conditions/transport-data-service" target="_blank" rel="noopener">TfL 데이터 이용약관</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OSM / ODbL</a></article><article id="th-credits"><h3>태국 철도</h3><p>국철 정차: SRT 공식 시간표·공개 TTS 자료·Longdo Transit·Rotfai Radar. 선로: © OpenStreetMap contributors, ODbL 1.0. 계통별 원본 기준일이 다르며 현행 전국 소역 정차의 완전성은 미확인입니다. 한국어는 태국어 기반 프로젝트 표기입니다.</p><a href="https://ttsview.railway.co.th/timetable_modern.php?ln=en" target="_blank" rel="noopener">SRT</a> · <a href="https://transit.longdo.com/api/" target="_blank" rel="noopener">Longdo Transit</a> · <a href="https://rotfai.live/" target="_blank" rel="noopener">Rotfai Radar</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OSM / ODbL</a></article><article id="hk-credits" hidden><h3>HONG KONG NETWORK</h3><p>홍콩의 번체중문·영문 역명과 정차순서는 MTR·운영사 공식 자료, 실제 선로는 OpenStreetMap 원본을 사용합니다. 한국어 표기와 특수 운행·선로가 미검증인 서비스는 플레이에서 제외합니다. 로고 권리 검수가 끝나기 전에는 문자 운영사명을 표시합니다.</p><a href="https://www.mtr.com.hk/en/customer/services/system_map.html" target="_blank" rel="noopener">MTR 공식 자료</a> · <a href="https://www.hktramways.com/en/schedules-fares/" target="_blank" rel="noopener">Hong Kong Tramways</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap / ODbL</a></article><article><h3>MAP</h3><p>Leaflet 1.9.4</p><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></article><article><h3>STATION / LINE DATA</h3><p>일본어 공식 명칭, Kana, 역번호와 운행 정보는 각 철도 운영사의 공식 자료와 교차 검증합니다. 지도와 철도 선형은 국토교통성 및 OpenStreetMap 등 별도 공간정보 출처를 사용합니다.</p></article><article><h3>ROUTE SYMBOLS / LOGOS</h3><p>로고와 심볼의 식별 기준에는 나무위키를 사용하고, 실제 이미지 자산은 공식 배포자료 또는 사용 조건을 확인할 수 있는 원본을 사용합니다.</p><a href="./ASSET_CREDITS.md" target="_blank" rel="noopener">ASSET_CREDITS.md</a></article><article><h3>KOREAN NAMES</h3><p>SUBTYPE의 일본 철도 회사명·노선명·역명 등 한국어 표기는 나무위키의 한국어 철도 표기를 canonical 기준으로 사용합니다. 직접 접근이 제한되더라도 정책은 유지하며, 실제로 확인하지 못한 항목은 검수 필요 상태로 남깁니다.</p><a href="./DATA_SOURCES.md" target="_blank" rel="noopener">DATA_SOURCES.md</a></article></div></section>
   </main>
   <button class="credits-nav" data-nav="credits">DATA & CREDITS</button>
@@ -519,6 +602,7 @@
   <script defer src="./js/operator-nameplate-identity.js?v=20261115-all-operators"></script>
   <script defer src="./js/country-home.js?v=20261115-hk-mo-dialog-fix"></script>
   <script defer src="./js/world-home.js?v=20261115-special-regions"></script>
+  <script defer src="./js/settings-v2.js?v=20261122-preview-v1"></script>
 
 </body>
 </html>
