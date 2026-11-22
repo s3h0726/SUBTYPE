@@ -44,14 +44,4 @@
   appearance?.addEventListener?.('change', () => {
     if (form.elements.theme.value === 'system') previewTheme('system');
   });
-
-  // Keep the staged preview synchronized when users re-enter the screen
-  // after saving a preference from the game's own theme toggle.
-  const observer = new MutationObserver(() => {
-    if (!document.getElementById('screen-settings')?.classList.contains('active')) return;
-    for (const radio of form.querySelectorAll('input[name="theme"]')) {
-      if (radio.checked) return;
-    }
-  });
-  observer.observe(document.getElementById('screen-settings'), { attributes: true, attributeFilter: ['class'] });
 })();
