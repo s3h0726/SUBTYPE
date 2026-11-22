@@ -9,7 +9,7 @@ import{hongKongRouteBlockReason,HONG_KONG_CATEGORIES}from'./hong-kong-policy.js'
 import{koreanRouteBlockReason}from'./korean-access-policy.js';
 const KR_APP_TRANSFER_PAIRS=[{"region":"capital","name":"시청","routeIds":["kr-metro-1-main","kr-metro-1-section-2","kr-metro-2"],"source":"https://ms.smc.seoul.kr/attach/record/SEOUL/appendix/a11/A0066691.pdf?time=20260525101106"},{"region":"busan","name":"서면","routeIds":["kr-regional-busan-1","kr-regional-busan-2"],"source":"https://work.humetro.busan.kr/homepage/history/page/subLocation.do?menu_no=1002020202"},{"region":"daegu","name":"반월당","routeIds":["kr-regional-daegu-7","kr-regional-daegu-8"],"source":"https://daegu.grandculture.net/daegu/junggu/toc/GC40000506"}];
 import{$,$$,escapeHtml,formatTime,normalize,toast,koreanStationDisplayName,koreanRouteDisplayText}from'./utils.js';
-import{loadTransportData,normalizeLine,hydrateRailLine}from'./data-loader.js';
+import{loadTransportData,normalizeLine,hydrateRailLine,loadEditorNameOverrides}from'./data-loader.js';
 import{resolvePlayableRoute}from'./route-integrity.js';
 import{koreanVerifiedChoices,resolveKoreanVerifiedChoice}from'./korean-service-resolver.js';
 import{storage}from'./storage.js';
