@@ -1,6 +1,12 @@
 # SUBTYPE 변경 이력
 
-버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
+버전 형식: `vMAJOR.MINOR.PATCH.REVISION` (SUBTYPE 앱의 4자리 형식; npm 패키지는 표준 3자리 SemVer 유지)
+
+## [v0.19.0.0] — 2026-11-22
+
+- 앱 표시 및 자동 릴리스 버전 체계를 4자리로 전환. 일반 수정은 REVISION을 올리고, PATCH/MINOR/MAJOR는 뒤 자리를 초기화.
+- `package.json`의 `appVersion`을 화면·태그의 기준으로 사용하고 npm `version`은 3자리로 유지하여 호환성 보장.
+- 기존 3자리 릴리스 항목과 태그는 변경하지 않고 기록으로 보존.
 
 ## [v0.19.0] — 2026-11-22
 
