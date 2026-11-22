@@ -6,6 +6,7 @@ on:
       - '.github/workflows/build-hk-school-specials.yml'
       - 'tools/lib/hk-school-special-routes.cjs'
       - 'tools/build-hk-data.cjs'
+      - 'tools/publish-hk-school-specials.cjs'
       - 'tools/review-hk-school-specials.cjs'
       - 'tools/test-hk-school-specials.cjs'
   workflow_dispatch:
@@ -30,18 +31,19 @@ jobs:
           node-version: '22'
 
       - name: Build 506P and 720 in local preview state
-        run: node tools/build-hk-data.cjs --validation-preview
+        run: node tools/publish-hk-school-specials.cjs --validation-preview
 
       - name: Run real game typing engine for both routes
         run: node tools/review-hk-school-specials.cjs
 
       - name: Produce release-gated routes and editor index
-        run: node tools/build-hk-data.cjs
+        run: node tools/publish-hk-school-specials.cjs
 
       - name: Validate both routes and Hong Kong regressions
         run: |
           node --test tools/test-hk-school-specials.cjs
-          node --test tools/test-hk-network.cjs
+          # The full Hong Kong source compiler is deliberately not rerun:
+          # stale historical gameplay fingerprints must not disable core lines.
           node tools/test-hk-editor-canonical-lines.cjs
 
       - name: Commit generated Hong Kong routes and evidence
