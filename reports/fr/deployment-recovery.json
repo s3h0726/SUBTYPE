@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "failedRuns": [
+    45030237893,
+    45030656343
+  ],
+  "reason": "Uploaded artifact exists via REST but immediate same-job artifact lookup returned zero matches",
+  "upstreamIssue": "https://github.com/actions/deploy-pages/issues/451",
+  "fixCommit": "f79aba336df7c5bcbdadc16e094ada8938b4a640",
+  "mergeCommit": "48ef9a4a10745f0ee3f55fef6b8c019565d16fd9",
+  "fix": "All existing validations and artifact upload remain in build; a dependent deploy job publishes the artifact",
+  "preRecoveryPublicDirectionsPerMode": 197,
+  "preRecoveryEvidence": "production-pre-recovery-gameplay.json",
+  "workflowParserValidation": "PASS",
+  "successfulRun": 45031394752,
+  "releaseRef": "5e43185a5179858a95bba4464b40f21e1bf72c0d",
+  "productionDirectionsPerMode": 197,
+  "assetFiles": 235,
+  "unifiedEditorDeployment": {
+    "releaseRef": "5938099f01ff093bae76e21b9c4b99b7cf2fa6bb",
+    "workflowRunId": 45032148701,
+    "workflowConclusion": "success",
+    "version": "v0.19.0",
+    "bundle": "4dbc080452b9"
+  }
+}
