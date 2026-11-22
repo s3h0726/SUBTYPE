@@ -9,7 +9,7 @@ async function configurePage(page){
   return route.fulfill({path:path.join(dist,name),headers:{'access-control-allow-origin':'*'}});
  });
 }
-const hook='globalThis.__UK_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,ukFreeDriveRoutes,buildTypingModel,routes:()=>routes};\n';
+const hook='globalThis.__UK_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,ukFreeDriveRoutes,buildTypingModel,routes:()=>routes,loading:()=>dataLoading,country:()=>countryId};\n';
 const server=http.createServer((req,res)=>{const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html',file=path.resolve(root,name);if(!file.startsWith(root+path.sep))return res.writeHead(403).end();try{let body=fs.readFileSync(file);if(name==='js/app.bundle.js')body=Buffer.from(body.toString().replace('\n})().catch(error=>','\n'+hook+'})().catch(error=>'));res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png'})[path.extname(file)]||'application/octet-stream');res.end(body)}catch{res.writeHead(404).end()}});
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port,browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe'}),report={status:'FAIL',runs:[],errors:[],regressions:[],freeDrive:[]};
 try{
@@ -55,12 +55,13 @@ try{
  if(fs.existsSync(path.join(root,'data/mo/generated/network.json')))regressionCountries.push('mo');
  for(const country of regressionCountries){
   await page.goto(base,{waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>globalThis.__UK_QA__?.routes().length>0);
+  await page.waitForFunction(()=>{const q=globalThis.__UK_QA__;return q&&!q.loading()&&q.routes().length>0&&q.routes().every(r=>r.countryId===q.country())},{},{timeout:60000});
   if(['hk','mo'].includes(country)){
    await page.locator('[data-country-group="sar"]').click();
    await page.locator('[data-hk-mo-choice="'+country+'"]').click();
   }else await page.locator('button[data-country="'+country+'"]').click();
-  await page.waitForFunction(c=>globalThis.__UK_QA__?.routes().length>0&&globalThis.__UK_QA__.routes().every(r=>r.countryId===c),country,{timeout:60000});
+  report.regressionCountry=country;
+  await page.waitForFunction(c=>{const q=globalThis.__UK_QA__;return q&&!q.loading()&&q.country()===c&&q.routes().length>0&&q.routes().every(r=>r.countryId===c)},country,{timeout:60000});
   const count=await page.evaluate(()=>__UK_QA__.routes().length);
   report.regressions.push({country,status:'PASS',routes:count});
  }
