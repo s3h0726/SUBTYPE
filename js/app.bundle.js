@@ -574,7 +574,20 @@ class Repository{
   getLineSymbolAsset(id){const entry=this.assets.lines?.[id];if(!entry?.asset)return null;const url=resolveProjectAsset(entry.asset);return{url,asset:url,exists:entry.exists!==false,verified:entry.verified===true,source:entry.source||'',officialExists:entry.officialExists===true,canonicalFile:entry.file,version:entry.version}}
   resolveRoute(route){
     if(!route)return route;this.registerRoute(route);const operator=this.getOperator(route.operatorId),line=this.getLine(route.id),operatorAsset=this.getOperatorLogoAsset(route.operatorId),symbolAsset=this.getLineSymbolAsset(route.id);
-    const stations=(route.stations||[]).map(station=>{const canonical=this.registerStation(station);if(!canonical)return station;if(station.routeSpecificStationName===true)return{...station,ja:station.ja,ko:station.ko,romaji:station.romaji};return{...station,ja:canonical.names.ja,kana:canonical.names.kana,ko:canonical.names.ko,romaji:canonical.names.en}});
+    const stations=(route.stations||[]).map(station=>{
+      const canonical=this.registerStation(station);if(!canonical)return station;
+      // The master station ID is only a transfer/search identity. Japanese
+      // platforms may use a different official name on each operating line
+      // (Osaka/Umeda, Sapporo/Sapporo subway). Never overwrite that sign with
+      // whichever route registered the shared master ID first.
+      if(route.countryId==='jp'||station.routeSpecificStationName===true)
+        return{...station,ja:clean(station.ja||station.names?.ja)||canonical.names.ja,
+          kana:clean(station.kana||station.names?.kana)||canonical.names.kana,
+          ko:clean(station.ko||station.names?.ko)||canonical.names.ko,
+          romaji:clean(station.romaji||station.names?.en)||canonical.names.en};
+      return{...station,ja:canonical.names.ja,kana:canonical.names.kana,
+        ko:canonical.names.ko,romaji:canonical.names.en}
+    });
     const resolved={...route,operator:operator?.names||route.operator,line:line?.names||route.line,operatorAsset,symbolAsset,stations};this.routes.set(route.id,resolved);return resolved
   }
 }
@@ -5684,28 +5697,41 @@ function routeForCatalogLine(code,requiredStations=[]){
 // A matching Japanese name on another company's railway is not proof of a
 // shared track: require the same operator/category, ordered original station
 // IDs, and one unique fully verified replacement.
+// A shared transfer station can display different official names on each
+// Japanese line; only verified, ordered station IDs prove that tracks match.
+function japaneseSharedStationIndices(source,candidate){
+  const wanted=source?.stations||[],available=candidate?.stations||[];
+  if(wanted.length<2||available.length<2)return null;
+  const positions=wanted.map(stop=>{
+    const indexes=available.map((station,i)=>String(station.id)===String(stop.id)?i:-1).filter(i=>i>=0);
+    return indexes.length===1?indexes[0]:-1;
+  });
+  if(positions.some(i=>i<0)||positions[0]===positions[1])return null;
+  const forward=positions[1]>positions[0];
+  return positions.every((value,i)=>i===0||(forward?value>positions[i-1]:value<positions[i-1]))?positions:null;
+}
 function japaneseExistingPhysicalCandidates(source){
   if(source?.countryId!=='jp'||(source.playable!==false&&source.geometryReady!==false))return[];
   const required=(source.stations||[]).map(station=>station.ja||station.names?.ja||'');
-  if(required.length<2||required.some(name=>!japaneseCatalogStationKey(name))||!source.operatorId||!source.category)return[];
+  if(required.length<2||!source.operatorId||!source.category)return[];
   return builtin.filter(candidate=>candidate.countryId==='jp'&&candidate.id!==source.id
     &&candidate.operatorId===source.operatorId&&candidate.category===source.category
     &&candidate.geometryReady===true&&candidate.playable!==false
     &&!(candidate.missingSegments?.length)
-    &&catalogRouteHasStations(candidate,required));
+    // Lazy catalogs have no station IDs until hydrated. Only use their names
+    // as discovery hints; a loaded replacement must match IDs, not spelling.
+    &&(candidate.lazy
+      ?required.every(name=>japaneseCatalogStationKey(name))&&catalogRouteHasStations(candidate,required)
+      :!!japaneseSharedStationIndices(source,candidate)));
 }
 function japaneseReusablePhysicalRoute(source){
   const matches=japaneseExistingPhysicalCandidates(source);
   if(matches.length!==1)return null;
   const physical=matches[0],original=source.stations||[];
   if(physical.lazy||physical.stations?.length<2||physical.geometry?.length<2)return null;
-  const indices=original.map(station=>physical.stations.findIndex(candidate=>
-    String(candidate.id)===String(station.id)&&
-    japaneseCatalogStationKey(candidate.ja||candidate.names?.ja)===
-      japaneseCatalogStationKey(station.ja||station.names?.ja)));
-  if(indices.some(index=>index<0))return null;
+  const indices=japaneseSharedStationIndices(source,physical);
+  if(!indices)return null;
   const forward=indices[1]>indices[0];
-  if(!indices.every((index,i)=>i===0||(forward?index>indices[i-1]:index<indices[i-1])))return null;
   try{
     const clipped=prepareThroughPart(physical,{
       direction:forward?'forward':'reverse',
@@ -5715,13 +5741,25 @@ function japaneseReusablePhysicalRoute(source){
     if(clipped.geometry.length<2||clipped.stations.length<2)return null;
     const ids=new Set(clipped.stations.map(station=>String(station.id)));
     if(original.some(station=>!ids.has(String(station.id))))return null;
-    // Maintain the selected service/card identity while using only the
-    // replacement route's surveyed geometry and canonical station IDs.
+    const displayById=new Map(original.map(station=>[String(station.id),station]));
+    const stations=clipped.stations.map(station=>{
+      const local=displayById.get(String(station.id));
+      if(!local)return station;
+      // Retain source line signs and edited Korean names, while keeping
+      // geometryIndex and surveyed track coordinates from the physical route.
+      const names={ja:local.ja||station.ja,kana:local.kana||station.kana,
+        ko:local.ko||station.ko,romaji:local.romaji||station.romaji};
+      return{...station,...names,
+        routeSpecificStationName:local.routeSpecificStationName===true||
+          japaneseCatalogStationKey(names.ja)!==japaneseCatalogStationKey(station.ja)||
+          names.ko!==station.ko,
+        ...(local.canonicalStationNames?{canonicalStationNames:local.canonicalStationNames}:{})};
+    });
     const services=source.services?.length?source.services:[{
       id:'local',nameKo:'각역정차',nameJa:'普通',nameEn:'Local',
       stops:original.map(station=>String(station.id))
     }];
-    return{...source,stations:clipped.stations,geometry:clipped.geometry,services,
+    return{...source,stations,geometry:clipped.geometry,services,
       geometryReady:true,playable:true,missingSegments:[],
       physicalTrackRouteId:physical.id};
   }catch{return null}
