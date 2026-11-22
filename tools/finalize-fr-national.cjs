@@ -36,6 +36,18 @@ for (const row of discovery.candidates) {
   }
 }
 discovery.outcomeCounts = discovery.candidates.reduce((counts,row) => {counts[row.status]=(counts[row.status]||0)+1;return counts;}, {});
+const candidates = new Map(discovery.candidates.map(row => [row.relationId,row]));
+for (const master of discovery.masters) {
+  const outcomes = master.members.filter(member => member.type === 'relation').map(member => candidates.get(member.ref)).filter(Boolean);
+  master.outcomeCounts = outcomes.reduce((counts,row) => {counts[row.status]=(counts[row.status]||0)+1;return counts;}, {});
+  master.status = outcomes.some(row => ['VERIFIED_ADDED','ALREADY_IMPLEMENTED'].includes(row.status)) ? 'PARTIALLY_IMPLEMENTED'
+    : outcomes.length && outcomes.every(row => row.status === 'UNVERIFIABLE') ? 'UNVERIFIABLE'
+    : outcomes.some(row => row.status === 'MISSING') ? 'MISSING' : 'BLOCKED';
+  master.reason = 'Candidate member outcomes only; official stopping-pattern completeness and current passenger operation require independent evidence';
+}
+const includedMasters = new Set(discovery.masters.map(master => master.id));
+discovery.excludedMasters = read('data/fr/source/osm-national-masters.json').elements.filter(master => !includedMasters.has(master.id))
+  .map(master => ({relationId:master.id,tags:master.tags,status:'OUTSIDE_SCOPE',reason:'Outside this French operator/network discovery scope; SNCFT is Tunisian, not SNCF'}));
 write('data/fr/source/national-track-discovery.json', discovery);
 const metadata = read('data/fr/source/national-route-metadata.json');
 const coverage = read('reports/fr/coverage.json');
@@ -62,7 +74,10 @@ for (const group of proposals.groups) {
 }
 write('reports/fr/national-service-candidates.json',proposals);
 const added = all.filter(pattern => !previous.has(pattern.id));
-write('reports/fr/national-batch-2026-11-22.json', {
+const batchFile = 'reports/fr/national-batch-2026-11-22.json';
+const priorBatch = fs.existsSync(path.join(root,batchFile)) ? read(batchFile) : {};
+write(batchFile, {
+  ...priorBatch,
   asOf:'2026-11-22',baselineRef:'9bfe2421',sourceSnapshotAsOf:'2026-11-12',
   status:'PASS',newCatalogLines:catalog.lines.length-baseline.lines.length,newDirections:added.length,
   currentCatalogLines:catalog.lines.length,currentDirections:all.length,koreanStationIds:catalog.stationIds,
@@ -71,6 +86,6 @@ write('reports/fr/national-batch-2026-11-22.json', {
   discoveryMasters:discovery.masters.length,discoveryCandidates:discovery.candidates.length,
   discoveryOutcomes:discovery.outcomeCounts,newDirectionIds:added.map(pattern => pattern.id),
   releaseLineIds:metadata.lines.map(line => line.lineId),
-  productionStatus:'PENDING',evidence:['browser-gameplay.json','name-overrides-gameplay.json','coverage.json','track-evidence.json'],
+  productionStatus:priorBatch.productionStatus || 'PENDING',evidence:['browser-gameplay.json','name-overrides-gameplay.json','coverage.json','track-evidence.json'],
 });
 console.log(JSON.stringify({newLines:catalog.lines.length-baseline.lines.length,newDirections:added.length,allDirections:all.length,discoveryOutcomes:discovery.outcomeCounts}));

@@ -30,7 +30,8 @@ def main():
     masters = [master for master in source["elements"] if
                any(token in master.get("tags", {}).get("network", "")
                    for token in ("TGV", "Lyria", "Intercités", "Ouigo Train Classique")) or
-               re.search(r"\bSNCF\b", master.get("tags", {}).get("operator", ""))]
+               re.search(r"\bSNCF\b", master.get("tags", {}).get("operator", "")) or
+               master.get("tags", {}).get("gtfs:feed") == "FR-SNCF"]
     relation_ids = sorted({member["ref"] for master in masters for member in master["members"]
                            if member["type"] == "relation"})
     coverage = read(ROOT / "reports/fr/coverage.json")
