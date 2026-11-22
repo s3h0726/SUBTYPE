@@ -1,0 +1,18 @@
+/* High-contrast text for the embedded Korean name / RGB / label editor. */
+:root {font-size:16px;line-height:1.5;color:#142937;}
+header p {color:#e1eef7;}
+button,input,select {font-size:14px;line-height:1.45;color:#142937;}
+input::placeholder {color:#52687b;opacity:1;}
+:is(button,input,select,a):focus-visible {outline:3px solid #075a9b;outline-offset:2px;}
+#status {font-size:14px;color:#344f63;line-height:1.5;}
+table {font-size:14px;line-height:1.5;}
+table th {font-size:13px;color:#233f53;background:#dfeaf2;}
+td,th {padding:9px 11px;}
+td input {font-size:14px;color:#112c3b;}
+td.editable {background:#e7f5e8;}
+.tab,.country,#route-filter {font-size:14px;}
+@media(max-width:680px){
+  table {font-size:13px;}
+  td,th {padding:8px 9px;}
+  td input {font-size:13px;}
+}
