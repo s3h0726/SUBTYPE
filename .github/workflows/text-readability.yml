@@ -1,0 +1,31 @@
+name: Text readability regression
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'css/**'
+      - 'dev/rail-data-editor*.css'
+      - 'editor/**'
+      - 'reports/korean-names/**'
+      - 'tools/test-text-readability.cjs'
+      - 'package.json'
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'css/**'
+      - 'dev/rail-data-editor*.css'
+      - 'editor/**'
+      - 'reports/korean-names/**'
+      - 'tools/test-text-readability.cjs'
+      - 'package.json'
+jobs:
+  static-contrast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify typography coverage and contrast samples
+        run: npm run test:readability

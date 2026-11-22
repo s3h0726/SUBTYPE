@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       release_level:
-        description: 'Version change (none: only verify/tag, patch, minor, major)'
+        description: 'Version change (none: only verify/tag, revision, patch, minor, major)'
         required: true
         default: none
         type: choice
-        options: [none, patch, minor, major]
+        options: [none, revision, patch, minor, major]
 
 permissions:
   contents: write
@@ -51,13 +51,13 @@ jobs:
               fi
               if git cat-file -e "$before^{commit}" 2>/dev/null; then
                 changed="$(git diff --name-only "$before" "$GITHUB_SHA")"
-                previous_version="$(git show "$before:package.json" | node -e "let s='';process.stdin.on('data',c=>s+=c).on('end',()=>console.log(JSON.parse(s).version))")"
-                current_version="$(node -p "require('./package.json').version")"
+                previous_version="$(git show "$before:package.json" | node -e "let s='';process.stdin.on('data',c=>s+=c).on('end',()=>{const p=JSON.parse(s);console.log(p.appVersion||p.version+'.0')})")"
+                current_version="$(node -p "require('./package.json').appVersion || require('./package.json').version + '.0'")"
                 if [[ "$previous_version" != "$current_version" ]]; then
                   # A manually selected version should not be bumped again.
                   level=sync
                 elif grep -Eq '^(package\.json$|index\.html$|css/|js/|data/|tools/|editor/|supabase/|assets/|custom-routes/|\.github/workflows/)' <<< "$changed"; then
-                  level=patch
+                  level=revision
                   if git log "$before..$GITHUB_SHA" --pretty=format:%s | grep -Eq '^feat(\([^)]*\))?!?:|^release: minor'; then
                     level=minor
                   fi
@@ -87,11 +87,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add package.json index.html README.md CHANGELOG.md
           if ! git diff --cached --quiet; then
-            git commit -m "chore(release): v$(node -p "require('./package.json').version")"
+            git commit -m "chore(release): v$(node -p "require('./package.json').appVersion")"
             # Never force-push over a concurrent update.
             git push origin HEAD:main
           fi
-          tag="v$(node -p "require('./package.json').version")"
+          tag="v$(node -p "require('./package.json').appVersion")"
           git fetch origin --tags
           if git show-ref --verify --quiet "refs/tags/$tag"; then
             echo "Tag $tag exists; leaving immutable release unchanged."

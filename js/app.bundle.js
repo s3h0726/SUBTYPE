@@ -5679,6 +5679,57 @@ function routeForCatalogLine(code,requiredStations=[]){
   }
   return matches.find(route=>catalogRouteHasStations(route,required))||matches.find(route=>route.lazy)||matches[0]||null;
 }
+// Reuse already registered physical tracks for every Japanese operator's
+// local, express and curated service choices, not only TrainLCD catalog entries.
+// A matching Japanese name on another company's railway is not proof of a
+// shared track: require the same operator/category, ordered original station
+// IDs, and one unique fully verified replacement.
+function japaneseExistingPhysicalCandidates(source){
+  if(source?.countryId!=='jp'||(source.playable!==false&&source.geometryReady!==false))return[];
+  const required=(source.stations||[]).map(station=>station.ja||station.names?.ja||'');
+  if(required.length<2||required.some(name=>!japaneseCatalogStationKey(name))||!source.operatorId||!source.category)return[];
+  return builtin.filter(candidate=>candidate.countryId==='jp'&&candidate.id!==source.id
+    &&candidate.operatorId===source.operatorId&&candidate.category===source.category
+    &&candidate.geometryReady===true&&candidate.playable!==false
+    &&!(candidate.missingSegments?.length)
+    &&catalogRouteHasStations(candidate,required));
+}
+function japaneseReusablePhysicalRoute(source){
+  const matches=japaneseExistingPhysicalCandidates(source);
+  if(matches.length!==1)return null;
+  const physical=matches[0],original=source.stations||[];
+  if(physical.lazy||physical.stations?.length<2||physical.geometry?.length<2)return null;
+  const indices=original.map(station=>physical.stations.findIndex(candidate=>
+    String(candidate.id)===String(station.id)&&
+    japaneseCatalogStationKey(candidate.ja||candidate.names?.ja)===
+      japaneseCatalogStationKey(station.ja||station.names?.ja)));
+  if(indices.some(index=>index<0))return null;
+  const forward=indices[1]>indices[0];
+  if(!indices.every((index,i)=>i===0||(forward?index>indices[i-1]:index<indices[i-1])))return null;
+  try{
+    const clipped=prepareThroughPart(physical,{
+      direction:forward?'forward':'reverse',
+      startStationId:String(original[0].id),
+      endStationId:String(original.at(-1).id)
+    });
+    if(clipped.geometry.length<2||clipped.stations.length<2)return null;
+    const ids=new Set(clipped.stations.map(station=>String(station.id)));
+    if(original.some(station=>!ids.has(String(station.id))))return null;
+    // Maintain the selected service/card identity while using only the
+    // replacement route's surveyed geometry and canonical station IDs.
+    const services=source.services?.length?source.services:[{
+      id:'local',nameKo:'각역정차',nameJa:'普通',nameEn:'Local',
+      stops:original.map(station=>String(station.id))
+    }];
+    return{...source,stations:clipped.stations,geometry:clipped.geometry,services,
+      geometryReady:true,playable:true,missingSegments:[],
+      physicalTrackRouteId:physical.id};
+  }catch{return null}
+}
+function japaneseChoiceCanReuseTrack(choice){
+  return !!choice&&['legacy','fallback','pattern','journey'].includes(choice.kind)
+    &&!choice.throughServiceId&&!choice.throughSpecId;
+}
 // TrainLCD line IDs predate JR Central's physical-route split.
 // Split only at real common stations; preserve every surveyed stop and vertex.
 function resolvedJrCatalogSegments(pattern){
@@ -5802,6 +5853,9 @@ function buildCatalogResolved(choice){
 }
 function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
+  // All Japanese railway categories share this conservative physical fallback.
+  if(route.countryId==='jp'&&japaneseChoiceCanReuseTrack(choice))
+    route=japaneseReusablePhysicalRoute(route)||route;
   if(choice.kind==='gtxSouth')return globalThis.TRT_GTX_A_SOUTH.resolve(choice,route);if(choice.kind==='france')return resolveFranceChoice(choice,route);if(choice.kind==='uk')return resolveUKChoice(choice,route);if(choice.kind==='thailand')return resolveThailandChoice(choice,route);if(choice.kind==='taiwan')return resolveTaiwanChoice(choice,route);
   if(choice.kind==='hongKongLine')return resolveHongKongLineChoice(choice,route);
   if(choice.kind==='hongKongTram')return resolveHongKongTramChoice(choice,route);
@@ -5838,8 +5892,10 @@ function operatingChoiceStatus(choice,route){
   // Japanese operating pattern merely because assembling its tracks failed.
   if(choice.catalogUnavailableReason)return{playable:false,reason:choice.catalogUnavailableReason};
   // A displayable JR physical card is not a playable train when its track is discontinuous.
-  if((choice.kind!=='catalog'&&route?.geometryReady===false&&!(route?.countryId==='jp'&&route.id==='line-hanshin-kobe-kosoku'&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0))||(choice.kind!=='catalog'&&route?.playable===false))
-    return{playable:false,reason:'실제 선로가 연결되지 않았거나 선형 검증이 완료되지 않았습니다.'};
+  if((choice.kind!=='catalog'&&route?.geometryReady===false&&!(route?.countryId==='jp'&&route.id==='line-hanshin-kobe-kosoku'&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0))||(choice.kind!=='catalog'&&route?.playable===false)){
+    if(!japaneseChoiceCanReuseTrack(choice)||!japaneseReusablePhysicalRoute(route))
+      return{playable:false,reason:'실제 선로가 연결되지 않았거나 선형 검증이 완료되지 않았습니다.'};
+  }
   try{
     const resolved=resolveOperatingChoice(choice,route,{preview:true}),resolvedRoute=resolved?.route;
     if(!resolvedRoute||!Array.isArray(resolvedRoute.stations)||resolvedRoute.stations.length<2)
@@ -6263,6 +6319,9 @@ async function hydrateJapaneseOperatingConnections(route){
   const queue=physical=>{
     if(physical?.lazy&&physical.id!==route.id)pending.set(physical.id,physical);
   };
+  // Cover Japanese operator lines even when they have no TrainLCD patterns.
+  const physicalReplacements=japaneseExistingPhysicalCandidates(route);
+  if(physicalReplacements.length===1)queue(physicalReplacements[0]);
   // Hydrate actual matching tracks, not merely old line codes.
   for(const segment of segments)queue(routeForCatalogLine(segment.lineCode,catalogRequiredStationNames(segment)));
   for(const code of codes){
