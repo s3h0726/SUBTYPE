@@ -348,12 +348,18 @@ export function normalizeLine(raw={},defaults={}){
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
   const verifiedTheme=globalThis.TRT_LINE_THEMES?.[id],resolvedCode=verifiedTheme?.code||code||'—';
-  const stationEdits=editorNameOverrides.stations[id]||{};
-  const stations=applyRouteTrackCoordinates(raw,Array.isArray(raw.stations)?raw.stations.map((station,index)=>{const normalized=normalizeStation(station,index,resolvedCode),verifiedCode=verifiedTheme?.stationCodes?.[normalized.ja];return verifiedCode?{...normalized,officialCode:verifiedCode,stationCode:verifiedCode,hasOfficialStationCode:true,stationCodeSource:verifiedTheme.colorSource||'verified-line-theme'}:normalized}):[]).map(station=>{
-    const edited=stationEdits[station.id]??stationEdits[station.ja];
-    if(typeof edited!=='string'||!edited.trim())return station;
-    return{...station,canonicalStationNames:station.canonicalStationNames||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji},ko:edited.trim(),routeSpecificStationName:true,editorStationNameOverride:true};
-  });
+  const stationEdits={...(editorNameOverrides.stations[raw.canonicalLineId]||{}),...(editorNameOverrides.stations[id]||{})};
+  const applyEditedName=station=>{
+    if(!station||typeof station!=='object')return station;
+    const edited=[station.id,station.station_id,station.stationMasterId,station.ja,station.en]
+      .map(key=>stationEdits[key]).find(value=>typeof value==='string'&&value.trim());
+    if(!edited)return station;
+    const ko=edited.normalize('NFC').trim();
+    return {...station,ko,nameKo:ko,names:{...(station.names||{}),ko},
+      canonicalStationNames:station.canonicalStationNames||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji},
+      routeSpecificStationName:true,editorStationNameOverride:true};
+  };
+  const stations=applyRouteTrackCoordinates(raw,Array.isArray(raw.stations)?raw.stations.map((station,index)=>{const normalized=normalizeStation(station,index,resolvedCode),verifiedCode=verifiedTheme?.stationCodes?.[normalized.ja];return verifiedCode?{...normalized,officialCode:verifiedCode,stationCode:verifiedCode,hasOfficialStationCode:true,stationCodeSource:verifiedTheme.colorSource||'verified-line-theme'}:normalized}):[]).map(applyEditedName);
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   const serviceStationPool=raw.countryId==='kr'&&raw.schemaVersion===2?[...stations,...(raw.verifiedJourneys||[]).flatMap(j=>j.stations||[])]:stations;
@@ -361,11 +367,7 @@ export function normalizeLine(raw={},defaults={}){
   const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if((raw.countryId!=='tw'||raw.category==='custom')&&raw.countryId!=='hk'&&raw.countryId!=='th'&&(raw.countryId!=='fr'||raw.category==='custom')&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:raw.countryId==='tw'?'각역정차':'各駅停車',nameKo:'각역정차',nameEn:'Local',...(raw.countryId==='tw'?{nameZh:raw.line?.zh||'自訂路線'}:{}),stops:allStationIds});
   // 한국 이름 편집은 대표 경로뿐 아니라 분기·급행·반대 방향의 모든 정차지에 적용한다.
   const verifiedJourneys=Array.isArray(raw.verifiedJourneys)?raw.verifiedJourneys.map(journey=>{
-    const calls=raw.countryId==='kr'?(journey.stations||[]).map(station=>{
-      const edited=stationEdits[station.id]??stationEdits[station.ja];
-      if(typeof edited!=='string'||!edited.trim())return station;
-      return{...station,ko:edited.trim(),...(station.names?{names:{...station.names,ko:edited.trim()}}:{}),canonicalStationNames:station.canonicalStationNames||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji},routeSpecificStationName:true,editorStationNameOverride:true};
-    }):journey.stations;
+    const calls=raw.countryId==='kr'?(journey.stations||[]).map(applyEditedName):journey.stations;
     if(raw.countryId==='kr'&&calls?.length){const old=journey.stations,oldPair=old[0].ko+' → '+old.at(-1).ko,newPair=calls[0].ko+' → '+calls.at(-1).ko;
       const fix=value=>typeof value==='string'?value.replace(oldPair,newPair):value;
       journey={...journey,stations:calls,patternName:{...journey.patternName,ko:fix(journey.patternName?.ko)},service:journey.service?{...journey.service,nameKo:fix(journey.service.nameKo)}:journey.service};}
@@ -375,12 +377,20 @@ export function normalizeLine(raw={},defaults={}){
     return {...journey,patternName:{...(journey.patternName||{}),ko:displayName},service:journey.service?{...journey.service,nameKo:displayName}:journey.service};
   }):raw.verifiedJourneys;
   const lineTheme=verifiedTheme||{code:resolvedCode,color:text(raw.lineColor,raw.color)||'#777777',style:category==='jr'?'jr':category==='subway'?'metro':'private',operatorMark:text(operatorRaw.en,operatorRaw.ja)||'RAILWAY',colorVerified:false,colorSource:raw.colorSource||'Imported source data'};
-  const editorLine=editorNameOverrides.lines[id]||{};
+  const editorLine=editorNameOverrides.lines[id]||editorNameOverrides.lines[raw.canonicalLineId]||{};
   const editorColor=/^#[0-9a-fA-F]{6}$/.test(editorLine.color||'')?editorLine.color:lineTheme.color;
   const normalizedOperatorId=text(raw.operatorId,operatorRaw.id)||category,assetOperatorId=({'jr-east':'op-2','jr-central':'op-3','tokyo-metro':'op-18','toei':'op-119'})[normalizedOperatorId]||normalizedOperatorId;
   raw.operatorAsset=raw.operatorAsset?.asset?raw.operatorAsset:null;
   const lineJa=cleanDisplayLineName(text(lineRaw.ja,raw.nameJa,raw.japanese,raw.name,lineRaw.en,'新路線')),operatorJa=text(operatorRaw.ja,raw.operatorNameJa,raw.operatorName,operatorRaw.en,'Railway'),operatorKo=text(operatorRaw.ko),lineKo=text(lineRaw.ko);
-  return{...raw,verifiedJourneys,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{...(raw.countryId==='th'?{th:operatorRaw.th}:{}),...(raw.countryId==='tw'?{...operatorRaw,zh:text(operatorRaw.zh,operatorRaw.nameZh,operatorRaw.names?.zh)}:{}),ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:text(editorNameOverrides.operators[normalizedOperatorId],operatorKo)||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:text(editorLine.ko,lineKo)||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:editorColor,loop:!!raw.loop,lineTheme:{...lineTheme,color:editorColor},services,stations}
+  const stationCatalog=Array.isArray(raw.stationCatalog)?raw.stationCatalog.map(applyEditedName):raw.stationCatalog;
+  const directions=Array.isArray(raw.directions)?raw.directions.map(direction=>({
+    ...direction,stops:Array.isArray(direction.stops)?direction.stops.map(applyEditedName):direction.stops
+  })):raw.directions;
+  const patterns=Array.isArray(raw.patterns)?raw.patterns.map(pattern=>({
+    ...pattern,nameKo:editableName(editorNameOverrides.services[pattern.id])||pattern.nameKo,
+    stations:Array.isArray(pattern.stations)?pattern.stations.map(applyEditedName):pattern.stations
+  })):raw.patterns;
+  return{...raw,stationCatalog,directions,patterns,verifiedJourneys,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{...(raw.countryId==='th'?{th:operatorRaw.th}:{}),...(raw.countryId==='tw'?{...operatorRaw,zh:text(operatorRaw.zh,operatorRaw.nameZh,operatorRaw.names?.zh)}:{}),ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:text(editorNameOverrides.operators[normalizedOperatorId],operatorKo)||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:text(editorLine.ko,lineKo)||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:editorColor,loop:!!raw.loop,lineTheme:{...lineTheme,color:editorColor},services,stations}
 }
 function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[],services:[]},{category:raw.category});const searchStations=Array.isArray(raw.searchStations)?raw.searchStations:[];
  const editedNames=raw.countryId==='kr'?Object.values(editorNameOverrides.stations[raw.id]||{}).filter(v=>typeof v==='string'):[];
