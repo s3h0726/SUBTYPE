@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.14.1] — 2026-11-22
+
+- data: apply Korean names and RGB edits from web editor
+
 ## [v0.14.0] — 2026-11-22
 
 - feat: 노선 카드 사용자 라벨 및 RGB 편집 지원 (#99) * feat: add label name and RGB data columns to Korean-name editor * feat: add live label preview, RGB picker and draft tracking * feat: render 
