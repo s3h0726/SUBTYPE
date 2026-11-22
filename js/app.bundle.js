@@ -107,10 +107,11 @@ let franceNameGroups = new Map();
 function configureFranceNames(edits, stationNameGroups = {}) {
   franceEdits = new Map();
   franceNameGroups = new Map(Object.entries(stationNameGroups));
+  const knownGroups = new Set(franceNameGroups.values());
   for (const [line, stations] of Object.entries(edits.stations || {}).sort()) {
     if (!line.startsWith('fr-')) continue;
     for (const [id, name] of Object.entries(stations)) {
-      if (id.startsWith('fr-stop-') && typeof name === 'string' && name.trim()) {
+      if ((id.startsWith('fr-stop-') || knownGroups.has(id)) && typeof name === 'string' && name.trim()) {
         franceEdits.set(franceNameGroups.get(id) || id, name.trim());
       }
     }
@@ -1014,6 +1015,7 @@ function isKorailOperatedRoute(route,station){
 
 function resolveTransportStopTemplate(route,station){
   if(route?.countryId==='fr'){
+    if(route.operatorId==='fr-oslo'||route.serviceBrand?.startsWith('OUIGO'))return {key:'fr-ouigo',style:'fr-ouigo',family:'fr-korean-first',referenceSource:route.sourceUrl};
     if(route.category==='commuter_rail')return {key:'fr-transilien',style:'fr-transilien',family:'fr-korean-first',referenceSource:route.sourceUrl};
     if(route.category==='rer')return {key:'fr-rer',style:'fr-rer',family:'fr-korean-first',referenceSource:route.sourceUrl};
     const style=({'fr-ratp':'fr-ratp','fr-ratp-dev-lyon':'fr-tcl','fr-keolis-rennes':'fr-star',
@@ -5417,7 +5419,7 @@ function isDedicatedKoreanAirportBus(route){
   return [route.normalizedCategory,route.routeType,route.category,route.categoryKo,route.regionalCategory]
     .some(value=>/^(?:airport[_ -]?(?:bus|limousine)|공항\s*(?:버스|리무진))$/iu.test(String(value||'').trim()));
 }
-function routeCategoryMatches(route){if(category==='all')return true;if(transportGroup==='bus'&&category==='airport_bus')return isDedicatedKoreanAirportBus(route);if(transportGroup==='bus')return(category===(route.normalizedCategory||route.routeType||route.category));return routeGroup(route)===category||route.mode===category}
+function routeCategoryMatches(route){if(category==='all')return true;if(route.countryId==='fr'&&category==='international')return route.international===true||route.category==='international';if(transportGroup==='bus'&&category==='airport_bus')return isDedicatedKoreanAirportBus(route);if(transportGroup==='bus')return(category===(route.normalizedCategory||route.routeType||route.category));return routeGroup(route)===category||route.mode===category}
 const NETWORK_GROUPS={keio:{routeIds:[],label:'케이오 본선 계통',kind:'branches'}};
 // Public service-patterns and physical tracks are separate concepts.
 // Group city-tram operators only in the selector; preserve every selectable route and its geometry.

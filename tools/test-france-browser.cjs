@@ -9,9 +9,10 @@ const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = path.resolve(__dirname, '..');
 const publicBase = process.env.FRANCE_PUBLIC_URL;
 const uiOnly = process.env.FRANCE_UI_ONLY === '1';
+const nameOverrideTest = process.env.FRANCE_NAME_OVERRIDE_TEST === '1';
 const requestedLines = (process.env.FRANCE_ROUTE_IDS || '').split(',').filter(Boolean);
 const marker = '\n})().catch(error=>';
-const hook = '\nglobalThis.__FRANCE_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,franceFreeDriveRoutes,buildTypingModel,routes:()=>routes};\n';
+const hook = '\nglobalThis.__FRANCE_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,franceFreeDriveRoutes,buildTypingModel,filteredRoutes,routes:()=>routes};\n';
 const mime = {'.html':'text/html', '.js':'text/javascript', '.json':'application/json',
   '.css':'text/css', '.svg':'image/svg+xml'};
 const server = http.createServer((request, response) => {
@@ -126,10 +127,70 @@ async function run() {
         await route.fulfill({response, body:(await response.text()).replace(marker, hook + marker)});
       });
     }
+    const expectedIndex = require('../data/fr/generated/index.json');
+    const classic = expectedIndex.routes.find(route => route.operatorId === 'fr-oslo');
+    const editedName = '마시 한국어 연동 검사';
+    if (nameOverrideTest) {
+      assert.ok(classic, 'A verified OUIGO Train Classique route is required');
+      const detail = JSON.parse(fs.readFileSync(path.join(root, classic.lazySource), 'utf8'));
+      const massy = detail.stationCatalog.find(station => station.fr === 'Massy-Palaiseau');
+      assert.ok(massy, 'Missing SNCF Massy-Palaiseau identity');
+      await page.route('**/data/editor-overrides.json*', route => route.fulfill({
+        json:{stations:{[classic.id]:{[massy.id]:editedName}}},
+      }));
+    }
     await page.addInitScript(() => localStorage.setItem('trt-country', 'fr'));
     await page.goto(base, {waitUntil:'domcontentloaded', timeout:60000});
     await page.waitForFunction(() => globalThis.__FRANCE_QA__?.routes().some(route => route.countryId === 'fr'));
     const index = require('../data/fr/generated/index.json');
+    if (nameOverrideTest) {
+      await page.evaluate(() => globalThis.__FRANCE_QA__.go('rail-map'));
+      await page.locator('#category-tabs [data-category="international"]').click();
+      const borderIds = await page.evaluate(() => globalThis.__FRANCE_QA__.filteredRoutes().map(route=>route.id));
+      const expectedBorders = index.routes.filter(route=>route.international||route.category==='international').map(route=>route.id);
+      assert.deepEqual(borderIds.sort(),expectedBorders.sort(),'International selection must include cross-border regional trains');
+      await page.locator('#category-tabs [data-category="all"]').click();
+      await openRoute(page, 'fr-transilien-v');
+      const choice = await page.evaluate(editedName => {
+        const qa = globalThis.__FRANCE_QA__, owner = qa.routes().find(route => route.id === 'fr-transilien-v');
+        const selected = qa.actualOperatingChoices(owner).find(choice => choice.originNames.ko === editedName);
+        if (!selected) throw Error('Shared Korean edit did not reach Transilien origin/destination names');
+        const route = qa.resolveOperatingChoice(selected, owner).route;
+        if (route.stations[0].fr !== 'Massy - Palaiseau') throw Error('Original French name changed');
+        return {id:selected.id,key:qa.operatingPatternKey(selected),stations:route.stations.map(({id,ko})=>({id,ko}))};
+      }, editedName);
+      report.testedDirections.push(await testDirection(page, choice));
+      await page.setViewportSize({width:390,height:844});
+      await openRoute(page, 'fr-transilien-v');
+      report.mobileDirections.push(await testDirection(page, choice));
+      report.nameOverrides = await page.evaluate(async ({editedName,classicId}) => {
+        const qa = globalThis.__FRANCE_QA__;
+        qa.game.stop(false);qa.go('rail-map');
+        await qa.chooseRoute('fr-transilien-v');
+        qa.openSetup(qa.routes().find(route => route.id === 'fr-transilien-v'));
+        if (![...document.querySelector('#journey-destination').options].some(option=>option.textContent.includes(editedName))) {
+          throw Error('Edited Korean name is absent from destinations');
+        }
+        await qa.startFreeDrive(qa.routes().find(route => route.id === 'fr-transilien-v'));
+        const drive = qa.freeDrive;
+        const service = drive.routes.find(route => route.physicalLineId === 'fr-transilien-v' && route.stations[0].ko === editedName);
+        if (!service || !drive.start(service) || drive.snapshot().station.ko !== editedName) throw Error('Free-drive name edit missing');
+        const classic = drive.snapshot().edges.find(edge => edge.route.physicalLineId === classicId);
+        if (!classic || !drive.moveTo(classic.to,classic.routeId,drive.currentKey)) throw Error('Transilien-to-OUIGO interchange missing');
+        return {answers:'PASS',signs:'PASS',destinations:'PASS',freeDrive:'PASS',classicTransfer:'PASS',originalFrench:'PASS'};
+      }, {editedName,classicId:classic.id});
+      await page.goto(new URL('reports/korean-names/editor.html?country=fr', base).href, {waitUntil:'domcontentloaded'});
+      await page.locator('[data-file="stations-by-line"]').click();
+      for (const id of ['fr-transilien-v',classic.id]) {
+        await page.locator('#route-filter').selectOption(id);
+        await page.waitForFunction(name=>[...document.querySelectorAll('#table input')].some(input=>input.value===name), editedName);
+      }
+      report.nameOverrides.editor = 'PASS';
+      report.nameOverrides.internationalFilter = 'PASS';
+      assert.deepEqual(report.errors, []);
+      report.status = 'PASS';
+      return;
+    }
     const lines = uiOnly ? [] : requestedLines.length ? index.routes.filter(route => requestedLines.includes(route.id))
       : publicBase ? index.routes.filter(route => route.category === 'commuter_rail' ||
       ['fr-paris-metro-13', 'fr-tgv-paris-besancon', 'fr-tgv-strasbourg-brussels',
@@ -289,7 +350,7 @@ async function run() {
     report.error = error.stack;
     process.exitCode = 1;
   } finally {
-    const name = uiOnly ? 'ui-gameplay.json' : requestedLines.length
+    const name = nameOverrideTest ? (publicBase ? 'production-name-overrides.json' : 'name-overrides-gameplay.json') : uiOnly ? 'ui-gameplay.json' : requestedLines.length
       ? (publicBase ? 'production-focused-gameplay.json' : 'browser-focused-gameplay.json')
       : publicBase ? 'production-gameplay.json' : 'browser-gameplay.json';
     fs.writeFileSync(path.join(root, 'reports/fr', name), JSON.stringify(report, null, 2) + '\n');

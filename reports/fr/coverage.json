@@ -4,22 +4,22 @@
   "nationalCoveragePercent": null,
   "sourceDenominator": "Source-scoped GTFS rail line records and distinct ordered passenger-call patterns, including overlaps across feeds",
   "discoveredSourcePatternRecords": 13286,
-  "coveredSourcePatternRecords": 303,
-  "verifiedSourcePatternRecords": 303,
-  "remainingSourcePatternRecords": 12983,
-  "verifiedShareOfSourcePatternRecordsPercent": 2.2805961162125548,
+  "coveredSourcePatternRecords": 501,
+  "verifiedSourcePatternRecords": 501,
+  "remainingSourcePatternRecords": 12785,
+  "verifiedShareOfSourcePatternRecordsPercent": 3.770886647598976,
   "existingFranceLinesOnBaseline": 0,
-  "catalogLines": 69,
-  "operators": 9,
-  "catalogServiceFamilies": 161,
-  "playableDirections": 300,
-  "verifiedPlayableDirections": 300,
+  "catalogLines": 160,
+  "operators": 10,
+  "catalogServiceFamilies": 263,
+  "playableDirections": 495,
+  "verifiedPlayableDirections": 495,
   "catalogDirectionsPendingVerification": 0,
-  "koreanNamedStations": 1145,
-  "stationIds": 1145,
-  "physicalStationGroups": 1104,
-  "sharedPhysicalWays": 17863,
-  "uniquePhysicalWays": 28470,
+  "koreanNamedStations": 1636,
+  "stationIds": 1636,
+  "physicalStationGroups": 1593,
+  "sharedPhysicalWays": 28811,
+  "uniquePhysicalWays": 41678,
   "physicalInfrastructure": [
     {
       "archiveSha256": "872afbb93b45de996b9515a1275a34834a58b05b516df1234d5c9f3e700a2a20",
@@ -50,6 +50,11 @@
       "verificationStatus": "INFRASTRUCTURE_INVENTORIED"
     }
   ],
+  "geometrySnapshots": 41700,
+  "internationalServices": {
+    "catalogLines": 8,
+    "playableDirections": 18
+  },
   "sourcesByStatus": {
     "SCHEDULE_INVENTORIED": 72,
     "MISSING": 5,
@@ -57,9 +62,9 @@
     "UNVERIFIABLE": 1
   },
   "trackRelations": {
-    "examined": 390,
-    "matched": 284,
-    "blocked": 106
+    "examined": 1164,
+    "matched": 545,
+    "blocked": 619
   },
   "reviewedTrackServices": 132,
   "byFamily": [
@@ -75,13 +80,13 @@
     },
     {
       "family": "high-speed",
-      "sourcePatternRecords": 1049,
-      "catalogLines": 9,
-      "coveredSourcePatternRecords": 29,
-      "verifiedSourcePatternRecords": 29,
-      "remainingSourcePatternRecords": 1020,
-      "playableDirections": 23,
-      "testedDirections": 23
+      "sourcePatternRecords": 1029,
+      "catalogLines": 14,
+      "coveredSourcePatternRecords": 39,
+      "verifiedSourcePatternRecords": 39,
+      "remainingSourcePatternRecords": 990,
+      "playableDirections": 35,
+      "testedDirections": 35
     },
     {
       "family": "ile-de-france-rail-review",
@@ -96,12 +101,12 @@
     {
       "family": "intercites",
       "sourcePatternRecords": 97,
-      "catalogLines": 1,
-      "coveredSourcePatternRecords": 6,
-      "verifiedSourcePatternRecords": 6,
-      "remainingSourcePatternRecords": 91,
-      "playableDirections": 6,
-      "testedDirections": 6
+      "catalogLines": 3,
+      "coveredSourcePatternRecords": 10,
+      "verifiedSourcePatternRecords": 10,
+      "remainingSourcePatternRecords": 87,
+      "playableDirections": 10,
+      "testedDirections": 10
     },
     {
       "family": "intercites-night",
@@ -116,12 +121,22 @@
     {
       "family": "international",
       "sourcePatternRecords": 156,
-      "catalogLines": 3,
+      "catalogLines": 1,
       "coveredSourcePatternRecords": 5,
       "verifiedSourcePatternRecords": 5,
       "remainingSourcePatternRecords": 151,
-      "playableDirections": 8,
-      "testedDirections": 8
+      "playableDirections": 4,
+      "testedDirections": 4
+    },
+    {
+      "family": "ouigo-classique",
+      "sourcePatternRecords": 20,
+      "catalogLines": 2,
+      "coveredSourcePatternRecords": 8,
+      "verifiedSourcePatternRecords": 8,
+      "remainingSourcePatternRecords": 12,
+      "playableDirections": 7,
+      "testedDirections": 7
     },
     {
       "family": "rail",
@@ -156,22 +171,22 @@
     {
       "family": "ter",
       "sourcePatternRecords": 4175,
-      "catalogLines": 12,
-      "coveredSourcePatternRecords": 30,
-      "verifiedSourcePatternRecords": 30,
-      "remainingSourcePatternRecords": 4145,
-      "playableDirections": 28,
-      "testedDirections": 28
+      "catalogLines": 97,
+      "coveredSourcePatternRecords": 206,
+      "verifiedSourcePatternRecords": 206,
+      "remainingSourcePatternRecords": 3969,
+      "playableDirections": 206,
+      "testedDirections": 206
     },
     {
       "family": "tram-train",
       "sourcePatternRecords": 12,
-      "catalogLines": 1,
+      "catalogLines": 0,
       "coveredSourcePatternRecords": 0,
       "verifiedSourcePatternRecords": 0,
       "remainingSourcePatternRecords": 12,
-      "playableDirections": 2,
-      "testedDirections": 2
+      "playableDirections": 0,
+      "testedDirections": 0
     },
     {
       "family": "tramway",
@@ -202,6 +217,7 @@
         "11",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01737",
       "sourceLineId": "fr-line-67a42d551da103cb156ad3f2",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -541,6 +557,7 @@
         "28",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01739",
       "sourceLineId": "fr-line-37da0da4a428bc321c284197",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -783,6 +800,7 @@
         "11",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01738",
       "sourceLineId": "fr-line-0eb1fe5d45629f8996b2be20",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -838,6 +856,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01740",
       "sourceLineId": "fr-line-250b29d1e0fd63ee8902b7db",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -956,6 +975,7 @@
         "11",
         "24"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01736",
       "sourceLineId": "fr-line-01f131eb6d3f345092fe1655",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -1082,6 +1102,7 @@
         "11",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01730",
       "sourceLineId": "fr-line-85630bc6161851540735a30d",
       "status": "VERIFIED_ADDED",
@@ -1207,6 +1228,7 @@
         "11",
         "24"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01731",
       "sourceLineId": "fr-line-427abee005307538d91d4d35",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -1302,6 +1324,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01741",
       "sourceLineId": "fr-line-e06bc9c2497e59efaa7ca266",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -1339,6 +1362,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C02711",
       "sourceLineId": "fr-line-63551ff572832504ec068b56",
       "status": "VERIFIED_ADDED",
@@ -1373,6 +1397,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01742",
       "sourceLineId": "fr-line-945b9c7a36bf71eb35260d79",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -1568,6 +1593,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01743",
       "sourceLineId": "fr-line-fbb7fb79a33a9bacc489c34a",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -1758,6 +1784,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01727",
       "sourceLineId": "fr-line-2032e020b2633a8498e3dbce",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2296,6 +2323,7 @@
         "24",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01728",
       "sourceLineId": "fr-line-9e706297f17bfaa3f07d6271",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2462,6 +2490,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01729",
       "sourceLineId": "fr-line-dc63812fd14f7dee22089f7b",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2533,6 +2562,7 @@
         "75",
         "76"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::7c00cf1f-74fd-4fda-a4e5-c2b1acb937a9:",
       "sourceLineId": "fr-line-0e91989e5b1a232fbbc4f07d",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2589,6 +2619,7 @@
         "11",
         "27"
       ],
+      "international": true,
       "sourceRouteId": "FR:Line::37ac13d7-de6b-4d05-837f-891191140e19:",
       "sourceLineId": "fr-line-b68a846fa3c7ba3d9659dc09",
       "status": "VERIFIED_ADDED",
@@ -2645,6 +2676,7 @@
         "84",
         "93"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::19ea029b-6782-421a-8481-7470f5718e47:",
       "sourceLineId": "fr-line-afe9fee0e08d4c346f6a0c98",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2708,6 +2740,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::BF117DF3-52D4-480E-BA33-EE64D381EB84:",
       "sourceLineId": "fr-line-ed7e3b698b13dab4159c483c",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2750,6 +2783,7 @@
         "84",
         "93"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::5CE372B6-CE7D-4780-B4F8-F5979FED5405:",
       "sourceLineId": "fr-line-e6ac3c562151f0512413b92d",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2818,6 +2852,7 @@
         "84",
         "93"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::5B616F3E-D726-494F-80C2-7EB8355C3177:",
       "sourceLineId": "fr-line-d00ca8549fa1f93b1a768fb5",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2860,6 +2895,7 @@
         "84",
         "27"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::27A3C9CC-526E-4121-8CF9-7C00D4652BCC:",
       "sourceLineId": "fr-line-5bb401f571542462bf03fbc2",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2914,6 +2950,7 @@
       "regions": [
         "52"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::3BFEB21D-85AF-409B-9346-ED10CA3D8ED0:",
       "sourceLineId": "fr-line-b944f1990e755edba6c55f68",
       "status": "VERIFIED_ADDED",
@@ -2948,6 +2985,7 @@
       "regions": [
         "52"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::576E2F4E-738A-4830-A235-A3BAAA706745:",
       "sourceLineId": "fr-line-181a1cf717136cf19d9f2503",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -2985,6 +3023,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::2993074B-2B66-490B-B4C2-5593D87237FB:",
       "sourceLineId": "fr-line-59649cfa819f0f57a35bfb42",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3024,6 +3063,7 @@
         "27",
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::d1bc94ff-90a2-45c6-9617-258fb5f8f54a:",
       "sourceLineId": "fr-line-79f63a896b85b772a4b11948",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3069,6 +3109,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::06C24CB9-71E3-4CC4-BB31-E6285EB38AE1:",
       "sourceLineId": "fr-line-42c3b4f7e52d9a52988de9b6",
       "status": "VERIFIED_ADDED",
@@ -3103,6 +3144,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::BAED427A-994D-4D73-B568-A7553E01CD3C:",
       "sourceLineId": "fr-line-0d8e0ab3e5e88d2dd1286f40",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3140,6 +3182,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::6F1D7ABC-B729-498A-B3BD-DE55587C60E2:",
       "sourceLineId": "fr-line-ff998df2b2c89733858b826e",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3183,6 +3226,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::DAF77CAA-444E-43F9-A7EC-1FFEF4C462CD:",
       "sourceLineId": "fr-line-c59fac9c5d3454ad7c1edfb0",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3242,6 +3286,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::05C666F4-3B26-4DB6-A4A8-F3C6D6150B76:",
       "sourceLineId": "fr-line-a77593a83b67b27a97fcbefe",
       "status": "VERIFIED_ADDED",
@@ -3277,6 +3322,7 @@
         "11",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::BFA34945-1B58-4DF6-887D-D07AD8DC34B5:",
       "sourceLineId": "fr-line-170d2cba38787bbca43edaa1",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3316,20 +3362,18 @@
         "11",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::409E20F1-3A95-426A-B174-0008A078BE1F:",
       "sourceLineId": "fr-line-23533cfdf347a3022773fee7",
       "status": "PARTIALLY_IMPLEMENTED",
-      "serviceFamilies": 1,
+      "serviceFamilies": 2,
       "discoveredSchedulePatterns": 9,
-      "coveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 5,
       "remainingSourcePatternIds": [
         "fr-pattern-13c2ab88003d65c9688d4ab2",
         "fr-pattern-270f085e72684dcdd3bdf774",
-        "fr-pattern-30ea078621eabb9fc073cfad",
         "fr-pattern-6f7fd1aa7a9eda20c54520fd",
-        "fr-pattern-8c6580f99ac67e38d85ebb52",
-        "fr-pattern-fbef27c1b3a0dbab083d83bb",
-        "fr-pattern-fce670e4461ad6729f94aad5"
+        "fr-pattern-8c6580f99ac67e38d85ebb52"
       ],
       "directions": [
         {
@@ -3349,6 +3393,25 @@
           ],
           "relationId": 11961075,
           "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-528ec5a101a492b6c0cd480a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-fce670e4461ad6729f94aad5"
+          ],
+          "relationId": 19506496,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ac2672a9eada503ec939f444",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-30ea078621eabb9fc073cfad",
+            "fr-pattern-fbef27c1b3a0dbab083d83bb"
+          ],
+          "relationId": 19506497,
+          "status": "VERIFIED_ADDED"
         }
       ]
     },
@@ -3359,6 +3422,7 @@
         "11",
         "32"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::69ABADD2-325C-47DC-BC61-D74DD87C5E3C:",
       "sourceLineId": "fr-line-0aa19989b55e8a382c6b51f9",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3399,6 +3463,7 @@
         "11",
         "27"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::7f1e0c14-f26c-49fa-9d55-e16999a63328:",
       "sourceLineId": "fr-line-4bfb4f96c13eb62b7a652a8d",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3458,6 +3523,7 @@
         "27",
         "44"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::4CB6B094-7310-4CD4-AE43-FC6F3C2EA917:",
       "sourceLineId": "fr-line-f5ea57f70606078ef505ff99",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3498,6 +3564,7 @@
         "84",
         "76"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::8EDA0FF6-311A-4C83-8C18-63D890856B43:",
       "sourceLineId": "fr-line-fd335910875a7a3def639bad",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3570,6 +3637,7 @@
         "24",
         "75"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::6D267C2D-7D54-4578-9380-B2C7C75C7010:",
       "sourceLineId": "fr-line-3d3bfe2569e0c20b4743344a",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3617,6 +3685,7 @@
         "52",
         "53"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::A7628FC9-CF66-4A89-B2C2-9924DD8DCD89:",
       "sourceLineId": "fr-line-bc7b278adcff065e75abf3ed",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3664,6 +3733,7 @@
         "11",
         "32"
       ],
+      "international": true,
       "sourceRouteId": "FR:Line::53F2E1D2-2532-4CBF-9213-90D7962D5212:",
       "sourceLineId": "fr-line-785e77cb67e9acb22d36aab4",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3704,6 +3774,7 @@
         "11",
         "32"
       ],
+      "international": true,
       "sourceRouteId": "FR:Line::CB8AE7F1-0F5A-4DDE-B53D-4CFE739A713F:",
       "sourceLineId": "fr-line-9d3c8a13e6c587912b6a99a1",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3754,6 +3825,7 @@
         "76",
         "93"
       ],
+      "international": false,
       "sourceRouteId": "FR:Line::3418b67d-a81f-4dde-b3b0-60cc96ed86f4:",
       "sourceLineId": "fr-line-a3dfde509634a52e86a72399",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3841,6 +3913,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01371",
       "sourceLineId": "fr-line-cbaa95dfad0feaab4467b7ca",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3882,6 +3955,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01372",
       "sourceLineId": "fr-line-3144d7e41c2420767c9e0d5d",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -3923,6 +3997,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01386",
       "sourceLineId": "fr-line-0fb732457301d5c1d7253bf9",
       "status": "VERIFIED_ADDED",
@@ -3957,6 +4032,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01387",
       "sourceLineId": "fr-line-ce2a5c2f4f18f3ae969677a1",
       "status": "VERIFIED_ADDED",
@@ -3991,6 +4067,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01376",
       "sourceLineId": "fr-line-ba4c6797f9500606e0a467a3",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4035,6 +4112,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01379",
       "sourceLineId": "fr-line-cf681a7a1fa3bb9fabfa6790",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4078,6 +4156,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01381",
       "sourceLineId": "fr-line-f7b535df10d41cbee564e5da",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4115,6 +4194,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01373",
       "sourceLineId": "fr-line-e5c92f9bdf02fed08e60f7fa",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4152,6 +4232,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01374",
       "sourceLineId": "fr-line-850e2b5cf51d64e860948914",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4190,6 +4271,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01375",
       "sourceLineId": "fr-line-a15ebf11164b9d4380b58da0",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4229,6 +4311,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01377",
       "sourceLineId": "fr-line-74dd351fc516cb783b9e8c45",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4289,6 +4372,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01378",
       "sourceLineId": "fr-line-ab130774ec755247e4e9b59b",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4329,6 +4413,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01380",
       "sourceLineId": "fr-line-48075f49bb1c13c7715f0aa1",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4366,6 +4451,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01382",
       "sourceLineId": "fr-line-edc6f6f28b464df651859c27",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4407,6 +4493,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01383",
       "sourceLineId": "fr-line-8f30323c9a5af8d0efb160eb",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4463,6 +4550,7 @@
       "regions": [
         "11"
       ],
+      "international": false,
       "sourceRouteId": "IDFM:C01384",
       "sourceLineId": "fr-line-c63fefe734d61c09a221433e",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4515,6 +4603,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "A",
       "sourceLineId": "fr-line-ea61f4ffdb0290bdd4f3c017",
       "status": "VERIFIED_ADDED",
@@ -4549,6 +4638,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "B",
       "sourceLineId": "fr-line-136ef14c2de599951e2a9c01",
       "status": "VERIFIED_ADDED",
@@ -4583,6 +4673,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "C",
       "sourceLineId": "fr-line-20099bab51eeb3dfa592e0c8",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4619,6 +4710,7 @@
       "regions": [
         "84"
       ],
+      "international": false,
       "sourceRouteId": "D",
       "sourceLineId": "fr-line-6389427c0d5f6f8eb6384f1c",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4658,6 +4750,7 @@
       "regions": [
         "53"
       ],
+      "international": false,
       "sourceRouteId": "7-1001",
       "sourceLineId": "fr-line-1f7ef043416f21603ea44beb",
       "status": "VERIFIED_ADDED",
@@ -4692,6 +4785,7 @@
       "regions": [
         "53"
       ],
+      "international": false,
       "sourceRouteId": "7-1002",
       "sourceLineId": "fr-line-85b94338e60824c2b9228e14",
       "status": "VERIFIED_ADDED",
@@ -4726,6 +4820,7 @@
       "regions": [
         "76"
       ],
+      "international": false,
       "sourceRouteId": "line:61",
       "sourceLineId": "fr-line-67981dca1eb40f037bbb9da7",
       "status": "VERIFIED_ADDED",
@@ -4760,6 +4855,7 @@
       "regions": [
         "76"
       ],
+      "international": false,
       "sourceRouteId": "line:69",
       "sourceLineId": "fr-line-5292ac10f18e1af16c60f73d",
       "status": "VERIFIED_ADDED",
@@ -4794,6 +4890,7 @@
       "regions": [
         "32"
       ],
+      "international": false,
       "sourceRouteId": "ME1",
       "sourceLineId": "fr-line-270517f544548176a91890ba",
       "status": "VERIFIED_ADDED",
@@ -4828,6 +4925,7 @@
       "regions": [
         "32"
       ],
+      "international": false,
       "sourceRouteId": "ME2",
       "sourceLineId": "fr-line-1eec0227fcd03d72459812e5",
       "status": "PARTIALLY_IMPLEMENTED",
@@ -4868,6 +4966,7 @@
       "regions": [
         "93"
       ],
+      "international": false,
       "sourceRouteId": "RTM-116",
       "sourceLineId": "fr-line-ed1ee484538568fce77e7b90",
       "status": "VERIFIED_ADDED",
@@ -4902,6 +5001,7 @@
       "regions": [
         "93"
       ],
+      "international": false,
       "sourceRouteId": "RTM-125",
       "sourceLineId": "fr-line-067bdc488d58f0074d5318c8",
       "status": "VERIFIED_ADDED",
@@ -4929,6 +5029,3895 @@
           "status": "VERIFIED_ADDED"
         }
       ]
+    },
+    {
+      "id": "fr-sncf-b25efc8281ecfd47",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::E245D232-D297-47B9-B699-A93BA3686DE1:",
+      "sourceLineId": "fr-line-60cc82e90f0efdfbb98ae4c3",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-907a10004f67720bcbd1a688",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-50abee9ce902d733ea731f18"
+          ],
+          "relationId": 1061548,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-7e97bf28d2c29d5cff3e7d08",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-73e3088a7476477a3f9f2ee3"
+          ],
+          "relationId": 5659752,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-f3e1225958e09887",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::8B910C1D-6DCC-4674-B2F7-C5274FDC64D4:",
+      "sourceLineId": "fr-line-318fc04793129f139cc55e51",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-50896a5afa875dc8e7ff625d",
+        "fr-pattern-6d57fddde5cbc8fa7b47bac8",
+        "fr-pattern-be1a0cae17c718ceb48f12f2",
+        "fr-pattern-d33667ec3ac94199f18c196a"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d2baa07b215364cab33359ca",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b48d2b8edc5d03c4c7319dca"
+          ],
+          "relationId": 1061583,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a983cab0d5064146ce3c7a14",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3b54c789cb0c03eec715a92b"
+          ],
+          "relationId": 21089312,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-d331e5aadad2e4d5",
+      "category": "regional_rail",
+      "regions": [
+        "76"
+      ],
+      "international": true,
+      "sourceRouteId": "FR:Line::C51AD929-0AAF-4A21-8B81-C1C0102525F5:",
+      "sourceLineId": "fr-line-7e7564bb038519c9b7ab6961",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 40,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-077fb69aa8afb1917cae4c4f",
+        "fr-pattern-1008dfb1f3822dd23c7d4e36",
+        "fr-pattern-146f03db139592ce1d1c36fc",
+        "fr-pattern-169ac69f5f0865332fe61439",
+        "fr-pattern-17b76ced8a3457b124ba6044",
+        "fr-pattern-2694509210da213b5eac82e8",
+        "fr-pattern-2d5400b1d3d6d4214bcf98cd",
+        "fr-pattern-313f046276a5f8d2adc5e480",
+        "fr-pattern-32935b99e922ee61d1520ad2",
+        "fr-pattern-335f8fa603404e5f90f1a385",
+        "fr-pattern-416de95d9841755084bed435",
+        "fr-pattern-437a892e997397f156ac6dcb",
+        "fr-pattern-47c0ea511950d8bbb446fd14",
+        "fr-pattern-487f69ca59f65bdddfdbaf9c",
+        "fr-pattern-4b8c813f7650b35e6715622b",
+        "fr-pattern-4cbdc0ed905f6f665a24edfc",
+        "fr-pattern-4d0ead83d2dffde9a0fd7be5",
+        "fr-pattern-4fd7b29363d55a01ea0e2072",
+        "fr-pattern-51e0b1271a4dcb5c30b71c04",
+        "fr-pattern-56d8cc50e7829470061ecaa5",
+        "fr-pattern-60a51ad2cc0800e5c49d708c",
+        "fr-pattern-6e4e1b1fc637ae31613f3ceb",
+        "fr-pattern-6e8b7e27a31b13c7005f6b38",
+        "fr-pattern-737fd377c2974b1133ed970d",
+        "fr-pattern-78df124173b01600634c621e",
+        "fr-pattern-7fd32d6b9e2835bdca171ed5",
+        "fr-pattern-8c02450d125c91de5a59156a",
+        "fr-pattern-8c4eb066892eba15efa3a1a5",
+        "fr-pattern-9c573e93ed4bd02ff0f793f1",
+        "fr-pattern-a396871e5f90a6d688ae7158",
+        "fr-pattern-b47f875d88d4eb61932dc37c",
+        "fr-pattern-c5d7ad50ae4b82f7a5b19b8f",
+        "fr-pattern-c79f016624720fa053082b3a",
+        "fr-pattern-c93e262f72df9f3adee2ffc5",
+        "fr-pattern-ccd684a5c11a118e91ea52c8",
+        "fr-pattern-d141fb133720102b39591c2d",
+        "fr-pattern-e502e7f3cbf174cf119c81c2",
+        "fr-pattern-e8309868bc17d7ddd39992b8"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-bddce3c34b03511c7b072518",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-739b480a2403a52f0a2aac0a"
+          ],
+          "relationId": 11792152,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-102c15a677d6a4ce739fe443",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-5c48148f8014373b248da587"
+          ],
+          "relationId": 11792134,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-6f18236e902d0984",
+      "category": "regional_rail",
+      "regions": [
+        "76"
+      ],
+      "international": true,
+      "sourceRouteId": "FR:Line::21B4B826-2492-4170-AC04-0B4625ADCA63:",
+      "sourceLineId": "fr-line-4f2bf64d17192283d60d1efa",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 9,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-5593015b687a334b64c763c6",
+        "fr-pattern-7405aaf693731f479bbbf46b",
+        "fr-pattern-8bfc265a1820f97b239c3272",
+        "fr-pattern-910f2e5d18c80086a954a0dc",
+        "fr-pattern-97fd69191987767812dc0990",
+        "fr-pattern-d1a0c10c3fb0e1fb48f31905",
+        "fr-pattern-eefc77c95954e386503613e4"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d4d104aeff006312ccc5f072",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-4b052260f2e3880d29a9f1f7"
+          ],
+          "relationId": 11792154,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-99b21255f3eaa1c72fc1b320",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-202b3e086c8ce1b93c7873c5"
+          ],
+          "relationId": 11792135,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-571fff73f7fed323",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::E597DAD9-42BF-4927-BEDB-0B05091BCBBE:",
+      "sourceLineId": "fr-line-80f683dd746ac1f5ea4ab855",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 14,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-01812bba569e180b03492cb3",
+        "fr-pattern-2a3af3615b398fffd6c1d306",
+        "fr-pattern-3784bdb373dbbc26d5cbfb16",
+        "fr-pattern-5180f124a87addc38c3540a7",
+        "fr-pattern-8699dd0a3d71d73b690a0572",
+        "fr-pattern-92b71f7457210ca2b4470994",
+        "fr-pattern-97537c6378dbc86690e45612",
+        "fr-pattern-a9a1e1554dc5b2850311e1aa",
+        "fr-pattern-c9db81e7c15eb1dae8ea37ce",
+        "fr-pattern-d4997ebda2abe170fe639e3f",
+        "fr-pattern-dc8013aa4f631935ec7ef918",
+        "fr-pattern-ebf8f747f773981708347c49"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-06191075976a42ebfc9fee92",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b628eb864138474059b1a1fb"
+          ],
+          "relationId": 5561147,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-8f613fb050d78a5ef3874bcc",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ee1c40c85a2e108d9d668d68"
+          ],
+          "relationId": 11894817,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-1b3df74dfb072e24",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::6DF38694-D2E3-4706-9C07-D57B43B3E20E:",
+      "sourceLineId": "fr-line-c5d253e55f4d6bc15e0c8e61",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 3,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-8d63667d745bfc0f4ee41f2b"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-dfa53283096c6fd8fb08f6c9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-858ccf6463e8f1789ecd7f01"
+          ],
+          "relationId": 5864899,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-bd18e11556df021b9c694f03",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-92ecd7ab64859da16f321e03"
+          ],
+          "relationId": 11929433,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-ea68024b93abc97e",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::6CDB0462-C560-4D14-8E45-60E1833E0725:",
+      "sourceLineId": "fr-line-a0620d75dca50c9fc7886697",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-bfae266ea1d865b56b4e8a32",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-a21739fa28013e7e8271d504"
+          ],
+          "relationId": 11971756,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-6340995e5060c81f25d40a9d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6ee4499dde018c33612d2fcc"
+          ],
+          "relationId": 5569013,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-571683c84109fa26",
+      "category": "regional_rail",
+      "regions": [
+        "11",
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::cf0d9ce8-bf4e-448e-8bf0-6c965a95c788:",
+      "sourceLineId": "fr-line-7fcf2875475943ec4588a580",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 15,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-08f79707d1d7696778931790",
+        "fr-pattern-1185147e3db1d16efc9f9bb4",
+        "fr-pattern-38523b0d67da4e24ee2e0427",
+        "fr-pattern-388238a4a537fcad1e512499",
+        "fr-pattern-41486600689bef4917a3e453",
+        "fr-pattern-5cfefff0e6de7d007adfaefe",
+        "fr-pattern-a0cb21cc38849901927e68f1",
+        "fr-pattern-a1020b9582ff1a94ed80ebcb",
+        "fr-pattern-a9cba1bf71b6b6dfe7be7c58",
+        "fr-pattern-cfda2ee306689abe0ef04d0e",
+        "fr-pattern-d10fd1e339f75935f7cadce0",
+        "fr-pattern-eafc43e150738c6540e02c7c",
+        "fr-pattern-fa76dd61192765ef1f2dd176"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-cbca31e44e91922a1bc3ce04",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-048e87efd7a98363d817c97e"
+          ],
+          "relationId": 12000382,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-3e132a35d7e99a091d097e8e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b70d7b00d4d96e7b7d28f4c1"
+          ],
+          "relationId": 5926477,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-f1c4651f44a9c732",
+      "category": "regional_rail",
+      "regions": [
+        "11",
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::9B25AB24-D245-4F3C-A70C-73EAF225FF0E:",
+      "sourceLineId": "fr-line-980532cb8e833dcc76d2dcd4",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 34,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-032138efcd48594a783092a2",
+        "fr-pattern-03f1b79e2b46006ebecf710d",
+        "fr-pattern-07531370a6694c356a046126",
+        "fr-pattern-08a150214606f26ae5aabdc8",
+        "fr-pattern-094eac4b041888390ff907e6",
+        "fr-pattern-0986a045f1a2d681c644fbe5",
+        "fr-pattern-0a78a81f064e28255ad185a9",
+        "fr-pattern-27aa3879f17e11a32b271663",
+        "fr-pattern-297d9cd7b83688faa1f5eaac",
+        "fr-pattern-2c1312ce76ca7182434254c6",
+        "fr-pattern-2c5a0db4f1465e6ac3755e11",
+        "fr-pattern-448958231eef59266ce257bc",
+        "fr-pattern-681a7f1453e92a8fb23df859",
+        "fr-pattern-79586b3d1d917029ae4bfd61",
+        "fr-pattern-7e0697a4401bcfabce57e723",
+        "fr-pattern-8100d8e089350cd10d505802",
+        "fr-pattern-8dbe58947d0de9fa670dd9bd",
+        "fr-pattern-9869f8b08e0ecb4d888c834b",
+        "fr-pattern-a30da89644d6906eacc28b27",
+        "fr-pattern-ab4e0fcabd535eb92bf72e38",
+        "fr-pattern-ab8ddd64915121f953202bae",
+        "fr-pattern-b3bf5da885a316cb9f644866",
+        "fr-pattern-b49abcf740e276cc7b681146",
+        "fr-pattern-b4dee80913322f510d9b3e48",
+        "fr-pattern-b635d2ea9dc3c910383eaf7d",
+        "fr-pattern-b6411ae898843ee8ecb94a78",
+        "fr-pattern-b72b70fb3a99f1b0fc9d22f6",
+        "fr-pattern-cb0cd47c5ca1b8aa63e1fe50",
+        "fr-pattern-e26501c5e4a4d5eabfcffbe0",
+        "fr-pattern-f6ccc6d0a618f44539f73f8e",
+        "fr-pattern-febe82780c346de2dc34ffde",
+        "fr-pattern-ffd4d1f88a5178f88e90f3ba"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d3285b364ebbe5c6a6a8ca15",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ebf189fabeb33b76631844a8"
+          ],
+          "relationId": 5926311,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-f18a5f9ae3f8528eaf9d25ef",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ffa4f9628f9e83533b38899b"
+          ],
+          "relationId": 12010386,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-5a9f847dbb6bb1c0",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::BDEAC253-A432-4272-9E91-A3365C78867C:",
+      "sourceLineId": "fr-line-7380015c97566b4b1770a9b8",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-8b78c5069e9f746e911028c0",
+        "fr-pattern-cd06eb0b512aca937ec00e22"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-dff14a924abe4eff68a2a0f7",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e81eadc5c42182c938522057"
+          ],
+          "relationId": 1270853,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-16718a841aea81b544db6ed0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-2f9667271ce056f26e673830"
+          ],
+          "relationId": 13894630,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-b4e4b8f442c955f4",
+      "category": "regional_rail",
+      "regions": [
+        "28",
+        "53"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::789690b9-0bee-4978-8bf9-f4810c9e16f2:",
+      "sourceLineId": "fr-line-24bcb817d23bcaf35a908ad8",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 18,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [
+        "fr-pattern-053807704c1a33e516589d61",
+        "fr-pattern-1ab06e13ef72a926528d1405",
+        "fr-pattern-23285603727a82a5761211b6",
+        "fr-pattern-5e0f9527ada256647cca7cac",
+        "fr-pattern-6673daa6668f31ddcce80cae",
+        "fr-pattern-69d2c0db612a988329e58290",
+        "fr-pattern-6a73cb66d59eef86165a8345",
+        "fr-pattern-73631978c5170c42ed628443",
+        "fr-pattern-820c1517cef5cbadd4b10bc1",
+        "fr-pattern-8c5960e39598e622251d3987",
+        "fr-pattern-ce68bf750b13a5ad2e4cab76",
+        "fr-pattern-eb66b8e522baff4861a9cc08",
+        "fr-pattern-ebcf79b00d35e43ea251f96a",
+        "fr-pattern-fc52d7a11402b7492c709a8b"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a12955b1366a03a62b761864",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-072d783dccf89eaf96d79ec4"
+          ],
+          "relationId": 5501717,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-044d85389540e61c036dedeb",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-739b9b3c0e7ce0c6476cce85"
+          ],
+          "relationId": 2340987,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-67e34010b8c7c42ab926f99e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c93e68b77ce617bc0e4c6916"
+          ],
+          "relationId": 12883841,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-f9d208bbad745b6619f6eda7",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-29d2ef991b2d7452ad9a8580"
+          ],
+          "relationId": 12883842,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-130bdc17961e29d2",
+      "category": "regional_rail",
+      "regions": [
+        "75"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::0359c353-2f81-4c49-a269-bc287ff237e0:",
+      "sourceLineId": "fr-line-a1c3c2a7b87a5f6aef589e8d",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-fe0f63846847d2876c4125a1",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-342b9e9e238f99f2d07d031b"
+          ],
+          "relationId": 13081020,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4afa0a262ad0f26cfb3d4fb9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f8fa98484a79a90c92f7a7ed"
+          ],
+          "relationId": 4776039,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-22172d0f00f6e906",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::7DB0420F-470D-4C90-847F-1560F0624F60:",
+      "sourceLineId": "fr-line-fcc90814de4b88fb31e7ba93",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 10,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0b9a2cda225a7405298c8309",
+        "fr-pattern-1d5cbcaf8ad10bd85940e87d",
+        "fr-pattern-3029cc55abd98ef848b0b523",
+        "fr-pattern-4c12301ce1276ef93df0a84c",
+        "fr-pattern-5a46a1453bc3b26c837590c4",
+        "fr-pattern-739eb6e22453f22b5b4a5b41",
+        "fr-pattern-8934a10ef870739a7802e8c5",
+        "fr-pattern-e0cef71578de0a81a35c23ef"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a0a67bcc8d5ab7c3d1dd4c1c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b99bad57df254613415ff734"
+          ],
+          "relationId": 5552483,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-65a7aa6ef025970a06566bc5",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-db90da7fe8b3a1849d37329f"
+          ],
+          "relationId": 15523124,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-b4fab0cec258be3a",
+      "category": "regional_rail",
+      "regions": [
+        "84",
+        "93"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::990301c3-14d2-4ac3-b839-9f452ebd7f65:",
+      "sourceLineId": "fr-line-1f81dd8197f1f8cb37e4b1b5",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-2e42d56e980661fcd1791531",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f535103fec2047308f32f490"
+          ],
+          "relationId": 15659518,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-60ba3722ddfe04d0890562e5",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8728ced9607fb981d09b6c0e"
+          ],
+          "relationId": 15659515,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4401a7ceb199f46c347108dd",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d899810841e8a7901351b855"
+          ],
+          "relationId": 15659514,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c8bdad9bcd9125150a8bdfa6",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-abb5a9ff07aeca5a1ce70179"
+          ],
+          "relationId": 15659519,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-7437cb7895b112cd",
+      "category": "regional_rail",
+      "regions": [
+        "84",
+        "93"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::BD427EAB-2FA4-46A5-84D0-6ADB50D00346:",
+      "sourceLineId": "fr-line-29719945538aaa82fa3997bc",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-95d85fd58f4c7c7d563a9343",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-26a7ccc3956ee856911915ef"
+          ],
+          "relationId": 15659516,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-27a3911ed360ea68c1e51125",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3954d0fbec00b04f01ead257"
+          ],
+          "relationId": 15659517,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-ef0746e4927a0dc4",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::071CBAF9-7286-48EB-8849-4C25E035D1E0:",
+      "sourceLineId": "fr-line-ff5f9b412e7bd1356d1602f7",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-cb216edb973c132fd1e29052",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6fb921712c7a202c3b22af91"
+          ],
+          "relationId": 15660610,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ed9d9dbbd64bd54a5535069e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e6bb9bf217db8bd01471324b"
+          ],
+          "relationId": 15660611,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-471c01e7e1256323",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::D02BC35E-F58E-45E7-968F-42B8AB630E6E:",
+      "sourceLineId": "fr-line-d39cb634cf35d91883fbee4f",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-edc268ce88195f65998b1af0",
+        "fr-pattern-fba315eab08484f469cdf367"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-3ec74217f9311ad183e00235",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6ab206d64d03a4b80bbd9c75"
+          ],
+          "relationId": 15660612,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-9816360510f9ba3364a36a00",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c1e3a86d24bbb0fe9dc1f315"
+          ],
+          "relationId": 15660613,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-295735aea75e4638",
+      "category": "regional_rail",
+      "regions": [
+        "76"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::9F9C7618-AF98-47D8-BFB4-0B1C2924A148:",
+      "sourceLineId": "fr-line-570fe34cc095ad8bd7e1c752",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-1319724f53dce8741081cdec",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-fc6934e6d968431557d5d77d"
+          ],
+          "relationId": 4716751,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c219233669f3c581b16a5132",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-255ac21bbb6ec96e97b8a3a3"
+          ],
+          "relationId": 15696670,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-dff8b7439311cd97",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::454E4ABF-BD49-4157-8FE8-BCDD340E2504:",
+      "sourceLineId": "fr-line-ad15942647f3ebc725c81727",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0996112443bc8d377b87d87e",
+        "fr-pattern-16efa13668067dcda593a7f3",
+        "fr-pattern-1aed9a6d31103ff4b11986be",
+        "fr-pattern-36ae3235e67fdc79d3000307",
+        "fr-pattern-b77c2eedb8998c8d379c6d5f",
+        "fr-pattern-c74b8894a6ad89e634ead9e8"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-2aa1881c379a4cc8ee90231b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-41bd9604eabee31199992064"
+          ],
+          "relationId": 1614051,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-fe9cbff3202fc4e6316936a0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9594a7556d3a3f87f64df3da"
+          ],
+          "relationId": 3883895,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-6930497dde88fe55",
+      "category": "regional_rail",
+      "regions": [
+        "84",
+        "93"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::E787EB35-6D67-48A0-A641-FEC921895C71:",
+      "sourceLineId": "fr-line-f2c734196a224bbdeb21838b",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 18,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-04fab7c6d6cb49883cbd7656",
+        "fr-pattern-0a5e4f8ee04a79067eb95d6b",
+        "fr-pattern-119a6c746ee6f21b303e3a4b",
+        "fr-pattern-2bfa23c81d6e8cc3f34a049e",
+        "fr-pattern-5ba6780b483e8ff41b707192",
+        "fr-pattern-7bb97ba9f3b56962dfb97867",
+        "fr-pattern-7c3f6be3eaeec5bfc0210d3c",
+        "fr-pattern-87d75c318092915f8a5842a1",
+        "fr-pattern-8d17186b30d69a3903848339",
+        "fr-pattern-a1ecd34a0d48231fef68d5e8",
+        "fr-pattern-ab7d574027f75d1d6a579626",
+        "fr-pattern-acb85ab23f704c75517f9a28",
+        "fr-pattern-b2ab22cffef1831670b39f40",
+        "fr-pattern-bf73fbae07a072fdb26291fd",
+        "fr-pattern-d2d7dff1cb455569494b8639",
+        "fr-pattern-feadcc128d4086a7ef2a9aa3"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-51d396d39c92abebb73f88b0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-578a7ec4b5f3c74a135b8245"
+          ],
+          "relationId": 16338943,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-f571c0a73eac0fdc0f261c8b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-58bd9b1f8a62e12939d8e269"
+          ],
+          "relationId": 16338941,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-d90aa575ee5f4ffd",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::64CFA44A-8FD1-4AEA-B725-EBD4316DC806:",
+      "sourceLineId": "fr-line-c59bb3848250e1f99a962680",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-08bd553151293c429240be56",
+        "fr-pattern-53cda40f6ad9f628091f802c"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-48f433256f445846fbe23955",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b010936b08b75686510e5052"
+          ],
+          "relationId": 16678821,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-b7f8714bf0ab71606d6dcc7a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f6cf22be3fd2a1f9ec0b1a2b"
+          ],
+          "relationId": 16888550,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-c1e563f8ecc97fac",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::AC21DA4A-42C7-4084-821C-77F4D66CBB65:",
+      "sourceLineId": "fr-line-2b6df0ed1b73f0991d727dec",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-a336362417f6bbd187da0aed",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-610b6c2efb107e36843bdb65"
+          ],
+          "relationId": 16686416,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-adefbae9e5a15190258dd478",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-4e639131f63108f4c94dda40"
+          ],
+          "relationId": 17722139,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-f172e0ced2397d36",
+      "category": "regional_rail",
+      "regions": [
+        "28",
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::DD461A4B-557A-4303-B639-AED4F7A5141B:",
+      "sourceLineId": "fr-line-3962b4197a0a188085064541",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-5a384b3cc1f21a1f0a0e2641",
+        "fr-pattern-6a1f0b5771c3466b10a64862"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-dd1c563b287efa60a1eed2e4",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-573e548ec344bf34b740c6c3"
+          ],
+          "relationId": 5569012,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-6fbbb96586af7051797a9015",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-fb90a7dfe8781e296be01c8b"
+          ],
+          "relationId": 16923954,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-8db8c3cfac838f2b",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::965C0279-4764-4FEA-B29B-363968EA28CE:",
+      "sourceLineId": "fr-line-d350d8f974df88875074cc13",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 9,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0feabda49cabcf50cf278e08",
+        "fr-pattern-44e4a13b269690bc6a9813f1",
+        "fr-pattern-859d60e376e62743ad830c9e",
+        "fr-pattern-98d9642f3e67597eb8b77d15",
+        "fr-pattern-e9d810682a9eca761bf82904",
+        "fr-pattern-ec90a47936c717d8b96e6149",
+        "fr-pattern-ee8cc237bf9a88c5319ca63a"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a452e53d134664d13be467ad",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e6bff77214c2328013268119"
+          ],
+          "relationId": 5608088,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-bcd319d7b852ac702f9cd474",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8bb2ae988c9c841c458d0aa2"
+          ],
+          "relationId": 16934257,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-272698b5c8a8d803",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::11D73E7F-3314-4000-B93A-A4781C56C041:",
+      "sourceLineId": "fr-line-6460f75e262b9e5c5ac37f96",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-506f5e2369bbf5b105d41f65",
+        "fr-pattern-5b7609a56695319e4bbb212a",
+        "fr-pattern-77255de0fb4ea78179b52f38",
+        "fr-pattern-9d206b67bf93471958432b5b"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-7c4fc581d63f2aa1a99b4be9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-a6a101698da9ba318f3a5983"
+          ],
+          "relationId": 17083219,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-e97caed94d20cea4f8103e4c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b7754dbffecd1b6fbb760aca"
+          ],
+          "relationId": 17083108,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-9425b08caee351b3",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::2ED50A80-6E1F-4F0F-8782-4482CAA1A7DA:",
+      "sourceLineId": "fr-line-d99b6b52988e3af351e4ccc3",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-5bd44c10793a01140d600192",
+        "fr-pattern-b143092deb9bc610d7f33842"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-9507df81519cb77955a7b37c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f45826e0e3a3a5c95a07a4d4"
+          ],
+          "relationId": 5559012,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1a6bebf7c1a58d08c3559e91",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-924513409e8179cd7072d7d9"
+          ],
+          "relationId": 17086876,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-e5ca2eacabb53250",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::3175F4A9-2947-4E88-95A8-B0A98B88A418:",
+      "sourceLineId": "fr-line-a8f9d62dc534821a3df08522",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-150b7f801bcf40209fe28d9e",
+        "fr-pattern-49f9a486d168190f1835bd4b",
+        "fr-pattern-755b6642c6d699022a19fb5a",
+        "fr-pattern-c46d05e0a5405360d4bf7525"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-e33b92ce6d39683b39c8e0d8",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ac955f86cf0c5f55c9a9821d"
+          ],
+          "relationId": 17092340,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-9b06517924cbd69aef51e4e0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e219761511b1d081435d7271"
+          ],
+          "relationId": 17092061,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-47262aa564472c3d",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::18E717A0-950C-40A2-8F27-98A8EE8ADD20:",
+      "sourceLineId": "fr-line-a2a5e44fafad4552676a027b",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 11,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0aca4b71a907649b22d10994",
+        "fr-pattern-1498659a3a379a590dc4d64f",
+        "fr-pattern-2084f491d97f9c27fe82acef",
+        "fr-pattern-6fc86fb552ded5203550313c",
+        "fr-pattern-877e12f154fd6c84bd33fea3",
+        "fr-pattern-a82ea27e4a206ae31a54b859",
+        "fr-pattern-bbd54291f9aec8f5640da31e",
+        "fr-pattern-cdfc3880efdadd270bdbb554",
+        "fr-pattern-dbb89ddccd21e48c179603fe"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-709f63160623176c71ca17e9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3dc622a97846db83107ec883"
+          ],
+          "relationId": 17096183,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5de55ad553dba90697cca872",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e76060804cc98c20bd9af71a"
+          ],
+          "relationId": 17096299,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-86d45483ea6da9d2",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::0BE00911-1318-4279-8447-F655BFCD02B2:",
+      "sourceLineId": "fr-line-b38400ff2902ae130e84abd6",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-01b76ea732d2141b1316faeb",
+        "fr-pattern-39382ffb84c9c91abf382201"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d645d7c84118a01930bdf38c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b9aef7929df1da6f9a9eb180"
+          ],
+          "relationId": 17139411,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4cb508cc9ff5884208efa300",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-64cf919ebf58ef0fe0c968e6"
+          ],
+          "relationId": 17139412,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-4451e9cc1c08abd1",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::DBF3F104-9FF0-48F6-84CE-E49FD6D7F630:",
+      "sourceLineId": "fr-line-f088601b02d33b840db41fc1",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 15,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0776557b24c69e934e74bc3d",
+        "fr-pattern-3fe120b354c7df054dab577e",
+        "fr-pattern-5812061d27d54e3ee465051b",
+        "fr-pattern-627fd6e0c5227aeb4756936f",
+        "fr-pattern-6a019aff23ea9b2268fa64c7",
+        "fr-pattern-95a498f0d4fcdb864a588900",
+        "fr-pattern-9fbe59943ab1ea547eb03580",
+        "fr-pattern-a144865ad13e2c03d072b35f",
+        "fr-pattern-af41be40d31d996bdb9f500c",
+        "fr-pattern-b75ce6549cef51e94b9bf0d2",
+        "fr-pattern-c6ca4b4cd082006e364333f5",
+        "fr-pattern-e85972e4a9d45f75eb613d5f",
+        "fr-pattern-f488c50a4c31df9dbd3da7a1"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-5624db5258ce45c93d97e7ff",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-5324f8644d11a5ba3bf037a5"
+          ],
+          "relationId": 17706727,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-af334b70ba70d4a5e3afaf72",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d3f65db26bacae0f55ef2868"
+          ],
+          "relationId": 17706728,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-97680dd9960bbe37",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::C8DBDEEF-8EA8-4AEE-A66C-D695AC476F9F:",
+      "sourceLineId": "fr-line-bfeb51702958b3cbf0b924b1",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 12,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-362bd49149757690b588141d",
+        "fr-pattern-3f2855756548c01f238f7053",
+        "fr-pattern-5e358d3ffef4403c0805781e",
+        "fr-pattern-7bdab0ebb78fbadb9bde2865",
+        "fr-pattern-7fdd5f32d27f79e0eee37f54",
+        "fr-pattern-ba59c1397f2fd74928582af0",
+        "fr-pattern-c6071868e77361efd38f88fb",
+        "fr-pattern-e6dc3f3244c7916659ef1178",
+        "fr-pattern-ea2089e9f86f6ac2cf65ea07",
+        "fr-pattern-f21c37c79a45fababe06f236"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-3a4893705e444bb24a2d53e9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-2ae43cfb322febec9ada7dce"
+          ],
+          "relationId": 17721410,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1c160b8a6db9282705967311",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e0b30d3e09fdbcc28bbb7245"
+          ],
+          "relationId": 17721411,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-fac9bdc260f256a8",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::96673798-1C18-49C7-BD1F-C60A57365567:",
+      "sourceLineId": "fr-line-cb8bf38076671195d33a9576",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-c37db90b5c96c447902125a3",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c3f85ca68535c90440404554"
+          ],
+          "relationId": 17722132,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-0673326022ebe97e2b1a5a7d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bc19ce5ee8653418735f95f4"
+          ],
+          "relationId": 17722131,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-6c619fa99de9a07b",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::E6272550-D202-4E52-BFC9-76BDC96ADEE7:",
+      "sourceLineId": "fr-line-cdd630f3d935ba36fddbf7bc",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-864f64b39d0f8d9ce1fc8e82",
+        "fr-pattern-f602528d51080f42eadc9283"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-1092861ddc8e2b162c31bea5",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0b08047635b03ee926e4837b"
+          ],
+          "relationId": 19506494,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5a75c31a21edddbbe2989790",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-dd65d7f5aa9fe5d2d2b20ee1"
+          ],
+          "relationId": 19506495,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-45ab55f9100a0890",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::BCFC862A-9AA4-4346-A561-488369FB0F16:",
+      "sourceLineId": "fr-line-02c6016b58dc214cfe69c35d",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 11,
+      "coveredSchedulePatterns": 3,
+      "remainingSourcePatternIds": [
+        "fr-pattern-1db4ba71410c5f8b4275c917",
+        "fr-pattern-1f9a49473ebe146e43fbdacb",
+        "fr-pattern-1faaedd45b7c54512ed798f8",
+        "fr-pattern-5a41de14543a0cebeb6f2e84",
+        "fr-pattern-731b31bde943ff5908f606dc",
+        "fr-pattern-a6bdebcaf164d125e40201f7",
+        "fr-pattern-e61e4cfd8e9279e08bd17a93",
+        "fr-pattern-eb7a00f7552e423730757e99"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-15247a28fadee94aaccb9e87",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-2e513bd0b26424b43b5c9ee6"
+          ],
+          "relationId": 19506498,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c000ea267c37706ac080405d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bb7bfd3c692ec2d6f97f64cd",
+            "fr-pattern-c5bf9cfa8a417d6817e1d007"
+          ],
+          "relationId": 5926414,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-0554392037869047",
+      "category": "intercity",
+      "regions": [
+        "52",
+        "75"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::75711759-571a-4c6c-a9fa-57cfb79a4b2f:",
+      "sourceLineId": "fr-line-7984b2926b33a9ea2c204461",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-6e162b9dfc45c221a5c88ac8",
+        "fr-pattern-f4afc6be4d9eb66a01a41c55"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a9274fb294a05a7e068d7b8b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3ff701cee8bf6c3b8e207c2c"
+          ],
+          "relationId": 19514944,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-b8c3b2364f5788a3f72a9459",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c8d62d19041fa9f6af61526e"
+          ],
+          "relationId": 19514945,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-82ab08be9fa3e8c9",
+      "category": "regional_rail",
+      "regions": [
+        "11",
+        "28"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::0ce8180c-0fb6-4cc1-80ba-53782622a5ce:",
+      "sourceLineId": "fr-line-bbd19391c0cbfa6bc5c3d338",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-6597287a036641aff3f15f29",
+        "fr-pattern-f26efb4b3402688ef185c988",
+        "fr-pattern-f8bee13b53f71441757b662d"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-899bfe1dcbe519f2dedd6f77",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c868c7b77e7ead5325655b8e"
+          ],
+          "relationId": 19921208,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4d2e17743ea6bbe0b2cae47e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8d86e447b92f17a728dd5bdc"
+          ],
+          "relationId": 19921209,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-23dfa177e8c34c56",
+      "category": "regional_rail",
+      "regions": [
+        "28"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::3e9229c5-ae84-4f9e-98df-93cc2e91b55c:",
+      "sourceLineId": "fr-line-d35886cbc181acfe1543c79b",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-d41ca8d799b1ee7e43ca8744",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-5c3664ed1497ab457ea8f97a"
+          ],
+          "relationId": 5511831,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-8a2bf0810fedf75edb90e78d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ea013f25066b959923fc2342"
+          ],
+          "relationId": 20462427,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-ebedc44b817dad63",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::5ed2f41e-5576-4745-96f5-3682a3f86989:",
+      "sourceLineId": "fr-line-d5aaa0d86cbc99906cd18d8a",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 16,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-03ff7844cc8939530500272d",
+        "fr-pattern-097a945bc4a31be5b7483fb9",
+        "fr-pattern-304bcb01f2c24de5ba63ab4d",
+        "fr-pattern-640092cd4a856b9606b1073c",
+        "fr-pattern-6ba3cb1fd43cb27d319a4398",
+        "fr-pattern-79efc10c1d11614e92bb6f78",
+        "fr-pattern-87a920b84953bc9ff3cf7291",
+        "fr-pattern-962cafc6ae8f9ab5a4f2ed4f",
+        "fr-pattern-9e143994ade81f112e3c361a",
+        "fr-pattern-a0d98ce611d5054d8ba2bba8",
+        "fr-pattern-afa9c2b024e709b0c502e51f",
+        "fr-pattern-dbbcee8764a8a4e1fd44024a",
+        "fr-pattern-ec19825d1a52e017d8b36db9",
+        "fr-pattern-faa01d1a92d5ab45a375816c"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-505af7f101165351ac00831a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e6ae647b0d08e8eedc74f11c"
+          ],
+          "relationId": 5858943,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-50bc249cd5140743030c9951",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3714f891d782dba232945827"
+          ],
+          "relationId": 21079283,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-919d138e80de2215",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::0D8BFBF7-551C-44B1-8DF9-465F01EEE633:",
+      "sourceLineId": "fr-line-90eb095bcfd316449f61909f",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 14,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-205b103c9abbc70d7fb8ba6a",
+        "fr-pattern-3d1aea67d7769027993b3b54",
+        "fr-pattern-46b5de732324c07b97073b8e",
+        "fr-pattern-5498435a4e18f8c92c4588f9",
+        "fr-pattern-5d1071179c87f7e03df4259d",
+        "fr-pattern-6c1c1cbe0b8784b15cb8f5ff",
+        "fr-pattern-8e8c0c2b72ef0b780bd5597b",
+        "fr-pattern-a3fe0d1a312e66c8d20a0a08",
+        "fr-pattern-ac06e2fc15d0e4787f057cce",
+        "fr-pattern-b479691a9dc8c31a25b402e1",
+        "fr-pattern-c5daf9ca1c9ea16d4f209069",
+        "fr-pattern-ed87d7a486e1f30c3c3f08f0"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-ecb3a3013385cd00ec135ab1",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b8506413fc8c51c2850cd048"
+          ],
+          "relationId": 21079285,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-d07b8bc594c554c38496ee18",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-1128348bffb277fb8c81f16f"
+          ],
+          "relationId": 21079286,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-d6b8c6fd52a5044c",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::47102940-0922-439f-b9e9-1a93deaec574:",
+      "sourceLineId": "fr-line-c193a25f8a42d4577b4869a7",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 9,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-40825f0c14ae7c48e58b6dba",
+        "fr-pattern-5622dab7438eafc542ce9cc5",
+        "fr-pattern-7160113d7c03fadaf9d845ca",
+        "fr-pattern-97ec2b5e444e2ca3c5609b1f",
+        "fr-pattern-c0d88e66eadd8e9ebdb1bd7e",
+        "fr-pattern-dd8f1df30b83e6e29741d5bb",
+        "fr-pattern-e22d9e60de5a2f8d1b9ace29"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-c711bb64ad5236b3b177f2bf",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e12570618c85ca9596494751"
+          ],
+          "relationId": 21083123,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-7654fbcbba0c6f81d2225fdc",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ad0148fdde82bdb8b22b3925"
+          ],
+          "relationId": 21083124,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-338211936dce22ec",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::3849d1e2-7f65-45ab-8a4e-d53d608086c1:",
+      "sourceLineId": "fr-line-62c3749ba0d21ca3984fdf97",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-46125e68a2a0b8f14a6e099b",
+        "fr-pattern-5a20959aacb71b12d32b924f",
+        "fr-pattern-810d71ef06d0e4177b075eb5",
+        "fr-pattern-d1341dd8b8615f8b1416eb6a"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-59c7f3db1cc5e1aa0a54d6b1",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-01fbd7103e6a7219d2b8055c"
+          ],
+          "relationId": 21083128,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-42b6b5ccc06ccc487ec6c582",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e40eb108bff704441d6159b5"
+          ],
+          "relationId": 21083129,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-fba43067bcf9d92b",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::b68b0e11-1e7c-4361-8a10-95a1048d5d9a:",
+      "sourceLineId": "fr-line-91f1b37382b570d2752baaa8",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-9d78ffe077161eb2bf80e99a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-120126af86028ac1c4eb6040"
+          ],
+          "relationId": 21083133,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-786a96c3fac7995c7f395e81",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9104f9afbefd8a8e67b7a046"
+          ],
+          "relationId": 21083134,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-dac834c1f0c11f25",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::04343a9d-34d6-4020-b500-2501e4609400:",
+      "sourceLineId": "fr-line-667f45990780229261fe66ec",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 28,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0114db1d95838c007a4ee244",
+        "fr-pattern-0a7409ee3fd7f417ae7e4a2a",
+        "fr-pattern-0f82293500ff5780d882aa49",
+        "fr-pattern-0fa9b49220f5fc4cff5a58e5",
+        "fr-pattern-1078f9ca1aed0c813dcc3533",
+        "fr-pattern-311f3f108aa4b5642b58e392",
+        "fr-pattern-368fa995d3cdcc06b105bbfa",
+        "fr-pattern-3ebe167551524e04a7ec05f5",
+        "fr-pattern-49b5aa6afb81959799f6d27b",
+        "fr-pattern-4e997dd2cb86122a4cbfcc47",
+        "fr-pattern-588c2d170ced1c590f6b8508",
+        "fr-pattern-7560712783c9cae60073e53a",
+        "fr-pattern-7cb0eb884d111b0f7dc59d0c",
+        "fr-pattern-84eaae08379b86faeb578348",
+        "fr-pattern-85e3046a948f8a0636b0ebe9",
+        "fr-pattern-8becf4666e1be64f5e2927c9",
+        "fr-pattern-94da779a7ad16592a3ffd0bf",
+        "fr-pattern-a996c0f1d89fe9315990f247",
+        "fr-pattern-b20a75bae2af35c8506a609f",
+        "fr-pattern-b470cee8be04adc5853855b2",
+        "fr-pattern-b4a98edad32832f58c9bb805",
+        "fr-pattern-b68066acf1f7d55c5789d2eb",
+        "fr-pattern-bbda5a4e2e16f2c7bbdf7b2a",
+        "fr-pattern-daf408c5c185147a744a748b",
+        "fr-pattern-e1a8ae4baa50300a5072697d",
+        "fr-pattern-f96109c76bc154294c39debe"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-2873102e0eee3d34a1456f43",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ec733f18f8fc4245d0bc65e5"
+          ],
+          "relationId": 5854072,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5bf4c287847fca62dee292fa",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bf7469c446b969e4519ea2e7"
+          ],
+          "relationId": 21086744,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-d607530fbe72caed",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::72f5a917-2e84-4293-ad57-f9292a429284:",
+      "sourceLineId": "fr-line-9063360df17886ccc3001b8e",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-cae19607d5a41b6c0d6bddf6",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6967650edd3760229c01a9a2"
+          ],
+          "relationId": 21086746,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-9897549b77cc10e3871c806a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e06b9fb3f2d2531b49cd0b14"
+          ],
+          "relationId": 21086747,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-4441236475c3929a",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::4524B161-77C5-4BB9-BD0C-0E84122DF66B:",
+      "sourceLineId": "fr-line-15e3ecead290fe2653870e6a",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-169b41f960c433f59417dcaa",
+        "fr-pattern-60da47ef62207aef55c2657f",
+        "fr-pattern-f5aca9736fa018ad7e321402"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-449ea5c752d5b30c908696ba",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9299cd7e07275c829266140d"
+          ],
+          "relationId": 21089684,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-249b8c21f7c729f3b7cbb89b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-4fcff9709082238abd768c22"
+          ],
+          "relationId": 21089683,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-57550dd2a8039275",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::10AA5C1F-3876-4FB6-BDFB-05DF525EAFC0:",
+      "sourceLineId": "fr-line-d967d4b6a676c4d85fbdd2c6",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 3,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-28ef2a0a6ff3abf839f4aba0"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-cdcdd5b681f93489d90cd916",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-db36398d838fa927dcc45932"
+          ],
+          "relationId": 21098982,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-63d38ab62a28beb16b538161",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-7467538e587da75946005951"
+          ],
+          "relationId": 21098983,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-ac4aa5999bae5e1b",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::f00e26b7-6485-49be-b167-547cf1c64ded:",
+      "sourceLineId": "fr-line-1d6e2a92da0841fb6ef4c630",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-66ab50e6e5eda0e48f27342a",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3ec921fe67b02bfd2b34f6c6"
+          ],
+          "relationId": 21114950,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-04f12c548a8f39987c029600",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b9d706b8dc6dd447a64367cd"
+          ],
+          "relationId": 21114951,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-3e2808618ee3bd91",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::E540AB86-7F66-45AB-8337-ADA88FFA7208:",
+      "sourceLineId": "fr-line-bcfa13baaa7688a7504ee0f3",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-29a9066e0a418fafa4925a75",
+        "fr-pattern-461535fe08a1861a023b701d",
+        "fr-pattern-462bfdbdcda24c5aab7c9301",
+        "fr-pattern-75ce8d2ddbe3755d3d750098",
+        "fr-pattern-b6207b4961eee6ba3e07d271",
+        "fr-pattern-e7f559da0c7aa64e354f723b"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-2ec48c6acd5313bc0da78a75",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-74c5e9c1a5835596cab68e15"
+          ],
+          "relationId": 5740690,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-49e7f6758c22cbf8861d536e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bdc8cddfa93b4cab6780eeec"
+          ],
+          "relationId": 21114952,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-a36fbd9747a55d8d",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::efa0a8a6-e1fa-4b39-9185-0d792ab1196c:",
+      "sourceLineId": "fr-line-c5c33a56a97a51c37b59a60f",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-b9cc6d5dfa311ee5e78a1640",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-91bd6f6e6299b6bf8f78c388"
+          ],
+          "relationId": 21114953,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-66010b212a11c32f5fe71f5c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c41f137ee2594b0c6ddd649e"
+          ],
+          "relationId": 21114954,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-367de2fd4c00c88c",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::96ce3252-9ee0-4a23-b9e4-9e5d6d6768a4:",
+      "sourceLineId": "fr-line-7878a825e4819cec03887f77",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [
+        "fr-pattern-2c572e53e9280d7c83ad5680",
+        "fr-pattern-835a8d2fb0492a26c8593b44",
+        "fr-pattern-a494160f2c79f95aa397e5a8",
+        "fr-pattern-a7827ee9f10c5bb0c095a48d"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-b79680a65df69295ad70b9c0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-80f231cb3999d42d3740063c"
+          ],
+          "relationId": 21115366,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c563db48df570b24fd96ca69",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-be41da3dc85ee3fc0ca35c19"
+          ],
+          "relationId": 21115367,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-6d13ee76ec0aa35ee397e629",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0005a1520b849c56cffdfc43"
+          ],
+          "relationId": 5863883,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-33130c5aa25e0e7777becf17",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6d33078506c28a718afa872c"
+          ],
+          "relationId": 5861194,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-9641e820d5cc76c1",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::E0A47A78-21C0-4090-BD86-6F38A1343942:",
+      "sourceLineId": "fr-line-4d9af60080dcbef7a49604e9",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 3,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-e17a1239498aef034d3fae24"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-b9a32aab40af206d7bc064a5",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0afd6afdb21551f05904f4e5"
+          ],
+          "relationId": 5742233,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-08c59187563cea8e904453fe",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e5543ee6acc4a5fad5ed24f4"
+          ],
+          "relationId": 21115372,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-ed2fe128d551ff4f",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::9CA52441-6491-437C-8C8E-6342E00CAB42:",
+      "sourceLineId": "fr-line-fc798885799af0c5e530318c",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 7,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-7ed54a766a238362b14664b4",
+        "fr-pattern-ccbf059f7cb01b733c60d63c",
+        "fr-pattern-d419be6f763c3e3a63a3e72b",
+        "fr-pattern-d52c83bfaa7e571365a51005",
+        "fr-pattern-d78830e540c30b4998970e84"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-32811599126ec1de3148b763",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b18013aba2aedfa03c784054"
+          ],
+          "relationId": 21115518,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-e17e5e6e99f39b6bc464b5c3",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9657d4ad4b4d5d37cb14c404"
+          ],
+          "relationId": 5717448,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-649ca868482323df",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::9D3B9426-2A05-40FA-A209-79E554630737:",
+      "sourceLineId": "fr-line-62900e98899fe9a75984fabe",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-2065eff11e11011622488cc0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f6fb00b51f6f675106a19fc6"
+          ],
+          "relationId": 5668566,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ef25e62b09999df104eb948f",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9728b7dba21e8903d4d7d448"
+          ],
+          "relationId": 21127172,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-a039954d8873d44a",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::FD570866-6148-47C0-8897-467ED42F0FAE:",
+      "sourceLineId": "fr-line-2d68393347b177623fafd5e1",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-55323a37d4cb5031e60e28eb",
+        "fr-pattern-9bccffa42fd486763421ae69"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-84ae6b6dcfc9c5f1b0515bf4",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-29e513f451fc8535e7e180ca"
+          ],
+          "relationId": 5655154,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-b7003253c075296271eb6eb1",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e5efe4412172dbdbc1a7f334"
+          ],
+          "relationId": 21129217,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-9c91edfd58296149",
+      "category": "regional_rail",
+      "regions": [
+        "44",
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::93676b4d-70bb-42ae-a4ad-fade138a46c4:",
+      "sourceLineId": "fr-line-7673b49decc8132a1e0fb7ed",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-f8d3638c096a625b0700369e",
+        "fr-pattern-ff8c05559631793aff566acb"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-70c521ca7059a17bea42e8f4",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-52e4592a9e94155411d020ac"
+          ],
+          "relationId": 5681030,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-6bb33823fad388da4b272870",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ecc76b4d38df2d0ec54bc3a1"
+          ],
+          "relationId": 21129354,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-9a790b4d80e5201f",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::F5BCEFBC-8297-4542-9B8C-14358B248111:",
+      "sourceLineId": "fr-line-b3fad4b3ad8a31c41b972d8b",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-748d70829b58af0a1ed24d83",
+        "fr-pattern-7fce8e7cc91d5e43b4cb06d2",
+        "fr-pattern-e298e6217caacf9650691499"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-cba1e118e7899d2b05ab1e19",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-07f56ac7d509e5fad6de91c5"
+          ],
+          "relationId": 21140702,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5673b3421016bdc7fd1d9198",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8a9d18e8e78a56f2ff3ca5ab"
+          ],
+          "relationId": 21140703,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-033b3dd7d1b774c5",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::514f7286-d90a-4a5f-a186-9e672880c946:",
+      "sourceLineId": "fr-line-bb44da420e9c71787e7c5313",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-8235bf0ca6ff4e58eae2f375",
+        "fr-pattern-c9a8d1c0800a866e37812d27",
+        "fr-pattern-d933455c5b7b41a00ce51fc4",
+        "fr-pattern-eb011ea1b9015941c1c14c65"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-6c54c08eaa5a6e43de2a0954",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-53a1cb1ae403f355eb8ee157"
+          ],
+          "relationId": 21143031,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1a034add31147c1ddf014cc2",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-37adb76149ce509e927d967e"
+          ],
+          "relationId": 21143032,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-0e8979a05d983307",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::6833bf81-1ed0-4954-a4e7-803f6801897b:",
+      "sourceLineId": "fr-line-d64fbb266d5914449d7c39c8",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 25,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0cd6d88ac364098c163db57d",
+        "fr-pattern-103ef611c8dc4b673c68f888",
+        "fr-pattern-191536826dcc50b1aa2b1689",
+        "fr-pattern-2374dae3c3b52aabe524bedb",
+        "fr-pattern-263b769276a4dbe39c31e64c",
+        "fr-pattern-2ed4549bd9eb366ebd0afabc",
+        "fr-pattern-315dc055deea9aee25eaeeac",
+        "fr-pattern-31a10e7b5ed84101f0bec1bb",
+        "fr-pattern-3519dfc430ef45ee5eee5633",
+        "fr-pattern-373edc6c47f446d9a022d8bc",
+        "fr-pattern-5c897041c3a479917d7b6e4a",
+        "fr-pattern-73f973e5bb1e81ad2a37cadf",
+        "fr-pattern-81080b1409245280507417ff",
+        "fr-pattern-aaf143cd9ae066493d5be259",
+        "fr-pattern-b4a94ccc390c699831a55e3d",
+        "fr-pattern-b6598021d82a9458e4f08349",
+        "fr-pattern-b9c85b7007ba2fea373ef963",
+        "fr-pattern-bdfd905833bc1fd35750d449",
+        "fr-pattern-c5c7b5159dbc9b14b892dedb",
+        "fr-pattern-e4cb9e8fd0d1954482c2b4e4",
+        "fr-pattern-ef26e94552cebd5ca0e0c7e7",
+        "fr-pattern-f8402622bced704387a290a7",
+        "fr-pattern-fd2f6599546435db0ddbe1d5"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-f76d2b01ea5a3dcb3244e463",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-dc3244fcd6e762f863f5a4e4"
+          ],
+          "relationId": 21143034,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c70f46a54dee0f4f7571fdba",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e205a12231846856d4ed8883"
+          ],
+          "relationId": 21143033,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-7c98e992d3140bf0",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::47132275-90d8-4396-9b08-a6f09f03b85f:",
+      "sourceLineId": "fr-line-8a32a27c6a99bb0d1e0e60f6",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-318b00978f5709b10892aa4b",
+        "fr-pattern-8d81c313c7cd8f63a73b534c"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-dca392747106e336f49e3927",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-63019d9095baced04544fdc9"
+          ],
+          "relationId": 21143041,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-5cbd83ec6f9d091cf7843343",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-26fe4f7f9d40c9136c59f027"
+          ],
+          "relationId": 21143040,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-7922f65fe512bbfb",
+      "category": "intercity",
+      "regions": [
+        "44",
+        "27",
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::3a1267b1-49c6-4806-b925-e51eeb9c0dc7:",
+      "sourceLineId": "fr-line-cba96590581573b8c70be3af",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-097449232760a301e156e0f2",
+        "fr-pattern-305186c489cf5a6ee45a2ff1",
+        "fr-pattern-a7be59967aee3962602351ae"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-74d656b12a648f320f8c6675",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ae5b08f06f82aaa13cce61f4"
+          ],
+          "relationId": 21145048,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-0db4b088e561b0a6e6d85d19",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f734a899f330d231b1e2ac36"
+          ],
+          "relationId": 21145047,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-4faa6def412c96f6",
+      "category": "regional_rail",
+      "regions": [
+        "11",
+        "28"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::03A83359-7D9D-4301-9C87-92FED4666451:",
+      "sourceLineId": "fr-line-aa34844c55885dec9bfbafc9",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-f21c769e8893aeffb7c1ff56",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bb815f151e5d9abacd696a9d"
+          ],
+          "relationId": 2124595,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c19cd6b94f07f6964f5d1e10",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c0e38b6f4adc485ffe72ee43"
+          ],
+          "relationId": 7846709,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-ba41fa505513fc9b",
+      "category": "regional_rail",
+      "regions": [
+        "28"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::5E25F2B5-D15F-475F-B424-C7ED6748FE50:",
+      "sourceLineId": "fr-line-c06185f86b254755c62a0cbf",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0a44caf98abc40166615e566",
+        "fr-pattern-33f308b91fd56477ec3118db"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-61a5b17b5d7823d711f42e54",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9033a4988cedefafeb74821d"
+          ],
+          "relationId": 2124601,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4eee24e8fe93cb5e64df9ac8",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d6e00a87f81bc267110ffddb"
+          ],
+          "relationId": 7843527,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-9c427d006b53d680",
+      "category": "intercity",
+      "regions": [
+        "11",
+        "24",
+        "52"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::2381a54a-1f59-4452-88c7-303179dd472b:",
+      "sourceLineId": "fr-line-6186061d940293d5b0de1f11",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 11,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-01d995687b5dd9547173aaa4",
+        "fr-pattern-2876f42b3bc724bc3502a00d",
+        "fr-pattern-2b2e66abba9e34fb16c38ab8",
+        "fr-pattern-4df677652119970962fe07fe",
+        "fr-pattern-7be5c1fe3f2e5c950d060bcd",
+        "fr-pattern-8d2c2d91d73a87eb3635a8ee",
+        "fr-pattern-966af0901e17d77e00d95c0e",
+        "fr-pattern-ad6dcadab2b85f62dd08bcb3",
+        "fr-pattern-dff924eb8a48c9b91b3f8611"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-030544222f457225858b2662",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-67918949730cd78462ad2136"
+          ],
+          "relationId": 21371422,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-4728ec72e46c8da35d36bba8",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-32deb9e1440d22bd0dc98fa1"
+          ],
+          "relationId": 21371338,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-3e882830d47a08a4",
+      "category": "intercity",
+      "regions": [
+        "11",
+        "24",
+        "52",
+        "53"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::8b8605af-5a26-4121-8251-562152f67add:",
+      "sourceLineId": "fr-line-bc21175dcc12d0eeebd32b29",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 3,
+      "discoveredSchedulePatterns": 7,
+      "coveredSchedulePatterns": 6,
+      "remainingSourcePatternIds": [
+        "fr-pattern-e3ed33a22a59fd3117ce43ac"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-304af42c0c84fb04346756c8",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-84e7dc338a0edac8d580099c"
+          ],
+          "relationId": 21379395,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-0066c3d8ebc12a7f98aba69c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9b509162b423ddc32652ec47",
+            "fr-pattern-c56366585e8756985e8e9b06"
+          ],
+          "relationId": 21376006,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1ae94a4284c8ed7bec777db5",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0d482ec5a15ed4fc21e3c12e"
+          ],
+          "relationId": 21379394,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-767e7a7cad9476897634e1e1",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-da9cb9f25d99ce9c83b47d1a"
+          ],
+          "relationId": 21376008,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-7a8665f1ef8e3c09782fb03c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3f680e7f4c9702024e630b6d"
+          ],
+          "relationId": 21376005,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-896d8a829531edb3",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": true,
+      "sourceRouteId": "FR:Line::B6EA9961-71EE-4D2E-9A72-345763D83770:",
+      "sourceLineId": "fr-line-2ede89821eba6f87f1b6e918",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 20,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0a50da8e5e9d6b794ed45e37",
+        "fr-pattern-1310de1660ff44397b71a0ea",
+        "fr-pattern-235d5dde0d34b53d04d68440",
+        "fr-pattern-3ceab1b01dfe0f71874d90cb",
+        "fr-pattern-464292779bdf6bc9f4aeb555",
+        "fr-pattern-50a04aba10b9fa6c46ab33c1",
+        "fr-pattern-6f037ec59401a85cfc649bc2",
+        "fr-pattern-87c0e3864a139826680bbd9a",
+        "fr-pattern-9993e4cfd0bfd6861315a408",
+        "fr-pattern-b56c22b0ca9544179ce18f5d",
+        "fr-pattern-b6f0317855bec36d9d288659",
+        "fr-pattern-bb11dde758a0e602a6608d65",
+        "fr-pattern-bb6f007b12eeffc7635ae9ee",
+        "fr-pattern-c0486b7e45b1ef67da923216",
+        "fr-pattern-e294d55c219f9a2dc085c70e",
+        "fr-pattern-edb5351eb561778f7c49e753",
+        "fr-pattern-f8b4f69432fb8e31d1991487",
+        "fr-pattern-fcb7f3bed3ace4856de717db"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-d68d71304777d9b255bd4830",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-411cc844b44c33d820fdba24"
+          ],
+          "relationId": 21733952,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ea71de945a1305cd882ad321",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b3890db25cbc64cd55a2f9b9"
+          ],
+          "relationId": 21734058,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-8a6d87213f4d7020",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::84762773-6B8B-4442-9CC3-2B637DB175D6:",
+      "sourceLineId": "fr-line-30620d6f74c5aebc094808c2",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 11,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-292f1e8dbde7550d54248db3",
+        "fr-pattern-69da3a359b902a70280f528c",
+        "fr-pattern-6f884e3c40d057d20ca4db2f",
+        "fr-pattern-8542f09d42f48a30f8feff10",
+        "fr-pattern-ba23e42fa071a3c5ccf33ab5",
+        "fr-pattern-c162af74c3951379257bb222",
+        "fr-pattern-c65028fe7a1180f68a27ecfe",
+        "fr-pattern-f12dca61826bd3b00cd47fbb",
+        "fr-pattern-f19ef5c513c3ee685bb0abfd"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-93a17fe42ef3136a1c84b7cf",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-25bbadd4674e4b22484f4668"
+          ],
+          "relationId": 21785006,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-f6b67e21ccf8f5e617add02c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-50d706cca2262959f831b643"
+          ],
+          "relationId": 21783072,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-d7a4f89a2cd385f9",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::FAC858B2-B613-40BA-9423-E079D6979A0C:",
+      "sourceLineId": "fr-line-788e0ca09f1e0d6cec07ad5b",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-579a3cd992f17493f7f499a6",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-01a4c999053b2e4b80ade2b0"
+          ],
+          "relationId": 21787338,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-7b70cebb034346d74b295518",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-d830ea3f710614d6dde5a85c"
+          ],
+          "relationId": 21787339,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-d47c7c7cbde43d3d",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::D79097CD-B3F9-4C30-8676-74078751808C:",
+      "sourceLineId": "fr-line-b3313223b3db46710c9e17db",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 9,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-410ea373a4b1fce978fdf89b",
+        "fr-pattern-6fcf207ccecc43ffdabb01cf",
+        "fr-pattern-89fe0c741b27184fd0950e5d",
+        "fr-pattern-9d0b04873135db39994a89f9",
+        "fr-pattern-9dda11dae734652e5b91593f",
+        "fr-pattern-cef7fde5d5f71fd2f971e958",
+        "fr-pattern-d286013ac6d6a0b9d90856da"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-24eac04e7957949e471bd17d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-4048c6cf24752799c658de9f"
+          ],
+          "relationId": 21790859,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-b77ab5081fe7d59f9d019ad0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-cbcf3ab921f81558cb0de2dc"
+          ],
+          "relationId": 21792284,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-04666d8fa58680ff",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::45E281C7-AC50-4A23-9B9F-F73234118E78:",
+      "sourceLineId": "fr-line-be5a285ca3c100fdb028e74b",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 7,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-26191fdd98ef433636cfe4de",
+        "fr-pattern-4d0d99d548611b22d75c91cd",
+        "fr-pattern-5690d964124f30e21a5fca71",
+        "fr-pattern-978b52cc0577c4b4dd5fcdfa",
+        "fr-pattern-a3922f873ff7196e1f48cf22"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-5653bbc3ce36dbe2855be160",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0b97011c1cb16dcb626eea9b"
+          ],
+          "relationId": 21790860,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-2d3c4cdcd43bdc840daeb6c9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e3e291012f8c08b443bf28d5"
+          ],
+          "relationId": 21792421,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-bdebd5b89d13132f",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::C1C06C47-A859-4002-95DC-2CB31676E8F2:",
+      "sourceLineId": "fr-line-2b0ab44844160dbc992b850e",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-829153c303986c820bf6b0e9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-88a6a34d33f9887a51367eb1"
+          ],
+          "relationId": 21790861,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-af2701d6c3f24f14769dc42e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6e9413dc13ad8802fdfa7bcc"
+          ],
+          "relationId": 21792423,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-47384e3d29d1b8a4",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::A57CFA44-0C60-40FC-AAA6-D0624CF259FE:",
+      "sourceLineId": "fr-line-40022e9ba6ba3cea4fc40903",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-1de39f36be9c05ef063a3ffc",
+        "fr-pattern-e799583feee1d9357e3be4e7"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-8d27051482752dced185e8ea",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-f95afb40f22c01f68cc7942d"
+          ],
+          "relationId": 21858138,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-d46d97bf6b722974e975a846",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-67c130f5efad062737eecb82"
+          ],
+          "relationId": 21858139,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-cb535216d19d78be",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::F4B0CFE6-18E1-4D06-A749-805E6E29BD07:",
+      "sourceLineId": "fr-line-b74ded772f7e3976388c9cce",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 3,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-96f83ad58e5ba6c6d75c47b5"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-1288904241b9b473d69546af",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-793a078d5a7355fcf8deb574"
+          ],
+          "relationId": 21860161,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-f0adc3de810da0852b611d1e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b83e1bfd15c8d3391aff88ec"
+          ],
+          "relationId": 21860162,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-ffa1f445e9309e11",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::05262D94-C964-4568-8E04-C711D058B31D:",
+      "sourceLineId": "fr-line-129c621c9b089f1d4828b10c",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-3e1920b635a5ce6713318d0c",
+        "fr-pattern-8ac2bae2899ca38799867690"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-503ff8c392148e11479aea61",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-0ccd7ca825acf8372e585766"
+          ],
+          "relationId": 21862660,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-ef6afd135bc64347cb99f3cd",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ef99192d8acaab11ba6e049d"
+          ],
+          "relationId": 21862661,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-7f922fc660f18b9d",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::F1E656A7-A8BE-4DEC-875D-FC15D17580CC:",
+      "sourceLineId": "fr-line-a84519e996f3518f1f7d0cb5",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-6890f246d02a54d294964eb6",
+        "fr-pattern-7365de2431545a4b46e66430",
+        "fr-pattern-8ed861a79f36ab1db969d0ec",
+        "fr-pattern-bf9bc4407a149f278c8b62c7"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-715e1dffa3d2b8e8ee3a5b40",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e34391865ffdba62fad6047b"
+          ],
+          "relationId": 21876484,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-c370a7b272de9389aef1b7a5",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-5b46b5f1bccb618b86cd0ede"
+          ],
+          "relationId": 21876485,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-587c12297be148ae",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::DBB29EA6-8495-479C-B033-926E252847F8:",
+      "sourceLineId": "fr-line-f5853ab4117cfe81bb91801c",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-067e8a119da4b1c8dc1dc823",
+        "fr-pattern-3c54e245faf86d069388c74f",
+        "fr-pattern-511f1706f7ea1fb07f5d1ecd",
+        "fr-pattern-c9765f711a939436449c0663"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-8ce66555ef7592b5032f554e",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-dcffc5e2acbd9f21f16944c0"
+          ],
+          "relationId": 21876576,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-717e2a8835e92195d2bcda8b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e3c15bb3db5c89c5131d45e5"
+          ],
+          "relationId": 21876577,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-c17e81552267281f",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::a6442ac3-6f55-438e-92b9-bc368cfaff20:",
+      "sourceLineId": "fr-line-a02e6b7f653b69355fb382b9",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 10,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-38a2efbe0aa8782958d446ae",
+        "fr-pattern-394efe0d2b4e07fada6354c6",
+        "fr-pattern-39d454fd37fbebdd96b8984e",
+        "fr-pattern-3ac2d78846fd735ce5973339",
+        "fr-pattern-7351c5ed88b38a2c70d9e7e3",
+        "fr-pattern-984dd70180d64e9cb55611fd",
+        "fr-pattern-ac4613892da4a2b8514eda29",
+        "fr-pattern-adb295187bf2669b66e9270c"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-78407c2ae2b75f1f00a1598c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ce9b55e358991062c399591e"
+          ],
+          "relationId": 21894265,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-dfd4d1ea3c5d53c30da78e22",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-069b9aaca7275d19691aab80"
+          ],
+          "relationId": 21894264,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-e1a4b5c313117051",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::E1BFD103-F172-4366-A1A6-EA4E9C95C93C:",
+      "sourceLineId": "fr-line-de3ff89bcf9ce398d51d4835",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 10,
+      "coveredSchedulePatterns": 4,
+      "remainingSourcePatternIds": [
+        "fr-pattern-2b5a4cb569eb63228ad58579",
+        "fr-pattern-48515bba04c30559c8c9659d",
+        "fr-pattern-5a7dc82ab4c05d42fa1df283",
+        "fr-pattern-93f1b16fccb12a000163a05e",
+        "fr-pattern-d3996e69b0b46f64c777f74c",
+        "fr-pattern-f6623d50e3c5d733c6d5d6a8"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a9b0053fdae60c48274a55b0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-b32f064f538360c455bbac07"
+          ],
+          "relationId": 22093996,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-b7cfe12dc6fa24844b9de211",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-235462fa2f42a7dbc5294322"
+          ],
+          "relationId": 22093997,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-3fa24ed42f10fad0dcaaedcb",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-9fc8c7887d0e86437f70b287"
+          ],
+          "relationId": 22093994,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-048ca6ad8605d92c6b4dea8b",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-73bf8a92301d5221df9fa6c8"
+          ],
+          "relationId": 22093995,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-4bd27b260d27d535",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::449C6C52-0504-41C6-A9AE-75CDA5007AD2:",
+      "sourceLineId": "fr-line-cb8c1a08efdc24ad454d2ca8",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 14,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-02eb1314fb71473fa8e186f3",
+        "fr-pattern-1210044efdfde3782f6d007c",
+        "fr-pattern-1c051339bde6b955f062f4b8",
+        "fr-pattern-4451ff89e5ae6058833b5727",
+        "fr-pattern-55a022e347ffba9bdf0e10d8",
+        "fr-pattern-66a50adbee93596187d9436a",
+        "fr-pattern-728235d6e807c55b96cdf1a2",
+        "fr-pattern-7b6da4ceeb3939aa86ec8c9c",
+        "fr-pattern-849744b046a4c0ff139bc427",
+        "fr-pattern-c0dc557f0aefca7a17068340",
+        "fr-pattern-ddb489e501358d40c97b4c8a",
+        "fr-pattern-eacc737cf5cbbea21863c9da"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-2bc3aa318d22abc0addec649",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-63617632537aff637293ff82"
+          ],
+          "relationId": 2669844,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-33107ec700ec1c3dc62770c5",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e6ab4a4f9fcd9ab5b145db42"
+          ],
+          "relationId": 3887874,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-609e72b5a7132c86",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::938DCE7E-3A57-443A-B771-92F6F819E7E3:",
+      "sourceLineId": "fr-line-87745e784b62ddb776f24c7a",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 13,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-155d53212e43511fa24bdc30",
+        "fr-pattern-3a3e2f0e33df9fb87da2458d",
+        "fr-pattern-47da73ecb16118394382a839",
+        "fr-pattern-50c4aaa0efae6b74d31e80d1",
+        "fr-pattern-573e51c4891e22722748008f",
+        "fr-pattern-614d37583997c96557fb5609",
+        "fr-pattern-9beb991a3413fc58ead0f5e6",
+        "fr-pattern-9e6e28063cbe5118937c71d2",
+        "fr-pattern-bd52a53953bc89a826d42917",
+        "fr-pattern-c8d829e3b89a16e737018584",
+        "fr-pattern-f3af49ddebb4f2a02781b66e"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-8d09589caca320ca636c9384",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-cbd230e9a7aee22e7eb20781"
+          ],
+          "relationId": 3061175,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-40e5f8a5b7acbbdc00d7e2f9",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-2edcce1c540326ca8986803c"
+          ],
+          "relationId": 3875507,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-fe004267b6aba8a1",
+      "category": "regional_rail",
+      "regions": [
+        "44",
+        "27"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::03E1BDEA-B40B-48F0-A7B5-330EBD3C552F:",
+      "sourceLineId": "fr-line-deaf8016552396c159b950b8",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-5aa8fc50031ef803c392b79e",
+        "fr-pattern-b21a6536a099e7a91cc1eb6c"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-23c83b71bd4a2a11f69cb7ce",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c90361a3c0c880bdf37a2186"
+          ],
+          "relationId": 3283129,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-14842f8f0e68e0717459b426",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-91122ca8be0e368adc3e5a69"
+          ],
+          "relationId": 3170949,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-9fddbc4efb8466ca",
+      "category": "regional_rail",
+      "regions": [
+        "27"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::79F02D11-43E5-467F-ACFC-6DDA1A594575:",
+      "sourceLineId": "fr-line-bccfa95c25a5a164637bee17",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 10,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-30cde38743f22537954244eb",
+        "fr-pattern-390bc37c7044dca7e96b3edd",
+        "fr-pattern-5984cf43172db015e8c80b94",
+        "fr-pattern-5bb6ea4d4df07f4b691f1ce7",
+        "fr-pattern-6048cb91a70804da1503ed89",
+        "fr-pattern-9d98bcdc72ff9c9fe1ddb68b",
+        "fr-pattern-b5eaf3c8c6a4004545f9a195",
+        "fr-pattern-de9d9551dd630a380dffd71d"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-4a3295a372693fc663fc112c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e8022957219737b58324abc0"
+          ],
+          "relationId": 6386667,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-cdc8b1772bfabff77374d026",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c81c7f9cd85935aa64a86ddc"
+          ],
+          "relationId": 6386668,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-9c11be75846fdb46",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::8AA26B03-5BCC-472B-A2F7-7CDB75CC47ED:",
+      "sourceLineId": "fr-line-8f958a3e0f65db8c25e27267",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-381d0dc748756c142f248640",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ed87e240486ca40dd4bcc952"
+          ],
+          "relationId": 3862130,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-669591900708c88fbb5f17ed",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-827fc5fce534748e1a792b56"
+          ],
+          "relationId": 3886351,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-4309e4ca039e0a7d",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": true,
+      "sourceRouteId": "FR:Line::F59B9C62-1417-47C0-983A-18064F9C7F28:",
+      "sourceLineId": "fr-line-fd87b9e796bba0e39b79e023",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 21,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0a2912afeda90b3ebb4aca1d",
+        "fr-pattern-317dc01929d0aa1a3b3a4326",
+        "fr-pattern-3297e88a6179d384a0943643",
+        "fr-pattern-5500c95a8dd0f28a243dc157",
+        "fr-pattern-5dc6a54a4663b633992148cd",
+        "fr-pattern-614b5b0406bcfdf753c3c7ed",
+        "fr-pattern-6a70b083a5503a0fee05de00",
+        "fr-pattern-8432a6f6c65cb1ed824ebe2c",
+        "fr-pattern-8b94d3538b421ae41658e46f",
+        "fr-pattern-994059bb4e94f37c453fe9e7",
+        "fr-pattern-9c416c90f5aa33d9c725fe37",
+        "fr-pattern-a6cd76f65373c46434dc37ad",
+        "fr-pattern-ac16b3af986c99e9cf5a18b3",
+        "fr-pattern-c2dbe0655d4b83333c87ce51",
+        "fr-pattern-c4f12f968ba3516b52204025",
+        "fr-pattern-cddd532ea3d2fc2acba872bf",
+        "fr-pattern-e173056b3fcec19ce102b148",
+        "fr-pattern-edd282f6a70ada7ba131380f",
+        "fr-pattern-ef05249cb0cd3fe9530280ff"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-60d22a7a1bdef3632a1c5e42",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-27a4d10f360816f2d5e5afa4"
+          ],
+          "relationId": 3863547,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-a105ef72dffc4e68469fa068",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-bab07ef1c89b243c94bd6331"
+          ],
+          "relationId": 3863548,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-23ae34d33581a884",
+      "category": "high_speed_rail",
+      "regions": [
+        "11",
+        "27",
+        "84"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::D9F206DE-37B5-4299-A71A-5B4201D0B9F9:",
+      "sourceLineId": "fr-line-b619389e867bcae1c10c7ef4",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-6d55da386ee7eb69d484acf5",
+        "fr-pattern-92c281c265db100182d01087"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-55db6b211839253b5a88cd3d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e7f6817d516709da08cf2bd3"
+          ],
+          "relationId": 3876675,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-18a399a897d0f12e2f1a195f",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e5b2e95d71e93ae3616f4d9c"
+          ],
+          "relationId": 9775190,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-d3c710c25342d1c4",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::A4159C13-2987-459D-AE5B-5A4B753079D4:",
+      "sourceLineId": "fr-line-05be9207ae60920ce8bfc70a",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 5,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-38ad2a9c4c90d391eccfe42e",
+        "fr-pattern-dc613c7ebbd349a84c6303fb",
+        "fr-pattern-eeecf5a356f3d568232f855a"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-a2d067976b9b48585fdfa896",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-e8a88cc410fdabb765c44516"
+          ],
+          "relationId": 3876754,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-626b46fecd3640de0d5717de",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-c0d1414172fec79cbf099f93"
+          ],
+          "relationId": 3876755,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-8aa3819d82d9246d",
+      "category": "regional_rail",
+      "regions": [
+        "32"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::FD29B74E-D951-45D1-87EB-E7B2BB2E7D6E:",
+      "sourceLineId": "fr-line-8273732e1433c113a85346e8",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 8,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-10140aa25f0eac44291873b7",
+        "fr-pattern-6ee0e2f22138670d28ce7773",
+        "fr-pattern-760d5ce070cc43d96340cc31",
+        "fr-pattern-88fba3f2a6261519ec05af14",
+        "fr-pattern-a570a0fcb67defda49819ea7",
+        "fr-pattern-fce1504f5f4c41808280746b"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-47863704faa55010d7cd5aa1",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-8d634664be4fde38f9deb74d"
+          ],
+          "relationId": 3876874,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-f6e9edd7fc8c46b8f6ecb027",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-6b07ac0bf8fd331d709a17ee"
+          ],
+          "relationId": 3876875,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-599a792e0c7d522d",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::0D040A69-97D4-4F3A-841D-FD806C6FF09D:",
+      "sourceLineId": "fr-line-f5e155ec2f6ca879d9ac9fe0",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-cb41013b6c7811532df9bd82",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-876883e2935bd72de1c9f63e"
+          ],
+          "relationId": 5574492,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-1f45f198694664cd27fc9307",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-80814a8bb92c30f01efb74c6"
+          ],
+          "relationId": 5681031,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-0b88215b7d7a008b",
+      "category": "regional_rail",
+      "regions": [
+        "44"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::2acbf285-f9e6-442b-8420-463ba2439983:",
+      "sourceLineId": "fr-line-8aaaee0821cb50e8ca6ce31a",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 2,
+      "discoveredSchedulePatterns": 6,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-00d1aadb32a4803009dd9844",
+        "fr-pattern-6c9d02ef3444fd2719e05ec0",
+        "fr-pattern-92b65564fa6274d63e1ac456",
+        "fr-pattern-f2d063ec58ec8193c27c8937"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-2735e9623d0d7d77a727c86d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ad2242f73ef3a05bac8a3ab0"
+          ],
+          "relationId": 5681076,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-9d95412c48ab5b7e73feb937",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-670bddedc9c67ce5a0030e27"
+          ],
+          "relationId": 6288955,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-53cf5f01b333a47a",
+      "category": "regional_rail",
+      "regions": [
+        "27"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::DACDB869-C9EE-4F6E-8247-920D31FAD70B:",
+      "sourceLineId": "fr-line-6e2c0317a8e50ecea8725cbd",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 4,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-bb282a63283bbc0f59832be7",
+        "fr-pattern-d5c2f5d9631820dce8769082"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-882ea39e90f73d9a2207b663",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-02a06fc2c48a81f514b5540e"
+          ],
+          "relationId": 6377020,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-b87629054a8548681443381c",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-51c285a9e9e623ba0558ca01"
+          ],
+          "relationId": 6377129,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-06d920cd2ef3f4cf",
+      "category": "regional_rail",
+      "regions": [
+        "28"
+      ],
+      "international": false,
+      "sourceRouteId": "FR:Line::A6CE6325-08D1-4C25-9D15-15C2DC5E7BD0:",
+      "sourceLineId": "fr-line-30f9912a87eaf59522f8ebb6",
+      "status": "VERIFIED_ADDED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 2,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [],
+      "directions": [
+        {
+          "id": "fr-play-1ccb0037672f5aa8a414c3e0",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3e5703661241174b964dde28"
+          ],
+          "relationId": 7916973,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-fb781be5483fb2f593428c9d",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-3346fa9f3d433b5b0c9fe0f8"
+          ],
+          "relationId": 7917086,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
+    },
+    {
+      "id": "fr-sncf-cf37b3c7132aeebf",
+      "category": "regional_rail",
+      "regions": [
+        "84"
+      ],
+      "international": true,
+      "sourceRouteId": "FR:Line::B231BDC9-525A-4096-882F-6EFB9C25B27A:",
+      "sourceLineId": "fr-line-f6961444b3f478ede06a6ddf",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "serviceFamilies": 1,
+      "discoveredSchedulePatterns": 18,
+      "coveredSchedulePatterns": 2,
+      "remainingSourcePatternIds": [
+        "fr-pattern-0b41fb7c8cc5658a4b2e6d77",
+        "fr-pattern-2966a36656182ade9f7dd904",
+        "fr-pattern-5fa811a89712c5c5159893d3",
+        "fr-pattern-5ffd65b3cf3226eda0c1229e",
+        "fr-pattern-6e219898ddede45c7c0d0efb",
+        "fr-pattern-80cad6539277bb59f961bacf",
+        "fr-pattern-88af9be6674ef2968d779984",
+        "fr-pattern-96a91d473ce50baf3cd4408a",
+        "fr-pattern-985b95d279152f555e16b130",
+        "fr-pattern-9bd8e03cd6eba376a22c37a0",
+        "fr-pattern-a95804c905e4ada619f77cd6",
+        "fr-pattern-ac88c85120d747231146f124",
+        "fr-pattern-b0d1ccdcd8f20658704e10ff",
+        "fr-pattern-e2fcfffb78bb9b2297ae0039",
+        "fr-pattern-f53101db0c5ca02a4eadc0cc",
+        "fr-pattern-f642774ee417fe1243bf91aa"
+      ],
+      "directions": [
+        {
+          "id": "fr-play-852d49e6b0f8b18f2fa0bf74",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-ee308b36be8706fa2a113bfa"
+          ],
+          "relationId": 9755792,
+          "status": "VERIFIED_ADDED"
+        },
+        {
+          "id": "fr-play-3b4dc5c32f7398d32f587127",
+          "scheduleResourceId": 83582,
+          "sourcePatterns": [
+            "fr-pattern-823a86cc5c9354052d540ee2"
+          ],
+          "relationId": 9755793,
+          "status": "VERIFIED_ADDED"
+        }
+      ]
     }
   ],
   "regionalCoverage": [
@@ -4940,7 +8929,7 @@
         80921,
         80931
       ],
-      "catalogLines": 42,
+      "catalogLines": 51,
       "catalogLineIds": [
         "fr-transilien-h",
         "fr-transilien-j",
@@ -4983,10 +8972,19 @@
         "fr-paris-metro-10",
         "fr-paris-metro-12",
         "fr-paris-metro-13",
-        "fr-paris-metro-14"
+        "fr-paris-metro-14",
+        "fr-sncf-571683c84109fa26",
+        "fr-sncf-f1c4651f44a9c732",
+        "fr-sncf-6c619fa99de9a07b",
+        "fr-sncf-45ab55f9100a0890",
+        "fr-sncf-82ab08be9fa3e8c9",
+        "fr-sncf-4faa6def412c96f6",
+        "fr-sncf-9c427d006b53d680",
+        "fr-sncf-3e882830d47a08a4",
+        "fr-sncf-23ae34d33581a884"
       ],
-      "playableDirections": 238,
-      "verifiedPlayableDirections": 238
+      "playableDirections": 261,
+      "verifiedPlayableDirections": 261
     },
     {
       "code": "24",
@@ -4994,22 +8992,24 @@
       "regionalFeedIds": [
         83521
       ],
-      "catalogLines": 5,
+      "catalogLines": 7,
       "catalogLineIds": [
         "fr-transilien-n",
         "fr-transilien-r",
         "fr-rer-d",
         "fr-intercites-night-paris-toulouse",
-        "fr-tgv-strasbourg-bordeaux"
+        "fr-tgv-strasbourg-bordeaux",
+        "fr-sncf-9c427d006b53d680",
+        "fr-sncf-3e882830d47a08a4"
       ],
-      "playableDirections": 34,
-      "verifiedPlayableDirections": 34
+      "playableDirections": 41,
+      "verifiedPlayableDirections": 41
     },
     {
       "code": "27",
       "name": "Bourgogne-Franche-Comté",
       "regionalFeedIds": [],
-      "catalogLines": 7,
+      "catalogLines": 12,
       "catalogLineIds": [
         "fr-lyria-paris-lausanne",
         "fr-tgv-strasbourg-nice",
@@ -5017,10 +9017,15 @@
         "fr-ter-macon-valence",
         "fr-tgv-paris-besancon",
         "fr-tgv-paris-mulhouse",
-        "fr-tgv-paris-perpignan"
+        "fr-tgv-paris-perpignan",
+        "fr-sncf-7922f65fe512bbfb",
+        "fr-sncf-fe004267b6aba8a1",
+        "fr-sncf-9fddbc4efb8466ca",
+        "fr-sncf-23ae34d33581a884",
+        "fr-sncf-53cf5f01b333a47a"
       ],
-      "playableDirections": 21,
-      "verifiedPlayableDirections": 21
+      "playableDirections": 31,
+      "verifiedPlayableDirections": 31
     },
     {
       "code": "28",
@@ -5028,12 +9033,19 @@
       "regionalFeedIds": [
         81942
       ],
-      "catalogLines": 1,
+      "catalogLines": 8,
       "catalogLineIds": [
-        "fr-transilien-j"
+        "fr-transilien-j",
+        "fr-sncf-b4e4b8f442c955f4",
+        "fr-sncf-f172e0ced2397d36",
+        "fr-sncf-82ab08be9fa3e8c9",
+        "fr-sncf-23dfa177e8c34c56",
+        "fr-sncf-4faa6def412c96f6",
+        "fr-sncf-ba41fa505513fc9b",
+        "fr-sncf-06d920cd2ef3f4cf"
       ],
-      "playableDirections": 19,
-      "verifiedPlayableDirections": 19
+      "playableDirections": 35,
+      "verifiedPlayableDirections": 35
     },
     {
       "code": "32",
@@ -5041,7 +9053,7 @@
       "regionalFeedIds": [
         83620
       ],
-      "catalogLines": 12,
+      "catalogLines": 40,
       "catalogLineIds": [
         "fr-transilien-h",
         "fr-transilien-j",
@@ -5054,10 +9066,38 @@
         "fr-tgv-strasbourg-brussels",
         "fr-tgv-nantes-brussels",
         "fr-lille-metro-1",
-        "fr-lille-metro-2"
+        "fr-lille-metro-2",
+        "fr-sncf-571fff73f7fed323",
+        "fr-sncf-ea68024b93abc97e",
+        "fr-sncf-571683c84109fa26",
+        "fr-sncf-f1c4651f44a9c732",
+        "fr-sncf-5a9f847dbb6bb1c0",
+        "fr-sncf-22172d0f00f6e906",
+        "fr-sncf-dff8b7439311cd97",
+        "fr-sncf-d90aa575ee5f4ffd",
+        "fr-sncf-c1e563f8ecc97fac",
+        "fr-sncf-f172e0ced2397d36",
+        "fr-sncf-8db8c3cfac838f2b",
+        "fr-sncf-272698b5c8a8d803",
+        "fr-sncf-9425b08caee351b3",
+        "fr-sncf-e5ca2eacabb53250",
+        "fr-sncf-47262aa564472c3d",
+        "fr-sncf-86d45483ea6da9d2",
+        "fr-sncf-4451e9cc1c08abd1",
+        "fr-sncf-97680dd9960bbe37",
+        "fr-sncf-fac9bdc260f256a8",
+        "fr-sncf-6c619fa99de9a07b",
+        "fr-sncf-45ab55f9100a0890",
+        "fr-sncf-9c91edfd58296149",
+        "fr-sncf-4bd27b260d27d535",
+        "fr-sncf-609e72b5a7132c86",
+        "fr-sncf-9c11be75846fdb46",
+        "fr-sncf-4309e4ca039e0a7d",
+        "fr-sncf-d3c710c25342d1c4",
+        "fr-sncf-8aa3819d82d9246d"
       ],
-      "playableDirections": 93,
-      "verifiedPlayableDirections": 93
+      "playableDirections": 151,
+      "verifiedPlayableDirections": 151
     },
     {
       "code": "44",
@@ -5065,16 +9105,45 @@
       "regionalFeedIds": [
         83634
       ],
-      "catalogLines": 5,
+      "catalogLines": 34,
       "catalogLineIds": [
         "fr-tgv-strasbourg-nice",
         "fr-tgv-paris-mulhouse",
         "fr-tgv-strasbourg-bordeaux",
         "fr-tgv-strasbourg-quimper",
-        "fr-tgv-strasbourg-brussels"
+        "fr-tgv-strasbourg-brussels",
+        "fr-sncf-b25efc8281ecfd47",
+        "fr-sncf-f3e1225958e09887",
+        "fr-sncf-1b3df74dfb072e24",
+        "fr-sncf-ebedc44b817dad63",
+        "fr-sncf-919d138e80de2215",
+        "fr-sncf-d6b8c6fd52a5044c",
+        "fr-sncf-338211936dce22ec",
+        "fr-sncf-fba43067bcf9d92b",
+        "fr-sncf-dac834c1f0c11f25",
+        "fr-sncf-d607530fbe72caed",
+        "fr-sncf-4441236475c3929a",
+        "fr-sncf-57550dd2a8039275",
+        "fr-sncf-ac4aa5999bae5e1b",
+        "fr-sncf-3e2808618ee3bd91",
+        "fr-sncf-a36fbd9747a55d8d",
+        "fr-sncf-367de2fd4c00c88c",
+        "fr-sncf-9641e820d5cc76c1",
+        "fr-sncf-ed2fe128d551ff4f",
+        "fr-sncf-649ca868482323df",
+        "fr-sncf-a039954d8873d44a",
+        "fr-sncf-9c91edfd58296149",
+        "fr-sncf-9a790b4d80e5201f",
+        "fr-sncf-033b3dd7d1b774c5",
+        "fr-sncf-0e8979a05d983307",
+        "fr-sncf-7c98e992d3140bf0",
+        "fr-sncf-7922f65fe512bbfb",
+        "fr-sncf-fe004267b6aba8a1",
+        "fr-sncf-599a792e0c7d522d",
+        "fr-sncf-0b88215b7d7a008b"
       ],
-      "playableDirections": 10,
-      "verifiedPlayableDirections": 10
+      "playableDirections": 70,
+      "verifiedPlayableDirections": 70
     },
     {
       "code": "52",
@@ -5082,15 +9151,18 @@
       "regionalFeedIds": [
         79818
       ],
-      "catalogLines": 4,
+      "catalogLines": 7,
       "catalogLineIds": [
         "fr-ter-nantes-pornic",
         "fr-ter-nantes-saint-gilles",
         "fr-tgv-strasbourg-quimper",
-        "fr-tgv-nantes-brussels"
+        "fr-tgv-nantes-brussels",
+        "fr-sncf-0554392037869047",
+        "fr-sncf-9c427d006b53d680",
+        "fr-sncf-3e882830d47a08a4"
       ],
-      "playableDirections": 8,
-      "verifiedPlayableDirections": 8
+      "playableDirections": 17,
+      "verifiedPlayableDirections": 17
     },
     {
       "code": "53",
@@ -5099,14 +9171,16 @@
         81474,
         81559
       ],
-      "catalogLines": 3,
+      "catalogLines": 5,
       "catalogLineIds": [
         "fr-tgv-strasbourg-quimper",
         "fr-rennes-metro-a",
-        "fr-rennes-metro-b"
+        "fr-rennes-metro-b",
+        "fr-sncf-b4e4b8f442c955f4",
+        "fr-sncf-3e882830d47a08a4"
       ],
-      "playableDirections": 6,
-      "verifiedPlayableDirections": 6
+      "playableDirections": 15,
+      "verifiedPlayableDirections": 15
     },
     {
       "code": "75",
@@ -5114,35 +9188,40 @@
       "regionalFeedIds": [
         82321
       ],
-      "catalogLines": 3,
+      "catalogLines": 5,
       "catalogLineIds": [
         "fr-intercites-night-paris-toulouse",
         "fr-tgv-strasbourg-bordeaux",
-        "fr-intercites-bordeaux-marseille"
+        "fr-intercites-bordeaux-marseille",
+        "fr-sncf-130bdc17961e29d2",
+        "fr-sncf-0554392037869047"
       ],
-      "playableDirections": 12,
-      "verifiedPlayableDirections": 12
+      "playableDirections": 16,
+      "verifiedPlayableDirections": 16
     },
     {
       "code": "76",
       "name": "Occitanie",
       "regionalFeedIds": [],
-      "catalogLines": 5,
+      "catalogLines": 8,
       "catalogLineIds": [
         "fr-intercites-night-paris-toulouse",
         "fr-tgv-paris-perpignan",
         "fr-intercites-bordeaux-marseille",
         "fr-toulouse-metro-a",
-        "fr-toulouse-metro-b"
+        "fr-toulouse-metro-b",
+        "fr-sncf-d331e5aadad2e4d5",
+        "fr-sncf-6f18236e902d0984",
+        "fr-sncf-295735aea75e4638"
       ],
-      "playableDirections": 19,
-      "verifiedPlayableDirections": 19
+      "playableDirections": 25,
+      "verifiedPlayableDirections": 25
     },
     {
       "code": "84",
       "name": "Auvergne-Rhône-Alpes",
       "regionalFeedIds": [],
-      "catalogLines": 17,
+      "catalogLines": 38,
       "catalogLineIds": [
         "fr-tgv-strasbourg-nice",
         "fr-ter-saint-marcellin-grenoble",
@@ -5160,10 +9239,31 @@
         "fr-lyon-metro-a",
         "fr-lyon-metro-b",
         "fr-lyon-metro-c",
-        "fr-lyon-metro-d"
+        "fr-lyon-metro-d",
+        "fr-sncf-b4fab0cec258be3a",
+        "fr-sncf-7437cb7895b112cd",
+        "fr-sncf-ef0746e4927a0dc4",
+        "fr-sncf-471c01e7e1256323",
+        "fr-sncf-6930497dde88fe55",
+        "fr-sncf-7922f65fe512bbfb",
+        "fr-sncf-896d8a829531edb3",
+        "fr-sncf-8a6d87213f4d7020",
+        "fr-sncf-d7a4f89a2cd385f9",
+        "fr-sncf-d47c7c7cbde43d3d",
+        "fr-sncf-04666d8fa58680ff",
+        "fr-sncf-bdebd5b89d13132f",
+        "fr-sncf-47384e3d29d1b8a4",
+        "fr-sncf-cb535216d19d78be",
+        "fr-sncf-ffa1f445e9309e11",
+        "fr-sncf-7f922fc660f18b9d",
+        "fr-sncf-587c12297be148ae",
+        "fr-sncf-c17e81552267281f",
+        "fr-sncf-e1a4b5c313117051",
+        "fr-sncf-23ae34d33581a884",
+        "fr-sncf-cf37b3c7132aeebf"
       ],
-      "playableDirections": 41,
-      "verifiedPlayableDirections": 41
+      "playableDirections": 87,
+      "verifiedPlayableDirections": 87
     },
     {
       "code": "93",
@@ -5173,17 +9273,20 @@
         83448,
         83990
       ],
-      "catalogLines": 6,
+      "catalogLines": 9,
       "catalogLineIds": [
         "fr-tgv-strasbourg-nice",
         "fr-ter-lyon-part-dieu-avignon",
         "fr-ter-lyon-perrache-avignon",
         "fr-intercites-bordeaux-marseille",
         "fr-marseille-metro-1",
-        "fr-marseille-metro-2"
+        "fr-marseille-metro-2",
+        "fr-sncf-b4fab0cec258be3a",
+        "fr-sncf-7437cb7895b112cd",
+        "fr-sncf-6930497dde88fe55"
       ],
-      "playableDirections": 18,
-      "verifiedPlayableDirections": 18
+      "playableDirections": 26,
+      "verifiedPlayableDirections": 26
     },
     {
       "code": "94",
