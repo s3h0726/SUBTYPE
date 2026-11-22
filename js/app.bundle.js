@@ -3872,13 +3872,74 @@ const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京
 // The editor saves a small JSON file independently of the generated catalog.
 // Apply it in the browser as well: a failed bulk rebuild must not hide edits.
 let editorNameOverrides={operators:{},lines:{},stations:{},services:{}};
+const EDITOR_DRAFT_PREFIX='metrot-korean-edit-20261102-nationwide-revalidated-';
+const EDITOR_PENDING_KEY='subtype-editor-published-pending-v1';
+const EDITOR_PENDING_MAX_AGE=2*60*60*1000;
+const editableName=value=>typeof value==='string'?value.normalize('NFC').trim():'';
+const nameOverrideSections=['operators','lines','stations','services'];
+function mergeEditorNameOverrides(base,update){
+  const result=Object.fromEntries(nameOverrideSections.map(section=>[section,{...(base?.[section]||{})}]));
+  for(const section of ['operators','lines','services'])Object.assign(result[section],update?.[section]||{});
+  for(const [line,stations] of Object.entries(update?.stations||{}))
+    result.stations[line]={...(result.stations[line]||{}),...stations};
+  return result;
+}
+// Treat each unsaved unified-editor table row as a gameplay name edit for this browser.
+function localEditorNameOverrides(){
+  let result={operators:{},lines:{},stations:{},services:{}};
+  try{
+    const pending=JSON.parse(localStorage.getItem(EDITOR_PENDING_KEY)||'null');
+    if(pending?.branch==='main'&&Number.isFinite(pending.savedAt)&&
+       Date.now()-pending.savedAt>=0&&Date.now()-pending.savedAt<EDITOR_PENDING_MAX_AGE)
+      result=mergeEditorNameOverrides(result,pending.overrides);
+    const keys=Array.from({length:localStorage.length},(_,i)=>localStorage.key(i))
+      .filter(key=>key?.startsWith(EDITOR_DRAFT_PREFIX)).sort();
+    for(const key of keys){
+      const match=key.slice(EDITOR_DRAFT_PREFIX.length)
+        .match(/^(jp|kr|hk|th|tw|uk|fr)-(operators|lines|services|stations-by-line)(?:-|$)/);
+      if(!match)continue;
+      let draft;
+      try{draft=JSON.parse(localStorage.getItem(key)||'{}')}catch{continue}
+      if(!draft||typeof draft!=='object')continue;
+      for(const row of Object.values(draft)){
+        if(!Array.isArray(row))continue;
+        const kind=match[2];
+        if(kind==='operators'&&row.length>=2){
+          const id=editableName(row[0]),ko=editableName(row[1]);
+          if(id&&ko)result.operators[id]=ko;
+        }else if(kind==='lines'&&row.length>=7){
+          const id=editableName(row[2]),ko=editableName(row[3]);
+          if(!id||!ko)continue;
+          const color=editableName(row[6]),prev=result.lines[id]||{};
+          const next={...prev,ko,...(/^#[0-9a-f]{6}$/i.test(color)?{color}:{})};
+          if(row.length>=10){
+            const label=editableName(row[8]),labelColor=editableName(row[9]);
+            if(label){next.label=label;if(/^#[0-9a-f]{6}$/i.test(labelColor))next.labelColor=labelColor}
+            else{delete next.label;delete next.labelColor}
+          }
+          result.lines[id]=next;
+        }else if(kind==='services'&&row.length>=5){
+          const id=editableName(row[0]),ko=editableName(row[4]);
+          if(id&&ko)result.services[id]=ko;
+        }else if(kind==='stations-by-line'&&row.length>=7){
+          const id=editableName(row[2]),stationId=editableName(row[4]),ko=editableName(row[6]);
+          if(id&&stationId&&ko){result.stations[id]||={};result.stations[id][stationId]=ko}
+        }
+      }
+    }
+  }catch(error){console.warn('Local name-editor drafts unavailable:',error)}
+  return result;
+}
 async function loadEditorNameOverrides(){
+  let published={};
   try{
     const response=await fetch(new URL('data/editor-overrides.json',document.baseURI),{cache:'no-store'});
     if(!response.ok)throw Error('HTTP '+response.status);
-    const source=await response.json();
-    editorNameOverrides={operators:source?.operators||{},lines:source?.lines||{},stations:source?.stations||{},services:source?.services||{}};
-  }catch(error){console.warn('Editor names unavailable; using built names',error)}
+    published=await response.json();
+  }catch(error){console.warn('Published editor names unavailable; using built names and local drafts',error)}
+  editorNameOverrides=mergeEditorNameOverrides(published,localEditorNameOverrides());
+  globalThis.TRT_EDITOR_OVERRIDES=editorNameOverrides;
+  return editorNameOverrides;
 }
 function normalizeStation(raw={},index=0,lineCode='ST'){
   const source=Array.isArray(raw)?{id:raw[0],ja:raw[1],kana:raw[2],romaji:raw[3],ko:raw[4],latitude:raw[5],longitude:raw[6],koAliases:raw[7]}:raw;
@@ -4143,12 +4204,18 @@ function normalizeLine(raw={},defaults={}){
   const category=text(raw.category,defaults.category)||'other',code=text(raw.code,raw.lineCode),operatorRaw=raw.operator||{},lineRaw=raw.line||raw.names||{};
   const id=text(raw.id,raw.lineId)||`line-${category}-${crypto.randomUUID?.()||Date.now()}`;
   const verifiedTheme=globalThis.TRT_LINE_THEMES?.[id],resolvedCode=verifiedTheme?.code||code||'—';
-  const stationEdits=editorNameOverrides.stations[id]||{};
-  const stations=applyRouteTrackCoordinates(raw,Array.isArray(raw.stations)?raw.stations.map((station,index)=>{const normalized=normalizeStation(station,index,resolvedCode),verifiedCode=verifiedTheme?.stationCodes?.[normalized.ja];return verifiedCode?{...normalized,officialCode:verifiedCode,stationCode:verifiedCode,hasOfficialStationCode:true,stationCodeSource:verifiedTheme.colorSource||'verified-line-theme'}:normalized}):[]).map(station=>{
-    const edited=stationEdits[station.id]??stationEdits[station.ja];
-    if(typeof edited!=='string'||!edited.trim())return station;
-    return{...station,canonicalStationNames:station.canonicalStationNames||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji},ko:edited.trim(),routeSpecificStationName:true,editorStationNameOverride:true};
-  });
+  const stationEdits={...(editorNameOverrides.stations[raw.canonicalLineId]||{}),...(editorNameOverrides.stations[id]||{})};
+  const applyEditedName=station=>{
+    if(!station||typeof station!=='object')return station;
+    const edited=[station.id,station.station_id,station.stationMasterId,station.ja,station.en]
+      .map(key=>stationEdits[key]).find(value=>typeof value==='string'&&value.trim());
+    if(!edited)return station;
+    const ko=edited.normalize('NFC').trim();
+    return {...station,ko,nameKo:ko,names:{...(station.names||{}),ko},
+      canonicalStationNames:station.canonicalStationNames||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji},
+      routeSpecificStationName:true,editorStationNameOverride:true};
+  };
+  const stations=applyRouteTrackCoordinates(raw,Array.isArray(raw.stations)?raw.stations.map((station,index)=>{const normalized=normalizeStation(station,index,resolvedCode),verifiedCode=verifiedTheme?.stationCodes?.[normalized.ja];return verifiedCode?{...normalized,officialCode:verifiedCode,stationCode:verifiedCode,hasOfficialStationCode:true,stationCodeSource:verifiedTheme.colorSource||'verified-line-theme'}:normalized}):[]).map(applyEditedName);
   const serviceSource=Array.isArray(raw.services)?raw.services:globalThis.TRT_SERVICE_CATALOG?.[id];
   const allStationIds=stations.map(station=>station.id),services=[];
   const serviceStationPool=raw.countryId==='kr'&&raw.schemaVersion===2?[...stations,...(raw.verifiedJourneys||[]).flatMap(j=>j.stations||[])]:stations;
@@ -4156,11 +4223,7 @@ function normalizeLine(raw={},defaults={}){
   const allStationsService=services.find(service=>service.stops.length===allStationIds.length&&service.stops.every((stationId,index)=>stationId===allStationIds[index]));if(allStationsService){services.splice(services.indexOf(allStationsService),1);services.unshift(allStationsService)}else if((raw.countryId!=='tw'||raw.category==='custom')&&raw.countryId!=='hk'&&raw.countryId!=='th'&&(raw.countryId!=='fr'||raw.category==='custom')&&!(raw.countryId==='kr'&&raw.schemaVersion===2))services.unshift({id:'local',nameJa:raw.countryId==='tw'?'각역정차':'各駅停車',nameKo:'각역정차',nameEn:'Local',...(raw.countryId==='tw'?{nameZh:raw.line?.zh||'自訂路線'}:{}),stops:allStationIds});
   // 한국 이름 편집은 대표 경로뿐 아니라 분기·급행·반대 방향의 모든 정차지에 적용한다.
   const verifiedJourneys=Array.isArray(raw.verifiedJourneys)?raw.verifiedJourneys.map(journey=>{
-    const calls=raw.countryId==='kr'?(journey.stations||[]).map(station=>{
-      const edited=stationEdits[station.id]??stationEdits[station.ja];
-      if(typeof edited!=='string'||!edited.trim())return station;
-      return{...station,ko:edited.trim(),...(station.names?{names:{...station.names,ko:edited.trim()}}:{}),canonicalStationNames:station.canonicalStationNames||{ja:station.ja,kana:station.kana,ko:station.ko,en:station.romaji},routeSpecificStationName:true,editorStationNameOverride:true};
-    }):journey.stations;
+    const calls=raw.countryId==='kr'?(journey.stations||[]).map(applyEditedName):journey.stations;
     if(raw.countryId==='kr'&&calls?.length){const old=journey.stations,oldPair=old[0].ko+' → '+old.at(-1).ko,newPair=calls[0].ko+' → '+calls.at(-1).ko;
       const fix=value=>typeof value==='string'?value.replace(oldPair,newPair):value;
       journey={...journey,stations:calls,patternName:{...journey.patternName,ko:fix(journey.patternName?.ko)},service:journey.service?{...journey.service,nameKo:fix(journey.service.nameKo)}:journey.service};}
@@ -4170,12 +4233,20 @@ function normalizeLine(raw={},defaults={}){
     return {...journey,patternName:{...(journey.patternName||{}),ko:displayName},service:journey.service?{...journey.service,nameKo:displayName}:journey.service};
   }):raw.verifiedJourneys;
   const lineTheme=verifiedTheme||{code:resolvedCode,color:text(raw.lineColor,raw.color)||'#777777',style:category==='jr'?'jr':category==='subway'?'metro':'private',operatorMark:text(operatorRaw.en,operatorRaw.ja)||'RAILWAY',colorVerified:false,colorSource:raw.colorSource||'Imported source data'};
-  const editorLine=editorNameOverrides.lines[id]||{};
+  const editorLine=editorNameOverrides.lines[id]||editorNameOverrides.lines[raw.canonicalLineId]||{};
   const editorColor=/^#[0-9a-fA-F]{6}$/.test(editorLine.color||'')?editorLine.color:lineTheme.color;
   const normalizedOperatorId=text(raw.operatorId,operatorRaw.id)||category,assetOperatorId=({'jr-east':'op-2','jr-central':'op-3','tokyo-metro':'op-18','toei':'op-119'})[normalizedOperatorId]||normalizedOperatorId;
   raw.operatorAsset=raw.operatorAsset?.asset?raw.operatorAsset:null;
   const lineJa=cleanDisplayLineName(text(lineRaw.ja,raw.nameJa,raw.japanese,raw.name,lineRaw.en,'新路線')),operatorJa=text(operatorRaw.ja,raw.operatorNameJa,raw.operatorName,operatorRaw.en,'Railway'),operatorKo=text(operatorRaw.ko),lineKo=text(lineRaw.ko);
-  return{...raw,verifiedJourneys,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{...(raw.countryId==='th'?{th:operatorRaw.th}:{}),...(raw.countryId==='tw'?{...operatorRaw,zh:text(operatorRaw.zh,operatorRaw.nameZh,operatorRaw.names?.zh)}:{}),ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:text(editorNameOverrides.operators[normalizedOperatorId],operatorKo)||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:text(editorLine.ko,lineKo)||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:editorColor,loop:!!raw.loop,lineTheme:{...lineTheme,color:editorColor},services,stations}
+  const stationCatalog=Array.isArray(raw.stationCatalog)?raw.stationCatalog.map(applyEditedName):raw.stationCatalog;
+  const directions=Array.isArray(raw.directions)?raw.directions.map(direction=>({
+    ...direction,stops:Array.isArray(direction.stops)?direction.stops.map(applyEditedName):direction.stops
+  })):raw.directions;
+  const patterns=Array.isArray(raw.patterns)?raw.patterns.map(pattern=>({
+    ...pattern,nameKo:editableName(editorNameOverrides.services[pattern.id])||pattern.nameKo,
+    stations:Array.isArray(pattern.stations)?pattern.stations.map(applyEditedName):pattern.stations
+  })):raw.patterns;
+  return{...raw,stationCatalog,directions,patterns,verifiedJourneys,id,category,countryId:text(raw.countryId)||'jp',mode:text(raw.mode)||'rail',operatorId:text(raw.operatorId,operatorRaw.id)||category,operator:{...(raw.countryId==='th'?{th:operatorRaw.th}:{}),...(raw.countryId==='tw'?{...operatorRaw,zh:text(operatorRaw.zh,operatorRaw.nameZh,operatorRaw.names?.zh)}:{}),ja:operatorJa,en:text(operatorRaw.en,raw.operatorNameEn,raw.operatorName,operatorRaw.ja,'Transport'),ko:text(editorNameOverrides.operators[normalizedOperatorId],operatorKo)||'MISSING_KOREAN_NAME'},line:{...lineRaw,ja:lineJa,en:text(lineRaw.en,raw.nameEn,raw.english,raw.name,lineRaw.ja,lineRaw.ko,'New Route'),ko:text(editorLine.ko,lineKo)||'MISSING_KOREAN_NAME'},code:resolvedCode,lineColor:editorColor,loop:!!raw.loop,lineTheme:{...lineTheme,color:editorColor},services,stations}
 }
 function normalizeLazyLine(raw={}){const normalized=normalizeLine({...raw,stations:[],services:[]},{category:raw.category});const searchStations=Array.isArray(raw.searchStations)?raw.searchStations:[];
  const editedNames=raw.countryId==='kr'?Object.values(editorNameOverrides.stations[raw.id]||{}).filter(v=>typeof v==='string'):[];
@@ -6854,7 +6925,8 @@ $('#feature-viewport').addEventListener('mouseenter',()=>clearInterval(featureTi
 $('#library-import').addEventListener('change',async e=>{await editor.import(e.target.files[0]);e.target.value='';renderCustomLibrary();go('custom-editor')});
 document.addEventListener('trt:cloud-restored',()=>{if(currentScreen==='records')renderStats()});
 initAuth(storage);applyCountryUi();refreshCountryCopy();renderHome();renderCustomLibrary();refreshRoutes();freeDrive?.setNetwork(freeDriveNetworkRoutes());renderHomeNetwork();if(currentScreen==='records')renderStats();if(['game','game-setup','result'].includes(currentScreen)){window.TRTNavigation?.showScreen('rail-map',{history:'replace'});toast('노선을 먼저 선택해 주세요.')}
-async function reloadRailData(){const summary=$('#data-summary');dataLoading=true;summary.classList.remove('error','has-count-chips');summary.textContent=`${countryId==='tw'?'대만 철도':countryId==='hk'?'홍콩 철도':countryId==='kr'?'대한민국 대중교통':'일본 전국 철도'} 카탈로그를 불러오는 중...`;try{let edits={};try{const response=await fetch('./data/editor-overrides.json?ts='+Date.now(),{cache:'no-store',signal:globalThis.AbortSignal?.timeout?.(4000)});if(response.ok)edits=await response.json()}catch(error){console.warn('Name editor overrides unavailable:',error)}globalThis.TRT_EDITOR_OVERRIDES=edits;
+async function reloadRailData(){const summary=$('#data-summary');dataLoading=true;summary.classList.remove('error','has-count-chips');summary.textContent=`${countryId==='tw'?'대만 철도':countryId==='hk'?'홍콩 철도':countryId==='kr'?'대한민국 대중교통':'일본 전국 철도'} 카탈로그를 불러오는 중...`;try{const edits=await loadEditorNameOverrides();
+    // The published file and the user's local unified-editor drafts now share one name source.
     // Apply editable Korean service names to source catalogs before routes are normalized.
     const serviceNames=edits.services||{},legacy=globalThis.TRT_SERVICE_CATALOG||{},patterns=globalThis.TRT_TOKYO_SERVICE_PATTERNS||{};
     for(const [lineId,items] of Object.entries(legacy))for(const service of items||[]){
