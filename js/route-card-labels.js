@@ -19,10 +19,38 @@
     return components[0] * 0.2126 + components[1] * 0.7152 + components[2] * 0.0722 > 0.179
       ? '#142337' : '#FFFFFF';
   }
+  function effectiveLabelLines(source) {
+    const lines = {...(source?.lines || {})};
+    try {
+      const pending = JSON.parse(localStorage.getItem('subtype-editor-published-pending-v1') || 'null');
+      if (pending?.branch === 'main' && Number.isFinite(pending.savedAt) &&
+          Date.now() - pending.savedAt >= 0 && Date.now() - pending.savedAt < 7200000)
+        Object.assign(lines, pending.overrides?.lines || {});
+      const prefix = 'metrot-korean-edit-20261102-nationwide-revalidated-';
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!key?.startsWith(prefix) || !/^(jp|kr|hk|th|tw|uk|fr)-lines$/.test(key.slice(prefix.length))) continue;
+        const draft = JSON.parse(localStorage.getItem(key) || '{}');
+        for (const row of Object.values(draft)) {
+          if (!Array.isArray(row) || row.length < 10 || !row[2]) continue;
+          const next = {...(lines[row[2]] || {}), ko: String(row[3] || '').trim(), color: row[6]};
+          if (String(row[8] || '').trim()) {
+            next.label = String(row[8]).trim();
+            next.labelColor = row[9];
+          } else {
+            delete next.label;
+            delete next.labelColor;
+          }
+          lines[row[2]] = next;
+        }
+      }
+    } catch (error) { console.warn('Local route labels unavailable:', error) }
+    return lines;
+  }
   function readLabels(source) {
     byRoute.clear();
     byFamily.clear();
-    for (const [id, data] of Object.entries(source?.lines || {})) {
+    for (const [id, data] of Object.entries(effectiveLabelLines(source))) {
       const label = text(data?.label);
       if (!label) continue;
       const color = VALID_COLOR.test(data?.labelColor || '') ? data.labelColor.toUpperCase() : DEFAULT_COLOR;
