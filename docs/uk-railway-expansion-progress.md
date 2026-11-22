@@ -1,23 +1,60 @@
 # United Kingdom railway expansion progress
 
-## National Railway Mega Expansion II
+## National Railway Mega Expansion III
 
-Source review through 2026-11-13. This is a partial British railway catalogue.
+Latest batch baseline: 9bfe2421d886ecc5cf51e009e151029c5c5d5aac. Every one of its 673 directions is protected by station, service and geometry-reference hashes.
+
+| Metric | Before this batch | Added | Final |
+| --- | ---: | ---: | ---: |
+| Operating organisations | 36 | 0 | 36 |
+| Lines / corridors | 167 | 10 | 177 |
+| Service pattern families | 390 | 17 | 407 |
+| Playable directions | 673 | 28 | 701 |
+| Station IDs | 2569 | 90 | 2659 |
+| Physical station groups | 2264 | 86 | 2350 |
+| Shared track segments | 5778 | 210 | 5988 |
+
+This batch adds Romsey loop, Farnham–Guildford, Portsmouth via Eastleigh, Buxton, Settle–Carlisle, Severn Beach (including Weston-super-Mare through journeys), St Ives Bay, Regatta/Henley, Atlantic Coast and Hertford East, and independently sourced Avanti outward directions. New directions retain individual stop lists; some branch coverage remains partial.
+
+| New or extended corridor | Added directions | Independent passenger relation IDs |
+| --- | ---: | --- |
+| Romsey loop via Eastleigh and Southampton | 2 | 172798, 19786853 |
+| Farnham–Guildford branch | 2 | 8763249, 8763250 |
+| Portsmouth via Eastleigh | 2 | 2463076, 8845998 |
+| Buxton line | 2 | 9530104, 9530105 |
+| Severn Beach line | 4 | 167218, 21103790, 21105147, 21105148 |
+| St Ives Bay line | 4 | 21378577, 21378576, 285806, 21378578 |
+| Regatta line to Henley-on-Thames | 2 | 917536, 11579248 |
+| Atlantic Coast line | 2 | 3822453, 21419558 |
+| Hertford East branch | 2 | 9107254, 9107253 |
+| West Coast Main Line Manchester branches | 3 | 6345555, 6345556, 6345557 |
+| West Coast Main Line Liverpool branch | 1 | 6346054 |
+| Settle–Carlisle line | 2 | 9902815, 9902816 |
+
+Targeted comparisons use current official SWR 12/23/25, Northern 20, Avanti May–December 2026, GWR branch publications and Greater Anglia passenger information. This is service data integration, not certification of every train or an exhaustive re-audit of the existing catalogue.
+Machine-readable reviewed calls, source URLs, sample columns, downloaded-PDF checksums and blocked candidates: data/uk/source/national/expansion-iii-service-review.json. Reimport with node tools/import-uk-reviewed-batch.cjs <review.json> <original-snapshot-directory>, then pack and build.
+
+Latest batch blockers: gwr-st-ives — Official K5 has once-daily Lelant Saltings calls, but these source tracks lack a named stop-position. Explicit 3/4-call patterns are partial station coverage.
+Resolved topology: gwr-atlantic-coast / 21419558 — Use the existing reviewed source graph assembler on this independent return relation. All seven original stop node IDs match exact graph vertices, maximum offset 0 km; no synthetic edge and no automatic reversal of the outward service.
+
+## Cumulative expansion since Mega Expansion II
+
+Source review through 2026-11-18. This is a partial British railway catalogue.
 Baseline: 520e00ec0 (all 284 directions checked for preserved route, station and geometry references).
 
 | Metric | Before | Added | Final |
 | --- | ---: | ---: | ---: |
 | Operating organisations | 21 | 15 | 36 |
-| Lines / corridors | 56 | 111 | 167 |
-| Service pattern families | 176 | 214 | 390 |
-| Playable directions | 284 | 389 | 673 |
-| Station IDs | 1146 | 1423 | 2569 |
-| Physical station groups | 1065 | 1199 | 2264 |
-| Shared track segments | 2588 | 3190 | 5778 |
+| Lines / corridors | 56 | 121 | 177 |
+| Service pattern families | 176 | 231 | 407 |
+| Playable directions | 284 | 417 | 701 |
+| Station IDs | 1146 | 1513 | 2659 |
+| Physical station groups | 1065 | 1285 | 2350 |
+| Shared track segments | 2588 | 3400 | 5988 |
 
 The totals include seven directions added independently on main in PR #36.
 
-Korean localisation: 2569/2569 station IDs. These are editable Korean editorial names. Original English names and existing user overrides are preserved.
+Korean localisation: 2659/2659 station IDs. These are editable Korean editorial names. Original English names and existing user overrides are preserved.
 Physical groups include nearby records that share the same reviewed English and Korean names and existing TfL interchange identifiers. Track geometry is reused by its original OSM node sequence and loaded in cached geographic partitions.
 
 ## Current operating organisations
@@ -174,20 +211,30 @@ Physical groups include nearby records that share the same reviewed English and 
 | Eurostar | Eurostar · London–Paris via the Channel Tunnel | 2 |
 | Eurostar | Eurostar · London–Brussels via the Channel Tunnel | 2 |
 | Eurostar | Eurostar · London–Amsterdam via Brussels and Rotterdam | 2 |
+| South Western Railway | Romsey loop via Eastleigh and Southampton | 2 |
+| South Western Railway | Farnham–Guildford branch | 2 |
+| South Western Railway | Portsmouth via Eastleigh | 2 |
+| Northern | Buxton line | 2 |
+| Great Western Railway | Severn Beach line | 4 |
+| Great Western Railway | St Ives Bay line | 4 |
+| Great Western Railway | Regatta line to Henley-on-Thames | 2 |
+| Great Western Railway | Atlantic Coast line | 2 |
+| Greater Anglia | Hertford East branch | 2 |
+| Northern | Settle–Carlisle line | 2 |
 
 ## Validation and production
 
 - Route resolver, stable IDs, Korean names, geographical station bounds, directional endpoints and original OSM edges: PASS.
-- Browser: 673 complete directions, including all baseline directions; no runtime errors in the passing runs.
-- Free driving: 673 directions, 9411 station transitions.
-- Other countries: jp 607 PASS, kr 8275 PASS, hk 105 PASS, th 23 PASS, tw 46 PASS, fr 39 PASS.
+- Browser: 701 complete directions, including all baseline directions; no runtime errors in the passing runs.
+- Free driving: 701 directions, 9665 station transitions.
+- Other countries: jp 607 PASS, kr 8275 PASS, hk 105 PASS, th 23 PASS, tw 46 PASS, fr 69 PASS, mo 3 PASS.
 - Mobile signs, editor and cached geometry: PASS.
 - Leaderboard identity: PASS.
-- Implementation commit: 1803d538686c28cc66c78e9ba47fab4d92bb84b5. Batches: 2276e770a, 192f36c99, d16f67c33, 3a078e5a8, 63334e03f, 1803d5386, 485d7a8890675d3d940f7a9feafa1a99365aa0e9.
-- UK GitHub Actions: PASS — https://github.com/s3h0726/SUBTYPE/actions/runs/43449431332.
-- Main integration: 673 directions integrated at 485d7a889 and preserved in subsequent main commits.
-- GitHub Pages: PASS, checked 2026-11-14T22:59:34.350Z — https://s3h0726.github.io/SUBTYPE/.
-- Public browser journeys: uk-eurostar-london-paris (2 stops), uk-eurostar-london-brussels (2 stops), uk-eurostar-london-amsterdam (4 stops), uk-southeastern-hs1 (6 stops).
+- Implementation commit: 23612cf4fd383dfa0d6a73236013998c66d15cd2. Batches: 2276e770a, 192f36c99, d16f67c33, 3a078e5a8, 63334e03f, 1803d5386, 23612cf4fd383dfa0d6a73236013998c66d15cd2, f4d255eba2943a00c7a01df17da6fd89562e591e, 4ac4dc6905f622b12bfeb827007318d1c60643ba, e2751176b2a5db8275d9d5b57bed933956e4b377.
+- UK GitHub Actions: PASS — https://github.com/s3h0726/SUBTYPE/actions/runs/45027270726.
+- Main integration: 701 directions integrated into main at 23612cf4fd383dfa0d6a73236013998c66d15cd2; subsequent v0.15.0 release preserves the same UK data.
+- GitHub Pages: PASS, checked 2026-11-22T13:32:00.232Z — https://s3h0726.github.io/SUBTYPE/.
+- Public browser journeys: uk-swr-romsey (13 stops), uk-northern-buxton (15 stops), uk-northern-settle-carlisle (19 stops), uk-gwr-atlantic-coast (7 stops), uk-greater-anglia-hertford (12 stops), uk-avanti-liverpool (6 stops).
 
 ## Sources and reproducibility
 
@@ -202,23 +249,23 @@ Resume from data/uk/source/national/expansion-ii-queue.json. Only candidates rep
 
 | Priority | Operator / network | Remaining corridor | State and next verification |
 | --- | --- | --- | --- |
-| A1 | South Western Railway | Windsor, Kingston, Chessington, Island Line and Portsmouth variants | pending — Chessington relation 8646998 ends at Tolworth; Portsmouth Harbour fast pair has conflicting calls at Farncombe. Review operator-specific source |
+| A1 | South Western Railway | Windsor, Kingston, Chessington, Island Line and Portsmouth variants | partial — Romsey loop, Farnham–Guildford and Portsmouth via Eastleigh added (6 directions). Windsor, Kingston, Chessington and Island Line remain. Chessington 8646998 ends at Tolworth; Portsmouth direct fast pair still has conflicting Farncombe calls. |
 | A1 | Southern / Gatwick Express | Brighton Main Line, Gatwick Express and Coastway branches | pending — Uckfield and Marshlink/East Coastway added. Remaining source relationships need complete ordered directions and passenger stops. |
 | A1 | Southeastern | More London Metro and Kent patterns | pending — Hayes–Charing Cross snapshot omits Waterloo East; Victoria–Orpington relations truncate at Herne Hill. Main line and other branches added |
-| A1 | Greater Anglia / Stansted Express | Hertford East, rural branches, other regular airport calls | pending — Stratford–Meridian Water track ways disconnected; Hertford East reverse still to resolve |
+| A1 | Greater Anglia / Stansted Express | Hertford East, rural branches, other regular airport calls | partial — Hertford East both directions added with distinct reviewed calls (outward passes Waltham Cross). Stratford–Meridian Water still has disconnected source ways; further Ely patterns need call review. |
 | A1 | c2c | Other distinct regular variants | pending — All three operator route families added, via Basildon, Ockendon and Rainham |
 | A1 | Chiltern Railways | Further through-running and express variants | pending — Main, Aylesbury, Oxford and Stratford corridors added; retain separate verified stopping patterns |
 | A2 | East Midlands Railway | Remaining regional branches | pending — Main intercity and key east–west/regional corridors added |
 | A2 | West Midlands Railway / London Northwestern Railway | Further local branches and express variants | pending — Main regional corridors added. Walsall–Wolverhampton 20188633 has unnamed stop 1870159460 and asymmetric calls |
 | A2 | CrossCountry | North East–South West, Birmingham–Stansted and Wales | pending — Check exact calls of archived relations 21116357 and 21116358. Leeds stop nodes lack names; connect only source track |
-| A3 | Northern | Northumberland, Settle–Carlisle, Hope Valley, Manchester and other branches | pending — Northumberland relations omit new stations; Settle–Carlisle relations use unnamed Leeds stop nodes. Cumbrian Coast pairs reference a crossing and an untagged node as calls |
+| A3 | Northern | Northumberland, Settle–Carlisle, Hope Valley, Manchester and other branches | partial — Buxton and Settle–Carlisle added in both directions; Leeds source stop 6589429702 identified at the real platform. Hope Valley, Mid-Cheshire, Morecambe and Glossop/Hadfield remain. Northumberland sources omit new stations; do not release them as current all-stations services. |
 | A3 | TransPennine Express | South TransPennine and remaining North routes | pending — 237386/4234434 have connected tracks and valid Cleethorpes/Dore platform nodes. Chinley is absent from the current operator station directory, so verify a current calling pattern before release. |
 | A3 | Hull Trains / Grand Central | Hull and Bradford branches | pending — Verify both directions and their real ordered calls from an operator-supported source |
 | A4 | Transport for Wales | Remaining valley variants and local branches | pending — Borderlands and major cross-border links added. Aberdare–Merthyr 195448/20622496 still needs current through-service evidence. |
-| A4 | Great Western Railway | Further local and night services | pending — Falmouth Maritime relation 19902608 includes disused siding 300616008. Require a continuous active path |
+| A4 | Great Western Railway | Further local and night services | partial — Severn Beach including Weston through journeys, St Ives 3/4-call patterns, Henley and both Atlantic Coast directions added. Newquay return 21419558 reconstructed from its own original graph, exact stop nodes, zero offset. Lelant Saltings named track stop missing. Falmouth 19902608 uses disused siding 300616008; Maidenhead/Marlow and sleeper variants remain. |
 | A5 | ScotRail | Remaining routes and regional variants | pending — Fife circle relation 20044083 and minor short workings need distinct regular commercial evidence |
 | A5 | Caledonian Sleeper | Highland services | pending — Lowland Glasgow and Edinburgh added. Archived Highland passenger calls predate the Birmingham International change |
-| A6 | Avanti / Heathrow Express / LNER / Lumo | Missing reverse and branch patterns | pending — Baseline Avanti Manchester/Liverpool and Heathrow Express opposite directions require independent source track; extend only genuine current services |
+| A6 | Avanti / Heathrow Express / LNER / Lumo | Missing reverse and branch patterns | partial — Four independent London→Manchester/Liverpool Avanti directions added from original track and current book columns. Heathrow Express return, other WCML variants and further LNER calls still require independent source paths. |
 | C | Southeastern HS1 | Further through journeys beyond Kent branches | pending — Six directions via Ashford or the Medway towns added. Check Dover/Ramsgate through workings and peak-only variants separately |
 | C | Eurostar | Lille Europe stopping variants | blocked — London–Paris, London–Brussels and London–Amsterdam via Rotterdam and Brussels are implemented. Source relations for these services omit Lille Europe or use its bypass; obtain a verified station-platform path for a Lille-calling service. |
 | C | HS2 | Commercial passenger service | blocked — Exclude until passenger operation is officially established |

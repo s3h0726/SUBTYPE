@@ -11,11 +11,13 @@ const expansion = read('data/uk/source/national/expansion-ii.json');
 const queue = read('data/uk/source/national/expansion-ii-queue.json');
 const release = read('reports/uk/release-status.json');
 const browser = read('reports/uk/browser-tests.json');
+const ciBrowserFile = 'reports/uk/ci-browser-tests.json';
+const ciBrowser = fs.existsSync(ciBrowserFile) ? read(ciBrowserFile) : null;
 const supplementalFile = 'reports/uk/browser-ui-tests.json';
 const supplemental = fs.existsSync(supplementalFile) ? read(supplementalFile) : null;
 const activePatterns = new Set(index.routes.flatMap(route => read(route.lazySource).patterns.map(pattern => pattern.id)));
 const verifiedRuns = new Map();
-for (const run of [browser, supplemental]) {
+for (const run of [ciBrowser, browser, supplemental]) {
   if (run?.status !== 'PASS') continue;
   for (const direction of run.runs) if (direction.status === 'PASS' && activePatterns.has(direction.serviceId)) verifiedRuns.set(direction.serviceId, direction);
 }
@@ -48,6 +50,10 @@ const report = [
     '| ' + label + ' | ' + latestBaseline.metrics[key] + ' | ' + (validation[key] - latestBaseline.metrics[key]) + ' | ' + validation[key] + ' |'),
   '',
   'This batch adds Romsey loop, Farnham–Guildford, Portsmouth via Eastleigh, Buxton, Settle–Carlisle, Severn Beach (including Weston-super-Mare through journeys), St Ives Bay, Regatta/Henley, Atlantic Coast and Hertford East, and independently sourced Avanti outward directions. New directions retain individual stop lists; some branch coverage remains partial.',
+  '',
+  '| New or extended corridor | Added directions | Independent passenger relation IDs |',
+  '| --- | ---: | --- |',
+  ...latestReview.networks.map(network => '| ' + (network.lineEn || index.routes.find(route => route.id === 'uk-' + network.id)?.line.en || network.id) + ' | ' + network.patterns.length + ' | ' + network.patterns.map(pattern => pattern.relationId).join(', ') + ' |'),
   '',
   'Targeted comparisons use current official SWR 12/23/25, Northern 20, Avanti May–December 2026, GWR branch publications and Greater Anglia passenger information. This is service data integration, not certification of every train or an exhaustive re-audit of the existing catalogue.',
   'Machine-readable reviewed calls, source URLs, sample columns, downloaded-PDF checksums and blocked candidates: data/uk/source/national/expansion-iii-service-review.json. Reimport with node tools/import-uk-reviewed-batch.cjs <review.json> <original-snapshot-directory>, then pack and build.',

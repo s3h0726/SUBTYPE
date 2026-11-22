@@ -31,26 +31,31 @@
     {
       "country": "fr",
       "status": "PASS",
-      "routes": 39
+      "routes": 69
+    },
+    {
+      "country": "mo",
+      "status": "PASS",
+      "routes": 3
     }
   ],
   "freeDrive": [
     {
       "status": "PASS",
-      "routes": 673,
+      "routes": 701,
       "edgeCount": 7
     }
   ],
   "geometryLoading": {
     "status": "PASS",
-    "files": 437,
+    "files": 449,
     "wholePoolRequested": false,
     "duplicateRequests": 0
   },
   "freeDriveProgression": {
     "status": "PASS",
-    "directions": 673,
-    "transitions": 9411
+    "directions": 701,
+    "transitions": 9665
   },
   "editorOverrides": {
     "status": "PASS",
@@ -61,6 +66,7 @@
     "gameAnswer": true,
     "freeDrive": true
   },
+  "regressionCountry": "mo",
   "nameboard": {
     "style": "uk-underground",
     "clipped": false,
@@ -120,6 +126,27 @@
     },
     {
       "lineId": "uk-southeastern-hs1",
+      "style": "uk-national-rail",
+      "clipped": false,
+      "overlap": false,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-swr-romsey",
+      "style": "uk-national-rail",
+      "clipped": false,
+      "overlap": false,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-northern-buxton",
+      "style": "uk-national-rail",
+      "clipped": false,
+      "overlap": false,
+      "status": "PASS"
+    },
+    {
+      "lineId": "uk-gwr-severn-beach",
       "style": "uk-national-rail",
       "clipped": false,
       "overlap": false,
