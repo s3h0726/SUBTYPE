@@ -50,8 +50,12 @@
 :root[data-theme="light"] #screen-game.active {
   background: var(--paper);
 }
-:root[data-theme] :is(input, textarea, select)::placeholder {
+:root[data-theme] :is(#settings-form, .editor-form, .journey-picker, .auth-card) :is(input, textarea, select)::placeholder {
   color: var(--settings-subtle);
+  opacity: 1;
+}
+:root[data-theme] #screen-home.world-home .country-search input::placeholder {
+  color: #b1c4d1;
   opacity: 1;
 }
 :root[data-theme] :is(button, input, select, textarea, a):focus-visible {
