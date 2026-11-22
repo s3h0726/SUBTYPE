@@ -50,10 +50,11 @@ export class CustomShortestPath{
   setRoutes(routes){
     this.graph=new Map();
     for(const route of routes||[]){
-      if(!Array.isArray(route?.stations)||route.stations.length<2)continue;
+      if(route?.category==='custom'||!Array.isArray(route?.stations)||route.stations.length<2)continue;
       for(let i=0;i<route.stations.length-1;i++){
         const from=route.stations[i],to=route.stations[i+1],a=CustomShortestPath.stationKey(from),b=CustomShortestPath.stationKey(to);
         if(!a||!b||a===b)continue;
+        if(to.airportIncomingTransfer||route.airportTransfers?.some(transfer=>transfer.toIndex===i+1))continue;
         const length=customTrackLength(route,i,i+1);
         if(!length)continue;
         const add=(src,dst,fromIndex,toIndex)=>{

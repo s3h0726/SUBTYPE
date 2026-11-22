@@ -4801,5 +4801,80 @@
         "role": "forward"
       }
     ]
+  },
+  {
+    "relationId": "17585166",
+    "relationSha256": "34c5772976a123ad59e1f32754e6bf89c7719928942dd60245a820d11888c23a",
+    "reviewedOn": "2026-11-18",
+    "sourceUrl": "https://www.openstreetmap.org/relation/17585166",
+    "scope": "원본 노드·회원 순서·교량 시설 오참조 보정. 운행·시간표 검증 및 공개 승인과 분리.",
+    "reason": "MISORDERED_MEMBERS",
+    "orderedMembers": [
+      {
+        "sourceIndex": 1,
+        "wayId": "1458493356",
+        "sourceVersion": 1,
+        "sourceRole": "",
+        "role": "backward"
+      },
+      {
+        "sourceIndex": 0,
+        "wayId": "484927074",
+        "sourceVersion": 5,
+        "sourceRole": "",
+        "role": "backward"
+      }
+    ]
+  },
+  {
+    "relationId": "17585167",
+    "relationSha256": "aecfd84899418d7f55c70c5a40ace83c6666c79e5935c8215815576f6caba877",
+    "reviewedOn": "2026-11-18",
+    "sourceUrl": "https://www.openstreetmap.org/relation/17585167",
+    "scope": "원본 노드·회원 순서·교량 시설 오참조 보정. 운행·시간표 검증 및 공개 승인과 분리.",
+    "reason": "MISORDERED_MEMBERS",
+    "orderedMembers": [
+      {
+        "sourceIndex": 1,
+        "wayId": "379901064",
+        "sourceVersion": 8,
+        "sourceRole": "",
+        "role": "backward"
+      },
+      {
+        "sourceIndex": 0,
+        "wayId": "1458493357",
+        "sourceVersion": 1,
+        "sourceRole": "",
+        "role": "backward"
+      }
+    ]
+  },
+  {
+    "relationId": "20500839",
+    "relationSha256": "13eee96e04de1bc3b58f9c24428609120912b0188082a579cc0eef1e7fa39cc9",
+    "reviewedOn": "2026-11-18",
+    "sourceUrl": "https://www.openstreetmap.org/relation/20500839",
+    "scope": "원본 노드·회원 순서·교량 시설 오참조 보정. 운행·시간표 검증 및 공개 승인과 분리.",
+    "reason": "NON_RAIL_BRIDGE_MEMBER",
+    "replacedMember": {
+      "memberIndex": 19,
+      "wayId": "1491252314",
+      "sourceVersion": 1,
+      "sourceRole": "",
+      "facilitySha256": "85b785d41282f8087913286bdb24d2dffd82bb0de7446e3cd200d1fe418fbf05"
+    },
+    "replacementWays": [
+      {
+        "wayId": "503137626",
+        "sourceVersion": 15,
+        "sha256": "dd8dec0465f7f9fe22569b331aa8f89a85d269338265f82d80458f2df793f534"
+      },
+      {
+        "wayId": "503137627",
+        "sourceVersion": 16,
+        "sha256": "a0df6f975bd0b5c39803e1945f840f5bd8e7b1d2d398ef1c538bd6f61c3417ad"
+      }
+    ]
   }
 ]

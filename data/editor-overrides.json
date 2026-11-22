@@ -2050,6 +2050,102 @@
     "kr-rail-national-gtx-a": {
       "ko": "GTX-A",
       "color": "#9A6292"
+    },
+    "hk-light-rail-751p-osm-2929802": {
+      "ko": "경전철 751P",
+      "color": "#000000"
+    },
+    "hk-light-rail-751p-osm-6485219": {
+      "ko": "경전철 751P",
+      "color": "#000000"
+    },
+    "hk-light-rail-751p-short-500-430": {
+      "ko": "경전철 751P",
+      "color": "#000000"
+    },
+    "fr-rer-a": {
+      "ko": "RER A",
+      "color": "#E3051C"
+    },
+    "fr-rer-b": {
+      "ko": "RER B",
+      "color": "#5291CE"
+    },
+    "fr-rer-c": {
+      "ko": "RER C",
+      "color": "#FFCD2C"
+    },
+    "fr-rer-d": {
+      "ko": "RER D",
+      "color": "#00824E"
+    },
+    "fr-rer-e": {
+      "ko": "RER E",
+      "color": "#C04191"
+    },
+    "fr-transilien-h": {
+      "ko": "트랑지리엥 H선",
+      "color": "#7B4339"
+    },
+    "fr-transilien-j": {
+      "ko": "트랑지리엥 J선",
+      "color": "#C6CC00"
+    },
+    "fr-transilien-k": {
+      "ko": "트랑지리엥 K선",
+      "color": "#9F9825"
+    },
+    "fr-transilien-l": {
+      "ko": "트랑지리엥 L선",
+      "color": "#7577C0"
+    },
+    "fr-transilien-n": {
+      "ko": "트랑지리엥 N선",
+      "color": "#00A88F"
+    },
+    "fr-transilien-p": {
+      "ko": "트랑지리엥 P선",
+      "color": "#F28E42"
+    },
+    "fr-transilien-r": {
+      "ko": "트랑지리엥 R선",
+      "color": "#F3A4BA"
+    },
+    "fr-transilien-u": {
+      "ko": "트랑지리엥 U선",
+      "color": "#B90845"
+    },
+    "fr-transilien-v": {
+      "ko": "트랑지리엥 V선",
+      "color": "#9F9825"
+    },
+    "line-11508": {
+      "ko": "간사이 본선 (나고야~카메야마)",
+      "color": "#37AD95"
+    },
+    "line-11509": {
+      "ko": "간사이 본선 (카메야마~카모)",
+      "color": "#4C3893"
+    },
+    "line-11607": {
+      "ko": "야마토지선",
+      "color": "#00A368"
+    },
+    "line-11510": {
+      "ko": "키세이선 (카메야마~신구)",
+      "color": "#57585A"
+    },
+    "line-11640": {
+      "ko": "키세이선 (와카야마~와카야마시)",
+      "color": "#948F7F"
+    },
+    "line-11639": {
+      "ko": "키세이선 (키노쿠니선)",
+      "color": "#00A5BF"
+    },
+    "line-11314": {
+      "ko": "소부 본선",
+      "color": "#E9D307"
     }
   },
   "stations": {
@@ -2267,11 +2363,63 @@
       "station-9980811": "타카사고초",
       "station-9980813": "텟포초",
       "station-9980814": "세키쥬지뵤인마에"
+    },
+    "tw-tymc-airport": {
+      "tw-tymc-airport-A12": "공항제1터미널",
+      "tw-tymc-airport-A13": "공항제2터미널"
+    },
+    "kr-rail-highspeed-honam": {
+      "kr-rail-node-8366825549": "서울",
+      "kr-rail-node-8414031491": "서울"
     }
   },
   "services": {
-    "kr-national-pattern-71d8fce24fa146e8": "목포 → 서울역 KTX 산천 14개역 정차",
-    "kr-national-pattern-1380e5433c55de6a": "목포 → 용산 KTX 산천 12개역 정차",
-    "kr-national-pattern-cba73faebf0f2564": "광주송정 → 행신 KTX산천·KTX 산천 10개역 정차"
+    "kr-national-pattern-71d8fce24fa146e8": "목포 ↔ 서울 (서대전·김제·장성 경유) 14개역 정차",
+    "kr-national-pattern-1380e5433c55de6a": "목포 ↔ 용산 (서대전 경유) 12개역 정차",
+    "kr-national-pattern-cba73faebf0f2564": "광주송정 ↔ 행신 (서대전 경유) 10개역 정차",
+    "kr-continuity-pattern-ce3c807f4962c1fb": "행신 ↔ 부산",
+    "kr-continuity-pattern-5027707f74edd75c": "서울 ↔ 부산 (수원 경유) 7개역 정차",
+    "kr-network-pattern-e70f510e7564282a": "행신 ↔ 부산 (구포 경유) 9개역 정차",
+    "kr-continuity-pattern-7024524281480969": "행신 ↔ 부산",
+    "kr-network-pattern-a5554b80de790455": "행신 ↔ 부산 (구포 경유) 9개역 정차",
+    "kr-network-pattern-3404bcd3714767b5": "행신 ↔ 부산",
+    "kr-continuity-pattern-6fea20bc74e51eaa": "행신 ↔ 포항 (서대구 경유) 8개역 정차",
+    "kr-continuity-pattern-07f6b31135baabee": "포항 ↔ 서울 (서대구 경유) 7개역 정차",
+    "kr-continuity-pattern-ecb39dc682439724": "포항 ↔ 서울 (서대구 경유) 7개역 정차",
+    "kr-continuity-pattern-322371a85cfb7fee": "포항 ↔ 서울 (서대구 경유) 6개역 정차",
+    "kr-national-pattern-afef47129865c4f3": "전주 ↔ 서울 (서대전 경유) 9개역 정차",
+    "kr-national-pattern-269b67d2143db36c": "전주 ↔ 용산 (서대전 경유) 8개역 정차",
+    "kr-network-pattern-505300770fb3aa03": "용산 ↔ 전주 (서대전 경유) 9개역 정차",
+    "kr-continuity-pattern-29f666f34d1ea522": "수서 ↔ 부산 (서대구·구포 경유) 9개역 정차",
+    "kr-network-pattern-bb40190a5f9388a3": "서울 ↔ 부산 (서대구·구포 경유) 10개역 정차",
+    "kr-network-pattern-f0aa031cc82aa37c": "서울 ↔ 부산 (구포 경유) 9개역 정차",
+    "kr-network-pattern-9d87399a5778e1a3": "서울 ↔ 부산 (구포 경유) 9개역 정차",
+    "kr-network-pattern-96171f9ed02588f9": "서울 ↔ 부산 (서대구·구포 경유) 9개역 정차",
+    "kr-network-pattern-8b3794d5e2db9d0f": "서울 ↔ 부산 (구포 경유) 7개역 정차",
+    "kr-network-pattern-ab7174c75e30b6f1": "서울 ↔ 부산 (서대구 경유) 7개역 정차",
+    "kr-continuity-pattern-aa7a49f704e8c63d": "광주송정 ↔ 수서 (서대전 경유) 9개역 정차",
+    "kr-continuity-pattern-87065e1a5ed6544e": "광주송정 ↔ 수서 (서대전 경유) 7개역 정차",
+    "kr-national-pattern-6b355f5484626217": "목포 ↔ 서울 (서대전·김제·장성 경유) 15개역 정차",
+    "kr-national-pattern-c449e2249f444dda": "광주송정 ↔ 용산 (서대전 경유) 10개역 정차",
+    "kr-national-pattern-64c22582f1d8a443": "행신 ↔ 목포 (김제·장성 경유) 9개역 정차",
+    "kr-national-pattern-5afd1cb02606a1a1": "용산 ↔ 광주송정 (서대전·김제·장성 경유) 9개역 정차",
+    "kr-national-pattern-63aa279a9aece768": "광주송정 ↔ 서울 (서대전 경유) 9개역 정차",
+    "kr-national-pattern-e8f1890c832554a7": "익산 ↔ 용산 (서대전 경유) 7개역 정차",
+    "kr-national-pattern-4211fc3c33951568": "익산 ↔ 용산 (서대전 경유) 6개역 정차",
+    "kr-network-pattern-680e8e47a7a31075": "행신 ↔ 광주송정 (서대전 경유) 10개역 정차",
+    "kr-network-pattern-e31675eb7e814e9f": "용산 ↔ 광주송정 (서대전 경유) 10개역 정차",
+    "kr-network-pattern-e47cbd20970a8990": "용산 ↔ 광주송정 (서대전 경유) 9개역 정차",
+    "kr-network-pattern-45dd85a86027495d": "용산 ↔ 익산 (서대전 경유) 8개역 정차",
+    "kr-network-pattern-f0e5b76befdec993": "용산 ↔ 광주송정 (서대전 경유) 8개역 정차",
+    "kr-network-pattern-89c538f72287ec55": "용산 ↔ 익산 (서대전 경유) 6개역 정차",
+    "kr-national-pattern-16e579356ebabfc3": "진주 ↔ 서울 (서대구 경유) 11개역 정차",
+    "kr-national-pattern-2ae0caee8b73b29d": "진주 ↔ 서울 (서대구 경유) 11개역 정차",
+    "kr-national-pattern-d8c300c0c568f508": "진주 ↔ 서울 (서대구 경유) 10개역 정차",
+    "kr-national-pattern-686105d7332f005c": "마산 ↔ 서울 (서대구 경유) 10개역 정차",
+    "kr-national-pattern-5263e9529a73a806": "진주 ↔ 서울 (서대구 경유) 9개역 정차",
+    "kr-continuity-pattern-79ae0ad2d5e5485f": "서울 ↔ 진주 (서대구 경유) 11개역 정차",
+    "kr-continuity-pattern-acdd1bd2f415fff3": "행신 ↔ 진주 (서대구 경유) 11개역 정차",
+    "kr-continuity-pattern-361a87e167c591f0": "행신 ↔ 진주 (서대구 경유) 10개역 정차",
+    "kr-continuity-pattern-29cbe03fe74c6cc0": "행신 ↔ 마산 (서대구 경유) 10개역 정차"
   }
 }
