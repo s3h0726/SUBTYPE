@@ -1,10 +1,10 @@
 {
   "status": "PASS",
-  "verifiedAt": "2026-11-22T14:18:26.774Z",
+  "verifiedAt": "2026-11-22T14:30:35.079Z",
   "base": "https://s3h0726.github.io/SUBTYPE/",
   "catalogLines": 160,
   "expectedSource": "Committed Git blobs, avoiding Windows checkout line-ending conversion",
-  "sourceRef": "9a4426d1f6edff3f7392501f4bb3d9f65ceb0216",
+  "sourceRef": "69df64e498408e117a383023404ae9fc2ee4bd3d",
   "directions": 495,
   "files": [
     {
@@ -1394,6 +1394,12 @@
       "status": "PASS"
     },
     {
+      "file": "editor/index.html",
+      "sha256": "588b9c1d4e55c6a42fce04d97b0b405fe941d2e1a9db1089b0a79d8c7d8bb73b",
+      "bytes": 7231,
+      "status": "PASS"
+    },
+    {
       "file": "js/app.bundle.js",
       "sha256": "4dbc080452b957b0a352e831c16842ff9e2e8ff7815e9ed1238141fb753793d7",
       "bytes": 638857,
@@ -1404,7 +1410,18 @@
       "sha256": "6aa885b996120f167a0c83b3472c2140f2a9a1e212ff8133ea29230402cbd210",
       "bytes": 6226,
       "status": "PASS"
+    },
+    {
+      "file": "reports/korean-names/editor.html",
+      "sha256": "83b3557a6a78d2c16b98627a3c185b4015f0c09e071872a93095ad488fa60337",
+      "bytes": 43322,
+      "status": "PASS"
     }
   ],
-  "errors": []
+  "errors": [],
+  "reusedVerification": {
+    "verifiedAt": "2026-11-22T14:29:08.487Z",
+    "files": 234,
+    "sourceRef": "69df64e498408e117a383023404ae9fc2ee4bd3d"
+  }
 }

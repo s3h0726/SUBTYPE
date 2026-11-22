@@ -17,7 +17,7 @@ const mime = {'.html':'text/html', '.js':'text/javascript', '.json':'application
   '.css':'text/css', '.svg':'image/svg+xml'};
 const server = http.createServer((request, response) => {
   const name = decodeURIComponent(new URL(request.url, 'http://localhost').pathname).slice(1) || 'index.html';
-  const file = path.resolve(root, name);
+  const file = path.resolve(root, name.endsWith('/') ? name + 'index.html' : name);
   if (!file.startsWith(root + path.sep)) return response.writeHead(403).end();
   try {
     let body = fs.readFileSync(file);
@@ -37,6 +37,17 @@ async function openRoute(page, id) {
     if (!await qa.chooseRoute(id)) throw new Error('Line selection failed: ' + id);
     qa.openSetup(qa.routes().find(route => route.id === id));
   }, id);
+}
+
+async function openNameEditor(page, base) {
+  await page.goto(new URL('reports/korean-names/editor.html?country=fr', base).href, {waitUntil:'domcontentloaded'});
+  await page.waitForURL(url => /\/editor\/(?:index\.html)?$/.test(url.pathname));
+  const frameElement = page.locator('#names-editor-frame');
+  await frameElement.waitFor({state:'visible'});
+  const frame = await (await frameElement.elementHandle()).contentFrame();
+  await frame.waitForURL(url => url.searchParams.get('embedded') === '1' && url.searchParams.get('country') === 'fr');
+  await frame.locator('[data-file="stations-by-line"]').waitFor({state:'visible'});
+  return frame;
 }
 
 async function testDirection(page, {id, key, stations}) {
@@ -179,11 +190,12 @@ async function run() {
         if (!classic || !drive.moveTo(classic.to,classic.routeId,drive.currentKey)) throw Error('Transilien-to-OUIGO interchange missing');
         return {answers:'PASS',signs:'PASS',destinations:'PASS',freeDrive:'PASS',classicTransfer:'PASS',originalFrench:'PASS'};
       }, {editedName,classicId:classic.id});
-      await page.goto(new URL('reports/korean-names/editor.html?country=fr', base).href, {waitUntil:'domcontentloaded'});
-      await page.locator('[data-file="stations-by-line"]').click();
+      const editor = await openNameEditor(page, base);
+      report.editorEntry = 'unified-iframe';
+      await editor.locator('[data-file="stations-by-line"]').click();
       for (const id of ['fr-transilien-v',classic.id]) {
-        await page.locator('#route-filter').selectOption(id);
-        await page.waitForFunction(name=>[...document.querySelectorAll('#table input')].some(input=>input.value===name), editedName);
+        await editor.locator('#route-filter').selectOption(id);
+        await editor.waitForFunction(name=>[...document.querySelectorAll('#table input')].some(input=>input.value===name), editedName);
       }
       report.nameOverrides.editor = 'PASS';
       report.nameOverrides.internationalFilter = 'PASS';
@@ -323,18 +335,19 @@ async function run() {
         }, country, {timeout:60000});
         report.countries.push(country);
       }
-      await page.goto(new URL('reports/korean-names/editor.html?country=fr', base).href, {waitUntil:'domcontentloaded'});
-      await page.locator('[data-file="stations-by-line"]').click();
-      await page.locator('#route-filter').selectOption('fr-paris-metro-3bis');
-      await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));
-      await page.locator('#route-filter').selectOption('fr-rer-c');
-      await page.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '퐁투아즈'));
+      const editor = await openNameEditor(page, base);
+      report.editorEntry = 'unified-iframe';
+      await editor.locator('[data-file="stations-by-line"]').click();
+      await editor.locator('#route-filter').selectOption('fr-paris-metro-3bis');
+      await editor.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '강베타'));
+      await editor.locator('#route-filter').selectOption('fr-rer-c');
+      await editor.waitForFunction(() => [...document.querySelectorAll('#table input')].some(input => input.value === '퐁투아즈'));
       report.transilienEditor = [];
       report.franceEditor = [];
       for (const line of index.routes) {
         const detail = JSON.parse(fs.readFileSync(path.join(root, line.lazySource), 'utf8'));
-        await page.locator('#route-filter').selectOption(line.id);
-        await page.waitForFunction(names => {
+        await editor.locator('#route-filter').selectOption(line.id);
+        await editor.waitForFunction(names => {
           const values = new Set([...document.querySelectorAll('#table input')].map(input => input.value));
           return names.every(name => values.has(name));
         }, detail.stationCatalog.map(station => station.ko));
