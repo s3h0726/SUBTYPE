@@ -1,14 +1,16 @@
 {
   "status": "PASS",
-  "generatedAt": "2026-11-18T03:18:13.058Z",
+  "generatedAt": "2026-11-22T14:21:59.677Z",
   "scope": "Recorded production tests across identified releases; current catalog ID coverage, not a rerun of the whole latest catalog",
   "nationalCoveragePercent": null,
-  "catalogLines": 69,
-  "catalogDirections": 300,
-  "uniqueRecordedProductionDirections": 227,
-  "catalogDirectionsWithoutRecordedProductionRun": 73,
+  "catalogLines": 160,
+  "catalogDirections": 495,
+  "uniqueRecordedProductionDirections": 424,
+  "catalogDirectionsWithoutRecordedProductionRun": 71,
   "transilienDirections": 99,
   "transilienDirectionsWithRecordedProductionRun": 99,
+  "nationalBatchDirections": 195,
+  "nationalBatchDirectionsWithRecordedProductionRun": 195,
   "runs": [
     {
       "file": "reports/fr/production-gameplay.json",
@@ -22,7 +24,7 @@
       "testedDirectionsPerMode": 215
     },
     {
-      "file": "reports/fr/production-focused-gameplay.json",
+      "file": "reports/fr/production-transilien-20261118.json",
       "deployment": {
         "releaseRef": "afea304ec9aada43612aac6c7ab08095911ee905",
         "workflowRunId": 44229048828,
@@ -31,6 +33,22 @@
         "verifiedDate": "2026-11-18"
       },
       "testedDirectionsPerMode": 27
+    },
+    {
+      "file": "reports/fr/production-focused-gameplay.json",
+      "deployment": {
+        "releaseRef": "5e43185a5179858a95bba4464b40f21e1bf72c0d",
+        "workflowRunId": 45031394752,
+        "workflowConclusion": "success",
+        "workflowUrl": "https://github.com/s3h0726/SUBTYPE/actions/runs/45031394752",
+        "verifiedAt": "2026-11-22T14:14:25.1405057Z",
+        "version": "v0.17.2",
+        "bundle": "4dbc080452b9",
+        "bundleCacheKey": "0d9f88760ab3",
+        "bundleBodySha256": "4dbc080452b957b0a352e831c16842ff9e2e8ff7815e9ed1238141fb753793d7",
+        "bundleProof": "Observed public response bytes match the committed bundle and successful Pages build log"
+      },
+      "testedDirectionsPerMode": 197
     }
   ]
 }
