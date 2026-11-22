@@ -65,7 +65,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <p class="note">상단에서 <strong>일본·대한민국·홍콩·태국·대만·영국</strong>을 선택한 후 운영사, 노선, 운행계통 또는 역명을 편집할 수 있습니다. 국가마다 검색·수정 초안·CSV 저장이 분리됩니다. 고유 역명은 비교용이므로 실제 변경은 <strong>역명</strong> 탭에서 노선별로 적용하세요.</p>
 <p class="note">일본 노선의 최신 나무위키 대조 명칭을 반영했습니다. 역명·고유 역명 탭에는 <strong>출처 검증</strong>과 <strong>근거 URL</strong>이 표시됩니다. 검증되지 않은 항목은 자동으로 정확하다고 확정하지 않습니다. 예전 브라우저 임시 저장본이 최신 원본명을 덮어쓰지 않도록 편집 초안을 새 버전으로 분리했습니다.</p>
 <p class="note">대한민국 버스의 알파벳 음차는 게임과 동일하게 A~Z 대문자로 표시합니다. 예: 에이1번 → A1번, 에이비씨동 → ABC동. 원본 정보가 불명확한 고유 지명은 자동 변경하지 않으며, 이미 저장한 사용자 편집값을 우선합니다.</p>
-<p class="note">초록색 한글명(직통·운행계통 포함), 노선 RGB, 노선 카드의 라벨·라벨 RGB를 수정할 수 있습니다. 라벨은 텍스트를 입력한 노선의 카드 오른쪽 위에만 표시되며, 라벨을 비우고 저장하면 삭제됩니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
+<p class="note">초록색 한글명(직통·운행계통 포함), 노선 RGB, 노선 카드의 라벨·라벨 RGB를 수정할 수 있습니다. <strong>입력 즉시 이 브라우저의 게임 데이터에 임시 반영</strong>되며, 게임 페이지를 새로고침하면 노선·역명판·타이핑 정답에 적용됩니다. 모든 사용자가 수정된 이름을 보려면 <strong>게임에 적용 (GitHub 저장)</strong>으로 발행해야 합니다. 발행 후 Pages 배포까지는 시간이 걸릴 수 있습니다. 개인 토큰은 저장하지 않습니다. 역명은 노선별 고유 ID로 구별하며 원어명·역 ID·선로는 변경하지 않습니다.</p>
 </div>
 
 <section id="rail-workspace" hidden aria-label="노선 상세 편집">
@@ -481,7 +481,7 @@ table.addEventListener('input',e=>{
  el.closest('td').classList.toggle('edited',rows[r][c]!==original[r][c]);
  persist();
  const n=rows.reduce((acc,row,i)=>acc+(isChanged(i)?1:0),0);
- status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+n+'건';
+ status.textContent='수정 '+n.toLocaleString()+'건 · 게임 새로고침 시 이 브라우저의 실제 이름/정답에 임시 반영 · GitHub 저장 시 전체 공개';
 });
 q.addEventListener('input',()=>{page=0;refresh()});changesOnly.addEventListener('change',()=>{page=0;refresh()});
 document.querySelector('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-file]');if(b)load(b.dataset.file)});
@@ -541,6 +541,8 @@ async function saveToGame(){
  const content=btoa(unescape(encodeURIComponent(JSON.stringify(json,null,2)+'\n')));
  const put=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'data: apply Korean names, RGB and route-card labels from editor',content,sha:current.sha,branch:EDIT_BRANCH})});
  if(!put.ok){const data=await put.text();throw Error('GitHub 저장 실패: '+put.status+' '+data.slice(0,220))}
+ // Preserve published names locally while GitHub Pages deploys the commit.
+ if(EDIT_BRANCH==='main')try{localStorage.setItem('subtype-editor-published-pending-v1',JSON.stringify({branch:EDIT_BRANCH,savedAt:Date.now(),overrides:json}))}catch{}
  remoteOverrides=json;original=rows.map(r=>r.slice());localStorage.removeItem(draftKey());refresh();
  status.textContent='GitHub 저장 완료! Pages 배포 완료 후 게임에서 자동 적용됩니다.';
  alert('저장 완료! GitHub Pages 배포가 완료된 뒤 게임을 새로고침하면 적용됩니다.');
