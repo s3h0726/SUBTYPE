@@ -6,10 +6,10 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = rel => fs.readFileSync(path.join(root, rel), 'utf8');
 const app = read('css/text-readability.css');
-const editor = read('dev/rail-data-editor-readability.css');
+const editor = read('reports/korean-names/rail-details.css');
 const names = read('reports/korean-names/editor-readability.css');
 const html = read('index.html');
-const editorHtml = read('editor/index.html');
+const editorHtml = read('reports/korean-names/editor.html');
 const namesHtml = read('reports/korean-names/editor.html');
 const styles = [app, editor, names];
 
@@ -24,8 +24,12 @@ for (const [i, css] of styles.entries()) {
 }
 assert.ok(html.includes('css/text-readability.css'));
 assert.ok(html.indexOf('css/text-readability.css') > html.indexOf('css/settings-v2.css'));
-assert.ok(editorHtml.includes('dev/rail-data-editor-readability.css'));
+assert.ok(editorHtml.includes('rail-details.css'));
+assert.ok(editorHtml.includes('id="rail-workspace"'));
+assert.ok(editorHtml.includes('id="name-editor-view"'));
+assert.ok(!fs.existsSync(path.join(root, 'editor/index.html')), 'legacy editor should be removed');
 assert.ok(namesHtml.includes('editor-readability.css'));
+assert.ok(namesHtml.indexOf('editor-readability.css') > namesHtml.indexOf('rail-details.css'));
 for (const selector of [
   '#screen-home.world-home',
   '#screen-select #route-grid.line-card-grid',
