@@ -497,7 +497,7 @@ function catalogPatternChoice(route,pattern,reverse=false){
     if(!physical)return null;
     const available=new Set(catalogRouteStationKeys(physical)),
       missing=required.filter(name=>!available.has(japaneseCatalogStationKey(name)));
-    return missing.length?{segment,missing}:null;
+    return missing.length?{segment,missing}:catalogRouteHasStations(physical,required)?null:{segment,missing:['정차역 순서 불일치']};
   }).find(Boolean);
   const unmatchedReason=missingTrack?.segment.lineCode==='11612'&&missingTrack.missing.includes('門司')
     ?'시모노세키~모지(JR 큐슈) 실제 선로가 미등록되어 이 직통계통을 플레이할 수 없습니다.'
@@ -512,8 +512,10 @@ function catalogPatternChoice(route,pattern,reverse=false){
 
 function catalogConnectedSegments(segments){
   const parts=segments.map(segment=>{
-    const route=routeForCatalogLine(segment.lineCode,catalogRequiredStationNames(segment));
+    const required=catalogRequiredStationNames(segment),route=routeForCatalogLine(segment.lineCode,required);
     if(!route?.stations?.length)throw new Error('연결 노선 데이터를 불러오지 못했습니다: '+segment.lineCode);
+    if(route.geometryReady!==true||route.playable===false)throw new Error('실제 선로의 검증이 완료되지 않았습니다: '+route.id);
+    if(!catalogRouteHasStations(route,required))throw new Error('정차역 순서가 실제 선로와 일치하지 않습니다: '+route.id);
     const first=segment.stations[0][0],last=segment.stations.at(-1)[0],
       a=catalogStationIndex(route,first),b=catalogStationIndex(route,last);
     if(a<0||b<0)throw new Error((route.line?.ja||segment.lineCode)+': '+first+' → '+last+' 구간 매칭 실패');
@@ -558,6 +560,8 @@ function buildCatalogResolved(choice){
   if(segments.length===1){
     const segment=segments[0],route=routeForCatalogLine(segment.lineCode,catalogRequiredStationNames(segment));
     if(!route?.stations?.length)throw new Error(`노선 데이터를 찾지 못했습니다: ${segment.lineCode}`);
+    if(route.geometryReady!==true||route.playable===false)throw new Error('실제 선로의 검증이 완료되지 않았습니다: '+route.id);
+    if(!catalogRouteHasStations(route,catalogRequiredStationNames(segment)))throw new Error('정차역 순서가 실제 선로와 일치하지 않습니다: '+route.id);
     const first=segment.stations[0][0],last=segment.stations.at(-1)[0],
       a=catalogStationIndex(route,first),b=catalogStationIndex(route,last);
     if(a<0||b<0)throw new Error(`${first} → ${last} 구간을 현재 노선 데이터와 연결하지 못했습니다.`);
