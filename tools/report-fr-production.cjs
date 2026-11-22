@@ -10,7 +10,12 @@ const current = new Set(catalog.lines.flatMap(line => line.patterns.map(pattern 
 const suburban = new Set(catalog.lines.filter(line => line.category === 'commuter_rail')
   .flatMap(line => line.patterns.map(pattern => pattern.id)));
 const inputs = process.argv.slice(2);
-if (!inputs.length) inputs.push('reports/fr/production-gameplay.json', 'reports/fr/production-focused-gameplay.json');
+if (!inputs.length) {
+  inputs.push('reports/fr/production-gameplay.json');
+  const archived = 'reports/fr/production-transilien-20261118.json';
+  if (fs.existsSync(path.join(root, archived))) inputs.push(archived);
+  inputs.push('reports/fr/production-focused-gameplay.json');
+}
 const covered = new Set();
 const runs = inputs.map(file => {
   const report = read(file);
@@ -28,6 +33,10 @@ const runs = inputs.map(file => {
   return {file, deployment:report.deployment, testedDirectionsPerMode:desktop.size};
 });
 assert.ok([...suburban].every(id => covered.has(id)), 'Some released Transilien directions lack a recorded production run');
+const batchPath = 'reports/fr/national-batch-2026-11-22.json';
+const batch = fs.existsSync(path.join(root, batchPath)) ? read(batchPath) : null;
+if (batch) assert.ok(batch.newDirectionIds.every(id => covered.has(id)),
+  'Some new nationwide-batch directions lack a complete recorded production run');
 const result = {
   status:'PASS', generatedAt:new Date().toISOString(),
   scope:'Recorded production tests across identified releases; current catalog ID coverage, not a rerun of the whole latest catalog',
@@ -36,6 +45,8 @@ const result = {
   catalogDirectionsWithoutRecordedProductionRun:current.size - covered.size,
   transilienDirections:suburban.size,
   transilienDirectionsWithRecordedProductionRun:[...suburban].filter(id => covered.has(id)).length,
+  ...(batch ? {nationalBatchDirections:batch.newDirectionIds.length,
+    nationalBatchDirectionsWithRecordedProductionRun:batch.newDirectionIds.filter(id => covered.has(id)).length} : {}),
   runs,
 };
 fs.writeFileSync(path.join(root, 'reports/fr/production-summary.json'), JSON.stringify(result,null,2)+'\n');
