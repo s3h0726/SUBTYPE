@@ -56,6 +56,13 @@ for(const ref of refs){
   mayUseForOperationalRouting:false,
   corridor:ref.corridor,note:ref.comment,km:+km.toFixed(3),geometry};
 }
+// The southern Gyeongbu centerline must be regenerated from real OSM ways,
+// not inferred from an already-diverted KTX journey on the conventional line.
+const southernSource=locate('kr-continuity-pattern-ce3c807f4962c1fb').journey;
+const east=take(southernSource,'동대구','경주');
+const south=take(southernSource,'경주','부산');
+const anchors={dongdaegu:east[0],gyeongju:east.at(-1),busan:south.at(-1)};
+Object.assign(tracks,require('./build-kr-ktx-south-map-reference.cjs')(root,anchors));
 const data={schemaVersion:1,tracks,usage:'map visualization of existing railway only; original journey source refs, station stops and trip proofs retained'};
 const out=path.join(root,'data/kr/physical/ktx-gyeongbu-display.json');
 fs.mkdirSync(path.dirname(out),{recursive:true});
