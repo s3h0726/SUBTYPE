@@ -1,0 +1,525 @@
+/* SUBTYPE Settings 2.0 · accessible theme tokens and contrast fixes */
+:root {
+  --settings-accent: #176e49;
+  --settings-accent-soft: #e6f3ea;
+  --settings-subtle: #50645a;
+  --settings-field: #ffffff;
+  --settings-field-text: #13251b;
+  --settings-focus: #237bcb;
+  --settings-on-accent: #ffffff;
+  --settings-shadow: 0 16px 44px #12251a0d;
+}
+:root[data-theme="dark"] {
+  --settings-accent: #83e4ab;
+  --settings-accent-soft: #1b3a2c;
+  --settings-subtle: #b0c2b7;
+  --settings-field: #15231c;
+  --settings-field-text: #f1f7f3;
+  --settings-focus: #a4d3ff;
+  --settings-on-accent: #0a2014;
+  --settings-shadow: 0 18px 45px #0005;
+}
+
+/* Existing screens include hard-coded white cards. Keep their foregrounds
+   paired with a matching surface in dark mode, without changing station-sign
+   operator branding or the actual railway map palette. */
+:root[data-theme="dark"] :is(
+  .tabs button, .result-grid > div, .data-summary, .recent-chip,
+  .station-row, .station-row input, .saved-item, .map-toggle,
+  .map-status, .record-row:not(.header), .station-lines button,
+  .search-results button, .map-side-panel, .station-info
+) {
+  background-color: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+:root[data-theme="dark"] .tabs button.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+:root[data-theme="dark"] :is(.search-results span, .saved-item small, .recent-chip small) {
+  color: var(--settings-subtle);
+}
+:root[data-theme="dark"] .settings-form select,
+:root[data-theme="dark"] .editor-form input,
+:root[data-theme="dark"] .station-row input,
+:root[data-theme="dark"] .journey-picker select {
+  background: var(--settings-field);
+  color: var(--settings-field-text);
+}
+:root[data-theme="light"] #screen-game.active {
+  background: var(--paper);
+}
+:root[data-theme] :is(input, textarea, select)::placeholder {
+  color: var(--settings-subtle);
+  opacity: 1;
+}
+:root[data-theme] :is(button, input, select, textarea, a):focus-visible {
+  outline: 3px solid var(--settings-focus);
+  outline-offset: 3px;
+}
+
+/* New settings layout */
+.settings-v2 {
+  max-width: 1260px;
+  color: var(--ink);
+}
+.settings-v2 .settings-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 4px 0 30px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 30px;
+}
+.settings-v2 .settings-hero .eyebrow {
+  color: var(--settings-accent);
+  margin: 0 0 10px;
+}
+.settings-v2 .settings-hero h2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1.15;
+  letter-spacing: -.065em;
+}
+.settings-v2 .settings-hero h2 span {
+  font: 800 12px 'IBM Plex Mono', monospace;
+  letter-spacing: .09em;
+  background: var(--settings-accent-soft);
+  color: var(--settings-accent);
+  border: 1px solid color-mix(in srgb, var(--settings-accent) 36%, transparent);
+  border-radius: 99px;
+  padding: 7px 11px;
+}
+.settings-v2 .settings-hero-description {
+  color: var(--settings-subtle);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 13px 0 0;
+}
+.settings-v2 .app-version-settings {
+  font-size: 12px;
+  color: var(--settings-subtle);
+  margin: 14px 0 0;
+}
+.settings-v2 .app-version-settings strong {
+  color: var(--ink);
+}
+.settings-v2 .settings-home {
+  flex: 0 0 auto;
+}
+.settings-v2 .settings-layout {
+  display: grid;
+  grid-template-columns: minmax(185px, 230px) minmax(0, 1fr);
+  gap: clamp(20px, 3.4vw, 44px);
+  align-items: start;
+}
+.settings-v2 .settings-sidebar {
+  position: sticky;
+  top: 108px;
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.settings-v2 .settings-sidebar-label {
+  margin: 0;
+  color: var(--settings-subtle);
+  font: 700 11px 'IBM Plex Mono', monospace;
+  letter-spacing: .1em;
+}
+.settings-v2 .settings-section-nav {
+  display: grid;
+  gap: 4px;
+}
+.settings-v2 .settings-section-nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 12px;
+  border-radius: 10px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 750;
+  font-size: 13px;
+}
+.settings-v2 .settings-section-nav a:hover,
+.settings-v2 .settings-section-nav a:focus-visible {
+  background: var(--settings-accent-soft);
+}
+.settings-v2 .settings-section-nav a span {
+  color: var(--settings-accent);
+  font: 750 11px 'IBM Plex Mono', monospace;
+}
+.settings-v2 .settings-side-note {
+  background: var(--settings-accent-soft);
+  border: 1px solid color-mix(in srgb, var(--settings-accent) 20%, var(--line));
+  border-radius: 12px;
+  padding: 16px;
+}
+.settings-v2 .settings-side-note strong {
+  font-size: 12px;
+}
+.settings-v2 .settings-side-note p {
+  color: var(--settings-subtle);
+  line-height: 1.7;
+  font-size: 12px;
+  margin: 7px 0 0;
+}
+.settings-v2 .settings-editor-link {
+  font-size: 12px;
+  font-weight: 750;
+  color: var(--settings-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.settings-v2 .settings-editor-link span {
+  margin-left: 4px;
+}
+.settings-v2 #settings-form.settings-v2-form {
+  max-width: none;
+  min-width: 0;
+  padding: 0;
+  display: grid;
+  gap: 18px;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+}
+.settings-v2 .settings-group {
+  scroll-margin-top: 110px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--settings-shadow);
+  padding: clamp(20px, 3vw, 32px);
+  min-width: 0;
+}
+.settings-v2 .settings-group-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.settings-v2 .settings-group-number {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  border-radius: 10px;
+  background: var(--settings-accent-soft);
+  color: var(--settings-accent);
+  font: 800 12px 'IBM Plex Mono', monospace;
+}
+.settings-v2 .settings-group-head h3 {
+  font-size: 20px;
+  letter-spacing: -.025em;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--ink);
+}
+.settings-v2 .settings-group-head p {
+  font-size: 12px;
+  color: var(--settings-subtle);
+  line-height: 1.7;
+  margin: 6px 0 0;
+}
+.settings-v2 .settings-fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.settings-v2 .settings-fieldset legend {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 12px;
+  padding: 0;
+}
+.settings-v2 .settings-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.settings-v2 .settings-theme-option,
+.settings-v2 .settings-choice {
+  min-width: 0;
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+.settings-v2 .settings-theme-option input,
+.settings-v2 .settings-choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+}
+.settings-v2 .settings-theme-option {
+  padding: 9px;
+  border: 2px solid var(--line);
+  background: var(--settings-field);
+  border-radius: 12px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.settings-v2 .settings-theme-option:has(input:checked),
+.settings-v2 .settings-choice:has(input:checked) > span {
+  border-color: var(--settings-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--settings-accent) 18%, transparent);
+}
+.settings-v2 .settings-theme-option:has(input:focus-visible),
+.settings-v2 .settings-choice:has(input:focus-visible) > span {
+  outline: 3px solid var(--settings-focus);
+  outline-offset: 3px;
+}
+.settings-v2 .settings-theme-preview {
+  height: 94px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  border: 1px solid #84938c52;
+}
+.settings-v2 .settings-theme-preview-light {
+  background: #f3f6f1;
+  color: #1e3028;
+}
+.settings-v2 .settings-theme-preview-dark {
+  background: #0c1913;
+  color: #e6f5eb;
+}
+.settings-v2 .settings-theme-preview-system {
+  background: linear-gradient(90deg, #f3f6f1 0 50%, #0c1913 50% 100%);
+  color: #284534;
+}
+.settings-v2 .settings-theme-preview i {
+  position: absolute;
+  display: block;
+  top: 13px;
+  left: 12px;
+  width: 39%;
+  height: 8px;
+  border-radius: 3px;
+  background: currentColor;
+  opacity: .85;
+}
+.settings-v2 .settings-theme-preview b,
+.settings-v2 .settings-theme-preview em,
+.settings-v2 .settings-theme-preview small {
+  position: absolute;
+  display: block;
+  border-radius: 4px;
+  background: currentColor;
+  opacity: .15;
+}
+.settings-v2 .settings-theme-preview b {
+  top: 35px;
+  bottom: 12px;
+  left: 12px;
+  width: 34%;
+}
+.settings-v2 .settings-theme-preview em {
+  top: 35px;
+  right: 12px;
+  width: 42%;
+  height: 13px;
+}
+.settings-v2 .settings-theme-preview small {
+  top: 57px;
+  right: 12px;
+  width: 42%;
+  height: 24px;
+}
+.settings-v2 .settings-theme-preview-system b {background:#24352c;opacity:.13}
+.settings-v2 .settings-theme-preview-system em,
+.settings-v2 .settings-theme-preview-system small {background:#e6f5eb}
+.settings-v2 .settings-option-copy {
+  display: grid;
+  gap: 3px;
+  padding: 12px 6px 7px;
+}
+.settings-v2 .settings-option-copy strong {
+  font-size: 13px;
+  color: var(--settings-field-text);
+}
+.settings-v2 .settings-option-copy small {
+  font-size: 11px;
+  color: var(--settings-subtle);
+}
+.settings-v2 .settings-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.settings-v2 .settings-choice > span {
+  display: grid;
+  gap: 6px;
+  padding: 17px 15px;
+  min-height: 88px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--settings-field);
+  color: var(--settings-field-text);
+}
+.settings-v2 .settings-choice strong {
+  font-size: 13px;
+}
+.settings-v2 .settings-choice small {
+  line-height: 1.6;
+  font-size: 11px;
+  color: var(--settings-subtle);
+}
+.settings-v2 .settings-language-note {
+  margin-top: 16px;
+  padding: 15px;
+  border-left: 3px solid var(--settings-accent);
+  background: var(--settings-accent-soft);
+  display: grid;
+  gap: 6px;
+}
+.settings-v2 .settings-language-note strong {
+  font-size: 12px;
+}
+.settings-v2 .settings-language-note .korean-only-notice {
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: var(--settings-subtle);
+  font-size: 12px;
+  background: transparent;
+}
+.settings-v2 .settings-select-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+.settings-v2 .settings-select-grid > label {
+  display: block;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+.settings-v2 .settings-select-grid select {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--settings-field);
+  color: var(--settings-field-text);
+}
+.settings-v2 .settings-select-grid label > small {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--settings-subtle);
+  font-weight: 500;
+}
+.settings-v2 .settings-toggle-list {
+  display: grid;
+  gap: 0;
+}
+.settings-v2 .settings-toggle {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 0;
+  cursor: pointer;
+  border-top: 1px solid var(--line);
+}
+.settings-v2 .settings-toggle:first-child {border-top: 0; padding-top: 0}
+.settings-v2 .settings-toggle:last-child {padding-bottom: 0}
+.settings-v2 .settings-toggle input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--settings-accent);
+}
+.settings-v2 .settings-toggle span {
+  display: grid;
+  gap: 5px;
+}
+.settings-v2 .settings-toggle strong {
+  font-size: 13px;
+  color: var(--ink);
+}
+.settings-v2 .settings-toggle small {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--settings-subtle);
+}
+.settings-v2 .settings-save-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 24px;
+  padding: 20px 2px;
+}
+.settings-v2 #settings-save-state {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--settings-subtle);
+  margin: 0;
+}
+.settings-v2 .settings-save-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.settings-v2 .settings-save-actions .btn {
+  border-radius: 8px;
+}
+.settings-v2 .settings-save-actions .btn.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+:root[data-theme="dark"] .settings-v2 .settings-save-actions .btn.primary {
+  background: #d9f2e3;
+  color: #081c11;
+}
+.settings-v2 .settings-save-actions .btn.ghost {
+  background: var(--surface);
+  color: var(--ink);
+}
+@media (max-width: 860px) {
+  .settings-v2 .settings-layout {grid-template-columns: 1fr;gap: 16px}
+  .settings-v2 .settings-sidebar {position: static;gap: 12px}
+  .settings-v2 .settings-sidebar-label, .settings-v2 .settings-side-note {display: none}
+  .settings-v2 .settings-section-nav {display: flex;overflow-x: auto;gap: 5px;padding: 2px 0}
+  .settings-v2 .settings-section-nav a {flex: 0 0 auto;white-space: nowrap;background: var(--surface);border: 1px solid var(--line);padding: 10px}
+  .settings-v2 .settings-editor-link {padding: 4px 0 8px}
+}
+@media (max-width: 560px) {
+  .settings-v2 .settings-hero {flex-wrap: wrap}
+  .settings-v2 .settings-hero h2 {font-size: 36px}
+  .settings-v2 .settings-theme-grid {gap: 7px}
+  .settings-v2 .settings-theme-option {padding: 5px}
+  .settings-v2 .settings-theme-preview {height: 62px}
+  .settings-v2 .settings-option-copy {padding: 9px 3px 4px}
+  .settings-v2 .settings-option-copy strong {font-size: 12px}
+  .settings-v2 .settings-option-copy small {font-size: 10px}
+  .settings-v2 .settings-choice-grid, .settings-v2 .settings-select-grid {grid-template-columns: minmax(0, 1fr)}
+  .settings-v2 .settings-save-actions {width: 100%}
+  .settings-v2 .settings-save-actions .btn {flex: 1;min-width: 0;padding: 12px 8px}
+  .settings-v2 .settings-group {padding: 20px 17px}
+}
+@media (prefers-reduced-motion: reduce) {
+  .settings-v2 *, .settings-v2 *::before, .settings-v2 *::after {
+    transition-duration: .01ms !important;
+  }
+}
