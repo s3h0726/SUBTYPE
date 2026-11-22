@@ -29,7 +29,7 @@ const asId=code=>'hk-lr-'+code;
 function extraHongKongLightRailRoutes(catalog,{validationPreview=false,gameplayReview={services:{}}}={}){
  const stationCatalog=new Map(),adjacent=new Map();
  for(const route of catalog){
-  if(route.countryId!=='hk'||route.category!=='light_rail'||route.playable!==true)continue;
+  if(route.countryId!=='hk'||route.category!=='light_rail'||route.geometryReady!==true||route.geometryStatus!=='verified')continue;
   for(const stop of route.stations||[])if(!stationCatalog.has(stop.id))stationCatalog.set(stop.id,stop);
   for(const edge of route.directedSegments||[]){
    if(!edge.sourceWayIds?.length||edge.geometryStatus!=='ready')continue;
