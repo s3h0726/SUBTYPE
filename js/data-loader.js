@@ -16,13 +16,74 @@ const cleanDisplayLineName=value=>text(value).replace(/^JR/,'').replace(/^東京
 // The editor saves a small JSON file independently of the generated catalog.
 // Apply it in the browser as well: a failed bulk rebuild must not hide edits.
 let editorNameOverrides={operators:{},lines:{},stations:{},services:{}};
-async function loadEditorNameOverrides(){
+const EDITOR_DRAFT_PREFIX='metrot-korean-edit-20261102-nationwide-revalidated-';
+const EDITOR_PENDING_KEY='subtype-editor-published-pending-v1';
+const EDITOR_PENDING_MAX_AGE=2*60*60*1000;
+const editableName=value=>typeof value==='string'?value.normalize('NFC').trim():'';
+const nameOverrideSections=['operators','lines','stations','services'];
+function mergeEditorNameOverrides(base,update){
+  const result=Object.fromEntries(nameOverrideSections.map(section=>[section,{...(base?.[section]||{})}]));
+  for(const section of ['operators','lines','services'])Object.assign(result[section],update?.[section]||{});
+  for(const [line,stations] of Object.entries(update?.stations||{}))
+    result.stations[line]={...(result.stations[line]||{}),...stations};
+  return result;
+}
+// Treat each unsaved unified-editor table row as a gameplay name edit for this browser.
+function localEditorNameOverrides(){
+  let result={operators:{},lines:{},stations:{},services:{}};
+  try{
+    const pending=JSON.parse(localStorage.getItem(EDITOR_PENDING_KEY)||'null');
+    if(pending?.branch==='main'&&Number.isFinite(pending.savedAt)&&
+       Date.now()-pending.savedAt>=0&&Date.now()-pending.savedAt<EDITOR_PENDING_MAX_AGE)
+      result=mergeEditorNameOverrides(result,pending.overrides);
+    const keys=Array.from({length:localStorage.length},(_,i)=>localStorage.key(i))
+      .filter(key=>key?.startsWith(EDITOR_DRAFT_PREFIX)).sort();
+    for(const key of keys){
+      const match=key.slice(EDITOR_DRAFT_PREFIX.length)
+        .match(/^(jp|kr|hk|th|tw|uk|fr)-(operators|lines|services|stations-by-line)(?:-|$)/);
+      if(!match)continue;
+      let draft;
+      try{draft=JSON.parse(localStorage.getItem(key)||'{}')}catch{continue}
+      if(!draft||typeof draft!=='object')continue;
+      for(const row of Object.values(draft)){
+        if(!Array.isArray(row))continue;
+        const kind=match[2];
+        if(kind==='operators'&&row.length>=2){
+          const id=editableName(row[0]),ko=editableName(row[1]);
+          if(id&&ko)result.operators[id]=ko;
+        }else if(kind==='lines'&&row.length>=7){
+          const id=editableName(row[2]),ko=editableName(row[3]);
+          if(!id||!ko)continue;
+          const color=editableName(row[6]),prev=result.lines[id]||{};
+          const next={...prev,ko,...(/^#[0-9a-f]{6}$/i.test(color)?{color}:{})};
+          if(row.length>=10){
+            const label=editableName(row[8]),labelColor=editableName(row[9]);
+            if(label){next.label=label;if(/^#[0-9a-f]{6}$/i.test(labelColor))next.labelColor=labelColor}
+            else{delete next.label;delete next.labelColor}
+          }
+          result.lines[id]=next;
+        }else if(kind==='services'&&row.length>=5){
+          const id=editableName(row[0]),ko=editableName(row[4]);
+          if(id&&ko)result.services[id]=ko;
+        }else if(kind==='stations-by-line'&&row.length>=7){
+          const id=editableName(row[2]),stationId=editableName(row[4]),ko=editableName(row[6]);
+          if(id&&stationId&&ko){result.stations[id]||={};result.stations[id][stationId]=ko}
+        }
+      }
+    }
+  }catch(error){console.warn('Local name-editor drafts unavailable:',error)}
+  return result;
+}
+export async function loadEditorNameOverrides(){
+  let published={};
   try{
     const response=await fetch(new URL('data/editor-overrides.json',document.baseURI),{cache:'no-store'});
     if(!response.ok)throw Error('HTTP '+response.status);
-    const source=await response.json();
-    editorNameOverrides={operators:source?.operators||{},lines:source?.lines||{},stations:source?.stations||{},services:source?.services||{}};
-  }catch(error){console.warn('Editor names unavailable; using built names',error)}
+    published=await response.json();
+  }catch(error){console.warn('Published editor names unavailable; using built names and local drafts',error)}
+  editorNameOverrides=mergeEditorNameOverrides(published,localEditorNameOverrides());
+  globalThis.TRT_EDITOR_OVERRIDES=editorNameOverrides;
+  return editorNameOverrides;
 }
 export function normalizeStation(raw={},index=0,lineCode='ST'){
   const source=Array.isArray(raw)?{id:raw[0],ja:raw[1],kana:raw[2],romaji:raw[3],ko:raw[4],latitude:raw[5],longitude:raw[6],koAliases:raw[7]}:raw;
