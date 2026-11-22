@@ -36,7 +36,20 @@ class Repository{
   getLineSymbolAsset(id){const entry=this.assets.lines?.[id];if(!entry?.asset)return null;const url=resolveProjectAsset(entry.asset);return{url,asset:url,exists:entry.exists!==false,verified:entry.verified===true,source:entry.source||'',officialExists:entry.officialExists===true,canonicalFile:entry.file,version:entry.version}}
   resolveRoute(route){
     if(!route)return route;this.registerRoute(route);const operator=this.getOperator(route.operatorId),line=this.getLine(route.id),operatorAsset=this.getOperatorLogoAsset(route.operatorId),symbolAsset=this.getLineSymbolAsset(route.id);
-    const stations=(route.stations||[]).map(station=>{const canonical=this.registerStation(station);if(!canonical)return station;if(station.routeSpecificStationName===true)return{...station,ja:station.ja,ko:station.ko,romaji:station.romaji};return{...station,ja:canonical.names.ja,kana:canonical.names.kana,ko:canonical.names.ko,romaji:canonical.names.en}});
+    const stations=(route.stations||[]).map(station=>{
+      const canonical=this.registerStation(station);if(!canonical)return station;
+      // The master station ID is only a transfer/search identity. Japanese
+      // platforms may use a different official name on each operating line
+      // (Osaka/Umeda, Sapporo/Sapporo subway). Never overwrite that sign with
+      // whichever route registered the shared master ID first.
+      if(route.countryId==='jp'||station.routeSpecificStationName===true)
+        return{...station,ja:clean(station.ja||station.names?.ja)||canonical.names.ja,
+          kana:clean(station.kana||station.names?.kana)||canonical.names.kana,
+          ko:clean(station.ko||station.names?.ko)||canonical.names.ko,
+          romaji:clean(station.romaji||station.names?.en)||canonical.names.en};
+      return{...station,ja:canonical.names.ja,kana:canonical.names.kana,
+        ko:canonical.names.ko,romaji:canonical.names.en}
+    });
     const resolved={...route,operator:operator?.names||route.operator,line:line?.names||route.line,operatorAsset,symbolAsset,stations};this.routes.set(route.id,resolved);return resolved
   }
 }
