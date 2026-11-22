@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 'use strict';
 
-// Bump or synchronize the SUBTYPE version without rebuilding large data bundles.
-// Usage: node tools/release-version.cjs patch|minor|major|sync
+// Bump or synchronize SUBTYPE's four-part app version without rebuilding large data bundles.
+// Usage: node tools/release-version.cjs revision|patch|minor|major|sync
+// npm requires the separate package.json "version" field to remain three-part SemVer.
 const fs = require('node:fs');
 const path = require('node:path');
 const root = process.env.SUBTYPE_RELEASE_ROOT || path.resolve(__dirname, '..');
-const mode = process.argv[2] || 'patch';
-if (!['patch', 'minor', 'major', 'sync'].includes(mode)) {
-  console.error('Expected patch, minor, major or sync');
+const mode = process.argv[2] || 'revision';
+if (!['revision', 'patch', 'minor', 'major', 'sync'].includes(mode)) {
+  console.error('Expected revision, patch, minor, major or sync');
   process.exit(2);
 }
 const file = name => path.join(root, name);
@@ -18,17 +19,21 @@ const write = (name, value) => {
 };
 
 const pkg = JSON.parse(read('package.json'));
-if (!/^\d+\.\d+\.\d+$/.test(pkg.version)) throw new Error('Invalid package.json version');
-const previous = pkg.version;
+if (!/^\d+\.\d+\.\d+$/.test(pkg.version)) throw new Error('Invalid npm package.json version (requires X.Y.Z)');
+const previous = pkg.appVersion || pkg.version + '.0';
+if (!/^\d+\.\d+\.\d+\.\d+$/.test(previous)) throw new Error('Invalid appVersion (requires X.Y.Z.R)');
 const parts = previous.split('.').map(Number);
-if (mode === 'major') { parts[0]++; parts[1] = 0; parts[2] = 0; }
-if (mode === 'minor') { parts[1]++; parts[2] = 0; }
-if (mode === 'patch') parts[2]++;
-const version = mode === 'sync' ? previous : parts.join('.');
-if (mode !== 'sync') {
-  pkg.version = version;
-  write('package.json', JSON.stringify(pkg, null, 2) + '\n');
+if (pkg.version !== parts.slice(0, 3).join('.')) {
+  throw new Error('package.json version must match first three parts of appVersion');
 }
+if (mode === 'major') { parts[0]++; parts[1] = 0; parts[2] = 0; parts[3] = 0; }
+if (mode === 'minor') { parts[1]++; parts[2] = 0; parts[3] = 0; }
+if (mode === 'patch') { parts[2]++; parts[3] = 0; }
+if (mode === 'revision') parts[3]++;
+const version = mode === 'sync' ? previous : parts.join('.');
+pkg.appVersion = version;
+pkg.version = version.split('.').slice(0, 3).join('.');
+write('package.json', JSON.stringify(pkg, null, 2) + '\n');
 
 let found = 0;
 const html = read('index.html')
@@ -44,10 +49,10 @@ if (found !== 4 || !html.includes('<meta name="application-version" content="' +
 write('index.html', html);
 
 let readme = read('README.md');
-if (!/\*\*현재 버전: v\d+\.\d+\.\d+ \(개발 중\)\*\*/.test(readme)) {
+if (!/\*\*현재 버전: v\d+\.\d+\.\d+(?:\.\d+)? \(개발 중\)\*\*/.test(readme)) {
   throw new Error('README version banner not found');
 }
-readme = readme.replace(/\*\*현재 버전: v\d+\.\d+\.\d+ \(개발 중\)\*\*/, '**현재 버전: v' + version + ' (개발 중)**');
+readme = readme.replace(/\*\*현재 버전: v\d+\.\d+\.\d+(?:\.\d+)? \(개발 중\)\*\*/, '**현재 버전: v' + version + ' (개발 중)**');
 write('README.md', readme);
 
 let changelog = read('CHANGELOG.md');
