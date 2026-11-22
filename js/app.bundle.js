@@ -5591,23 +5591,60 @@ function nationwideCatalogLine(route){
   const ja=route?.line?.ja||route?.line?.names?.ja||'';for(const [code,data] of Object.entries(catalog))if(data.ja===ja)return{code,data};
   return null
 }
-function routeForCatalogLine(code,requiredStations=[]){
-  const catalog=globalThis.TRT_NATIONWIDE_SERVICE_CATALOG?.lines||{},meta=catalog[String(code)];
-  const names=(requiredStations||[]).map(value=>Array.isArray(value)?String(value[0]):String(value));
-  const matches=builtin.filter(route=>
-    route.id===`line-${code}`||route.legacyId===`line-${code}`||
-    (meta?.ja&&(route.line?.ja||route.line?.names?.ja||'')===meta.ja)||
-    // TrainLCD groups the Ogaki spur with the Gifu–Maibara main line.
-    (String(code)==='11503'&&route.id==='line-jr-central-minoakasaka'));
-  if(names.length){
-    const complete=matches.find(route=>Array.isArray(route.stations)&&
-      names.every(name=>route.stations.some(station=>station.ja===name)));
-    if(complete)return complete;
-    // An unmatched lazy candidate must be loaded before judging station coverage.
-    const lazy=matches.find(route=>route.lazy&&route.id!=='line-11503');
-    if(lazy)return lazy;
+
+const jpCatalogNameCache=new WeakMap();
+function japaneseCatalogStationKey(name){
+  return String(name||'').normalize('NFKC').replace(/[〈《「『【〔]/g,'(')
+    .replace(/[〉》」』】〕]/g,')').replace(/[\s\u3000]/g,'')
+    .replace(/ヶ/g,'ケ').replace(/ヵ/g,'カ');
+}
+function catalogRequiredStationNames(segment){
+  const stops=segment?.stations||[];
+  // TrainLCD may name a closed non-stopping halt. Never require an inactive
+  // passing station, but ALWAYS verify advertised stops and both endpoints.
+  return stops.filter((stop,i)=>i===0||i===stops.length-1||Number(stop[1])!==1).map(stop=>String(stop[0]));
+}
+function catalogRouteStationKeys(route){
+  if(!route)return[];
+  let names=jpCatalogNameCache.get(route);
+  if(!names){
+    const source=route.stations?.length?route.stations.map(s=>s.ja||s.names?.ja||''):route.searchStations||[];
+    names=source.map(japaneseCatalogStationKey).filter(Boolean);
+    jpCatalogNameCache.set(route,names);
   }
-  return matches[0]||null
+  return names;
+}
+function catalogRouteHasStations(route,stops){
+  const physical=catalogRouteStationKeys(route),
+    expected=stops.map(v=>japaneseCatalogStationKey(Array.isArray(v)?v[0]:v));
+  if(expected.length<2||physical.length<2||expected.some(v=>!v))return false;
+  const ordered=names=>{
+    let pos=-1;
+    return expected.every(name=>{pos=names.indexOf(name,pos+1);return pos>=0});
+  };
+  return ordered(physical)||ordered(physical.slice().reverse());
+}
+function catalogStationIndex(route,name){
+  const target=japaneseCatalogStationKey(name);
+  return(route?.stations||[]).findIndex(station=>japaneseCatalogStationKey(station.ja||station.names?.ja)===target);
+}
+function routeForCatalogLine(code,requiredStations=[]){
+  const catalog=globalThis.TRT_NATIONWIDE_SERVICE_CATALOG?.lines||{},meta=catalog[String(code)],
+    required=requiredStations.map(v=>Array.isArray(v)?String(v[0]):String(v));
+  const matches=builtin.filter(route=>route.id===`line-${code}`||route.legacyId===`line-${code}`||
+    (meta?.ja&&(route.line?.ja||route.line?.names?.ja||'')===meta.ja)||
+    (String(code)==='11503'&&route.id==='line-jr-central-minoakasaka'));
+  if(!required.length)return matches[0]||null;
+  const complete=matches.find(route=>catalogRouteHasStations(route,required));
+  if(complete)return complete;
+  // Some old catalog segments now belong to an existing different route
+  // (Chuo local, Hokuso, Hankyu Kobe Kosoku). Do not invent geometry.
+  if(required.length>=3){
+    const alternative=builtin.find(route=>route.countryId==='jp'&&route.geometryReady!==false&&route.playable!==false
+      &&catalogRouteHasStations(route,required));
+    if(alternative)return alternative;
+  }
+  return matches.find(route=>route.lazy)||matches[0]||null;
 }
 // TrainLCD line IDs predate JR Central's physical-route split.
 // Split only at real common stations; preserve every surveyed stop and vertex.
@@ -5637,71 +5674,98 @@ function resolvedJrCatalogSegments(pattern){
     return [segment];
   });
 }
+
 function catalogPatternChoice(route,pattern,reverse=false){
-  // Listing a documented service must not depend on its railway geometry being
-  // loaded or playable. Keep incomplete catalog patterns visible for diagnosis.
-  const allSegments=resolvedJrCatalogSegments(pattern),base=allSegments.filter(segment=>segment.stations?.length>=2);
-  const segments=reverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;
-  const first=segments[0]?.stations?.[0]?.[0]||route.stations?.[0]?.ja||'',last=segments.at(-1)?.stations?.at(-1)?.[0]||route.stations?.at(-1)?.ja||'';
-  const firstRoute=routeForCatalogLine(segments[0]?.lineCode,segments[0]?.stations),lastRoute=routeForCatalogLine(segments.at(-1)?.lineCode,segments.at(-1)?.stations),origin=firstRoute?.stations?.find(station=>station.ja===first)||{ja:first,ko:first},destination=lastRoute?.stations?.find(station=>station.ja===last)||{ja:last,ko:last};
-    const missingCatalogTrack=base.map(segment=>{
-    const physical=routeForCatalogLine(segment.lineCode,segment.stations);
+  const allSegments=resolvedJrCatalogSegments(pattern),base=allSegments.filter(s=>s.stations?.length>=2),
+    segments=reverse?base.slice().reverse().map(s=>({...s,stations:s.stations.slice().reverse()})):base;
+  const first=segments[0]?.stations?.[0]?.[0]||route.stations?.[0]?.ja||'',
+    last=segments.at(-1)?.stations?.at(-1)?.[0]||route.stations?.at(-1)?.ja||'';
+  const firstRoute=routeForCatalogLine(segments[0]?.lineCode,catalogRequiredStationNames(segments[0])),
+    lastRoute=routeForCatalogLine(segments.at(-1)?.lineCode,catalogRequiredStationNames(segments.at(-1)));
+  const origin=firstRoute?.stations?.[catalogStationIndex(firstRoute,first)]||{ja:first,ko:first},
+    destination=lastRoute?.stations?.[catalogStationIndex(lastRoute,last)]||{ja:last,ko:last};
+  const missingTrack=base.map(segment=>{
+    const required=catalogRequiredStationNames(segment),physical=routeForCatalogLine(segment.lineCode,required);
     if(!physical)return null;
-    const available=(physical.stations?.length?physical.stations.map(station=>station.ja):physical.searchStations)||[];
-    const missing=segment.stations?.map(station=>station[0]).filter(name=>!available.includes(name))||[];
-    return missing.length?{segment,missing}:null;
+    const available=new Set(catalogRouteStationKeys(physical)),
+      missing=required.filter(name=>!available.has(japaneseCatalogStationKey(name)));
+    return missing.length?{segment,missing}:catalogRouteHasStations(physical,required)?null:{segment,missing:['정차역 순서 불일치']};
   }).find(Boolean);
-  const unmatchedCatalogReason=missingCatalogTrack?.segment.lineCode==='11612'&&missingCatalogTrack.missing.includes('門司')
-    ? '시모노세키~모지(JR 큐슈) 실제 선로가 미등록되어 이 직통계통을 플레이할 수 없습니다.'
-    : missingCatalogTrack?'실제 노선에 없는 정차역: '+missingCatalogTrack.missing.slice(0,4).join(', '):null;
-const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
-  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse,catalogUnavailableReason:!base.length?'원본 정차 구간 데이터가 없습니다.':base.length!==allSegments.length?'일부 구간의 정차역 자료가 누락되었습니다.':base.some(segment=>!routeForCatalogLine(segment.lineCode,segment.stations))?'일부 연결 노선이 등록되어 있지 않습니다.':unmatchedCatalogReason}
+  const unmatchedReason=missingTrack?.segment.lineCode==='11612'&&missingTrack.missing.includes('門司')
+    ?'시모노세키~모지(JR 큐슈) 실제 선로가 미등록되어 이 직통계통을 플레이할 수 없습니다.'
+    :missingTrack?'실제 노선에 없는 정차역: '+missingTrack.missing.slice(0,4).join(', '):null;
+  const type={id:`catalog-type-${pattern.id}`,names:{ja:pattern.type?.ja||'',ko:pattern.type?.ko||'',en:pattern.type?.en||''},priority:Number(pattern.type?.priority||0),kind:Number(pattern.type?.kind||0)};
+  return{kind:'catalog',id:`catalog:${pattern.id}:${reverse?'reverse':'forward'}`,originId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:origin`,destinationId:`catalog:${pattern.id}:${reverse?'reverse':'forward'}:destination`,originNames:origin,destinationNames:destination,trainType:type,patternName:type.names,throughServiceId:segments.length>1?`catalog-${pattern.id}`:null,direction:reverse?'reverse':'forward',catalogPattern:pattern,catalogReverse:reverse,catalogUnavailableReason:!base.length?'원본 정차 구간 데이터가 없습니다.':base.length!==allSegments.length?'일부 구간의 정차역 자료가 누락되었습니다.':base.some(s=>!routeForCatalogLine(s.lineCode,catalogRequiredStationNames(s)))?'일부 연결 노선이 등록되어 있지 않습니다.':unmatchedReason};
 }
 // A limited express may skip the interchange at which the underlying rail
 // infrastructure changes (e.g. Hayabusa skips Shin-Aomori in one catalog
 // segment). Keep the skipped stop out of the service's stops, but extend the
 // physical segment to the shared junction before assembling the track.
+
 function catalogConnectedSegments(segments){
   const parts=segments.map(segment=>{
-    const route=routeForCatalogLine(segment.lineCode,segment.stations);
+    const required=catalogRequiredStationNames(segment),route=routeForCatalogLine(segment.lineCode,required);
     if(!route?.stations?.length)throw new Error('연결 노선 데이터를 불러오지 못했습니다: '+segment.lineCode);
-    const first=segment.stations[0][0],last=segment.stations.at(-1)[0];
-    const a=route.stations.findIndex(st=>st.ja===first);
-    const b=route.stations.findIndex(st=>st.ja===last);
+    if(route.geometryReady!==true||route.playable===false)throw new Error('실제 선로의 검증이 완료되지 않았습니다: '+route.id);
+    if(!catalogRouteHasStations(route,required))throw new Error('정차역 순서가 실제 선로와 일치하지 않습니다: '+route.id);
+    const first=segment.stations[0][0],last=segment.stations.at(-1)[0],
+      a=catalogStationIndex(route,first),b=catalogStationIndex(route,last);
     if(a<0||b<0)throw new Error((route.line?.ja||segment.lineCode)+': '+first+' → '+last+' 구간 매칭 실패');
     return{route,a,b,step:b>=a?1:-1};
   });
   for(let i=1;i<parts.length;i++){
-    const previous=parts[i-1],next=parts[i];
-    if(previous.route.stations[previous.b]?.ja===next.route.stations[next.a]?.ja)continue;
+    const previous=parts[i-1],next=parts[i],
+      same=(a,b)=>a&&b&&(String(a.id)===String(b.id)||japaneseCatalogStationKey(a.ja)===japaneseCatalogStationKey(b.ja));
+    if(same(previous.route.stations[previous.b],next.route.stations[next.a]))continue;
     let best=null;
-    for(let p=0;p<=3;p++)for(let q=0;q<=3;q++){
-      const pIdx=previous.b+p*previous.step,nIdx=next.a-q*next.step;
-      const pStation=previous.route.stations[pIdx],nStation=next.route.stations[nIdx];
-      if(!pStation||!nStation||pStation.ja!==nStation.ja)continue;
+    // Find a REAL shared junction up to 12 stations beyond a skipped stop.
+    for(let p=0;p<=Math.min(12,previous.route.stations.length-1);p++)for(let q=0;q<=Math.min(12,next.route.stations.length-1);q++){
+      const pIdx=previous.b+p*previous.step,nIdx=next.a-q*next.step,
+        left=previous.route.stations[pIdx],right=next.route.stations[nIdx];
+      if(!same(left,right))continue;
       if(!best||p+q<best.score)best={pIdx,nIdx,score:p+q};
     }
     if(best){previous.b=best.pIdx;next.a=best.nIdx;}
   }
-  return parts.map(({route,a,b})=>({
-    routeId:route.id,direction:b>=a?'forward':'reverse',
-    startStationJa:route.stations[a].ja,endStationJa:route.stations[b].ja
-  }));
+  return parts.map(({route,a,b})=>({routeId:route.id,direction:b>=a?'forward':'reverse',
+    startStationJa:route.stations[a].ja,endStationJa:route.stations[b].ja}));
 }
+
 function buildCatalogResolved(choice){
-  const pattern=choice?.catalogPattern,base=resolvedJrCatalogSegments(pattern).filter(segment=>segment.stations?.length>=2),segments=choice?.catalogReverse?base.slice().reverse().map(segment=>({...segment,stations:segment.stations.slice().reverse()})):base;if(!segments.length)throw new Error('전국 운행계통 데이터가 비어 있습니다.');
-  const stopNames=[];for(const segment of segments)for(const [name,pass] of segment.stations)if(Number(pass)!==1&&!stopNames.includes(name))stopNames.push(name);
+  const pattern=choice?.catalogPattern,base=resolvedJrCatalogSegments(pattern).filter(s=>s.stations?.length>=2),
+    segments=choice?.catalogReverse?base.slice().reverse().map(s=>({...s,stations:s.stations.slice().reverse()})):base;
+  if(!segments.length)throw new Error('전국 운행계통 데이터가 비어 있습니다.');
+  const wanted=[];
+  for(const segment of segments)for(const [name,pass] of segment.stations)
+    if(Number(pass)!==1&&!wanted.some(v=>japaneseCatalogStationKey(v)===japaneseCatalogStationKey(name)))wanted.push(name);
+  const allowed=new Set(wanted.map(japaneseCatalogStationKey));
+  const applyService=route=>{
+    const covered=new Set(route.stations.map(s=>japaneseCatalogStationKey(s.ja))),
+      missing=wanted.filter(name=>!covered.has(japaneseCatalogStationKey(name))),
+      stops=route.stations.filter(s=>allowed.has(japaneseCatalogStationKey(s.ja))).map(s=>s.id);
+    if(missing.length||stops.length<2)throw new Error('실제 선로에 연결되지 않은 정차역: '+missing.slice(0,4).join(', '));
+    const service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'運行系統',
+      nameKo:pattern.type?.ko||'운행계통',nameEn:pattern.type?.en||'Service',stops};
+    return{route:{...route,services:[service]},service,direction:'forward',pattern:null,
+      trainType:choice.trainType,destinationStationId:route.stations.at(-1)?.id||null,trainTypeContexts:[]};
+  };
   if(segments.length===1){
-    const segment=segments[0],route=routeForCatalogLine(segment.lineCode,segment.stations);if(!route)throw new Error(`노선 데이터를 찾지 못했습니다: ${segment.lineCode}`);
-    const first=segment.stations[0][0],last=segment.stations.at(-1)[0],a=route.stations.findIndex(station=>station.ja===first),b=route.stations.findIndex(station=>station.ja===last);if(a<0||b<0)throw new Error(`${first} → ${last} 구간을 현재 노선 데이터와 연결하지 못했습니다.`);
-    const direction=b>=a?'forward':'reverse',allowed=new Set(stopNames),stops=route.stations.filter(station=>allowed.has(station.ja)).map(station=>station.id);
-    const service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'運行系統',nameKo:pattern.type?.ko||'운행계통',nameEn:pattern.type?.en||'Service',stops};
-    return{route:{...route,services:[service]},service,direction,pattern:null,trainType:choice.trainType,destinationStationId:route.stations[b]?.id||null,trainTypeContexts:[]}
+    const segment=segments[0],route=routeForCatalogLine(segment.lineCode,catalogRequiredStationNames(segment));
+    if(!route?.stations?.length)throw new Error(`노선 데이터를 찾지 못했습니다: ${segment.lineCode}`);
+    if(route.geometryReady!==true||route.playable===false)throw new Error('실제 선로의 검증이 완료되지 않았습니다: '+route.id);
+    if(!catalogRouteHasStations(route,catalogRequiredStationNames(segment)))throw new Error('정차역 순서가 실제 선로와 일치하지 않습니다: '+route.id);
+    const first=segment.stations[0][0],last=segment.stations.at(-1)[0],
+      a=catalogStationIndex(route,first),b=catalogStationIndex(route,last);
+    if(a<0||b<0)throw new Error(`${first} → ${last} 구간을 현재 노선 데이터와 연결하지 못했습니다.`);
+    const clipped=prepareThroughPart(route,{direction:b>=a?'forward':'reverse',
+      startStationId:stationKey(route.stations[a]),endStationId:stationKey(route.stations[b])});
+    return applyService(clipped);
   }
-  const routeSegments=catalogConnectedSegments(segments);
-  const spec={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',routeSegments,boundarySnapToleranceKm:1.2},through=buildThroughServiceRoute(spec,id=>builtin.find(route=>route.id===id));
-  const allowed=new Set(stopNames),stops=through.stations.filter(station=>allowed.has(station.ja)).map(station=>station.id),service={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',stops};
-  return{route:{...through,services:[service]},service,direction:'forward',pattern:null,trainType:choice.trainType,destinationStationId:through.stations.at(-1)?.id||null,trainTypeContexts:[]}
+  const routeSegments=catalogConnectedSegments(segments),
+    spec={id:`catalog-${pattern.id}`,nameJa:pattern.type?.ja||'直通',
+      nameKo:pattern.type?.ko||'직통',nameEn:pattern.type?.en||'Through Service',routeSegments,boundarySnapToleranceKm:1.2},
+    through=buildThroughServiceRoute(spec,id=>builtin.find(route=>route.id===id));
+  return applyService(through);
 }
 function resolveOperatingChoice(choice,route,{preview=false}={}){
   if(!choice||!route)throw new Error('운행계통 선택 정보가 없습니다.');
@@ -5741,7 +5805,7 @@ function operatingChoiceStatus(choice,route){
   // Japanese operating pattern merely because assembling its tracks failed.
   if(choice.catalogUnavailableReason)return{playable:false,reason:choice.catalogUnavailableReason};
   // A displayable JR physical card is not a playable train when its track is discontinuous.
-  if((route?.geometryReady===false&&!(route?.countryId==='jp'&&route.id==='line-hanshin-kobe-kosoku'&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0))||route?.playable===false)
+  if((choice.kind!=='catalog'&&route?.geometryReady===false&&!(route?.countryId==='jp'&&route.id==='line-hanshin-kobe-kosoku'&&Array.isArray(route.missingSegments)&&route.missingSegments.length>0))||(choice.kind!=='catalog'&&route?.playable===false))
     return{playable:false,reason:'실제 선로가 연결되지 않았거나 선형 검증이 완료되지 않았습니다.'};
   try{
     const resolved=resolveOperatingChoice(choice,route,{preview:true}),resolvedRoute=resolved?.route;
@@ -6160,11 +6224,14 @@ async function prepareKoreanFamilyChoices(route){
 async function hydrateJapaneseOperatingConnections(route){
   if(route?.countryId!=='jp')return;
   const catalog=['line-11333','line-11343'].includes(route?.id)?null:nationwideCatalogLine(route);
-  const codes=new Set((catalog?.data?.patterns||[]).flatMap(pattern=>resolvedJrCatalogSegments(pattern).map(part=>String(part.lineCode||''))).filter(Boolean));
+  const segments=(catalog?.data?.patterns||[]).flatMap(resolvedJrCatalogSegments);
+  const codes=new Set(segments.map(part=>String(part.lineCode||'')).filter(Boolean));
   const pending=new Map();
   const queue=physical=>{
     if(physical?.lazy&&physical.id!==route.id)pending.set(physical.id,physical);
   };
+  // Hydrate actual matching tracks, not merely old line codes.
+  for(const segment of segments)queue(routeForCatalogLine(segment.lineCode,catalogRequiredStationNames(segment)));
   for(const code of codes){
     queue(routeForCatalogLine(code));
     // Branch candidates must also be hydrated before resolving service endpoints.
