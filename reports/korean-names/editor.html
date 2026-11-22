@@ -1,6 +1,19 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>메트로타이핑 · 최신 한글명 편집표</title>
+<title>SUBTYPE · 한글명·RGB·라벨 편집</title>
+<script>
+  (() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('embedded') === '1') {
+      document.documentElement.classList.add('embedded');
+      return;
+    }
+    const unified = new URL('../../editor/', location.href);
+    for (const [key, value] of params) if (key !== 'embedded' && key !== 'tool') unified.searchParams.set(key, value);
+    unified.searchParams.set('tool', 'names');
+    location.replace(unified.href);
+  })();
+</script>
 <style>
 :root{font:15px system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#12202c;background:#f2f5fa}
 *{box-sizing:border-box}body{margin:0}header{background:#12273b;color:#fff;padding:25px max(20px,calc((100vw - 1400px)/2))}
@@ -25,6 +38,10 @@ td.edited{background:#fff2d2}.label-preview{display:inline-block;max-width:160px
 #pager{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0}
 small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4px;background:#fff}
 @media(max-width:700px){header{padding:20px}header h1{font-size:20px}main{padding:12px}#table-wrap{height:70vh}td,th{padding:6px}input[type=search]{max-width:none}}
+html.embedded header{display:none}
+html.embedded main{max-width:none;padding:16px}
+html.embedded #table-wrap{height:min(66vh,780px)}
+@media(max-width:700px){html.embedded main{padding:10px}}
 </style></head>
 <body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>최신 원본 데이터 · 한글명·노선 RGB·카드 라벨 편집 → GitHub에 저장 → 게임에 자동 반영</p></header>
 <main>
