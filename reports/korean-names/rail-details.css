@@ -1,0 +1,63 @@
+/* Rail workspace controls scoped to the canonical Korean-name editor. */
+#name-editor-view[hidden],#rail-workspace[hidden]{display:none!important}
+.editor-mode-tabs{padding:0 0 16px;border-bottom:1px solid #d9e3eb;margin-bottom:16px}
+.editor-mode-tabs button{font-weight:800;border-radius:10px}
+.editor-mode-tabs button.active{color:#fff;background:#163e5f;border-color:#163e5f}
+.editor-mode-tabs .game-link{margin-left:auto;color:#17618a;font-weight:700;text-decoration:none}
+#rail-workspace{color:#173247;font-size:14px;line-height:1.5}
+#rail-workspace *{box-sizing:border-box}
+#rail-workspace button,#rail-workspace input,#rail-workspace select{font:inherit}
+#rail-workspace button{cursor:pointer}
+#rail-workspace button:focus-visible,#rail-workspace a:focus-visible,#rail-workspace input:focus-visible{outline:2px solid #1685b3;outline-offset:2px}
+#rail-workspace .rail-hint{background:#e7f1f8;border:1px solid #bcd4e5;border-radius:12px;padding:13px 16px;margin:0 0 14px;color:#234961}
+#rail-workspace .rail-layout{display:grid;grid-template-columns:minmax(250px,310px) minmax(0,1fr);gap:16px;align-items:start}
+#rail-workspace aside{border:1px solid #d6e1ea;border-radius:12px;background:#fff;padding:15px;min-width:0}
+#rail-workspace aside label{display:grid;gap:7px;font-weight:700}
+#rail-workspace input,#rail-workspace select{width:100%;padding:10px;border:1px solid #b9ccdb;border-radius:7px;color:#173247;background:#fff}
+#rail-workspace .rail-main{min-width:0}
+#rail-workspace .source-filters,#rail-workspace .tabs,#rail-workspace .toolbar,#rail-workspace .direction{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+#rail-workspace .source-filters{margin:12px 0 7px}
+#rail-workspace .source-filters button,#rail-workspace .tabs button,#rail-workspace .toolbar button,#rail-workspace .direction button,#rail-workspace .rail-footer button{background:#fff;border:1px solid #b9ccdb;border-radius:8px;padding:8px 12px;color:#173247}
+#rail-workspace .tabs{margin-bottom:12px;background:#edf2f7;padding:8px;border-radius:11px}
+#rail-workspace .tabs button.active,#rail-workspace .source-filters button.active,#rail-workspace .direction button.active{background:#17476d;color:#fff;border-color:#17476d}
+#rail-workspace .rail-footer .primary{background:#11659a;color:#fff;border-color:#11659a}
+#rail-workspace .review-count{color:#916015;font-weight:800;font-size:12px;margin:8px 0}
+#rail-workspace .counts{font-size:12px;color:#526e82;margin-top:10px}
+#rail-workspace .route-tree{max-height:69vh;overflow:auto;border:1px solid #d6e1ea;border-radius:9px;background:#fafdff}
+#rail-workspace .route-tree details{border-bottom:1px solid #dde6ed}
+#rail-workspace .route-tree summary{background:#eaf1f7;padding:10px;cursor:pointer;color:#233e53;font-weight:800}
+#rail-workspace .route-tree button{display:block;width:100%;border:0;border-top:1px solid #e9eef3;background:transparent;color:#23445a;text-align:left;padding:8px 10px 8px 18px}
+#rail-workspace .route-tree button:hover,#rail-workspace .route-tree button.active{background:#d7ecf9;color:#102f49}
+#rail-workspace .route-tree small,#rail-workspace .source-card small{display:block;color:#587287;font-size:12px}
+#rail-workspace .source-badge{display:inline-block;padding:2px 6px;border-radius:5px;font-size:10px;font-weight:800}
+#rail-workspace .source-badge.verified{background:#dcf3e5;color:#135934}
+#rail-workspace .source-badge.review{background:#ffedce;color:#81500b}
+#rail-workspace .card{border:1px solid #dae4ec;background:#fff;border-radius:12px;padding:17px;min-width:0;margin-bottom:12px}
+#rail-workspace .card h2,#rail-workspace .card h3{margin:0 0 12px;color:#173247}
+#rail-workspace .card p{overflow-wrap:anywhere}
+#rail-workspace .grid,#rail-workspace .field-grid,#rail-workspace .source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+#rail-workspace .field-grid label{display:grid;gap:6px;font-size:13px;font-weight:700;color:#31546e}
+#rail-workspace .field-grid label.wide{grid-column:1/-1}
+#rail-workspace .source-grid{margin-top:13px}
+#rail-workspace .source-card{border:1px solid #d9e4ed;padding:12px;border-radius:9px;background:#f8fbfd}
+#rail-workspace .source-card span{display:block;color:#4a6375;font-size:12px}
+#rail-workspace .source-card a{color:#08669d}
+#rail-workspace .source-card em{color:#76613c}
+#rail-workspace .sequence{list-style:none;margin:0;padding:0;max-height:430px;overflow:auto}
+#rail-workspace .sequence li{display:grid;grid-template-columns:40px 72px minmax(0,1fr) auto;align-items:center;gap:8px;border-bottom:1px solid #e8edf1;padding:9px 2px}
+#rail-workspace .sequence li[draggable="true"]{cursor:grab}
+#rail-workspace .sequence li.dragging{opacity:.5}
+#rail-workspace .sequence small{display:block;color:#587287;overflow-wrap:anywhere}
+#rail-workspace .sequence .station-actions{display:flex;flex-wrap:wrap;gap:5px}
+#rail-workspace .station-actions button{border:1px solid #c8d8e3;background:#fff;border-radius:6px;padding:5px 8px}
+#rail-workspace .metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:13px}
+#rail-workspace .metric{background:#eaf2f8;padding:13px;border-radius:9px}
+#rail-workspace .metric b{display:block;font-size:20px}
+#rail-workspace .pass{color:#136e43}
+#rail-workspace .fail{color:#af3030}
+#rail-workspace .map{height:375px;border-radius:10px;overflow:hidden;background:#e9f2f7}
+#rail-workspace .issues{white-space:pre-wrap;background:#f5f8fa;border:1px solid #dce6ef;border-radius:8px;padding:12px;min-height:70px;overflow-wrap:anywhere}
+#rail-workspace .rail-footer{display:flex;flex-wrap:wrap;align-items:center;gap:9px;background:#fff;border:1px solid #d6e1ea;border-radius:12px;padding:12px;margin-top:13px}
+#rail-workspace .rail-footer #save-status{flex:1;min-width:200px;color:#34556b}
+@media(max-width:920px){#rail-workspace .rail-layout{grid-template-columns:1fr}#rail-workspace .route-tree{max-height:250px}#rail-workspace .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){#rail-workspace .grid,#rail-workspace .field-grid,#rail-workspace .source-grid{grid-template-columns:1fr}#rail-workspace .sequence li{grid-template-columns:35px minmax(0,1fr);gap:5px}#rail-workspace .sequence .station-actions{grid-column:2}#rail-workspace .metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.editor-mode-tabs .game-link{width:100%;margin-left:0}}
