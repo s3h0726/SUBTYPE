@@ -59,7 +59,7 @@ function compile(file,routes){
     copyGeometry:geometry=>geometry.map(p=>p.slice()),stationKey:s=>String(s.id),
     globalThis:{TRT_NATIONWIDE_SERVICE_CATALOG:{lines:{}}}};
   vm.createContext(ctx);
-  vm.runInContext(src+helper+';globalThis.api={japaneseSharedStationIndices,japaneseExistingPhysicalCandidates,japaneseReusablePhysicalRoute};',ctx);
+  vm.runInContext(src+helper+';globalThis.api={japaneseSharedStationIndices,japaneseExistingPhysicalCandidates,japaneseReusablePhysicalRoute,catalogRouteHasStations,catalogStationIndex,catalogRouteContainsStationName};',ctx);
   return ctx.globalThis.api;
 }
 for(const pathName of ['js/app.js','js/app.bundle.js']){
@@ -95,5 +95,25 @@ for(const pathName of ['js/app.js','js/app.bundle.js']){
     assert.equal(compile(pathName,[blocked,reversedOrder]).japaneseReusablePhysicalRoute(blocked),null);
     assert.equal(compile(pathName,[blocked,base,{...base,id:'second'}]).japaneseReusablePhysicalRoute(blocked),null);
     assert.equal(compile(pathName,[blocked,{...base,operatorId:'other-operator'}]).japaneseReusablePhysicalRoute(blocked),null);
+  });
+}
+
+for(const pathName of ['js/app.js','js/app.bundle.js']){
+  test(pathName+' resolves explicit canonical aliases by stop identity without collapsing two calls',()=>{
+    const metro=railway('metro','tokyo-metro',[
+      stop('shared','梅田','우메다',0,{
+        canonicalStationNames:{ja:'大阪',ko:'오사카',en:'Osaka'}
+      }),
+      stop('next','中津','나카츠',1)]);
+    const api=compile(pathName,[metro]);
+    assert.equal(api.catalogStationIndex(metro,'大阪'),0);
+    assert.equal(api.catalogStationIndex(metro,'梅田'),0);
+    assert.equal(api.catalogRouteContainsStationName(metro,'大阪'),true);
+    assert.equal(api.catalogRouteHasStations(metro,['大阪','中津']),true);
+    assert.equal(api.catalogRouteHasStations(metro,['梅田','中津']),true);
+    assert.equal(api.catalogRouteHasStations(metro,['大阪','梅田']),false,
+      'two names for one master station must not create two physical stops');
+    assert.equal(metro.stations[0].ja,'梅田','catalog alias matching must not change displayed sign');
+    assert.equal(api.catalogStationIndex(metro,'知らない駅'),-1);
   });
 }
