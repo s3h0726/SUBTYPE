@@ -7,6 +7,7 @@ on:
       - 'tools/build-line-workspaces.js'
       - 'js/data-loader.js'
       - 'tools/test-editor-station-runtime.cjs'
+      - 'tools/test-editor-live-runtime.cjs'
       - '.github/workflows/apply-editor-korean-names.yml'
   workflow_dispatch:
 permissions:
@@ -28,6 +29,8 @@ jobs:
           node-version: '22'
       - name: Build complete application from canonical files with editor overrides
         run: node tools/build-static.js
+      - name: Verify local editor drafts modify game name and typing objects
+        run: node tools/test-editor-live-runtime.cjs
       - name: Validate editor names are present in built route catalog
         run: |
           node - <<'NODE'
