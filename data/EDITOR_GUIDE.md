@@ -27,7 +27,7 @@ data/
 - 실제 선형: 해당 폴더의 `geometry.json`
 - 노선 심볼: 해당 폴더의 `symbol.svg`
 - 회사 로고: `data/operators/<operator>/logo.svg`
-- 역명·좌표: `data/shared-stations/*.json` 또는 Rail Data Editor의 역 row
+- 역명·좌표: `data/shared-stations/*.json` 또는 통합 편집표의 노선 상세 역 순서 화면
 
 ## 명령
 
@@ -41,9 +41,9 @@ npm run new:line
 
 `build:data`는 `data/lines/**/line.json`을 자동 탐색합니다. 중앙 line ID 목록은 사람이 관리하지 않습니다. 새 폴더를 추가해도 core JavaScript 수정은 필요 없습니다.
 
-## Rail Data Editor
+## 통합 편집표의 노선 상세 화면
 
-`dev/rail-data-editor.html`을 개발 서버에서 엽니다. 왼쪽 운영사 Tree에서 노선을 고르고 현재 노선만 내보냅니다.
+`reports/korean-names/editor.html?tool=rail`을 열어 상단 **노선 상세 · 역 순서 · 선형** 탭을 선택합니다. 왼쪽 운영사 Tree에서 일본 노선을 고르고 현재 노선만 JSON으로 내보냅니다. 한글명·RGB·라벨 화면과 달리 이 구조 편집은 GitHub 토큰 직접 저장이 아니라 별도의 로컬 반영 절차를 거칩니다.
 
 ```bash
 npm run editor:apply -- <내보낸-line-workspace.json>
