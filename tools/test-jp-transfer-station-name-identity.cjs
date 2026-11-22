@@ -48,7 +48,7 @@ test('non-Japanese canonical behavior and explicit sign overrides remain intact'
   assert.equal(repo.resolveRoute(foreign).stations[0].ja,'Source sign');
 });
 function compile(file,routes){
-  const script=read(file),resolver=read('js/service-route-resolver.js').replace(/\bexport\s+/g,'');
+  const script=read(file),resolver=read('js/service-route-resolver.js');
   const range=(src,start,end)=>{
     const a=src.indexOf(start),b=src.indexOf(end,a+start.length);
     assert(a>=0&&b>a,file+' missing '+start);return src.slice(a,b)
