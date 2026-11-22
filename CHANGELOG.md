@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.17.1] — 2026-11-22
+
+- fix(ktx): 역방향 안내 정리 및 동대구 이남 비구포 경부고속선 지도 경로 보정 (#107) * fix(ktx): remove unverified timetable wording from game reverse label * fix(ktx): remove unverified timetable wording from 
+
 ## [v0.17.0] — 2026-11-22
 
 - Merge pull request #106 from s3h0726/feature/france-national-next feat(fr): expand national passenger rail to 160 Korean-first lines and 495 directions
