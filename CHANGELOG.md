@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.14.2] — 2026-11-22
+
+- test(jp): 신칸센 회귀검사에 역명 정규화 헬퍼 적용 * test(jp): inject station normalization helpers into Shinkansen geometry regression * ci(jp): rerun Shinkansen geometry regression when its test c
+
 ## [v0.14.1] — 2026-11-22
 
 - data: apply Korean names and RGB edits from web editor
