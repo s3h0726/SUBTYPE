@@ -7,7 +7,7 @@ let thailandNameEvidence={};
 export function setThailandNameEvidence(stations={}){thailandNameEvidence=stations;}
 export function thailandNames(entity={},kind='stations'){
  const n=entity.canonicalThaiNames||entity.names||entity,edits=thLocalNames(),id=entity.station_id||entity.stationMasterId||entity.id,edit=edits[kind]?.[id];
- const reviewedKo=kind==='stations'?thailandNameEvidence[id]?.ko:'';
+ const reviewedKo=kind==='stations'&&!entity.editorStationNameOverride?thailandNameEvidence[id]?.ko:'';
  return{ko:(typeof edit==='string'?edit:edit?.ko)||reviewedKo||n.ko||entity.ko||entity.nameKo||'',th:n.th||entity.th||entity.nameTh||'',en:n.en||entity.en||entity.nameEn||entity.romaji||''};
 }
 export function thailandNameText(entity,kind='stations'){const n=thailandNames(entity,kind);return[n.ko,n.th,n.en].filter(Boolean).join(' / ')}
