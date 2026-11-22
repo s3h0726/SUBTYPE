@@ -354,23 +354,43 @@ function refresh(){
  rows.forEach((r,i)=>{if(changesOnly.checked&&!isChanged(i))return;if(key&&!r.some(v=>String(v).toLocaleLowerCase('ko').includes(key)))return;visible.push(i)});
  page=Math.min(page,Math.max(0,Math.ceil(visible.length/size)-1));render()
 }
-function render(){const e=Math.min(visible.length,(page+1)*size),part=visible.slice(page*size,e),edit=heads.indexOf(editNameCol[file]),rgb=(file==='lines'||file==='korea-lines')?heads.indexOf('RGB 색상'):-1;
+function render(){
+ const e=Math.min(visible.length,(page+1)*size),part=visible.slice(page*size,e),edit=heads.indexOf(editNameCol[file]),rgb=heads.indexOf('RGB 색상'),label=heads.indexOf('라벨'),labelRgb=heads.indexOf('라벨 RGB');
  table.querySelector('thead').innerHTML='<tr><th>#</th>'+heads.map(h=>'<th>'+escape(h)+'</th>').join('')+'</tr>';
- table.querySelector('tbody').innerHTML=part.map(i=>'<tr><td>'+(i+1)+'</td>'+rows[i].map((v,j)=>(j===edit||j===rgb)
-  ?'<td class="editable '+(v!==original[i][j]?'edited':'')+'">'+(j===rgb?'<input type="color" data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:46px;min-width:46px;vertical-align:middle"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(cssToHex(v))+'" style="width:90px;min-width:90px" aria-label="RGB 색상">':'<input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" aria-label="'+escape(heads[j])+'">')+'</td>'
-  :'<td>'+(heads[j]==='근거 URL'&&/^https:\/\//i.test(String(v))?'<a href="'+escape(v)+'" target="_blank" rel="noopener noreferrer">근거 보기</a>':escape(v))+'</td>').join('')+'</tr>').join('');
+ table.querySelector('tbody').innerHTML=part.map(i=>'<tr><td>'+(i+1)+'</td>'+rows[i].map((v,j)=>{
+  const isColor=j===rgb||j===labelRgb,isEditable=j===edit||j===label||isColor;
+  if(!isEditable)return '<td>'+(heads[j]==='근거 URL'&&/^https:\/\//i.test(String(v))?'<a href="'+escape(v)+'" target="_blank" rel="noopener noreferrer">근거 보기</a>':escape(v))+'</td>';
+  let contents='';
+  if(isColor){const hex=cssToHex(v);contents='<input type="color" data-r="'+i+'" data-c="'+j+'" value="'+escape(hex)+'" style="width:46px;min-width:46px;vertical-align:middle"><input data-r="'+i+'" data-c="'+j+'" value="'+escape(hex)+'" style="width:90px;min-width:90px" aria-label="'+escape(heads[j])+'">';}
+  else{contents='<input data-r="'+i+'" data-c="'+j+'" value="'+escape(v)+'" '+(j===label?'maxlength="'+LABEL_LIMIT+'" placeholder="라벨 없음" ':'')+'aria-label="'+escape(heads[j])+'">';}
+  if(j===label){const color=cssToHex(rows[i][labelRgb]);contents+='<span class="label-preview" style="background:'+escape(color)+';color:'+labelTextColor(color)+'">'+escape(v||'라벨 미리보기')+'</span>';}
+  return '<td class="editable '+(v!==original[i][j]?'edited':'')+'">'+contents+'</td>';
+ }).join('')+'</tr>').join('');
  const changes=rows.reduce((n,r,i)=>n+(isChanged(i)?1:0),0);
  status.textContent=COUNTRIES[country]+' · 총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+changes.toLocaleString()+'건';
  document.querySelector('#pageinfo').textContent=visible.length?(page*size+1).toLocaleString()+'–'+e.toLocaleString()+' / '+visible.length.toLocaleString():'0건';
  document.querySelector('#prev').disabled=page===0;document.querySelector('#next').disabled=e>=visible.length;
 }
-table.addEventListener('input',e=>{if(!e.target.matches('td input[data-r]'))return;const el=e.target,r=+el.dataset.r,c=+el.dataset.c;rows[r][c]=el.value;
-if((file==='lines'||file==='korea-lines')&&c===heads.indexOf('RGB 색상')){
- const v=cssToHex(el.value),cell=el.closest('td');
- if(el.type==='color'){rows[r][c]=v;cell.querySelectorAll('input').forEach(other=>{if(other!==el)other.value=v})}
- else if(colorRE.test(el.value)){rows[r][c]=v;cell.querySelector('input[type=color]').value=v}
-}
-el.closest('td').classList.toggle('edited',isChanged(r));persist();const n=rows.reduce((acc,row,i)=>acc+(isChanged(i)?1:0),0);status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+n+'건'});
+table.addEventListener('input',e=>{
+ if(!e.target.matches('td input[data-r]'))return;
+ const el=e.target,r=+el.dataset.r,c=+el.dataset.c,isColor=c===heads.indexOf('RGB 색상')||c===heads.indexOf('라벨 RGB');
+ rows[r][c]=el.value;
+ if(isColor){
+  const cell=el.closest('td'),hex=cssToHex(el.value);
+  if(el.type==='color'){rows[r][c]=hex;cell.querySelectorAll('input').forEach(other=>{if(other!==el)other.value=hex})}
+  else if(colorRE.test(el.value)){rows[r][c]=hex;cell.querySelector('input[type=color]').value=hex}
+ }
+ const tr=el.closest('tr'),preview=tr.querySelector('.label-preview');
+ if(preview&&(c===heads.indexOf('라벨')||c===heads.indexOf('라벨 RGB'))){
+  const color=cssToHex(rows[r][heads.indexOf('라벨 RGB')]);
+  preview.textContent=rows[r][heads.indexOf('라벨')]||'라벨 미리보기';
+  preview.style.backgroundColor=color;preview.style.color=labelTextColor(color);
+ }
+ el.closest('td').classList.toggle('edited',rows[r][c]!==original[r][c]);
+ persist();
+ const n=rows.reduce((acc,row,i)=>acc+(isChanged(i)?1:0),0);
+ status.textContent='총 '+rows.length.toLocaleString()+'건 · 검색 결과 '+visible.length.toLocaleString()+'건 · 수정 '+n+'건';
+});
 q.addEventListener('input',()=>{page=0;refresh()});changesOnly.addEventListener('change',()=>{page=0;refresh()});
 document.querySelector('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-file]');if(b)load(b.dataset.file)});
 document.querySelector('#countries').addEventListener('click',e=>{const b=e.target.closest('[data-country]');if(b&&b.dataset.country!==country){country=b.dataset.country;load(file)}});
