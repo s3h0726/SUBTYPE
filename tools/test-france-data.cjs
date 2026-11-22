@@ -52,6 +52,11 @@ async function run() {
       for (const [id, definition] of Object.entries(read(file).ways)) {
         assert.deepEqual(definition, wayDefinitions.get(id) || definition);
         assert.equal(definition.nodes.length, definition.points.length);
+        if (id.includes('@')) {
+          const fingerprint = require('node:crypto').createHash('sha256')
+            .update(JSON.stringify([definition.nodes,definition.points])).digest('hex').slice(0,24);
+          assert.equal(id.split('@')[1],fingerprint,'Track snapshot key must identify its exact source coordinates');
+        }
         wayDefinitions.set(id, definition);
         route.franceWays[id] = definition;
       }
@@ -93,6 +98,19 @@ async function run() {
     if (route.category === 'subway') assert.equal(route.patterns[0].nameKo, '각역정차');
   }
   const station = [...stationDefinitions.values()][0];
+  const massy = [...stationDefinitions.values()].filter(station => station.physicalStationId === 'fr-massy-palaiseau');
+  assert.equal(massy.length, 2, 'SNCF and IDFM Massy-Palaiseau must share the signed interchange');
+  runtime.configureFranceNames({stations:{'fr-ouigo-edit':{[massy[0].id]:'마시 공통 수정'}}}, index.stationNameGroups);
+  assert.ok(massy.every(station => runtime.franceStationPresentation(station).ko === '마시 공통 수정'));
+  runtime.configureFranceNames({stations:{'fr-ouigo-edit':{'fr-massy-palaiseau':'마시 그룹 수정'}}}, index.stationNameGroups);
+  assert.ok(massy.every(station => runtime.franceStationPresentation(station).ko === '마시 그룹 수정'));
+  const lazare = [...stationDefinitions.values()].filter(station => index.stationNameGroups[station.id] === 'fr-name-gare-saint-lazare');
+  const haussmann = [...stationDefinitions.values()].find(station => station.fr === 'Haussmann Saint-Lazare');
+  assert.equal(lazare.length, 2, 'SNCF and IDFM Gare Saint-Lazare names must remain linked');
+  runtime.configureFranceNames({stations:{'fr-editor':{[lazare[0].id]:'생라자르 공통 수정'}}}, index.stationNameGroups);
+  assert.ok(lazare.every(station => runtime.franceStationPresentation(station).ko === '생라자르 공통 수정'));
+  assert.equal(runtime.franceStationPresentation(haussmann).ko, haussmann.ko,
+    'A shared interchange must not rename the separate Haussmann station');
   runtime.configureFranceNames({stations:{'fr-edited':{[station.id]:'한국어 수정 이름'}}});
   assert.equal(runtime.franceStationPresentation(station).ko, '한국어 수정 이름');
   assert.equal(runtime.franceStationPresentation(station).fr, station.fr);

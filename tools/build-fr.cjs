@@ -28,6 +28,9 @@ const jointRer = {ko:'파리 교통공사·프랑스국철 여객', fr:'RATP et 
 const rerOperators = new Set(['RATP','SNCF Voyageurs','RATP/SNCF','SNCF/RATP']);
 const lyria = {operator:{ko:'테제베 리리아', fr:'TGV Lyria', en:'TGV Lyria'}, id:'fr-tgv-lyria',
   tag:'operator', value:'TGV Lyria', operatorUrl:'https://www.tgv-lyria.com/fr/fr/a-propos/partenaires-ferroviaires'};
+const oslo = {operator:{ko:'오슬로', fr:'OSLO', en:'OSLO'}, id:'fr-oslo',
+  tag:'operator', value:'OSLO', network:'Ouigo Train Classique',
+  operatorUrl:'https://www.sncf-voyageurs.com/fr/decouvrez-notre-entreprise/nos-directions-et-filiales/oslo/'};
 const lyon = {ko: '파리 교통공사 개발 리옹', fr: 'RATP Dev Lyon', en: 'RATP Dev Lyon'};
 const rennes = {ko: '케올리스 렌 메트로폴', fr: 'Keolis Rennes Métropole', en: 'Keolis Rennes Métropole'};
 const toulouse = {ko: '티세오 여객', fr: 'Tisséo Voyageurs', en: 'Tisséo Voyageurs'};
@@ -56,6 +59,9 @@ const sourceUrls = {
   39589: 'https://transport.data.gouv.fr/resources/39589',
 };
 const geometryTiles = new Map();
+const geometryDefinitions = new Map();
+const geometryPhysicalIds = new Map();
+const usedGeometrySnapshots = new Set();
 const usedWays = new Map();
 const allStations = new Map();
 const routes = [];
@@ -66,7 +72,8 @@ const interchanges = new Map(Object.entries({
   'fr-gare-du-nord': ['80921:IDFM:71410', '80921:IDFM:478733', '83582:StopArea:OCE87271007'],
   'fr-chatelet-les-halles': ['80921:IDFM:474151', '80921:IDFM:73794'],
   'fr-auber-havre-caumartin': ['80921:IDFM:478926', '80921:IDFM:482368'],
-  'fr-haussmann-saint-lazare': ['80921:IDFM:73688', '80921:IDFM:71370'],
+  'fr-haussmann-saint-lazare': ['80921:IDFM:73688', '80921:IDFM:71370', '83582:StopArea:OCE87384008'],
+  'fr-massy-palaiseau': ['80921:IDFM:63244', '83582:StopArea:OCE87393579'],
   'fr-cdg-terminal-2': ['80921:IDFM:73699', '83582:StopArea:OCE87271494'],
   'fr-marne-la-vallee-chessy': ['80921:IDFM:68385', '83582:StopArea:OCE87111849'],
 }).flatMap(([id, stops]) => stops.map(stop => [stop,id])));
@@ -98,23 +105,31 @@ function tileWay(way, nodes) {
   if (!geometryTiles.has(tile)) geometryTiles.set(tile, {});
   const ways = geometryTiles.get(tile);
   const value = {nodes: way.nodes, points};
-  if (ways[way.id] && JSON.stringify(ways[way.id]) !== JSON.stringify(value)) {
-    throw new Error('Conflicting track evidence for way ' + way.id);
+  const encoded = JSON.stringify(value);
+  let key = way.id;
+  if (geometryDefinitions.has(String(key)) && geometryDefinitions.get(String(key)) !== encoded) {
+    key = way.id + '@' + stable(value.nodes,value.points);
   }
-  ways[way.id] = value;
-  return 'data/fr/generated/geometry/' + tile + '.json';
+  if (geometryDefinitions.has(String(key)) && geometryDefinitions.get(String(key)) !== encoded) {
+    throw new Error('Conflicting versioned track evidence for way ' + way.id);
+  }
+  geometryDefinitions.set(String(key),encoded);
+  geometryPhysicalIds.set(key,way.id);
+  ways[key] = value;
+  return {file:'data/fr/generated/geometry/' + tile + '.json',key};
 }
 
 function connectedLegs(track, files) {
   const edgeRefs = new Map();
   for (const member of track.members) {
     const way = track.ways.get(member.ref);
-    files.add(tileWay(way, track.nodes));
+    const asset = tileWay(way, track.nodes);
+    files.add(asset.file);
     for (let index = 1; index < way.nodes.length; index++) {
       const start = way.nodes[index - 1];
       const end = way.nodes[index];
-      edgeRefs.set(start + ':' + end, [way.id, index - 1, index]);
-      edgeRefs.set(end + ':' + start, [way.id, index, index - 1]);
+      edgeRefs.set(start + ':' + end, [asset.key, index - 1, index]);
+      edgeRefs.set(end + ':' + start, [asset.key, index, index - 1]);
     }
   }
   return track.aligned.slice(1).map((to, legIndex) => {
@@ -140,7 +155,7 @@ for (const spec of specs) {
   const isSuburban = spec.category === 'commuter_rail';
   const metro = isRer || isSuburban ? null : metroSources[spec.sourceId];
   const isMetro = Boolean(metro);
-  const railway = metro || (spec.brand === 'Lyria' ? lyria : null);
+  const railway = metro || (spec.operatorProfile === 'fr-oslo' ? oslo : spec.brand === 'Lyria' ? lyria : null);
   const stationCatalog = new Map();
   const files = new Set();
   const patterns = [];
@@ -163,7 +178,8 @@ for (const spec of specs) {
       : isRer
       ? tags?.network === 'RER' && tags.ref === spec.code &&
         (spec.jointOperator ? rerOperators.has(tags.operator) : tags.operator === 'SNCF Voyageurs')
-      : railway ? tags?.[railway.tag] === railway.value : tags?.operator === 'SNCF Voyageurs';
+      : railway ? tags?.[railway.tag] === railway.value &&
+        (!railway.network || tags.network === railway.network) : tags?.operator === 'SNCF Voyageurs';
     const publishedRailService = tags => spec.osmOperatorUnspecified && spec.routeId &&
       !tags?.operator && tags?.ref === spec.code;
     for (const part of relations) {
@@ -197,7 +213,8 @@ for (const spec of specs) {
       return id;
     });
     const legs = connectedLegs(track, files);
-    for (const wayId of new Set(legs.flat().map(span => span[0]))) {
+    for (const key of legs.flat().map(span => span[0])) usedGeometrySnapshots.add(key);
+    for (const wayId of new Set(legs.flat().map(span => geometryPhysicalIds.get(span[0])))) {
       usedWays.set(wayId, (usedWays.get(wayId) || 0) + 1);
     }
     const directionless = [stationIds.join(','), [...stationIds].reverse().join(',')].sort()[0];
@@ -227,6 +244,8 @@ for (const spec of specs) {
   const route = {id: spec.id, countryId: 'fr', operatorId,
     operator, line: {ko: spec.ko, fr: spec.fr, ja: spec.fr, en: spec.fr}, code: spec.code,
     lineColor: color, category: isMetro ? 'subway' : spec.category || (spec.international ? 'international' : 'high_speed_rail'), mode: 'rail',
+    ...(spec.brand === 'OUIGO' ? {serviceBrand:spec.operatorProfile === 'fr-oslo' ? 'OUIGO Train Classique' : 'OUIGO Grande Vitesse'} : {}),
+    ...(spec.international || spec.category === 'international' ? {international:true} : {}),
     playable: true, geometryReady: true, geometryStatus: 'verified-osm-track',
     geometrySource: {type: 'openstreetmap', license: 'ODbL-1.0', attribution: '© OpenStreetMap contributors'},
     sourceUrl: sourceUrls[spec.sourceId], sourceRouteId: officialLineId, regionCodes: spec.regionCodes,
@@ -247,9 +266,19 @@ const indexRoutes = routes.map(({stations, stationCatalog, patterns, services, .
   searchStations: [...new Set(stationCatalog.flatMap(station => [station.ko, station.fr]))],
 }));
 const operators = [...new Map(routes.map(route => [route.operatorId, {id:route.operatorId,names:route.operator}])).values()];
+// Interchange complexes can contain differently named stations. Auber and
+// Havre-Caumartin, or Haussmann and Saint-Lazare, must not share name edits.
+function stationNameGroup(station) {
+  const group = station.physicalStationId;
+  if (group.startsWith('fr-rtm-station-')) return group;
+  if (group === 'fr-haussmann-saint-lazare') {
+    return ['Gare Saint-Lazare','Paris Saint-Lazare'].includes(station.fr) ? 'fr-name-gare-saint-lazare' : null;
+  }
+  return ['fr-massy-palaiseau','fr-gare-dausterlitz','fr-gare-de-lyon','fr-gare-du-nord',
+    'fr-marne-la-vallee-chessy'].includes(group) ? group : null;
+}
 const stationNameGroups = Object.fromEntries([...allStations.values()]
-  .filter(station => station.physicalStationId.startsWith('fr-rtm-station-'))
-  .map(station => [station.id, station.physicalStationId]));
+  .map(station => [station.id, stationNameGroup(station)]).filter(([,group]) => group));
 write('data/fr/generated/index.json', {
   country: {id: 'fr', names: {ko: '프랑스', fr: 'France', en: 'France'}},
   operators, routes: indexRoutes, stationNameGroups,
@@ -261,6 +290,7 @@ write('reports/fr/playable-catalog.json', {
   stationIds: allStations.size, koreanNamedStations: allStations.size,
   physicalStationGroups: new Set([...allStations.values()].map(station => station.physicalStationId)).size,
   uniquePhysicalWays: usedWays.size, sharedPhysicalWays: [...usedWays.values()].filter(count => count > 1).length,
+  geometrySnapshots:usedGeometrySnapshots.size,
   lines: routes.map(route => ({id: route.id, sourceRouteId: route.sourceRouteId, category: route.category,
     regions: route.regionCodes, status: 'PARTIALLY_IMPLEMENTED',
     patterns: route.patterns.map(pattern => ({id: pattern.id, ...pattern.evidence,

@@ -121,7 +121,7 @@ function applyRemote(){
   row[9]=colorRE.test(v?.labelColor||'')?v.labelColor.toUpperCase():DEFAULT_LABEL_COLOR;
  }
  if(file==='services'){const v=remoteOverrides.services[row[0]];if(v)row[4]=v}
- if(file==='stations-by-line'){
+ if(file==='stations-by-line'&&country!=='fr'){
   const keys=country==='hk'?[row[2],...hongKongStationTargets(row[2],row[4])]:[row[2]];
   const v=keys.map(key=>remoteOverrides.stations[key]?.[row[4]]||remoteOverrides.stations[key]?.[row[5]]).find(Boolean);
   if(v&&v!==row[6]){row[6]=v;if(heads.includes('출처 검증'))row[heads.indexOf('출처 검증')]='편집표 별도값(원본 대조 필요)';}
@@ -273,7 +273,15 @@ async function routeDoc(index){
  }
  const meta=(index.routes||[]).find(r=>r.id===id);
  if(!meta)throw Error('선택한 노선 ID가 현재 목록에 없습니다: '+id);
- return readRoute(meta);
+ const route=await readRoute(meta);
+ if(country==='fr'){
+  const names=await import('../../js/france-network.js?fr-shared-names-20261118');
+  names.configureFranceNames(remoteOverrides,index.stationNameGroups);
+  const present=station=>{const result=names.franceStationPresentation(station);return result.ko===station.ko?result:
+   {...result,koSource:'편집표 공통 역명',nameStatus:'편집표 별도값(원본 대조 필요)'}};
+  return {...route,stationCatalog:route.stationCatalog.map(present),stations:route.stations.map(present)};
+ }
+ return route;
 }
 function stationName(s,field){
  return String(field==='ko'?(s.ko||s.nameKo||s.names?.ko||''):

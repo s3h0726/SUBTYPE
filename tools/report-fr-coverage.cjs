@@ -33,6 +33,7 @@ for (const line of catalog.lines) {
   }
   const remaining = official.patterns.filter(pattern => !implemented.has(pattern.id));
   lines.push({id:line.id, category:line.category, regions:line.regions,
+    international:Boolean(detail.international),
     sourceRouteId:line.sourceRouteId, sourceLineId:official.id,
     status:remaining.length || directions.some(direction => direction.status !== 'VERIFIED_ADDED')
       ? 'PARTIALLY_IMPLEMENTED' : 'VERIFIED_ADDED',
@@ -44,15 +45,8 @@ const verified = lines.flatMap(line => line.directions).filter(direction => dire
 const verifiedSourcePatterns = new Set(verified.flatMap(direction => direction.sourcePatterns));
 const discovered = inventory.scheduleTotals.blockedDirections;
 const byFamily = Object.entries(inventory.patternsByFamily).map(([family, count]) => {
-  const published = lines.filter(line => (family === 'high-speed' && line.category === 'high_speed_rail') ||
-    (family === 'subway' && line.category === 'subway') ||
-    (family === 'rer' && line.category === 'rer') ||
-    (family === 'transilien' && line.category === 'commuter_rail') ||
-    (family === 'international' && line.category === 'international') ||
-    ((family === 'intercites' || family === 'intercites-night') && line.category === 'intercity' &&
-      line.directions.some(direction => direction.sourcePatterns.some(id => scheduleFamilies.get(id) === family))) ||
-    (family === 'ter' && line.category === 'regional_rail') ||
-    (family === 'tram-train' && line.category === 'tram_train'));
+  const published = lines.filter(line => line.directions.some(direction =>
+    direction.sourcePatterns.some(id => scheduleFamilies.get(id) === family)));
   const covered = [...scheduleFamilies].filter(([, sourceFamily]) => sourceFamily === family);
   const verifiedRecords = covered.filter(([id]) => verifiedSourcePatterns.has(id)).length;
   return {family, sourcePatternRecords:count, catalogLines:published.length,
@@ -74,6 +68,9 @@ const coverage = {
   koreanNamedStations:catalog.koreanNamedStations, stationIds:catalog.stationIds,
   physicalStationGroups:catalog.physicalStationGroups, sharedPhysicalWays:catalog.sharedPhysicalWays,
   uniquePhysicalWays:catalog.uniquePhysicalWays, physicalInfrastructure:manifest.infrastructureSources,
+  geometrySnapshots:catalog.geometrySnapshots,
+  internationalServices:{catalogLines:lines.filter(line => line.international).length,
+    playableDirections:lines.filter(line => line.international).flatMap(line => line.directions).length},
   sourcesByStatus:manifest.scheduleSources.reduce((counts,source) => {
     counts[source.verificationStatus]=(counts[source.verificationStatus]||0)+1;
     return counts;
