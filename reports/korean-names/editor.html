@@ -1,19 +1,6 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SUBTYPE · 한글명·RGB·라벨 편집</title>
-<script>
-  (() => {
-    const params = new URLSearchParams(location.search);
-    if (params.get('embedded') === '1') {
-      document.documentElement.classList.add('embedded');
-      return;
-    }
-    const unified = new URL('../../editor/', location.href);
-    for (const [key, value] of params) if (key !== 'embedded' && key !== 'tool') unified.searchParams.set(key, value);
-    unified.searchParams.set('tool', 'names');
-    location.replace(unified.href);
-  })();
-</script>
 <style>
 :root{font:15px system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#12202c;background:#f2f5fa}
 *{box-sizing:border-box}body{margin:0}header{background:#12273b;color:#fff;padding:25px max(20px,calc((100vw - 1400px)/2))}
@@ -38,14 +25,19 @@ td.edited{background:#fff2d2}.label-preview{display:inline-block;max-width:160px
 #pager{display:flex;align-items:center;justify-content:center;gap:12px;margin:14px 0}
 small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4px;background:#fff}
 @media(max-width:700px){header{padding:20px}header h1{font-size:20px}main{padding:12px}#table-wrap{height:70vh}td,th{padding:6px}input[type=search]{max-width:none}}
-html.embedded header{display:none}
-html.embedded main{max-width:none;padding:16px}
-html.embedded #table-wrap{height:min(66vh,780px)}
-@media(max-width:700px){html.embedded main{padding:10px}}
-</style>  <link rel="stylesheet" href="./editor-readability.css?v=20261122-r2">
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="./rail-details.css">
+<link rel="stylesheet" href="./editor-readability.css?v=20261122-r2">
 </head>
-<body><header><h1>메트로타이핑 · 한글명 편집표</h1><p>최신 원본 데이터 · 한글명·노선 RGB·카드 라벨 편집 → GitHub에 저장 → 게임에 자동 반영</p></header>
+<body><header><h1>SUBTYPE · 철도 데이터 편집표</h1><p>한글명 · RGB · 라벨 · 노선 상세정보 · 역 순서 · 역명판 · 검증</p></header>
 <main>
+<nav class="toolbar editor-mode-tabs" aria-label="편집 화면 선택">
+  <button type="button" class="active" id="mode-names" aria-pressed="true">한글명 · RGB · 라벨</button>
+  <button type="button" id="mode-rail" aria-pressed="false">노선 상세 · 역 순서 · 선형</button>
+  <a class="game-link" href="../../index.html#home">게임으로 돌아가기</a>
+</nav>
+<div id="name-editor-view">
 <div class="toolbar" id="countries" role="group" aria-label="국가별 한글명 편집">
 <button class="country active" data-country="jp" aria-pressed="true">🇯🇵 일본</button>
 <button class="country" data-country="kr" aria-pressed="false">🇰🇷 대한민국</button>
@@ -75,6 +67,29 @@ html.embedded #table-wrap{height:min(66vh,780px)}
 <p class="note">일본 노선의 최신 나무위키 대조 명칭을 반영했습니다. 역명·고유 역명 탭에는 <strong>출처 검증</strong>과 <strong>근거 URL</strong>이 표시됩니다. 검증되지 않은 항목은 자동으로 정확하다고 확정하지 않습니다. 예전 브라우저 임시 저장본이 최신 원본명을 덮어쓰지 않도록 편집 초안을 새 버전으로 분리했습니다.</p>
 <p class="note">대한민국 버스의 알파벳 음차는 게임과 동일하게 A~Z 대문자로 표시합니다. 예: 에이1번 → A1번, 에이비씨동 → ABC동. 원본 정보가 불명확한 고유 지명은 자동 변경하지 않으며, 이미 저장한 사용자 편집값을 우선합니다.</p>
 <p class="note">초록색 한글명(직통·운행계통 포함), 노선 RGB, 노선 카드의 라벨·라벨 RGB를 수정할 수 있습니다. 라벨은 텍스트를 입력한 노선의 카드 오른쪽 위에만 표시되며, 라벨을 비우고 저장하면 삭제됩니다. 변경사항은 <strong>게임에 적용</strong>을 누르면 GitHub에 저장되며, Pages 배포가 완료된 뒤 실제 게임에 반영됩니다. 개인 토큰은 현재 페이지에서만 사용하고 보관하지 않습니다. CSV 다운로드도 가능합니다. 역명 편집은 노선별 역 ID를 기준으로 적용됩니다.</p>
+</div>
+
+<section id="rail-workspace" hidden aria-label="노선 상세 편집">
+  <p class="rail-hint"><strong>일본 철도 노선 상세 편집</strong> — 기존 노선 편집기의 기본정보·역 순서·역명판 설정·지도/선형 확인·검증을 이곳에서 이용할 수 있습니다. 이 기능은 현재 일본 노선 workspace를 대상으로 하며, 수정 사항은 검증 후 JSON으로 내보내야 합니다. 위의 <strong>게임에 적용(GitHub 저장)</strong>은 한글명·RGB·라벨 표에만 적용됩니다.</p>
+  <div class="rail-layout">
+    <aside>
+      <label>노선 검색<input id="route-search" type="search" placeholder="한국어·日本語·Romaji·코드"></label>
+      <div class="source-filters" aria-label="한국어 출처 필터">
+        <button class="active" data-source-filter="all">전체</button><button data-source-filter="namuwiki">NAMUWIKI ✓</button><button data-source-filter="review">검수 필요</button><button data-source-filter="blocked">접근 불가</button>
+      </div>
+      <div id="review-count" class="review-count" aria-live="polite"></div>
+      <div id="route-tree" class="route-tree" role="tree" aria-label="운영사별 철도 노선"></div>
+      <div class="counts" id="data-counts"></div>
+    </aside>
+    <section class="rail-main">
+      <nav class="tabs" aria-label="데이터 편집 탭">
+        <button class="active" data-tab="line">기본정보</button><button data-tab="stations">역 순서</button><button data-tab="geometry">지도·선형 확인</button><button data-tab="assets">로고</button><button data-tab="sign">역명판</button><button data-tab="validate">검증</button>
+      </nav>
+      <div id="editor-panel"></div>
+    </section>
+  </div>
+  <div class="rail-footer"><span id="save-status">현재 노선만 내보냅니다. 다른 노선에는 영향이 없습니다.</span><button id="import-button">JSON 가져오기</button><input id="import-file" type="file" accept="application/json" hidden><button id="validate-button">검증</button><button id="export-button" class="primary">현재 노선 내보내기</button></div>
+</section>
 </main>
 <script src="../../js/service-data.js?v=services-editor-20261026"></script>
 <script>
@@ -535,4 +550,67 @@ async function saveToGame(){
 document.querySelector('#saveGame').addEventListener('click',saveToGame);
 
 load(file);
-</script></body></html>
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+<script>
+(() => {
+  'use strict';
+  const modes = {names:document.querySelector('#mode-names'),rail:document.querySelector('#mode-rail')};
+  const sections = {names:document.querySelector('#name-editor-view'),rail:document.querySelector('#rail-workspace')};
+  const railAssets = [
+    '../../js/rail-data.js',
+    '../../js/line-workspace-data.js',
+    '../../js/nationwide-data.js',
+    '../../js/line-theme-data.js',
+    '../../js/operator-asset-data.js',
+    '../../js/line-badge-data.js',
+    '../../js/route-symbol-data.js',
+    '../../js/rail-system-data.js'
+  ];
+  let railLoadPromise;
+  function insertScript(src) {
+    return new Promise((resolve,reject) => {
+      const script=document.createElement('script');
+      script.src=src;
+      script.async=false;
+      script.onload=resolve;
+      script.onerror=() => reject(new Error('철도 데이터 로딩 실패: '+src));
+      document.body.append(script);
+    });
+  }
+  function loadRailEditor() {
+    if (!railLoadPromise) {
+      railLoadPromise=(async () => {
+        for (const src of railAssets) await insertScript(src);
+        await import('./rail-details.js?v=20261122-unified');
+      })();
+    }
+    return railLoadPromise;
+  }
+  function selectMode(value, updateHistory=false) {
+    const mode=value==='rail'?'rail':'names';
+    for(const key of ['names','rail']) {
+      sections[key].hidden=key!==mode;
+      modes[key].classList.toggle('active',key===mode);
+      modes[key].setAttribute('aria-pressed',String(key===mode));
+    }
+    if (updateHistory) {
+      const url=new URL(location.href);
+      if(mode==='names') url.searchParams.delete('tool');
+      else url.searchParams.set('tool',mode);
+      history.pushState({tool:mode},'',url);
+    }
+    if (mode==='rail') loadRailEditor().catch(error=>{
+      const status=document.querySelector('#save-status');
+      if(status)status.textContent=error.message;
+      const panel=document.querySelector('#editor-panel');
+      if(panel)panel.textContent='노선 상세 편집 기능을 불러올 수 없습니다: '+error.message;
+    });
+  }
+  for(const mode of ['names','rail']) modes[mode].addEventListener('click',()=>selectMode(mode,true));
+  window.addEventListener('popstate',()=>selectMode(new URLSearchParams(location.search).get('tool')));
+  selectMode(new URLSearchParams(location.search).get('tool'));
+})();
+</script>
+</body></html>
