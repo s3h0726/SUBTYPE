@@ -73,3 +73,56 @@ test('map-only overlay never changes via-station order or name and skips all non
   assert.equal(JSON.stringify(x),JSON.stringify(y),'visual track must be connected at timetable calls');
  }
 });
+
+test('south Gyeongbu KTX uses OSM high-speed map track, and Gupo bypass stays unchanged',()=>{
+ const main=find('kr-continuity-pattern-ce3c807f4962c1fb');
+ const original=JSON.stringify(main.j);
+ const display=mapOnlyKtxJourneySegments(main.route,main.j,record);
+ const ix=main.j.stations.findIndex((s,i)=>s.ko==='경주'&&main.j.stations[i+1]?.ko==='부산');
+ assert.ok(ix>=0&&display?.[ix]?.gameMapVisualCorrection);
+ assert.ok(len(display[ix].geometry)>77&&len(display[ix].geometry)<87);
+ assert.ok(len(main.j.directedSegments[ix].geometry)>100);
+ assert.deepEqual(Array.from(display[ix].geometry[0]),Array.from(main.j.directedSegments[ix].geometry[0]));
+ assert.deepEqual(Array.from(display[ix].geometry.at(-1)),Array.from(main.j.directedSegments[ix].geometry.at(-1)));
+ const direct=find('kr-continuity-pattern-f8773714f6089a0a');
+ const directOut=mapOnlyKtxJourneySegments(direct.route,direct.j,record);
+ const di=direct.j.stations.findIndex((s,i)=>s.ko==='동대구'&&direct.j.stations[i+1]?.ko==='부산');
+ assert.ok(di>=0&&directOut?.[di]?.gameMapVisualCorrection);
+ assert.ok(len(directOut[di].geometry)>124&&len(directOut[di].geometry)<136);
+ const viaGupo=find('kr-continuity-pattern-29f666f34d1ea522');
+ assert.ok(viaGupo.j.stations.some(s=>s.ko==='구포'));
+ const gupoMap=mapOnlyKtxJourneySegments(viaGupo.route,viaGupo.j,record);
+ for(let i=0;i<viaGupo.j.directedSegments.length;i++){
+  if(viaGupo.j.stations[i].ko==='동대구'||viaGupo.j.stations[i+1].ko==='부산'){
+   assert.equal(JSON.stringify(gupoMap?.[i]?.geometry||viaGupo.j.directedSegments[i].geometry),
+    JSON.stringify(viaGupo.j.directedSegments[i].geometry));
+  }
+ }
+ assert.equal(JSON.stringify(main.j),original,'canonical OSM route and timetable are not rewritten by map overlays');
+});
+test('south source references reproduce from OSM ways and preserve game reverse geometry',()=>{
+ const main=find('kr-continuity-pattern-ce3c807f4962c1fb'),j=main.j;
+ const east=j.directedSegments[j.stations.findIndex((s,i)=>s.ko==='동대구'&&j.stations[i+1]?.ko==='경주')].geometry;
+ const south=j.directedSegments[j.stations.findIndex((s,i)=>s.ko==='경주'&&j.stations[i+1]?.ko==='부산')].geometry;
+ const generated=require('./build-kr-ktx-south-map-reference.cjs')(root,{
+  dongdaegu:east[0],gyeongju:east.at(-1),busan:south.at(-1)
+ });
+ for(const key of ['gyeongjuToBusan','dongdaeguToBusan']){
+  assert.equal(JSON.stringify(generated[key].geometry),JSON.stringify(record.tracks[key].geometry),
+   'south reference geometry is reproducible from original OSM ways');
+  assert.equal(record.tracks[key].mayUseForOperationalRouting,false);
+  assert.ok(record.tracks[key].osmWayCount>100);
+ }
+ const backward={
+  ...j,
+  stations:j.stations.slice().reverse(),
+  directedSegments:j.directedSegments.slice().reverse().map(s=>({
+   ...s,fromStationId:s.toStationId,toStationId:s.fromStationId,
+   geometry:s.geometry.slice().reverse()
+  }))
+ };
+ const out=mapOnlyKtxJourneySegments(main.route,backward,record);
+ const i=backward.stations.findIndex((s,k)=>s.ko==='부산'&&backward.stations[k+1]?.ko==='경주');
+ assert.ok(i>=0&&out?.[i]?.gameMapVisualCorrection);
+ assert.ok(len(out[i].geometry)>77&&len(out[i].geometry)<87);
+});
