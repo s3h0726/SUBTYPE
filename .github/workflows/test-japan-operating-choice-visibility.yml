@@ -13,6 +13,7 @@ on:
       - 'tools/test-japan-operating-choice-visibility.cjs'
       - 'tools/test-jp-catalog-existing-track-recovery.cjs'
       - 'tools/test-japan-physical-track-reuse.cjs'
+      - 'tools/test-japan-all-operator-track-reuse.cjs'
       - 'tools/test-japan-shinkansen-services.cjs'
       - '.github/workflows/test-japan-operating-choice-visibility.yml'
   pull_request:
@@ -44,6 +45,7 @@ jobs:
           node --check tools/test-japan-operating-choice-visibility.cjs
           node --check tools/test-jp-catalog-existing-track-recovery.cjs
           node --check tools/test-japan-physical-track-reuse.cjs
+          node --check tools/test-japan-all-operator-track-reuse.cjs
           node --check tools/test-hanshin-service-playability.cjs
       - name: Verify all operating choices stay visible with safe launch guards
         run: node --test tools/test-japan-operating-choice-visibility.cjs
@@ -51,6 +53,7 @@ jobs:
         run: |
           node tools/test-jp-catalog-existing-track-recovery.cjs
           node --test tools/test-japan-physical-track-reuse.cjs
+          node --test tools/test-japan-all-operator-track-reuse.cjs
       - name: Verify existing Hanshin services play without synthetic railway geometry
         run: node tools/test-hanshin-service-playability.cjs
       - name: Verify Shinkansen existing operating-service playability
