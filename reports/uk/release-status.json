@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-11-14T22:59:34.350Z",
+  "checkedAt": "2026-11-22T13:32:00.232Z",
   "branch": "main",
   "baseSha": "520e00ec0",
-  "sourceCommit": "1803d538686c28cc66c78e9ba47fab4d92bb84b5",
-  "mainIntegration": "673 directions integrated at 485d7a889 and preserved in subsequent main commits",
+  "sourceCommit": "23612cf4fd383dfa0d6a73236013998c66d15cd2",
+  "mainIntegration": "701 directions integrated into main at 23612cf4fd383dfa0d6a73236013998c66d15cd2; subsequent v0.15.0 release preserves the same UK data",
   "commits": {
     "westCoastAndScotland": "2276e770a",
     "scotlandAndWales": "192f36c99",
@@ -11,17 +11,20 @@
     "borderlandsAndMarshlink": "3a078e5a8",
     "eurostarParis": "63334e03f",
     "eurostarBenelux": "1803d5386",
-    "mainIntegration": "485d7a8890675d3d940f7a9feafa1a99365aa0e9"
+    "mainIntegration": "23612cf4fd383dfa0d6a73236013998c66d15cd2",
+    "expansionIII": "f4d255eba2943a00c7a01df17da6fd89562e591e",
+    "newquayReturn": "4ac4dc6905f622b12bfeb827007318d1c60643ba",
+    "countryRegression": "e2751176b2a5db8275d9d5b57bed933956e4b377"
   },
   "inventory": {
     "operators": 36,
-    "lines": 167,
-    "servicePatterns": 390,
-    "playableDirections": 673,
-    "uniqueStations": 2569,
-    "koreanNamedStations": 2569,
-    "sharedSegments": 5778,
-    "uniquePhysicalStationGroups": 2264
+    "lines": 177,
+    "servicePatterns": 407,
+    "playableDirections": 701,
+    "uniqueStations": 2659,
+    "koreanNamedStations": 2659,
+    "sharedSegments": 5988,
+    "uniquePhysicalStationGroups": 2350
   },
   "validation": {
     "data": "PASS",
@@ -29,18 +32,20 @@
     "leaderboardIdentity": "PASS",
     "ci": {
       "status": "PASS",
-      "directions": 673,
-      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/43449431332"
+      "directions": 701,
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/45027270726",
+      "headSha": "23612cf4fd383dfa0d6a73236013998c66d15cd2",
+      "artifactId": 14756895798
     },
-    "gameplayDirections": 673,
+    "gameplayDirections": 701,
     "freeDrive": {
       "status": "PASS",
-      "directions": 673,
-      "transitions": 9411
+      "directions": 701,
+      "transitions": 9665
     },
     "geometryLoading": {
       "status": "PASS",
-      "files": 437,
+      "files": 449,
       "wholePoolRequested": false,
       "duplicateRequests": 0
     },
@@ -73,7 +78,12 @@
       {
         "country": "fr",
         "status": "PASS",
-        "routes": 39
+        "routes": 69
+      },
+      {
+        "country": "mo",
+        "status": "PASS",
+        "routes": 3
       }
     ],
     "mobileBoards": [
@@ -127,6 +137,27 @@
         "status": "PASS"
       },
       {
+        "lineId": "uk-swr-romsey",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-northern-buxton",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
+        "lineId": "uk-gwr-severn-beach",
+        "style": "uk-national-rail",
+        "clipped": false,
+        "overlap": false,
+        "status": "PASS"
+      },
+      {
         "lineId": "uk-eurostar-london-paris",
         "style": "uk-national-rail",
         "clipped": false,
@@ -148,36 +179,74 @@
         "status": "PASS"
       }
     ],
-    "browserRuntimeErrors": 0
+    "browserRuntimeErrors": 0,
+    "latestMainRegressionTests": 30,
+    "previousAttempts": [
+      {
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/44309657547",
+        "status": "FAIL",
+        "gameplayDirections": 700,
+        "reason": "Regression harness attempted to click hidden HK source button instead of the real HK/MO picker."
+      },
+      {
+        "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/44312059004",
+        "status": "FAIL",
+        "gameplayDirections": 701,
+        "reason": "Country regression did not wait for stable asynchronous country loading; fixed and seven countries subsequently passed in a real browser."
+      }
+    ],
+    "featureCI": {
+      "status": "PASS",
+      "directions": 701,
+      "url": "https://github.com/s3h0726/SUBTYPE/actions/runs/45026245983"
+    }
   },
   "productionDeployment": {
     "status": "PASS",
-    "workflow": "https://github.com/s3h0726/SUBTYPE/actions/runs/43449430926",
-    "commit": "485d7a8890675d3d940f7a9feafa1a99365aa0e9",
-    "directions": 673,
-    "checkedAt": "2026-11-14T22:59:34.350Z",
+    "checkedAt": "2026-11-22T13:32:00.232Z",
     "url": "https://s3h0726.github.io/SUBTYPE/",
-    "actualUIPlaythrough": "PASS",
+    "pagesRun": "https://github.com/s3h0726/SUBTYPE/actions/runs/45027351154",
+    "deployedRelease": "e8f808e68896b199eaabb7ccb60de2f35a9ede8f",
+    "version": "v0.15.0",
+    "directions": 701,
+    "stations": 2659,
     "geometryMatchesRepository": true,
-    "bundleSha256": "02d2afc3c520bc32e8af59325cfffa43fac74df56ba150e2d047c16756164683",
+    "bundleSha256": "f74a4ccd769e3de96a658d75d8361b6d6ee8718b9acd7227530195ec4ee3f349",
+    "pageErrors": [],
     "routes": [
       {
-        "lineId": "uk-eurostar-london-paris",
-        "stops": 2
+        "lineId": "uk-swr-romsey",
+        "patternId": "uk-osm-172798",
+        "stops": 13
       },
       {
-        "lineId": "uk-eurostar-london-brussels",
-        "stops": 2
+        "lineId": "uk-northern-buxton",
+        "patternId": "uk-osm-9530104",
+        "stops": 15
       },
       {
-        "lineId": "uk-eurostar-london-amsterdam",
-        "stops": 4
+        "lineId": "uk-northern-settle-carlisle",
+        "patternId": "uk-osm-9902815",
+        "stops": 19
       },
       {
-        "lineId": "uk-southeastern-hs1",
+        "lineId": "uk-gwr-atlantic-coast",
+        "patternId": "uk-osm-21419558",
+        "stops": 7
+      },
+      {
+        "lineId": "uk-greater-anglia-hertford",
+        "patternId": "uk-osm-9107254",
+        "stops": 12
+      },
+      {
+        "lineId": "uk-avanti-liverpool",
+        "patternId": "uk-osm-6346054",
         "stops": 6
       }
-    ]
+    ],
+    "typedStops": 72,
+    "leaderboardCountry": "uk"
   },
   "previousRelease": {
     "commit": "ea4696898cf2fcb17d3278eda13766e9a1540e23",
@@ -190,6 +259,54 @@
       "uniquePhysicalStationGroups": 1065,
       "koreanNamedStations": 1146,
       "sharedSegments": 2588
+    }
+  },
+  "latestBatch": {
+    "baselineCommit": "9bfe2421d886ecc5cf51e009e151029c5c5d5aac",
+    "reviewFile": "data/uk/source/national/expansion-iii-service-review.json",
+    "directionsAdded": 28,
+    "linesAdded": 10,
+    "metrics": {
+      "operators": {
+        "before": 36,
+        "added": 0,
+        "final": 36
+      },
+      "lines": {
+        "before": 167,
+        "added": 10,
+        "final": 177
+      },
+      "servicePatterns": {
+        "before": 390,
+        "added": 17,
+        "final": 407
+      },
+      "playableDirections": {
+        "before": 673,
+        "added": 28,
+        "final": 701
+      },
+      "uniqueStations": {
+        "before": 2569,
+        "added": 90,
+        "final": 2659
+      },
+      "koreanNamedStations": {
+        "before": 2569,
+        "added": 90,
+        "final": 2659
+      },
+      "sharedSegments": {
+        "before": 5778,
+        "added": 210,
+        "final": 5988
+      },
+      "uniquePhysicalStationGroups": {
+        "before": 2264,
+        "added": 86,
+        "final": 2350
+      }
     }
   }
 }

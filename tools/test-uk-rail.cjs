@@ -2,9 +2,25 @@ const zlib=require('zlib');
 const fs=require('fs'),path=require('path'),assert=require('node:assert/strict'),{pathToFileURL}=require('url');
 const root=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(root,p))),index=read('data/uk/generated/index.json'),segments=read('data/uk/generated/geometry.json').segments;
 const baseline=JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(root,'data/uk/source/released-baseline-20261108.json.gz'))));
-const expansionBaseline=read('data/uk/source/expansion-ii-baseline.json');
+const expansionBaselines=['expansion-ii-baseline.json','expansion-iii-baseline.json'].map(file=>read('data/uk/source/'+file));
 const hashPattern=p=>require('node:crypto').createHash('sha256').update(JSON.stringify([p.familyId,p.stationIds,p.segmentIds])).digest('hex');
-for(const old of expansionBaseline.routes){
+// Newly reviewed calls must survive generation exactly, including repeated loop stops.
+const reviewedBatch=read('data/uk/source/national/expansion-iii-service-review.json');
+for(const network of reviewedBatch.networks){
+ const route=read('data/uk/generated/routes/uk-'+network.id+'.json');
+ const names=new Map(route.stationCatalog.map(station=>[station.id,station.en]));
+ for(const spec of network.patterns){
+  const pattern=route.patterns.find(pattern=>pattern.id==='uk-osm-'+spec.relationId+(spec.idSuffix?'-'+spec.idSuffix:''));
+  assert(pattern,'reviewed direction was not released: '+spec.relationId);
+  assert.deepEqual(pattern.stationIds.map(id=>names.get(id)),spec.expectedCalls,'reviewed stops changed: '+spec.relationId);
+  assert.equal(pattern.segmentIds.length,spec.expectedStops-1);
+  if(spec.expectedStopNodeIds){
+   const reached=[segments[pattern.segmentIds[0]].nodeIds[0],...pattern.segmentIds.map(id=>segments[id].nodeIds.at(-1))];
+   assert.deepEqual(reached,spec.expectedStopNodeIds,'reviewed graph must reach exact source stop nodes: '+spec.relationId);
+  }
+ }
+}
+for(const old of expansionBaselines.flatMap(baseline=>baseline.routes)){
  const current=read('data/uk/generated/routes/'+old.id+'.json');
  assert.equal(current.operatorId,old.operatorId);
  const stations=new Set(current.stationCatalog.map(s=>s.id));

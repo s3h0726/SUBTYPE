@@ -15,12 +15,21 @@ try{
  // Use the real settings form to keep representative full-route checks quick.
  await page.evaluate(()=>document.querySelector('[data-nav="settings"]').click());await page.locator('#settings-form input[name="motion"]').uncheck();await page.locator('#settings-form').evaluate(e=>e.requestSubmit());
  const lineIds=process.argv.slice(2);
- for(const lineId of lineIds.length?lineIds:['uk-lnwr-west-coast','uk-scotrail-borders','uk-tfw-cambrian-coast']){
+ for(const selection of lineIds.length?lineIds:['uk-lnwr-west-coast','uk-scotrail-borders','uk-tfw-cambrian-coast']){
+  const [lineId,requestedServiceId]=selection.split('@');
   const route=data.routes.find(r=>r.id===lineId);assert(route,'missing public route: '+lineId);
   await page.evaluate(()=>document.querySelector('[data-nav="rail-map"]').click());
   await page.locator('#route-search').fill(route.line.en);
   await page.locator('[data-route="'+lineId+'"]').click();await page.locator('[data-selected-play="'+lineId+'"]').click();await page.waitForFunction(()=>document.body.dataset.currentScreen==='game-setup');
-  const selectedId=await page.locator('#journey-destination').inputValue(),owner=JSON.parse(fs.readFileSync(path.join(root,route.lazySource))),pattern=owner.patterns.find(p=>p.id===selectedId);assert(pattern,'production choice not in repository');
+  const owner=JSON.parse(fs.readFileSync(path.join(root,route.lazySource)));
+  // Optional line@service uses the visible pattern, direction and journey cards.
+  if(requestedServiceId){
+   const requested=owner.patterns.find(p=>p.id===requestedServiceId);assert(requested,'unknown requested public service');
+   await page.locator('[data-operating-pattern="'+requested.familyId+'"]').click();
+   await page.locator('[data-operating-direction="'+requestedServiceId+'"]').click();
+   await page.locator('[data-operating-journey="'+requestedServiceId+'"]').click();
+  }
+  const selectedId=await page.locator('#journey-destination').inputValue(),pattern=owner.patterns.find(p=>p.id===selectedId);assert(pattern,'production choice not in repository');
   const wanted=pattern.stationIds.map(id=>owner.stationCatalog.find(s=>s.id===id).ko),typed=[];
   assert.equal(await page.locator('#game-map-mode').inputValue(),'geographic');await page.locator('#setup-form button[type="submit"]').click();await page.waitForFunction(()=>document.body.dataset.currentScreen==='game');
   console.log('Public playthrough:',lineId,wanted.length,'stops');

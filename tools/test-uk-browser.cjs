@@ -9,7 +9,7 @@ async function configurePage(page){
   return route.fulfill({path:path.join(dist,name),headers:{'access-control-allow-origin':'*'}});
  });
 }
-const hook='globalThis.__UK_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,ukFreeDriveRoutes,buildTypingModel,routes:()=>routes};\n';
+const hook='globalThis.__UK_QA__={game,go,chooseRoute,openSetup,actualOperatingChoices,resolveOperatingChoice,operatingPatternKey,startFreeDrive,freeDrive,ukFreeDriveRoutes,buildTypingModel,routes:()=>routes,loading:()=>dataLoading,country:()=>countryId};\n';
 const server=http.createServer((req,res)=>{const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\//,'')||'index.html',file=path.resolve(root,name);if(!file.startsWith(root+path.sep))return res.writeHead(403).end();try{let body=fs.readFileSync(file);if(name==='js/app.bundle.js')body=Buffer.from(body.toString().replace('\n})().catch(error=>','\n'+hook+'})().catch(error=>'));res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.svg':'image/svg+xml','.png':'image/png'})[path.extname(file)]||'application/octet-stream');res.end(body)}catch{res.writeHead(404).end()}});
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port,browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'C:/Program Files/Google/Chrome/Application/chrome.exe'}),report={status:'FAIL',runs:[],errors:[],regressions:[],freeDrive:[]};
 try{
@@ -52,10 +52,22 @@ try{
  report.editorOverrides=await require('./lib/uk-editor-browser.cjs')(browser,base,root,configurePage);
  const regressionCountries=['jp','kr','hk','th','tw'];
  if(fs.existsSync(path.join(root,'data/fr/generated/index.json')))regressionCountries.push('fr');
- for(const country of regressionCountries){await page.goto(base,{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>globalThis.__UK_QA__?.routes().length>0);await page.locator('button[data-country="'+country+'"]').click();await page.waitForFunction(c=>globalThis.__UK_QA__?.routes().length>0&&globalThis.__UK_QA__.routes().every(r=>r.countryId===c),country,{timeout:60000});const count=await page.evaluate(()=>__UK_QA__.routes().length);report.regressions.push({country,status:'PASS',routes:count})}
+ if(fs.existsSync(path.join(root,'data/mo/generated/network.json')))regressionCountries.push('mo');
+ for(const country of regressionCountries){
+  await page.goto(base,{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>{const q=globalThis.__UK_QA__;return q&&!q.loading()&&q.routes().length>0&&q.routes().every(r=>r.countryId===q.country())},{},{timeout:60000});
+  if(['hk','mo'].includes(country)){
+   await page.locator('[data-country-group="sar"]').click();
+   await page.locator('[data-hk-mo-choice="'+country+'"]').click();
+  }else await page.locator('button[data-country="'+country+'"]').click();
+  report.regressionCountry=country;
+  await page.waitForFunction(c=>{const q=globalThis.__UK_QA__;return q&&!q.loading()&&q.country()===c&&q.routes().length>0&&q.routes().every(r=>r.countryId===c)},country,{timeout:60000});
+  const count=await page.evaluate(()=>__UK_QA__.routes().length);
+  report.regressions.push({country,status:'PASS',routes:count});
+ }
  await page.evaluate(()=>localStorage.setItem('trt-country','uk'));await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>globalThis.__UK_QA__?.routes().some(r=>r.id==='uk-bakerloo'));await page.setViewportSize({width:390,height:844});await page.evaluate(async()=>{const q=__UK_QA__;await q.chooseRoute('uk-piccadilly');q.openSetup(q.routes().find(r=>r.id==='uk-piccadilly'))});await page.screenshot({path:path.join(out,'mobile-setup.png'),fullPage:true});await page.evaluate(()=>document.querySelector('#setup-form').requestSubmit());await page.waitForFunction(()=>document.body.dataset.currentScreen==='game'&&globalThis.__TRT_MAP_DEBUG__?.trainMarkers===1);await page.waitForTimeout(2200);await page.screenshot({path:path.join(out,'mobile-nameboard.png'),fullPage:true});report.nameboard=await page.evaluate(()=>({style:document.querySelector('#station-sign').dataset.signStyle,clipped:[...document.querySelectorAll('#station-sign h1,#station-sign .prompt-ko')].some(e=>e.scrollWidth>e.clientWidth+2),map:globalThis.__TRT_MAP_DEBUG__}));assert(!report.nameboard.clipped);await page.evaluate(()=>__UK_QA__.game.stop(false));
  report.regionalNameboards=[];
- for(const id of ['uk-metrolink','uk-west-midlands-metro','uk-blackpool-tramway','uk-net-hucknall-toton','uk-lner-east-coast','uk-scotrail-shotts','uk-southeastern-hs1',...ids.filter(id=>id.startsWith('uk-eurostar-'))]){
+ for(const id of ['uk-metrolink','uk-west-midlands-metro','uk-blackpool-tramway','uk-net-hucknall-toton','uk-lner-east-coast','uk-scotrail-shotts','uk-southeastern-hs1','uk-swr-romsey','uk-northern-buxton','uk-gwr-severn-beach',...ids.filter(id=>id.startsWith('uk-eurostar-'))]){
   if(!ids.includes(id))continue;
   await page.evaluate(async id=>{const q=__UK_QA__;q.go('rail-map');await q.chooseRoute(id);q.openSetup(q.routes().find(r=>r.id===id));document.querySelector('#setup-form').requestSubmit();q.game.options.motion=false},id);
   const board=await page.evaluate(()=>{const sign=document.querySelector('#station-sign'),input=document.querySelector('#typing-input'),a=sign.getBoundingClientRect(),b=input.getBoundingClientRect();return{style:sign.dataset.signStyle,clipped:[...sign.querySelectorAll('h1,.prompt-ko,.prompt-romaji')].some(e=>e.scrollWidth>e.clientWidth+2),overlap:[...sign.querySelectorAll('h1,.prompt-ko,.prompt-romaji,.station-sign-brand,.station-sign-strip')].some(e=>{const a=e.getBoundingClientRect();return a.width>0&&a.height>0&&a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top})}});

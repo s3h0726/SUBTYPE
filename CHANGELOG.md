@@ -2,6 +2,26 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.16.0] — 2026-11-22
+
+- feat(hk): add playable Light Rail 506P and 720 (exclude Voyager) * feat(hk): model official 506P and 720 school-day routes on directed OSM edges * build(hk): persist 506P/720 speci
+
+## [v0.15.1] — 2026-11-22
+
+- Merge remote-tracking branch 'origin/main' into feature/uk-railway-completion
+
+## [v0.15.0] — 2026-11-22
+
+- Merge remote-tracking branch 'origin/main' into feature/uk-railway-completion
+
+## [v0.14.3] — 2026-11-22
+
+- data: apply Korean names, RGB and route-card labels from editor
+
+## [v0.14.2] — 2026-11-22
+
+- test(jp): 신칸센 회귀검사에 역명 정규화 헬퍼 적용 * test(jp): inject station normalization helpers into Shinkansen geometry regression * ci(jp): rerun Shinkansen geometry regression when its test c
+
 ## [v0.14.1] — 2026-11-22
 
 - data: apply Korean names and RGB edits from web editor
