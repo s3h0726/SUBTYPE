@@ -7,6 +7,10 @@ on:
       - 'js/ktx-gyeongbu-map-display.js'
       - 'js/app.bundle.js'
       - 'tools/test-kr-ktx-operating-choices.cjs'
+      - 'tools/test-kr-ktx-gyeongbu-map-display.cjs'
+      - 'tools/build-kr-ktx-gyeongbu-map-reference.cjs'
+      - 'tools/build-kr-ktx-south-map-reference.cjs'
+      - 'data/kr/physical/ktx-gyeongbu-display.json'
       - '.github/workflows/ktx-game-directions.yml'
   pull_request:
     paths:
@@ -14,6 +18,10 @@ on:
       - 'js/ktx-gyeongbu-map-display.js'
       - 'js/app.bundle.js'
       - 'tools/test-kr-ktx-operating-choices.cjs'
+      - 'tools/test-kr-ktx-gyeongbu-map-display.cjs'
+      - 'tools/build-kr-ktx-gyeongbu-map-reference.cjs'
+      - 'tools/build-kr-ktx-south-map-reference.cjs'
+      - 'data/kr/physical/ktx-gyeongbu-display.json'
 permissions:
   contents: read
 jobs:
@@ -27,6 +35,8 @@ jobs:
           node-version: '22'
       - name: Validate KTX real and game-only directions without duplicate rolling stock cards
         run: node --test tools/test-kr-ktx-operating-choices.cjs
+      - name: Verify southern Gyeongbu KTX OSM and Gupo conventional bypass
+        run: node --test tools/test-kr-ktx-gyeongbu-map-display.cjs
       - name: Validate shipped JavaScript syntax
         run: |
           node --check js/app.bundle.js
