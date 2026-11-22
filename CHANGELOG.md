@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH.REVISION` (SUBTYPE 앱의 4자리 형식; npm 패키지는 표준 3자리 SemVer 유지)
 
+## [v0.19.0.2] — 2026-11-22
+
+- Merge pull request #111 from s3h0726/test/fr-national-production-evidence test(fr): record complete public checks for all 195 national additions
+
 ## [v0.19.0.1] — 2026-11-22
 
 - 앱 표시 및 자동 릴리스 버전 체계를 4자리로 전환. 일반 수정은 REVISION을 올리고, PATCH/MINOR/MAJOR는 뒤 자리를 초기화.
