@@ -1723,7 +1723,9 @@ function validateKtxMapReference(record){
  if(record?.schemaVersion!==1||!record.tracks)throw Error('KTX_MAP_REFERENCE_SCHEMA');
  for(const [key,from,to,min,max]of [
   ['haengsinToSeoul','행신','서울역',13,17],
-  ['daejeonToDongdaegu','대전','동대구',110,145]
+  ['daejeonToDongdaegu','대전','동대구',110,145],
+  ['gyeongjuToBusan','경주','부산',77,87],
+  ['dongdaeguToBusan','동대구','부산',124,136]
  ]){
   const ref=record.tracks[key],geo=ref?.geometry;
   if(ref?.displayFrom!==from||ref?.displayTo!==to||ref?.mayUseForOperationalRouting!==false||
@@ -1770,6 +1772,9 @@ function mapOnlyKtxJourneySegments(route,journey,reference=globalThis.TRT_KTX_GY
  if(!/KTX|케이티엑스/.test(name)||/SRT|에스알티/.test(name))return null;
  const sections=journey.directedSegments;
  if(sections.length!==journey.stations.length-1)return null;
+ // Gupo-bound KTX uses the conventional Gyeongbu Line south of Dongdaegu.
+ // Only direct non-Gupo southbound KTX legs are eligible for this display correction.
+ const viaGupo=journey.stations.some(station=>station.ko==='구포');
  let corrections=0;
  const display=sections.map((segment,i)=>{
   const from=journey.stations[i]?.ko,to=journey.stations[i+1]?.ko;
@@ -1778,21 +1783,30 @@ function mapOnlyKtxJourneySegments(route,journey,reference=globalThis.TRT_KTX_GY
    key='haengsinToSeoul';minimum=1.3;
   }else if(from==='대전'&&to==='동대구'||from==='동대구'&&to==='대전'){
    key='daejeonToDongdaegu';minimum=12;
+  }else if(!viaGupo&&((from==='경주'&&to==='부산')||(from==='부산'&&to==='경주'))){
+   key='gyeongjuToBusan';minimum=8;
+  }else if(!viaGupo&&((from==='동대구'&&to==='부산')||(from==='부산'&&to==='동대구'))){
+   key='dongdaeguToBusan';minimum=8;
   }
   if(!key)return {...segment,geometryStatus:'ready'};
   const source=segment.geometry,ref=reference.tracks[key];
-  if(!Array.isArray(source)||source.length<2||!ref?.geometry||
-   ktxDisplayLength(source)-ref.km<minimum)return {...segment,geometryStatus:'ready'};
+  if(!Array.isArray(source)||source.length<2||!ref?.geometry)return {...segment,geometryStatus:'ready'};
+  const difference=ktxDisplayLength(source)-ref.km;
+  const southReference=key==='gyeongjuToBusan'||key==='dongdaeguToBusan';
+  // A conventional shortcut may be shorter than the real high-speed railway.
+  // For southern KTX use absolute deviation, not just excessive route length.
+  if(southReference?Math.abs(difference)<minimum:difference<minimum)
+   return {...segment,geometryStatus:'ready'};
   // This is the SAME published OSM-derived railway display reference; the
   // reverse is visual-only and never asserts a new operational OSM way.
-  const referenceGeometry=from==='동대구'&&to==='대전'?
+  const referenceGeometry=from===ref.displayTo&&to===ref.displayFrom?
    ref.geometry.slice().reverse():ref.geometry;
   const adapted=adaptKtxMapToStationAnchors(referenceGeometry,source);
   if(!adapted)return {...segment,geometryStatus:'ready'};
   corrections++;
   return {...segment,geometry:adapted,geometryStatus:'ready',
    gameMapVisualCorrection:{referenceJourneyId:ref.referenceJourneyId,
-    source:'existing verified KTX corridor; visual-only',appliesTo:'map and train animation'}};
+    source:'existing OSM high-speed railway; visual-only',appliesTo:'map and train animation'}};
  });
  if(!corrections)return null;
  for(let i=1;i<display.length;i++){
@@ -1867,7 +1881,7 @@ const reverseKtxJourney=journey=>{
   id:String(journey.service?.id||journey.id)+':game-reverse',
   stops:stations.map(station=>station.id),
   nameKo:String(journey.service?.nameKo||journey.patternName?.ko||'KTX')+
-   ' · 역방향 게임 운행(시간표 미검증)'};
+   ' · 역방향 게임 운행'};
  return {...journey,stations,geometry,directedSegments,service,
   simulatedReverse:true,timetableVerified:false,sourceJourneyId:journey.id,
   tripIds:[],officialTrainNumbers:[],operatingCalendars:[]};

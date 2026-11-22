@@ -49,7 +49,9 @@ test('simulated northbound preserves exact reversed source geometry and stops',(
  assert.equal(resolved.route.stations[0].id,choice.originId);
  assert.equal(resolved.route.stations.at(-1).id,choice.destinationId);
  assert.deepEqual(journey.tripIds,['one'],'canonical official trip unmodified');
- assert.ok(resolved.service.nameKo.includes('시간표 미검증'));
+ assert.ok(resolved.service.nameKo.includes('역방향 게임 운행'));
+ assert.ok(!resolved.service.nameKo.includes('시간표 미검증'));
+ assert.equal(resolved.route.timetableVerified,false);
  assert.equal(resolved.journey.sourceJourneyId,'one');
 });
 test('real timetable reverse supersedes game reverse',()=>{
