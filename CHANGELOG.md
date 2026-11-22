@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.17.0] — 2026-11-22
+
+- Merge pull request #106 from s3h0726/feature/france-national-next feat(fr): expand national passenger rail to 160 Korean-first lines and 495 directions
+
 ## [v0.16.0] — 2026-11-22
 
 - feat(hk): add playable Light Rail 506P and 720 (exclude Voyager) * feat(hk): model official 506P and 720 school-day routes on directed OSM edges * build(hk): persist 506P/720 speci
