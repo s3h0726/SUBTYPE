@@ -48,7 +48,7 @@ small{color:#668498}kbd{padding:2px 5px;border:1px solid #cbd5de;border-radius:4
 <button id="exportChanges">변경 항목만 CSV 저장</button>
 <button id="reset">현재 표 변경 취소</button>
 </div>
-<div class="toolbar" id="route-filter-bar" hidden><label for="route-filter">노선 선택</label><select id="route-filter" aria-label="역명·운행계통을 편집할 노선"><option value="">노선을 선택하세요</option></select><small>한국·홍콩·태국의 역명 및 운행계통은 선택한 노선 단위로 불러옵니다. 다른 노선의 임시 편집은 별도로 보관됩니다.</small></div>
+<div class="toolbar" id="route-filter-bar" hidden><label for="route-filter">노선 선택</label><select id="route-filter" aria-label="역명·운행계통을 편집할 노선"><option value="">노선을 선택하세요</option></select><small>홍콩은 실제 노선별로 한 번만 표시하며, 역명 수정은 해당 노선의 모든 운행계통에 적용됩니다. 다른 노선의 임시 편집은 별도로 보관됩니다.</small></div>
 <div class="toolbar"><label for="githubToken">GitHub fine-grained 토큰 (Contents: Read and write)</label><input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_..." style="flex:1;min-width:200px;padding:9px;border:1px solid #bdccd8;border-radius:8px"><small>토큰은 서버·브라우저 저장소에 저장하지 않습니다.</small></div>
 <div class="panel"><div id="status" role="status">자료 읽는 중…</div><div id="table-wrap"><table id="table"><thead></thead><tbody></tbody></table></div></div>
 <div id="pager"><button id="prev">이전</button><span id="pageinfo"></span><button id="next">다음</button></div>
@@ -113,9 +113,19 @@ async function fetchOverrides(){const r=await fetch('../../data/editor-overrides
 function applyRemote(){
  for(let i=0;i<rows.length;i++){const row=rows[i],id=file==='operators'?row[0]:(file==='lines'||file==='korea-lines')?row[2]:null;
  if(file==='operators'&&remoteOverrides.operators[id])row[1]=remoteOverrides.operators[id];
- if(file==='lines'||file==='korea-lines'){const v=remoteOverrides.lines[id];if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);row[8]=typeof v?.label==='string'?v.label:'';row[9]=colorRE.test(v?.labelColor||'')?v.labelColor.toUpperCase():DEFAULT_LABEL_COLOR;}
+ if(file==='lines'||file==='korea-lines'){
+  // A Hong Kong line has multiple playable directional and short-turn variants.
+  const v=hongKongLineTargets(id).map(key=>remoteOverrides.lines[key]).find(Boolean);
+  if(v?.ko)row[3]=v.ko;if(v?.color)row[6]=v.color;else row[6]=cssToHex(row[6]);
+  row[8]=typeof v?.label==='string'?v.label:'';
+  row[9]=colorRE.test(v?.labelColor||'')?v.labelColor.toUpperCase():DEFAULT_LABEL_COLOR;
+ }
  if(file==='services'){const v=remoteOverrides.services[row[0]];if(v)row[4]=v}
- if(file==='stations-by-line'){const v=remoteOverrides.stations[row[2]]?.[row[4]]||remoteOverrides.stations[row[2]]?.[row[5]];if(v&&v!==row[6]){row[6]=v;if(heads.includes('출처 검증'))row[heads.indexOf('출처 검증')]='편집표 별도값(원본 대조 필요)';}}
+ if(file==='stations-by-line'){
+  const keys=country==='hk'?[row[2],...hongKongStationTargets(row[2],row[4])]:[row[2]];
+  const v=keys.map(key=>remoteOverrides.stations[key]?.[row[4]]||remoteOverrides.stations[key]?.[row[5]]).find(Boolean);
+  if(v&&v!==row[6]){row[6]=v;if(heads.includes('출처 검증'))row[heads.indexOf('출처 검증')]='편집표 별도값(원본 대조 필요)';}
+ }
  }
 }
 function parseCSV(text){
@@ -206,25 +216,64 @@ async function countryIndex(requestedCountry=country){
  }
  return indexCache[requestedCountry]=data;
 }
+// Gameplay routes in Hong Kong are direction/pattern records; the editor
+// uses stable canonical line IDs to avoid duplicate physical line rows.
+function hongKongLineGroups(index){
+ const groups=new Map();
+ for(const route of index.routes||[]){
+  const id=route.canonicalLineId||route.id;
+  if(!groups.has(id))groups.set(id,[]);
+  groups.get(id).push(route);
+ }
+ return groups;
+}
+function hongKongMemberRoutes(lineId){
+ return hongKongLineGroups(indexCache.hk||{routes:[]}).get(lineId)||[];
+}
+function hongKongLineTargets(lineId){
+ return country==='hk'?[lineId,...hongKongMemberRoutes(lineId).map(route=>route.id)]:[lineId];
+}
+function hongKongStationTargets(lineId,stationId){
+ return country==='hk'?hongKongMemberRoutes(lineId)
+  .filter(route=>route.stationSequence?.includes(stationId)).map(route=>route.id):[lineId];
+}
 function routeRows(index){
  const operators=new Map((index.operators||[]).map(op=>[op.id,op.names?.ko||op.operator?.ko||op.id]));
- return (index.routes||[]).map(r=>[r.operatorId||'',operators.get(r.operatorId)||r.operator?.ko||'',
+ const listed=country==='hk'
+  ?Array.from(hongKongLineGroups(index),([id,variants])=>({...variants[0],id}))
+  :(index.routes||[]);
+ return listed.map(r=>[r.operatorId||'',operators.get(r.operatorId)||r.operator?.ko||'',
   r.id,r.line?.ko||r.names?.ko||'',r.line?.zh||r.line?.ja||r.names?.ja||'',r.line?.en||r.names?.en||'',
   r.lineColor||r.color||'#60736A',r.lazySource||'']);
 }
 async function routeDoc(index){
  const id=routeSelection[country];if(!id)return null;
+ async function readRoute(meta){
+  if(Array.isArray(meta.stations)&&meta.stations.length)return meta;
+  const path=String(meta.lazySource||'').replace(/^\.\//,'');
+  if(!/^data\/(kr|hk|uk|fr)\/generated\/routes\/[a-zA-Z0-9._-]+\.json$/.test(path)||!path.startsWith('data/'+country+'/'))throw Error('노선 데이터 경로 오류: '+path);
+  const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
+  if(!response.ok)throw Error('역명 상세 자료 '+response.status+': '+meta.id);
+  const payload=await (await import('../../js/route-payload.js')).decodeRoutePayload(await response.json()),route=payload.route||payload;
+  if(route.id!==meta.id)throw Error('불일치하는 노선 상세 자료: '+meta.id);
+  return koreanBusDisplayRoute(route);
+ }
+ if(country==='hk'){
+  const group=hongKongLineGroups(index).get(id);
+  if(!group)throw Error('선택한 홍콩 노선 ID가 현재 목록에 없습니다: '+id);
+  const services=group.flatMap(route=>route.services||[]);
+  // Service names are already in the index: no need to fetch large route files.
+  if(file==='services')return {...group[0],id,services,stations:[]};
+  const docs=await Promise.all(group.map(readRoute)),seen=new Set(),stations=[];
+  for(const doc of docs)for(const st of doc.stations||[]){
+   const key=String(st.id||st.stationId||st.stationMasterId||'');
+   if(key&&!seen.has(key)){seen.add(key);stations.push(st);}
+  }
+  return {...docs[0],id,services,stations,lazySource:'data/hk/generated/index.json'};
+ }
  const meta=(index.routes||[]).find(r=>r.id===id);
  if(!meta)throw Error('선택한 노선 ID가 현재 목록에 없습니다: '+id);
- if(Array.isArray(meta.stations)&&meta.stations.length)return meta;
- const path=String(meta.lazySource||'').replace(/^\.\//,'');
- if(!/^data\/(kr|hk|uk|fr)\/generated\/routes\/[a-zA-Z0-9._-]+\.json$/.test(path)||!path.startsWith('data/'+country+'/'))throw Error('노선 데이터 경로 오류: '+path);
- const response=await fetch('../../'+path+'?'+FRESH_DATA_QUERY,{cache:'no-store'});
- if(!response.ok)throw Error('역명 상세 자료 '+response.status+': '+id);
- // 게임과 같은 무손실 압축 해석기를 사용해 한국 노선 전체를 편집한다.
- const payload=await (await import('../../js/route-payload.js')).decodeRoutePayload(await response.json()),route=payload.route||payload;
- if(route.id!==id)throw Error('불일치하는 노선 상세 자료: '+id);
- return koreanBusDisplayRoute(route);
+ return readRoute(meta);
 }
 function stationName(s,field){
  return String(field==='ko'?(s.ko||s.nameKo||s.names?.ko||''):
@@ -328,7 +377,10 @@ async function updateRouteSelector(){
  const visibleSelector=(country==='kr'||country==='hk'||country==='th'||country==='uk'||country==='fr')&&['services','stations-by-line','stations-unique'].includes(file);
  routeBar.hidden=!visibleSelector;if(!visibleSelector)return;
  const index=await countryIndex();
- routePicker.innerHTML='<option value="">노선을 선택하세요</option>'+(index.routes||[]).map(r=>
+ const options=country==='hk'
+  ?Array.from(hongKongLineGroups(index),([id,variants])=>({...variants[0],id}))
+  :(index.routes||[]);
+ routePicker.innerHTML='<option value="">노선을 선택하세요</option>'+options.map(r=>
  '<option value="'+escape(r.id)+'"'+(routeSelection[country]===r.id?' selected':'')+'>'+
  escape((r.line?.ko||r.names?.ko||r.id)+' · '+r.id)+'</option>').join('');
 }
@@ -434,11 +486,17 @@ async function saveToGame(){
  const id=row[2],color=cssToHex(row[6]),label=String(row[8]||'').trim(),labelColor=String(row[9]||'').trim().toUpperCase();
  if(!colorRE.test(color)||!colorRE.test(labelColor))throw Error('RGB 색상은 #RRGGBB 형식이어야 합니다');
  if(label.length>LABEL_LIMIT)throw Error('라벨은 '+LABEL_LIMIT+'자 이내로 입력하세요.');
- const next={...(json.lines[id]||{}),ko:row[3].trim(),color};
- if(label){next.label=label;next.labelColor=labelColor;}else{delete next.label;delete next.labelColor;}
- json.lines[id]=next;
+ for(const targetId of hongKongLineTargets(id)){
+  const next={...(json.lines[targetId]||{}),ko:row[3].trim(),color};
+  if(label){next.label=label;next.labelColor=labelColor;}else{delete next.label;delete next.labelColor;}
+  json.lines[targetId]=next;
  }
- if(file==='stations-by-line')for(const row of updates){json.stations[row[2]]||={};mergeChange(json.stations[row[2]],row[4],row[6].trim())}
+ }
+ if(file==='stations-by-line')for(const row of updates){
+  const targets=country==='hk'?hongKongStationTargets(row[2],row[4]):[row[2]];
+  if(!targets.length)throw Error('역이 속한 홍콩 운행계통을 찾을 수 없습니다: '+row[4]);
+  for(const id of targets){json.stations[id]||={};mergeChange(json.stations[id],row[4],row[6].trim());}
+}
  if(file==='stations-unique'){throw Error('고유 역명 표는 노선별 적용 범위가 불분명합니다. 노선별 역명 탭에서 변경하세요.')}
  const content=btoa(unescape(encodeURIComponent(JSON.stringify(json,null,2)+'\n')));
  const put=await fetch(url,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'data: apply Korean names, RGB and route-card labels from editor',content,sha:current.sha,branch:EDIT_BRANCH})});
