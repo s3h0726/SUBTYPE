@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH` ([Semantic Versioning](https://semver.org/lang/ko/))
 
+## [v0.16.0] — 2026-11-22
+
+- feat(hk): add playable Light Rail 506P and 720 (exclude Voyager) * feat(hk): model official 506P and 720 school-day routes on directed OSM edges * build(hk): persist 506P/720 speci
+
 ## [v0.15.1] — 2026-11-22
 
 - Merge remote-tracking branch 'origin/main' into feature/uk-railway-completion
