@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH.REVISION` (SUBTYPE 앱의 4자리 형식; npm 패키지는 표준 3자리 SemVer 유지)
 
+## [v0.19.0.5] — 2026-11-23
+
+- build(ui): refresh app bundle cache for native name fix
+
 ## [v0.19.0.4] — 2026-11-22
 
 - Merge pull request #116 from s3h0726/test/fr-editor-entry-compatibility test(fr): keep railway validation compatible with both editor layouts
