@@ -1,0 +1,35 @@
+/* Keep native/original route names visible beside Korean display names. */
+#screen-select #route-grid.line-card-grid > .line-card > .route-card-native-name{
+  display:block!important;
+  flex:0 0 auto!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:1em!important;
+  max-height:none!important;
+  margin:6px 0 8px!important;
+  padding:0!important;
+  color:var(--muted)!important;
+  font:500 11px/1.4 system-ui,-apple-system,"Noto Sans",sans-serif!important;
+  text-align:left!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  overflow-wrap:anywhere!important;
+}
+#selected-line-preview .selected-line-card > .selected-line-native-name{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:1em!important;
+  max-height:none!important;
+  margin:2px 0 12px!important;
+  padding:0!important;
+  color:var(--muted)!important;
+  font:500 clamp(13px,1.05vw,16px)/1.5 system-ui,-apple-system,"Noto Sans",sans-serif!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  overflow-wrap:anywhere!important;
+}
