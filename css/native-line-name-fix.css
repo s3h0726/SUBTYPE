@@ -84,3 +84,28 @@
 #selected-line-preview .selected-line-card > .selected-line-native-name[lang="ja"]{
   color:#fff!important;
 }
+
+/* Taiwan route cards: Korean display name first, native Chinese below. */
+#screen-select #route-grid.line-card-grid > .line-card.tw-line-card .line-card-line-name[lang="ko"]{
+  color:#fff!important;
+  font-size:clamp(19px,1.35vw,24px)!important;
+  font-weight:850!important;
+  line-height:1.2!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card.tw-line-card > .tw-route-native-subtitle{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:1em!important;
+  max-height:none!important;
+  margin:4px 0 8px!important;
+  padding:0!important;
+  color:rgba(255,255,255,.72)!important;
+  font:500 12px/1.45 system-ui,-apple-system,"Noto Sans TC",sans-serif!important;
+  text-align:left!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  overflow-wrap:anywhere!important;
+}
