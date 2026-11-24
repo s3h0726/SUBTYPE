@@ -129,7 +129,14 @@ for(const [file,embedded] of sources){
    if(marker){
     const at=src.indexOf(marker),end=src.lastIndexOf(';\n');
     if(at<0||end<at)throw Error('Cannot synchronize embedded catalog: '+embedded);
-    writeIfChanged(embedded,src.slice(0,at+marker.length)+JSON.stringify(catalog)+src.slice(end));
+    const next=src.slice(0,at+marker.length)+JSON.stringify(catalog)+src.slice(end);
+    writeIfChanged(embedded,next);
+    if(file.includes('/hk/')){
+      const html=read('index.html');
+      const hash=crypto.createHash('sha256').update(next).digest('hex').slice(0,12);
+      const refreshed=html.replace(/(\.\/js\/hong-kong-index-data\.js)(?:\?v=[^"']*)?/g,'$1?v='+hash);
+      if(refreshed!==html)write('index.html',refreshed);
+    }
    }
   }
  }
