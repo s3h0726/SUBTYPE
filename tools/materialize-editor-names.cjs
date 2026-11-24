@@ -148,6 +148,13 @@ const specialFiles=[
  'data/route-overrides/hakodate-east.json'
 ];
 for(const file of specialFiles)if(fs.existsSync(path.join(root,file)))routeFiles.add(file);
+for(const routeId of Object.keys(overrides.stations||{})){
+ // Some rail routes (notably Matsuyama loop directions) are generated outside
+ // the canonical index but still have playable route JSON files.
+ if(!/^[a-zA-Z0-9._-]+$/.test(routeId))continue;
+ const file='data/generated/routes/'+routeId+'.json';
+ if(fs.existsSync(path.join(root,file)))routeFiles.add(file);
+}
 // Catch station overrides that appear in a service data shard, not in the index.
 const serviceIds=Object.keys(overrides.services||{});
 const krRoutes=path.join(root,'data/kr/generated/routes');
