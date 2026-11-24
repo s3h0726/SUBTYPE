@@ -32,7 +32,14 @@ async function run() {
   for (const meta of index.routes) {
     assert.equal(meta.countryId, 'fr');
     assert.equal(meta.lazy, true);
-    assert.match(meta.line.ko, korean);
+    // RER A–E are the official passenger-facing line identifiers used in
+    // French and Korean contexts. They are not untranslated station names.
+    // Keep strict Hangul validation for every other line/operator and for
+    // all station signs and service choices below.
+    if(meta.category==='rer'&&/^RER [A-E]$/.test(meta.line.ko)){
+      assert.equal(meta.line.ko,meta.line.fr,'Official RER designation changed');
+      assert.equal(meta.line.ko,'RER '+meta.code,'RER line code mismatch');
+    }else assert.match(meta.line.ko,korean);
     assert.match(meta.operator.ko, korean);
     const route = read(meta.lazySource);
     assert.equal(route.id, meta.id);
