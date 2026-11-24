@@ -83,7 +83,7 @@ for(const row of stationRows){
   stationsByMaster.get(masterId).names.add(ko);stationsByMaster.get(masterId).originals.add(ja);
  }
  if(!perLine.has(lineId))perLine.set(lineId,[]);
- perLine.get(lineId).push({id,ko,ja,routeFile});
+ perLine.get(lineId).push({id,masterId,ko,ja,routeFile});
 }
 const canonStations=new Map();
 for(const [masterId,row] of stationsByMaster){
@@ -121,7 +121,10 @@ for(const [lineId,rows] of perLine){
  for(const row of rows){
   const actual=byId.get(row.id),before=clean(actual?.ko||actual?.names?.ko||'');
   const previous=clean(overrides.stations[lineId]?.[row.id]);
-  if(before!==row.ko||previous&&previous!==row.ko){
+  // Shared interchange stations with multiple line names must retain a
+  // route-specific edit even if a previous generated build already matches.
+  const ambiguous=stationsByMaster.get(row.masterId)?.names.size>1;
+  if(before!==row.ko||(previous&&previous!==row.ko)||(ambiguous&&previous!==row.ko)){
    fixed('stations',lineId+'::'+row.id,before||previous,row.ko);
    overrides.stations[lineId]||={};
    if(previous!==row.ko){overrides.stations[lineId][row.id]=row.ko;audit.overrideChanges++}
