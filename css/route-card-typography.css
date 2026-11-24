@@ -1,0 +1,256 @@
+/* SUBTYPE route-card text system — ONLY route chooser and selected route.
+   Load after native-line-name-fix.css to repair its forced white lettering.
+   Keep route IDs, localization priority, names, and app logic unchanged. */
+#screen-select {
+  --rct-ink:#172820;
+  --rct-muted:#43594e;
+  --rct-surface:#ffffff;
+  --rct-soft:#edf3ef;
+  --rct-border:#d7e1da;
+}
+:root[data-theme="dark"] #screen-select {
+  --rct-ink:#f4faf6;
+  --rct-muted:#c5d6cb;
+  --rct-surface:#182720;
+  --rct-soft:#22382c;
+  --rct-border:#3c5747;
+}
+#screen-select #route-grid.line-card-grid {
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,214px),1fr))!important;
+  grid-auto-rows:min-content!important;
+  gap:11px!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card {
+  box-sizing:border-box!important;
+  min-width:0!important;
+  min-height:172px!important;
+  height:auto!important;
+  max-height:none!important;
+  padding:16px 15px 13px!important;
+  border-radius:13px!important;
+  border-color:var(--rct-border)!important;
+  background:linear-gradient(150deg,color-mix(in srgb,var(--card-accent,var(--route-color,#45c985)) 5%,var(--rct-surface)),var(--rct-surface) 72%)!important;
+  color:var(--rct-ink)!important;
+  font-family:"Noto Sans KR","Malgun Gothic",system-ui,sans-serif!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  overflow-wrap:anywhere!important;
+  text-align:left!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card .line-card-identity {
+  min-width:0!important;
+  width:100%!important;
+  gap:8px!important;
+  margin-bottom:0!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card .operator {
+  display:inline-flex!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  padding:5px 9px!important;
+  color:var(--rct-muted)!important;
+  background:var(--rct-soft)!important;
+  border-color:var(--rct-border)!important;
+  font:750 12px/1.4 "Noto Sans KR","Malgun Gothic",system-ui,sans-serif!important;
+  letter-spacing:0!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card .operator small {
+  color:var(--rct-muted)!important;
+  font-size:12px!important;
+  font-weight:550!important;
+  line-height:1.4!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card h3,
+#screen-select #route-grid.line-card-grid > .line-card .line-card-line-name,
+#screen-select #route-grid.line-card-grid > .line-card.tw-line-card .line-card-line-name[lang="ko"] {
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  margin:0!important;
+  color:var(--rct-ink)!important;
+  font-family:"Noto Sans KR","Noto Sans JP",system-ui,sans-serif!important;
+  font-size:clamp(19px,1.55vw,23px)!important;
+  font-weight:850!important;
+  line-height:1.34!important;
+  letter-spacing:-.03em!important;
+  text-align:left!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow:visible!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card h3[lang="ja"]{font-family:"Noto Sans JP","Yu Gothic",sans-serif!important}
+#screen-select #route-grid.line-card-grid > .line-card h3[lang="zh-Hant"]{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif!important}
+#screen-select #route-grid.line-card-grid > .line-card h3[lang="th"]{font-family:"Noto Sans Thai",Tahoma,sans-serif!important}
+#screen-select #route-grid.line-card-grid > .line-card > p,
+#screen-select #route-grid.line-card-grid > .line-card > .route-card-korean-name,
+#screen-select #route-grid.line-card-grid > .line-card > .route-card-native-name,
+#screen-select #route-grid.line-card-grid > .line-card.tw-line-card > .tw-route-native-subtitle {
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:7px 0 12px!important;
+  padding:0!important;
+  color:var(--rct-muted)!important;
+  font:600 13px/1.52 "Noto Sans KR",system-ui,sans-serif!important;
+  text-align:left!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow:visible!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card > p[lang="ja"]{font-family:"Noto Sans JP","Yu Gothic",sans-serif!important}
+#screen-select #route-grid.line-card-grid > .line-card > p[lang="th"]{font-family:"Noto Sans Thai",Tahoma,sans-serif!important}
+#screen-select #route-grid.line-card-grid > .line-card > p[lang="zh-Hant"]{font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif!important}
+#screen-select #route-grid.line-card-grid > .line-card > p:empty{display:none!important}
+#screen-select #route-grid.line-card-grid > .line-card footer {
+  min-width:0!important;
+  margin-top:auto!important;
+  padding:11px 0 0!important;
+  gap:8px!important;
+  border-top:1px solid var(--rct-border)!important;
+  color:var(--rct-muted)!important;
+  font:650 12px/1.45 "Noto Sans KR",system-ui,sans-serif!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card footer > span {
+  min-width:0!important;
+  max-width:100%!important;
+  color:var(--rct-muted)!important;
+  font-size:12px!important;
+  line-height:1.4!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card footer > span:last-child {
+  min-height:30px!important;
+  padding:5px 9px!important;
+  color:var(--rct-ink)!important;
+  background:var(--rct-soft)!important;
+  border-color:var(--rct-border)!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  line-height:1.4!important;
+  word-break:keep-all!important;
+}
+/* RGB route label stays top-right, with a reserved first row so a long
+   user-defined label never covers operator or route name. */
+#screen-select #route-grid.line-card-grid > .line-card > .route-user-label {
+  top:11px!important;
+  right:11px!important;
+  max-width:min(58%,160px)!important;
+  min-height:27px!important;
+  padding:5px 8px!important;
+  font:800 12px/1.35 "Noto Sans KR",system-ui,sans-serif!important;
+  letter-spacing:0!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card:has(> .route-user-label) .line-card-identity {
+  padding-top:58px!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card:has(> .route-user-label) .line-card-identity > .operator {
+  max-width:100%!important;
+}
+/* A disabled route is communicated by dash/badge, not illegibly faded text. */
+#screen-select #route-grid.line-card-grid > .line-card:disabled,
+#screen-select #route-grid.line-card-grid > .line-card.unplayable {
+  opacity:1!important;
+  filter:none!important;
+  border-style:dashed!important;
+  cursor:not-allowed!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card.random h3,
+#screen-select #route-grid.line-card-grid > .line-card.route-more h3 {
+  font-size:21px!important;
+}
+/* Selected route detail card */
+#screen-select #selected-line-preview .selected-line-card {
+  min-width:0!important;
+  color:var(--rct-ink)!important;
+  font-family:"Noto Sans KR","Malgun Gothic",system-ui,sans-serif!important;
+}
+#screen-select #selected-line-preview .selected-line-card .selected-line-operator {
+  color:var(--rct-muted)!important;
+  font-size:13px!important;
+  font-weight:750!important;
+  line-height:1.5!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #selected-line-preview .selected-line-card #selected-line-heading {
+  display:block!important;
+  max-width:100%!important;
+  height:auto!important;
+  margin:8px 0 6px!important;
+  color:var(--rct-ink)!important;
+  font-size:clamp(27px,2.5vw,39px)!important;
+  font-weight:850!important;
+  line-height:1.25!important;
+  letter-spacing:-.035em!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #selected-line-preview .selected-line-card > .selected-line-korean-name,
+#screen-select #selected-line-preview .selected-line-card > .selected-line-native-name,
+#screen-select #selected-line-preview .selected-line-card > .tw-selected-native,
+#screen-select #selected-line-preview .selected-line-card > .hk-selected-native,
+#screen-select #selected-line-preview .selected-line-card > .th-selected-native,
+#screen-select #selected-line-preview .selected-line-card > .selected-section {
+  display:block!important;
+  max-width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:6px 0 14px!important;
+  color:var(--rct-muted)!important;
+  font:600 14px/1.55 "Noto Sans KR",system-ui,sans-serif!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #selected-line-preview .selected-line-card > .selected-line-native-name[lang="ja"]{font-family:"Noto Sans JP","Yu Gothic",sans-serif!important}
+#screen-select #selected-line-preview .selected-line-card .selected-line-meta {
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:7px!important;
+}
+#screen-select #selected-line-preview .selected-line-card .selected-line-meta span {
+  color:var(--rct-ink)!important;
+  background:var(--rct-soft)!important;
+  border:1px solid var(--rct-border)!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  line-height:1.45!important;
+  white-space:normal!important;
+}
+#screen-select #selected-line-preview .selected-line-card .selected-line-actions button {
+  min-height:44px!important;
+  font-size:13px!important;
+  font-weight:800!important;
+  line-height:1.4!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+@media(max-width:750px){
+  #screen-select #route-grid.line-card-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,214px),1fr))!important}
+  #screen-select #route-grid.line-card-grid > .line-card{min-height:0!important;padding:15px 14px 13px!important}
+  #screen-select #route-grid.line-card-grid > .line-card h3,
+  #screen-select #route-grid.line-card-grid > .line-card .line-card-line-name,
+  #screen-select #route-grid.line-card-grid > .line-card.tw-line-card .line-card-line-name[lang="ko"]{font-size:20px!important}
+  #screen-select #selected-line-preview .selected-line-card #selected-line-heading{font-size:clamp(25px,6vw,34px)!important}
+}
+@media(max-width:620px){
+  #screen-select #route-grid.line-card-grid{grid-template-columns:minmax(0,1fr)!important}
+}
