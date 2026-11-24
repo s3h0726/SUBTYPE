@@ -309,7 +309,7 @@ async function routeDoc(index){
  if(country==='fr'){
   const names=await import('../../js/france-network.js?fr-shared-names-20261118');
   names.configureFranceNames(remoteOverrides,index.stationNameGroups);
-  const present=station=>{const result=names.franceStationPresentation(station);return result.ko===station.ko?result:
+  const present=station=>{const result=names.franceStationPresentation(station,route.id);return result.ko===station.ko?result:
    {...result,koSource:'편집표 공통 역명',nameStatus:'편집표 별도값(원본 대조 필요)'}};
   return {...route,stationCatalog:route.stationCatalog.map(present),stations:route.stations.map(present)};
  }
