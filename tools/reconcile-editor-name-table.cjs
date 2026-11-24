@@ -85,6 +85,24 @@ for(const row of stationRows){
  if(!perLine.has(lineId))perLine.set(lineId,[]);
  perLine.get(lineId).push({id,masterId,ko,ja,routeFile});
 }
+// The public table is authoritative: remove orphaned legacy station edits on
+// published routes. Retain routes absent from this table (KR, HK, research,
+// retired) and migrate unambiguous old Japanese-name keys to stable stop IDs.
+for(const [lineId,changes] of Object.entries(overrides.stations||{})){
+ const published=perLine.get(lineId);if(!published?.length)continue;
+ const ids=new Set(published.map(row=>row.id));
+ for(const [stationKey,ko] of Object.entries(changes)){
+  if(ids.has(stationKey))continue;
+  const originalMatch=published.filter(row=>row.ja===stationKey);
+  if(originalMatch.length===1&&clean(ko)===originalMatch[0].ko){
+   if(!changes[originalMatch[0].id])changes[originalMatch[0].id]=ko;
+   delete changes[stationKey];audit.overrideChanges++;
+  }else if(originalMatch.length===0){
+   delete changes[stationKey];audit.overrideChanges++;
+  }
+ }
+ if(!Object.keys(changes).length)delete overrides.stations[lineId];
+}
 const canonStations=new Map();
 for(const [masterId,row] of stationsByMaster){
  if(row.names.size===1&&row.originals.size===1)canonStations.set(masterId,{ko:[...row.names][0],ja:[...row.originals][0]});
