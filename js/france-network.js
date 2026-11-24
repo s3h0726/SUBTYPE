@@ -34,7 +34,7 @@ export function franceStationPresentation(station, routeId) {
  const ko=explicit||(station.editorStationNameOverride?station.ko:null)||
   franceSharedEdits.get(group)||franceSharedEdits.get(station.id)||station.ko;
  return {...station,ko,names:{...(station.names||{}),ko},kana:'',
-  routeSpecificStationName:!!(explicit||station.editorStationNameOverride||franceSharedEdits.has(group)),
+  routeSpecificStationName:true,
   editorStationNameOverride:!!(explicit||station.editorStationNameOverride)};
 }
 
