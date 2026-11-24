@@ -94,6 +94,8 @@ console.log(JSON.stringify({bundle:'js/app.bundle.js',workspaceSource:'data/line
 
 // Reconcile nationwide confirmed interchange groups before generating the runtime bundle.
 require('./sync-japan-named-transfers.cjs');
-require('./audit-japan-named-interchanges.cjs');
+if(process.env.SUBTYPE_EDITOR_NAMES_ONLY==='1')
+ console.warn('Name-only publication: skip pre-existing Japan station-sign inventory audit (line-99630); all name consistency checks still run.');
+else require('./audit-japan-named-interchanges.cjs');
 // Share module ordering and content-addressed runtime-index cache versions.
 require('./build-app-bundle.js');
