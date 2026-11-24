@@ -1,20 +1,53 @@
 // UK physical lines, operating patterns and shared railway geometry are distinct.
 export const UK_CATEGORIES=[['all','전체'],['uk-underground','런던 지하철'],['uk-overground','런던 오버그라운드'],['uk-elizabeth','엘리자베스선'],['uk-dlr','DLR'],['rail','내셔널 레일'],['high_speed_rail','고속철도'],['international','국제철도'],['subway','지역 지하철'],['light_rail','메트로·경전철'],['tram','트램'],['custom','커스텀']];
 export function ukCategory(route){return route.operatorId==='uk-london-underground'?'uk-underground':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-elizabeth'?'uk-elizabeth':route.id==='uk-dlr'?'uk-dlr':route.category}
-let ukNameEdits={operators:{},lines:{},stations:{},services:{}},ukSharedStationEdits=new Map(),ukStationGroups=new Map(),ukGroupEdits=new Map();
+let ukNameEdits={operators:{},lines:{},stations:{},services:{}};
+let ukStationGroups=new Map(),ukUnambiguousNames=new Map();
+const ukName=value=>typeof value==='string'?value.normalize('NFC').trim():'';
 export function configureUKNames(edits={},stationIndex=[]){
- ukNameEdits=edits;ukSharedStationEdits=new Map();
- ukStationGroups=new Map(stationIndex.map(s=>[s.id,s.nameGroup]));ukGroupEdits=new Map();
- for(const [line,stations]of Object.entries(edits.stations||{}).sort(([a],[b])=>a.localeCompare(b)))if(line.startsWith('uk-'))for(const[id,value]of Object.entries(stations))if(typeof value==='string'&&value.trim())ukSharedStationEdits.set(id,value.trim());
- for(const[id,value]of ukSharedStationEdits)if(ukStationGroups.has(id))ukGroupEdits.set(ukStationGroups.get(id),value);
+ ukNameEdits=edits;
+ ukStationGroups=new Map(stationIndex.map(station=>[station.id,station.nameGroup]));
+ // An interchange may have distinct official names on different operators.
+ // Only share a correction if every edited member agrees; otherwise keep line identity.
+ const candidates=new Map();
+ for(const [line,stations]of Object.entries(edits.stations||{})){
+  if(!line.startsWith('uk-'))continue;
+  for(const [id,value]of Object.entries(stations)){
+   const ko=ukName(value);if(!ko)continue;
+   for(const key of [id,ukStationGroups.get(id)].filter(Boolean)){
+    if(!candidates.has(key))candidates.set(key,new Set());
+    candidates.get(key).add(ko);
+   }
+  }
+ }
+ ukUnambiguousNames=new Map([...candidates].filter(([,names])=>names.size===1).map(([key,names])=>[key,[...names][0]]));
 }
 export function ukPresentation(route){
  if(route?.countryId!=='uk')return route;
- const update=station=>{const edited=ukGroupEdits.get(ukStationGroups.get(station.id))||ukSharedStationEdits.get(station.id)||ukSharedStationEdits.get(station.en||station.ja);return{...station,ko:edited||station.ko,kana:'',ja:station.en||station.romaji||station.ja,romaji:station.en||station.romaji||station.ja,routeSpecificStationName:true,names:undefined,canonicalStationNames:undefined}};
- route.stationCatalog=(route.stationCatalog||route.stations||[]).map(update);const byId=new Map(route.stationCatalog.map(s=>[s.id,s]));
- route.stations=(route.stations||[]).map(s=>({...s,...byId.get(s.id)}));
- route.operator={...route.operator,ko:ukNameEdits.operators?.[route.operatorId]||route.operator.ko};route.line={...route.line,...ukNameEdits.lines?.[route.id]};
- route.services=(route.services||[]).map(s=>({...s,nameKo:ukNameEdits.services?.[s.id]||s.nameKo}));
+ const direct=ukNameEdits.stations?.[route.id]||ukNameEdits.stations?.[route.canonicalLineId]||{};
+ const update=station=>{
+  const exact=ukName(direct[station.id]||direct[station.stationMasterId]||direct[station.ja]);
+  const fallback=station.editorStationNameOverride?ukName(station.ko):
+   ukUnambiguousNames.get(station.id)||ukUnambiguousNames.get(ukStationGroups.get(station.id))||'';
+  const ko=exact||fallback||station.ko;
+  return{...station,ko,names:{...(station.names||{}),ko},kana:'',
+   ja:station.en||station.romaji||station.ja,romaji:station.en||station.romaji||station.ja,
+   routeSpecificStationName:!!(exact||station.editorStationNameOverride),editorStationNameOverride:!!(exact||station.editorStationNameOverride),
+   ...(exact&&!station.canonicalStationNames?{canonicalStationNames:{ko:station.ko,ja:station.ja,kana:station.kana||'',en:station.en||station.romaji||''}}:{})};
+ };
+ route.stationCatalog=(route.stationCatalog||route.stations||[]).map(update);
+ const byId=new Map(route.stationCatalog.map(s=>[s.id,s]));
+ route.stations=(route.stations||[]).map(s=>({...s,...(byId.get(s.id)||update(s))}));
+ const operatorKo=ukName(ukNameEdits.operators?.[route.operatorId])||route.operator?.ko;
+ const lineEdit=ukNameEdits.lines?.[route.id]||ukNameEdits.lines?.[route.canonicalLineId]||{};
+ const lineKo=ukName(lineEdit.ko)||route.line?.ko;
+ route.operator={...route.operator,ko:operatorKo,names:{...(route.operator?.names||{}),ko:operatorKo}};
+ route.line={...route.line,...lineEdit,ko:lineKo,names:{...(route.line?.names||{}),ko:lineKo}};
+ if(/^#[0-9a-f]{6}$/i.test(lineEdit.color||''))route.lineColor=lineEdit.color;
+ route.services=(route.services||[]).map(s=>{
+  const nameKo=ukName(ukNameEdits.services?.[s.id])||s.nameKo;
+  return{...s,nameKo,names:{...(s.names||{}),ko:nameKo}};
+ });
  return route;
 }
 export function ukPatternRoute(owner,pattern){
