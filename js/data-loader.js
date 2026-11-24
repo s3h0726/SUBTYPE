@@ -587,7 +587,7 @@ export async function hydrateRailLine(route){if(!route?.lazy)return route;
   if(raw.countryId!=='fr'||raw.id!==route.id||!raw.patterns?.length)throw Error('프랑스 노선 자료가 일치하지 않습니다.');
   const owner=normalizeLine(raw);
   owner.franceWays=Object.assign({},...tiles.map(tile=>tile.ways));
-  owner.stationCatalog=raw.stationCatalog.map((station,index)=>franceStationPresentation(normalizeStation(station,index,owner.code)));
+  owner.stationCatalog=(owner.stationCatalog||raw.stationCatalog).map((station,index)=>franceStationPresentation(normalizeStation(station,index,owner.code),owner.id));
   const first=francePatternRoute(owner,owner.patterns[0]);
   return {...first,services:owner.services};
  }
