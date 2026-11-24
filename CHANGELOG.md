@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH.REVISION` (SUBTYPE 앱의 4자리 형식; npm 패키지는 표준 3자리 SemVer 유지)
 
+## [v0.19.0.7] — 2026-11-24
+
+- fix(names): materialize editor station names in standalone Matsuyama and other generated routes
+
 ## [v0.19.0.6] — 2026-11-24
 
 - ci(names): scope legacy interchange-audit bypass to editor synchronization workflow
