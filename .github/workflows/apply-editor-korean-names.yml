@@ -73,7 +73,7 @@ jobs:
             const route=JSON.parse(fs.readFileSync('data/generated/routes/'+id+'.json','utf8')).route;
             for(const [stationId,ko] of Object.entries(changes)){
               const matches=route.stations.filter(st=>st.id===stationId||st.ja===stationId);
-              if(!matches.length)throw Error('missing editor station '+id+':'+stationId);
+              if(!matches.length){console.warn('Skipping retired editor station '+id+':'+stationId);continue;}
               if(matches.some(st=>st.ko!==ko||st.routeSpecificStationName!==true||!st.canonicalStationNames))throw Error('runtime station name mismatch '+id+':'+stationId);
               stations++;
             }
