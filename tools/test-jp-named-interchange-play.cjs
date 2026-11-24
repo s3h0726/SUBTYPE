@@ -14,6 +14,7 @@ const context={
   console,
   koreanRouteBlockReason:()=>false,
   hongKongRouteBlockReason:()=>'',
+  hongKongTransferAllowed:()=>true,
   $:()=>null,
   addEventListener:()=>{},
   normalize:s=>String(s||'').normalize('NFC').toLowerCase(),
