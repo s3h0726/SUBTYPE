@@ -11,16 +11,15 @@
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 近江鉄道 오우미테츠도우 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "direct-mirror-review",
+      "type": "namuwiki-mirror",
+      "url": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
+      "sourceAccess": "mirror",
+      "namuwikiStatus": "reviewed",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-11-12",
+      "status": "REVIEWED",
       "canonicalPolicy": "namuwiki"
     },
     "operatorAsset": null,
@@ -32,8 +31,8 @@
     },
     "koreanNameSource": {
       "family": "namuwiki",
+      "method": "direct-mirror-review",
       "type": "namuwiki-mirror",
-      "method": "route-station-cross-check",
       "url": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
       "sourceAccess": "mirror",
       "namuwikiStatus": "reviewed",
@@ -153,7 +152,7 @@
         "sourceId": "station-9960102",
         "ja": "フジテック前",
         "kana": "ふじてっくまえ",
-        "ko": "후지테크마에",
+        "ko": "후지텟쿠마에",
         "romaji": "Fujitec-mae",
         "koAliases": [
           "후지텟쿠마에"
@@ -175,17 +174,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%ED%9B%84%EC%A7%80%ED%85%8C%ED%81%AC%EB%A7%88%EC%97%90%EC%97%AD",
         "koSearchReference": "site:namu.wiki フジテック前駅 후지텠쿠마에 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 11,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "フジテック前",
+          "kana": "ふじてっくまえ",
+          "ko": "후지텟쿠마에",
+          "en": "Fujitec-mae"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960103",
@@ -384,7 +390,7 @@
         "sourceId": "station-9960107",
         "ja": "尼子",
         "kana": "あまご",
-        "ko": "아마고",
+        "ko": "아마코",
         "romaji": "Amago",
         "koAliases": [
           "아마코"
@@ -406,17 +412,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EC%95%84%EB%A7%88%EA%B3%A0%EC%97%AD",
         "koSearchReference": "site:namu.wiki 尼子駅 아마코 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 93,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "尼子",
+          "kana": "あまご",
+          "ko": "아마코",
+          "en": "Amago"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960108",
@@ -463,7 +476,7 @@
         "sourceId": "station-9960109",
         "ja": "愛知川",
         "kana": "えちがわ",
-        "ko": "에치가와",
+        "ko": "아이치가와",
         "romaji": "Echigawa",
         "koAliases": [
           "아이치가와"
@@ -485,17 +498,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EC%97%90%EC%B9%98%EA%B0%80%EC%99%80%EC%97%AD",
         "koSearchReference": "site:namu.wiki 愛知川駅 아이치가와 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 148,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "愛知川",
+          "kana": "えちがわ",
+          "ko": "아이치가와",
+          "en": "Echigawa"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960110",
@@ -504,7 +524,7 @@
         "sourceId": "station-9960110",
         "ja": "五箇荘",
         "kana": "ごかしょう",
-        "ko": "고카쇼",
+        "ko": "고카소",
         "romaji": "Gokasho",
         "koAliases": [
           "고카소"
@@ -526,17 +546,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EA%B3%A0%EC%B9%B4%EC%87%BC%EC%97%AD",
         "koSearchReference": "site:namu.wiki 五箇荘駅 고카소우 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 183,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "五箇荘",
+          "kana": "ごかしょう",
+          "ko": "고카소",
+          "en": "Gokasho"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960111",
@@ -621,7 +648,7 @@
         "sourceId": "station-9960113",
         "ja": "長谷野",
         "kana": "ながたにの",
-        "ko": "나가타니노",
+        "ko": "하세노",
         "romaji": "Nagatanino",
         "koAliases": [
           "하세노"
@@ -643,17 +670,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EB%82%98%EA%B0%80%ED%83%80%EB%8B%88%EB%85%B8%EC%97%AD",
         "koSearchReference": "site:namu.wiki 長谷野駅 하세노 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 267,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "長谷野",
+          "kana": "ながたにの",
+          "ko": "하세노",
+          "en": "Nagatanino"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960114",
@@ -720,14 +754,14 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-manual",
         "koSourceUrl": "https://www.namu.moe/w/%EA%B5%90%EC%84%B8%EB%9D%BC%EB%A7%88%EC%97%90%EC%97%AD",
         "koSearchReference": "site:namu.wiki 京セラ前駅 쿄우세라마에 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
         "koVerified": true,
         "koConfidence": "HIGH",
-        "koReviewStatus": "REVIEWED",
+        "koReviewStatus": "VERIFIED",
         "geometryIndex": 293,
         "coordinateSource": "line-track-geometry"
       },
@@ -890,7 +924,7 @@
         "sourceId": "station-9960120",
         "ja": "水口松尾",
         "kana": "みなくちまつお",
-        "ko": "미나쿠치마츠오",
+        "ko": "미즈구치마츠오",
         "romaji": "Minakuchi-matsuo",
         "koAliases": [
           "미즈구치마츠오"
@@ -912,17 +946,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EB%AF%B8%EB%82%98%EC%BF%A0%EC%B9%98%EB%A7%88%EC%B8%A0%EC%98%A4%EC%97%AD",
         "koSearchReference": "site:namu.wiki 水口松尾駅 미즈구치마츠오 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 430,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "水口松尾",
+          "kana": "みなくちまつお",
+          "ko": "미즈구치마츠오",
+          "en": "Minakuchi-matsuo"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960121",
@@ -931,7 +972,7 @@
         "sourceId": "station-9960121",
         "ja": "水口",
         "kana": "みなくち",
-        "ko": "미나쿠치",
+        "ko": "미즈구치",
         "romaji": "Minakuchi",
         "koAliases": [
           "미즈구치"
@@ -953,17 +994,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EB%AF%B8%EB%82%98%EC%BF%A0%EC%B9%98%EC%97%AD",
         "koSearchReference": "site:namu.wiki 水口駅 미즈구치 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 437,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "水口",
+          "kana": "みなくち",
+          "ko": "미즈구치",
+          "en": "Minakuchi"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960122",
@@ -972,7 +1020,7 @@
         "sourceId": "station-9960122",
         "ja": "水口石橋",
         "kana": "みなくちいしばし",
-        "ko": "미나쿠치이시바시",
+        "ko": "미즈구치이시바시",
         "romaji": "Minakuchi-ishibashi",
         "koAliases": [
           "미즈구치이시바시"
@@ -994,17 +1042,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EB%AF%B8%EB%82%98%EC%BF%A0%EC%B9%98%EC%9D%B4%EC%8B%9C%EB%B0%94%EC%8B%9C%EC%97%AD",
         "koSearchReference": "site:namu.wiki 水口石橋駅 미즈구치이시바시 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 442,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "水口石橋",
+          "kana": "みなくちいしばし",
+          "ko": "미즈구치이시바시",
+          "en": "Minakuchi-ishibashi"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960123",
@@ -1013,7 +1068,7 @@
         "sourceId": "station-9960123",
         "ja": "水口城南",
         "kana": "みなくちじょうなん",
-        "ko": "미나쿠치조난",
+        "ko": "미즈구치조난",
         "romaji": "Minakuchi-jonan",
         "koAliases": [
           "미즈구치조난"
@@ -1035,17 +1090,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EB%AF%B8%EB%82%98%EC%BF%A0%EC%B9%98%EC%A1%B0%EB%82%9C%EC%97%AD",
         "koSearchReference": "site:namu.wiki 水口城南駅 미즈구치조우난 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 447,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "水口城南",
+          "kana": "みなくちじょうなん",
+          "ko": "미즈구치조난",
+          "en": "Minakuchi-jonan"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-1151106",
@@ -5137,24 +5199,21 @@
     },
     "sources": {
       "official": "https://www.ohmitetudo.co.jp/railway/ride/station/",
-      "korean": "",
+      "korean": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
         "family": "namuwiki",
-        "method": "unresolved",
-        "type": "namuwiki-unresolved",
-        "url": "",
-        "searchReference": "site:namu.wiki 近江鉄道本線 오우미테츠도우혼선 노선",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
-        "verified": false,
-        "confidence": "LOW",
-        "verifiedDate": null,
-        "status": "REVIEW_REQUIRED",
+        "method": "direct-mirror-review",
+        "type": "namuwiki-mirror",
+        "url": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
+        "verified": true,
+        "confidence": "HIGH",
+        "verifiedDate": "2026-11-12",
+        "status": "REVIEWED",
         "canonicalPolicy": "namuwiki"
-      },
-      "namuwiki": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
-      "timetable": "https://www.ohmitetudo.co.jp/railway/ride/timetable/"
+      }
     },
     "dataKind": "physicalRoute",
     "coverage": "nationwide-source-line"

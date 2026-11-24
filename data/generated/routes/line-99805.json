@@ -11,17 +11,12 @@
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 伊予鉄道 이요테츠도우 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "direct",
+      "type": "operator-title",
+      "verified": true,
+      "url": "https://namu.moe/w/틀:이요%20철도의%20노선",
+      "verifiedDate": "2026-11-02",
+      "status": "VERIFIED_OPERATOR_NAME"
     },
     "operatorAsset": null,
     "line": {
@@ -32,17 +27,12 @@
     },
     "koreanNameSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 伊予鉄道郡中線 이요테츠도우군추우선 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
-      "canonicalPolicy": "namuwiki"
+      "method": "direct",
+      "type": "line-table",
+      "verified": true,
+      "url": "https://namu.moe/w/이요%20철도%20군츄선",
+      "verifiedDate": "2026-11-02",
+      "status": "VERIFIED_ROUTE_LABEL"
     },
     "code": "",
     "lineColor": "#F15A22",
@@ -84,14 +74,15 @@
         "latitude": 33.83556,
         "longitude": 132.76227,
         "order": 1,
-        "officialCode": "IY10",
-        "stationCode": "IY10",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -106,7 +97,15 @@
         "koConfidence": "LOW",
         "koReviewStatus": "REVIEW_REQUIRED",
         "geometryIndex": 0,
-        "coordinateSource": "line-track-geometry"
+        "coordinateSource": "line-track-geometry",
+        "canonicalStationNames": {
+          "ja": "松山市",
+          "kana": "まつやまし",
+          "ko": "마츠야마시",
+          "en": "Matsuyamashi"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9980502",
@@ -121,14 +120,15 @@
         "latitude": 33.83254,
         "longitude": 132.75627,
         "order": 2,
-        "officialCode": "IY25",
-        "stationCode": "IY25",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -158,14 +158,15 @@
         "latitude": 33.8239,
         "longitude": 132.7438,
         "order": 3,
-        "officialCode": "IY26",
-        "stationCode": "IY26",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -195,14 +196,15 @@
         "latitude": 33.81596,
         "longitude": 132.73371,
         "order": 4,
-        "officialCode": "IY27",
-        "stationCode": "IY27",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -232,14 +234,15 @@
         "latitude": 33.80983,
         "longitude": 132.72973,
         "order": 5,
-        "officialCode": "IY28",
-        "stationCode": "IY28",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -269,14 +272,15 @@
         "latitude": 33.79889,
         "longitude": 132.72415,
         "order": 6,
-        "officialCode": "IY29",
-        "stationCode": "IY29",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -299,36 +303,45 @@
         "stationMasterId": "station-9980507",
         "sourceId": "station-9980507",
         "ja": "古泉",
-        "kana": "こせん",
+        "kana": "こいずみ",
         "ko": "코이즈미",
-        "romaji": "Kosen",
+        "romaji": "Koizumi",
         "koAliases": [],
         "latitude": 33.79265,
         "longitude": 132.71747,
         "order": 7,
-        "officialCode": "IY30",
-        "stationCode": "IY30",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-line-table",
+        "koSource": "namuwiki-route-station-table",
         "koSourceUrl": "https://namu.moe/w/이요%20철도%20군츄선",
         "koSearchReference": "site:namu.wiki 古泉駅 코선 역",
         "sourceAccess": "blocked",
         "namuwikiStatus": "access-blocked",
         "koVerified": true,
-        "koConfidence": "LOW",
-        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
+        "koConfidence": "HIGH",
+        "koReviewStatus": "VERIFIED",
         "geometryIndex": 33,
-        "coordinateSource": "line-track-geometry"
+        "coordinateSource": "line-track-geometry",
+        "canonicalStationNames": {
+          "ja": "古泉",
+          "kana": "こいずみ",
+          "ko": "코이즈미",
+          "en": "Koizumi"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9980508",
@@ -343,14 +356,15 @@
         "latitude": 33.7862,
         "longitude": 132.70519,
         "order": 8,
-        "officialCode": "IY31",
-        "stationCode": "IY31",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -380,14 +394,15 @@
         "latitude": 33.77965,
         "longitude": 132.70433,
         "order": 9,
-        "officialCode": "IY32",
-        "stationCode": "IY32",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -417,14 +432,15 @@
         "latitude": 33.77252,
         "longitude": 132.70436,
         "order": 10,
-        "officialCode": "IY33",
-        "stationCode": "IY33",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -454,14 +470,15 @@
         "latitude": 33.76102,
         "longitude": 132.70424,
         "order": 11,
-        "officialCode": "IY34",
-        "stationCode": "IY34",
-        "hasOfficialStationCode": true,
+        "officialCode": "",
+        "stationCode": "",
+        "hasOfficialStationCode": false,
         "stationCodeSource": {
-          "type": "operator-station-number",
-          "url": "https://namu.moe/w/이요%20철도%20군츄선",
-          "verified": true,
-          "confidence": "high"
+          "type": "none",
+          "url": "",
+          "verified": false,
+          "confidence": null,
+          "status": "NO_OFFICIAL_CODE"
         },
         "distanceKm": null,
         "location": null,
@@ -488,33 +505,42 @@
         "ko": "군츄항",
         "romaji": "Gunchuko",
         "koAliases": [],
-        "latitude": 33.7560392,
-        "longitude": 132.7021563,
+        "latitude": 33.75659,
+        "longitude": 132.70238,
         "order": 12,
         "officialCode": "IY35",
         "stationCode": "IY35",
         "hasOfficialStationCode": true,
         "stationCodeSource": {
-          "type": "operator-station-number",
+          "type": "operator-route-map",
           "url": "https://namu.moe/w/이요%20철도%20군츄선",
           "verified": true,
-          "confidence": "high"
+          "confidence": "high",
+          "status": "ROUTE_TABLE"
         },
         "distanceKm": null,
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-line-table",
-        "koSourceUrl": "https://namu.moe/w/이요%20철도%20군츄선",
-        "koSearchReference": "site:namu.wiki 伊予市駅 이요시 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "koSource": "namuwiki-manual",
+        "koSourceUrl": "https://namu.moe/w/이요%20철도%20마츠야마%20시내선",
+        "koSearchReference": "郡中港 군츄항",
+        "sourceAccess": "confirmed-route-list",
+        "namuwikiStatus": "station-table-crosschecked",
         "koVerified": true,
-        "koConfidence": "LOW",
-        "koReviewStatus": "VERIFIED_ROUTE_TABLE",
+        "koConfidence": "HIGH",
+        "koReviewStatus": "VERIFIED",
         "geometryIndex": 63,
+        "routeSpecificStationName": true,
+        "canonicalStationNames": {
+          "ja": "郡中港",
+          "kana": "ぐんちゅうこう",
+          "ko": "군츄항",
+          "en": "Gunchuko"
+        },
+        "stationNameSource": "operator-official-route",
         "coordinateSource": "line-track-geometry",
-        "routeSpecificStationName": true
+        "editorStationNameOverride": true
       }
     ],
     "geometry": [
@@ -771,8 +797,8 @@
         132.70346
       ],
       [
-        33.7560392,
-        132.7021563
+        33.75659,
+        132.70238
       ]
     ],
     "directedSegments": [
@@ -1153,12 +1179,12 @@
             132.70346
           ],
           [
-            33.7560392,
-            132.7021563
+            33.75659,
+            132.70238
           ]
         ],
-        "source": "MLIT-N02-2025 reused, station-position endpoint adapted from MapFan",
-        "verified": false
+        "source": "MLIT-N02-2025 (renamed actual terminus)",
+        "verified": true
       }
     ],
     "geometryReady": true,
@@ -1171,28 +1197,20 @@
       "geometryPath": "data/lines/iyotetsudo/iyotetsudogunchusen/geometry.json"
     },
     "sources": {
-      "official": "",
-      "korean": "",
+      "official": "https://www.iyotetsu.co.jp/railbus/timetable/map.html",
+      "korean": "https://namu.moe/w/이요%20철도%20군츄선",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
         "family": "namuwiki",
-        "method": "unresolved",
-        "type": "namuwiki-unresolved",
-        "url": "",
-        "searchReference": "site:namu.wiki 伊予鉄道郡中線 이요테츠도우군추우선 노선",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
-        "verified": false,
-        "confidence": "LOW",
-        "verifiedDate": null,
-        "status": "REVIEW_REQUIRED",
-        "canonicalPolicy": "namuwiki"
-      },
-      "namuwikiRoute": "https://namu.moe/w/이요%20철도%20군츄선",
-      "iyotetsuOperator": "https://www.iyotetsu.co.jp/railbus/timetable/map.html",
-      "endpointIdentity": "https://mapfan.com/spots/SCH%2CJ%2CIGR"
+        "method": "direct",
+        "type": "line-table",
+        "verified": true,
+        "url": "https://namu.moe/w/이요%20철도%20군츄선",
+        "verifiedDate": "2026-11-02",
+        "status": "VERIFIED_ROUTE_LABEL"
+      }
     },
     "dataKind": "physicalRoute",
-    "coverage": "Matsuyama City–Gunchuko port terminus"
+    "coverage": "nationwide-source-line"
   }
 }

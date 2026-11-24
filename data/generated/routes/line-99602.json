@@ -11,16 +11,15 @@
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 近江鉄道 오우미테츠도우 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "direct-mirror-review",
+      "type": "namuwiki-mirror",
+      "url": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
+      "sourceAccess": "mirror",
+      "namuwikiStatus": "reviewed",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-11-12",
+      "status": "REVIEWED",
       "canonicalPolicy": "namuwiki"
     },
     "operatorAsset": null,
@@ -32,9 +31,9 @@
     },
     "koreanNameSource": {
       "family": "namuwiki",
+      "method": "direct-mirror-review",
       "type": "namuwiki-mirror",
-      "method": "route-station-cross-check",
-      "url": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
+      "url": "https://namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EA%B0%80%EC%84%A0",
       "sourceAccess": "mirror",
       "namuwikiStatus": "reviewed",
       "verified": true,
@@ -44,7 +43,7 @@
       "canonicalPolicy": "namuwiki"
     },
     "code": "OR",
-    "lineColor": "#2DBEB4",
+    "lineColor": "#E53300",
     "symbolAsset": null,
     "symbolMeta": {
       "asset": null,
@@ -129,11 +128,10 @@
         "sourceId": "station-9960203",
         "ja": "スクリーン",
         "kana": "すくりーん",
-        "ko": "스크린",
+        "ko": "스쿠린",
         "romaji": "SukurīN",
         "koAliases": [
-          "스쿠린",
-          "스크린"
+          "스쿠린"
         ],
         "latitude": 35.23317,
         "longitude": 136.26742,
@@ -152,16 +150,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
+        "koSource": "namuwiki-station-mirror",
         "koSourceUrl": "https://www.namu.moe/w/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%97%AD",
         "koSearchReference": "site:namu.wiki スクリーン駅 스쿠린 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
+        "koConfidence": "HIGH",
         "koReviewStatus": "REVIEWED",
         "geometryIndex": 10,
-        "coordinateSource": "line-track-geometry"
+        "coordinateSource": "line-track-geometry",
+        "canonicalStationNames": {
+          "ja": "スクリーン",
+          "kana": "すくりーん",
+          "ko": "스쿠린",
+          "en": "SukurīN"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960202",
@@ -549,24 +555,21 @@
     },
     "sources": {
       "official": "https://www.ohmitetudo.co.jp/railway/ride/station/",
-      "korean": "",
+      "korean": "https://namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EA%B0%80%EC%84%A0",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
         "family": "namuwiki",
-        "method": "unresolved",
-        "type": "namuwiki-unresolved",
-        "url": "",
-        "searchReference": "site:namu.wiki 近江鉄道多賀線 오우미테츠도우타가선 노선",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
-        "verified": false,
-        "confidence": "LOW",
-        "verifiedDate": null,
-        "status": "REVIEW_REQUIRED",
+        "method": "direct-mirror-review",
+        "type": "namuwiki-mirror",
+        "url": "https://namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EA%B0%80%EC%84%A0",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
+        "verified": true,
+        "confidence": "HIGH",
+        "verifiedDate": "2026-11-12",
+        "status": "REVIEWED",
         "canonicalPolicy": "namuwiki"
-      },
-      "namuwiki": "https://namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%ED%83%80%EA%B0%80%EC%84%A0",
-      "timetable": "https://www.ohmitetudo.co.jp/railway/ride/timetable/"
+      }
     },
     "dataKind": "physicalRoute",
     "coverage": "nationwide-source-line"

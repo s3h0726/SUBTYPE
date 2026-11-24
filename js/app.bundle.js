@@ -50,20 +50,53 @@ function customStationNames(station={},fallbackCountry='jp'){
 // UK physical lines, operating patterns and shared railway geometry are distinct.
 const UK_CATEGORIES=[['all','전체'],['uk-underground','런던 지하철'],['uk-overground','런던 오버그라운드'],['uk-elizabeth','엘리자베스선'],['uk-dlr','DLR'],['rail','내셔널 레일'],['high_speed_rail','고속철도'],['international','국제철도'],['subway','지역 지하철'],['light_rail','메트로·경전철'],['tram','트램'],['custom','커스텀']];
 function ukCategory(route){return route.operatorId==='uk-london-underground'?'uk-underground':route.operatorId==='uk-first-rail-london'?'uk-overground':route.id==='uk-elizabeth'?'uk-elizabeth':route.id==='uk-dlr'?'uk-dlr':route.category}
-let ukNameEdits={operators:{},lines:{},stations:{},services:{}},ukSharedStationEdits=new Map(),ukStationGroups=new Map(),ukGroupEdits=new Map();
+let ukNameEdits={operators:{},lines:{},stations:{},services:{}};
+let ukStationGroups=new Map(),ukUnambiguousNames=new Map();
+const ukName=value=>typeof value==='string'?value.normalize('NFC').trim():'';
 function configureUKNames(edits={},stationIndex=[]){
- ukNameEdits=edits;ukSharedStationEdits=new Map();
- ukStationGroups=new Map(stationIndex.map(s=>[s.id,s.nameGroup]));ukGroupEdits=new Map();
- for(const [line,stations]of Object.entries(edits.stations||{}).sort(([a],[b])=>a.localeCompare(b)))if(line.startsWith('uk-'))for(const[id,value]of Object.entries(stations))if(typeof value==='string'&&value.trim())ukSharedStationEdits.set(id,value.trim());
- for(const[id,value]of ukSharedStationEdits)if(ukStationGroups.has(id))ukGroupEdits.set(ukStationGroups.get(id),value);
+ ukNameEdits=edits;
+ ukStationGroups=new Map(stationIndex.map(station=>[station.id,station.nameGroup]));
+ // An interchange may have distinct official names on different operators.
+ // Only share a correction if every edited member agrees; otherwise keep line identity.
+ const candidates=new Map();
+ for(const [line,stations]of Object.entries(edits.stations||{})){
+  if(!line.startsWith('uk-'))continue;
+  for(const [id,value]of Object.entries(stations)){
+   const ko=ukName(value);if(!ko)continue;
+   for(const key of [id,ukStationGroups.get(id)].filter(Boolean)){
+    if(!candidates.has(key))candidates.set(key,new Set());
+    candidates.get(key).add(ko);
+   }
+  }
+ }
+ ukUnambiguousNames=new Map([...candidates].filter(([,names])=>names.size===1).map(([key,names])=>[key,[...names][0]]));
 }
 function ukPresentation(route){
  if(route?.countryId!=='uk')return route;
- const update=station=>{const edited=ukGroupEdits.get(ukStationGroups.get(station.id))||ukSharedStationEdits.get(station.id)||ukSharedStationEdits.get(station.en||station.ja);return{...station,ko:edited||station.ko,kana:'',ja:station.en||station.romaji||station.ja,romaji:station.en||station.romaji||station.ja,routeSpecificStationName:true,names:undefined,canonicalStationNames:undefined}};
- route.stationCatalog=(route.stationCatalog||route.stations||[]).map(update);const byId=new Map(route.stationCatalog.map(s=>[s.id,s]));
- route.stations=(route.stations||[]).map(s=>({...s,...byId.get(s.id)}));
- route.operator={...route.operator,ko:ukNameEdits.operators?.[route.operatorId]||route.operator.ko};route.line={...route.line,...ukNameEdits.lines?.[route.id]};
- route.services=(route.services||[]).map(s=>({...s,nameKo:ukNameEdits.services?.[s.id]||s.nameKo}));
+ const direct=ukNameEdits.stations?.[route.id]||ukNameEdits.stations?.[route.canonicalLineId]||{};
+ const update=station=>{
+  const exact=ukName(direct[station.id]||direct[station.stationMasterId]||direct[station.ja]);
+  const fallback=station.editorStationNameOverride?ukName(station.ko):
+   ukUnambiguousNames.get(station.id)||ukUnambiguousNames.get(ukStationGroups.get(station.id))||'';
+  const ko=exact||fallback||station.ko;
+  return{...station,ko,names:{...(station.names||{}),ko},kana:'',
+   ja:station.en||station.romaji||station.ja,romaji:station.en||station.romaji||station.ja,
+   routeSpecificStationName:true,editorStationNameOverride:!!(exact||station.editorStationNameOverride),
+   ...(exact&&!station.canonicalStationNames?{canonicalStationNames:{ko:station.ko,ja:station.ja,kana:station.kana||'',en:station.en||station.romaji||''}}:{})};
+ };
+ route.stationCatalog=(route.stationCatalog||route.stations||[]).map(update);
+ const byId=new Map(route.stationCatalog.map(s=>[s.id,s]));
+ route.stations=(route.stations||[]).map(s=>({...s,...(byId.get(s.id)||update(s))}));
+ const operatorKo=ukName(ukNameEdits.operators?.[route.operatorId])||route.operator?.ko;
+ const lineEdit=ukNameEdits.lines?.[route.id]||ukNameEdits.lines?.[route.canonicalLineId]||{};
+ const lineKo=ukName(lineEdit.ko)||route.line?.ko;
+ route.operator={...route.operator,ko:operatorKo,names:{...(route.operator?.names||{}),ko:operatorKo}};
+ route.line={...route.line,...lineEdit,ko:lineKo,names:{...(route.line?.names||{}),ko:lineKo}};
+ if(/^#[0-9a-f]{6}$/i.test(lineEdit.color||''))route.lineColor=lineEdit.color;
+ route.services=(route.services||[]).map(s=>{
+  const nameKo=ukName(ukNameEdits.services?.[s.id])||s.nameKo;
+  return{...s,nameKo,names:{...(s.names||{}),ko:nameKo}};
+ });
  return route;
 }
 function ukPatternRoute(owner,pattern){
@@ -101,33 +134,43 @@ const FRANCE_CATEGORIES = [
   ['tram_train', '트램트레인'], ['international', '국제철도'], ['custom', '커스텀'],
 ];
 
-let franceEdits = new Map();
+let franceLineEdits = new Map();
+let franceSharedEdits = new Map();
 let franceNameGroups = new Map();
+const franceKo=value=>typeof value==='string'?value.normalize('NFC').trim():'';
 
-function configureFranceNames(edits, stationNameGroups = {}) {
-  franceEdits = new Map();
-  franceNameGroups = new Map(Object.entries(stationNameGroups));
-  const knownGroups = new Set(franceNameGroups.values());
-  for (const [line, stations] of Object.entries(edits.stations || {}).sort()) {
-    if (!line.startsWith('fr-')) continue;
-    for (const [id, name] of Object.entries(stations)) {
-      if ((id.startsWith('fr-stop-') || knownGroups.has(id)) && typeof name === 'string' && name.trim()) {
-        franceEdits.set(franceNameGroups.get(id) || id, name.trim());
-      }
-    }
+function configureFranceNames(edits={}, stationNameGroups = {}) {
+ franceLineEdits = new Map();
+ franceSharedEdits = new Map();
+ franceNameGroups = new Map(Object.entries(stationNameGroups));
+ const groupIds=new Set(franceNameGroups.values());
+ for(const [line, stations] of Object.entries(edits.stations || {})) {
+  if(!line.startsWith('fr-'))continue;
+  const direct=new Map();
+  for(const [id,name] of Object.entries(stations||{})) {
+   const ko=franceKo(name);if(!ko)continue;
+   if(groupIds.has(id))franceSharedEdits.set(id,ko);
+   else direct.set(id,ko);
   }
+  franceLineEdits.set(line,direct);
+ }
 }
 
-function franceStationPresentation(station) {
-  return {
-    ...station, ko: franceEdits.get(franceNameGroups.get(station.id) || station.id) || station.ko, kana: '',
-    routeSpecificStationName: true,
-  };
+function franceStationPresentation(station, routeId) {
+ const direct=franceLineEdits.get(routeId);
+ const explicit=franceKo(direct?.get(station.id)||direct?.get(station.stationMasterId));
+ const group=franceNameGroups.get(station.id);
+ const ko=explicit||(station.editorStationNameOverride?station.ko:null)||
+  franceSharedEdits.get(group)||franceSharedEdits.get(station.id)||station.ko;
+ return {...station,ko,names:{...(station.names||{}),ko},kana:'',
+  routeSpecificStationName:true,
+  editorStationNameOverride:!!(explicit||station.editorStationNameOverride)};
 }
 
 function franceSearchNames(route) {
-  return [...new Set([...route.searchStations,
-    ...route.stationSequence.map(id => franceEdits.get(franceNameGroups.get(id) || id)).filter(Boolean)])];
+ const direct=franceLineEdits.get(route.id)||new Map();
+ return [...new Set([...(route.searchStations||[]),
+  ...(route.stationSequence||[]).map(id=>direct.get(id)||franceSharedEdits.get(franceNameGroups.get(id))||franceSharedEdits.get(id)).filter(Boolean)])];
 }
 
 function francePatternRoute(owner, pattern) {
@@ -4446,7 +4489,7 @@ async function hydrateRailLine(route){if(!route?.lazy)return route;
   if(raw.countryId!=='fr'||raw.id!==route.id||!raw.patterns?.length)throw Error('프랑스 노선 자료가 일치하지 않습니다.');
   const owner=normalizeLine(raw);
   owner.franceWays=Object.assign({},...tiles.map(tile=>tile.ways));
-  owner.stationCatalog=raw.stationCatalog.map((station,index)=>franceStationPresentation(normalizeStation(station,index,owner.code)));
+  owner.stationCatalog=(owner.stationCatalog||raw.stationCatalog).map((station,index)=>franceStationPresentation(normalizeStation(station,index,owner.code),owner.id));
   const first=francePatternRoute(owner,owner.patterns[0]);
   return {...first,services:owner.services};
  }

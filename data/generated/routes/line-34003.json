@@ -158,7 +158,15 @@
         "koConfidence": "HIGH",
         "koReviewStatus": "ARTICLE_REVIEW_REQUIRED",
         "geometryIndex": 7,
-        "coordinateSource": "line-track-geometry"
+        "coordinateSource": "line-track-geometry",
+        "canonicalStationNames": {
+          "ja": "烏丸",
+          "kana": "からすま",
+          "ko": "카라스마",
+          "en": "Karasuma"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-3400303",
@@ -1078,7 +1086,15 @@
         "koConfidence": "HIGH",
         "koReviewStatus": "VERIFIED",
         "geometryIndex": 362,
-        "coordinateSource": "line-track-geometry"
+        "coordinateSource": "line-track-geometry",
+        "canonicalStationNames": {
+          "ja": "南方",
+          "kana": "みなみかた",
+          "ko": "미나미카타",
+          "en": "Nampō"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-3400103",
@@ -1165,7 +1181,8 @@
         },
         "stationNameSource": "operator-official-route",
         "coordinateSource": "station-master-fallback",
-        "trackEndpointOffsetKm": 2.247
+        "trackEndpointOffsetKm": 2.247,
+        "editorStationNameOverride": true
       }
     ],
     "geometry": [

@@ -11,16 +11,15 @@
     },
     "operatorSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 近江鉄道 오우미테츠도우 운영사",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "direct-mirror-review",
+      "type": "namuwiki-mirror",
+      "url": "https://www.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84",
+      "sourceAccess": "mirror",
+      "namuwikiStatus": "reviewed",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-11-12",
+      "status": "REVIEWED",
       "canonicalPolicy": "namuwiki"
     },
     "operatorAsset": null,
@@ -32,20 +31,19 @@
     },
     "koreanNameSource": {
       "family": "namuwiki",
-      "method": "unresolved",
-      "type": "namuwiki-unresolved",
-      "url": "",
-      "searchReference": "site:namu.wiki 近江鉄道八日市線 오우미테츠도우요우카이치선 노선",
-      "sourceAccess": "blocked",
-      "namuwikiStatus": "access-blocked",
-      "verified": false,
-      "confidence": "LOW",
-      "verifiedDate": null,
-      "status": "REVIEW_REQUIRED",
+      "method": "direct-mirror-review",
+      "type": "namuwiki-mirror",
+      "url": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
+      "sourceAccess": "mirror",
+      "namuwikiStatus": "reviewed",
+      "verified": true,
+      "confidence": "HIGH",
+      "verifiedDate": "2026-11-12",
+      "status": "REVIEWED",
       "canonicalPolicy": "namuwiki"
     },
     "code": "OR",
-    "lineColor": "#2DBEB7",
+    "lineColor": "#51A543",
     "symbolAsset": null,
     "symbolMeta": {
       "asset": null,
@@ -72,15 +70,7 @@
         "nameJa": "普通",
         "nameKo": "보통 · 전역정차",
         "nameEn": "Local (all stops)",
-        "stops": [
-          "station-9960112",
-          "station-9960302",
-          "station-9960303",
-          "station-9960304",
-          "station-9960305",
-          "station-9960306",
-          "station-1160108"
-        ]
+        "stops": []
       }
     ],
     "throughServiceIds": [
@@ -173,7 +163,7 @@
         "sourceId": "station-9960303",
         "ja": "太郎坊宮前",
         "kana": "たろぼうぐうまえ",
-        "ko": "타로보구마에",
+        "ko": "타로보미야마에",
         "romaji": "Tarobogu-mae",
         "koAliases": [
           "타로보미야마에"
@@ -195,17 +185,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
-        "koSourceUrl": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
+        "koSource": "namuwiki-station-mirror",
+        "koSourceUrl": "https://www.namu.moe/w/%ED%83%80%EB%A1%9C%EB%B3%B4%EA%B5%AC%EB%A7%88%EC%97%90%EC%97%AD",
         "koSearchReference": "site:namu.wiki 太郎坊宮前駅 타로보우미야마에 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
+        "koConfidence": "HIGH",
+        "koReviewStatus": "REVIEWED",
         "geometryIndex": 17,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "太郎坊宮前",
+          "kana": "たろぼうぐうまえ",
+          "ko": "타로보미야마에",
+          "en": "Tarobogu-mae"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-9960304",
@@ -290,7 +287,7 @@
         "sourceId": "station-9960306",
         "ja": "武佐",
         "kana": "むさ",
-        "ko": "무사",
+        "ko": "타케타스쿠",
         "romaji": "Musa",
         "koAliases": [
           "타케타스쿠"
@@ -312,17 +309,24 @@
         "location": null,
         "transfers": [],
         "serviceStops": null,
-        "koSource": "namuwiki-review",
-        "koSourceUrl": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
+        "koSource": "namuwiki-station-mirror",
+        "koSourceUrl": "https://www.namu.moe/w/%EB%AC%B4%EC%82%AC%EC%97%AD(%EC%8B%9C%EA%B0%80%ED%98%84)",
         "koSearchReference": "site:namu.wiki 武佐駅 타케타스쿠 역",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
         "koVerified": true,
-        "koConfidence": "LOW",
-        "koReviewStatus": "REVIEW_REQUIRED",
+        "koConfidence": "HIGH",
+        "koReviewStatus": "REVIEWED",
         "geometryIndex": 95,
         "coordinateSource": "line-track-geometry",
-        "nameSource": "official-2026-station-directory"
+        "canonicalStationNames": {
+          "ja": "武佐",
+          "kana": "むさ",
+          "ko": "타케타스쿠",
+          "en": "Musa"
+        },
+        "routeSpecificStationName": true,
+        "editorStationNameOverride": true
       },
       {
         "id": "station-1160108",
@@ -1366,24 +1370,21 @@
     },
     "sources": {
       "official": "https://www.ohmitetudo.co.jp/railway/ride/station/",
-      "korean": "",
+      "korean": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
       "geometry": "MLIT-N02-2025",
       "koreanName": {
         "family": "namuwiki",
-        "method": "unresolved",
-        "type": "namuwiki-unresolved",
-        "url": "",
-        "searchReference": "site:namu.wiki 近江鉄道八日市線 오우미테츠도우요우카이치선 노선",
-        "sourceAccess": "blocked",
-        "namuwikiStatus": "access-blocked",
-        "verified": false,
-        "confidence": "LOW",
-        "verifiedDate": null,
-        "status": "REVIEW_REQUIRED",
+        "method": "direct-mirror-review",
+        "type": "namuwiki-mirror",
+        "url": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
+        "sourceAccess": "mirror",
+        "namuwikiStatus": "reviewed",
+        "verified": true,
+        "confidence": "HIGH",
+        "verifiedDate": "2026-11-12",
+        "status": "REVIEWED",
         "canonicalPolicy": "namuwiki"
-      },
-      "namuwiki": "https://m.namu.moe/w/%EC%98%A4%EB%AF%B8%20%EC%B2%A0%EB%8F%84%20%EC%9A%94%EC%B9%B4%EC%9D%B4%EC%B9%98%EC%84%A0",
-      "timetable": "https://www.ohmitetudo.co.jp/railway/ride/timetable/"
+      }
     },
     "dataKind": "physicalRoute",
     "coverage": "nationwide-source-line"
