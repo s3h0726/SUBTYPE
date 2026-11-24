@@ -89,7 +89,7 @@ for(const [label,[idA,nameA],[idB,nameB]] of cases){
 }
 const names=JSON.parse(read('data/japan-route-station-names.json')).routes;
 const currentIndex=JSON.parse(read('js/japan-lite-index.js')
-  .split('window.TRT_JAPAN_LITE_INDEX=')[1].trim().replace(/;\\s*$/,''));
+  .split('window.TRT_JAPAN_LITE_INDEX=')[1].trim().replace(/;\s*$/,''));
 const liveLineIds=new Set(currentIndex.routes.map(route=>route.id));
 assert.ok(Object.keys(names).filter(id=>liveLineIds.has(id)).length>=40,
   'active line-specific station-name coverage decreased');
