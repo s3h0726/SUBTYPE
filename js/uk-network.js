@@ -32,7 +32,7 @@ export function ukPresentation(route){
   const ko=exact||fallback||station.ko;
   return{...station,ko,names:{...(station.names||{}),ko},kana:'',
    ja:station.en||station.romaji||station.ja,romaji:station.en||station.romaji||station.ja,
-   routeSpecificStationName:!!(exact||station.editorStationNameOverride),editorStationNameOverride:!!(exact||station.editorStationNameOverride),
+   routeSpecificStationName:true,editorStationNameOverride:!!(exact||station.editorStationNameOverride),
    ...(exact&&!station.canonicalStationNames?{canonicalStationNames:{ko:station.ko,ja:station.ja,kana:station.kana||'',en:station.en||station.romaji||''}}:{})};
  };
  route.stationCatalog=(route.stationCatalog||route.stations||[]).map(update);
