@@ -21,8 +21,24 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: {node-version: '22'}
+      - name: Check Hangang other-bus category is clean
+        run: node tools/test-kr-hangang-other-bus.cjs
+      - name: Verify KORAIL nameboard is installed for real KORAIL journeys
+        run: node tools/test-korail-nameplate.cjs
+      - name: Verify Enoden station sign geometry and browser markup
+        run: |
+          node tools/test-enoden-nameplate.cjs
+          node --test tools/test-enoden-nameplate-browser.cjs
+      - name: Regression test free-drive station targeting
+        run: node --test tools/test-free-drive-target-selection.cjs tools/test-free-drive-step-flow.cjs
+      - name: Validate Thailand public rail service data
+        run: npm run test:thailand
       - name: Validate French official RER names and their verified physical rail paths
         run: node tools/test-france-data.cjs
+      - name: Verify responsive free-drive station signs in Chrome
+        run: node --test tools/test-free-drive-layout-browser.cjs
+      - name: Verify Korean station sign layout in Chrome
+        run: node --test tools/test-kr-nameplate-layout-browser.cjs
       - name: Build the exact Pages browser bundle
         run: node tools/build-app-bundle.js
       - name: Check the generated runtime and page references
