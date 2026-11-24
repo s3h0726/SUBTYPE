@@ -2,7 +2,7 @@
 'use strict';
 // Write published name-editor overrides into actual playable data, in addition
 // to the browser's existing runtime fallbacks. Never alter geometry or IDs.
-const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),zlib=require('node:zlib');
 const root=path.resolve(__dirname,'..'),clean=x=>typeof x==='string'?x.normalize('NFC').trim():'';
 const overrides=JSON.parse(fs.readFileSync(path.join(root,'data/editor-overrides.json'),'utf8'));
 const stats={indexes:0,routeFiles:0,stationFields:0,lineFields:0,operatorFields:0,serviceFields:0,skippedCompressed:0};
@@ -163,7 +163,24 @@ if(fs.existsSync(krRoutes))for(const name of fs.readdirSync(krRoutes)){
 for(const file of routeFiles){
  const before=read(file);
  let source;try{source=JSON.parse(before)}catch{continue}
- if(source.encoding&&source.data){stats.skippedCompressed++;continue}
+ if(source.encoding&&source.data){
+  if(!['subtype-route-gzip-v1','subtype-thailand-gzip-v1'].includes(source.encoding)){
+   stats.skippedCompressed++;continue;
+  }
+  let plain;try{plain=zlib.gunzipSync(Buffer.from(source.data,'base64')).toString('utf8')}catch(error){
+   throw Error('Cannot decode source route '+file+': '+error.message);
+  }
+  const decoded=JSON.parse(plain),initial=JSON.stringify(decoded);
+  if(decoded.route)patchRoute(decoded.route);
+  else if(decoded.id)patchRoute(decoded);
+  if(JSON.stringify(decoded)!==initial){
+   const next=Buffer.from(JSON.stringify(decoded));
+   source.data=zlib.gzipSync(next,{level:9,mtime:0}).toString('base64');
+   if(source.sha256)source.sha256=crypto.createHash('sha256').update(next).digest('hex');
+   write(file,stringifyLike(before,source));stats.routeFiles++;
+  }
+  continue;
+ }
  const initial=JSON.stringify(source);
  if(source.route)patchRoute(source.route);
  else if(source.id)patchRoute(source);
