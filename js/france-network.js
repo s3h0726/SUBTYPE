@@ -5,33 +5,43 @@ export const FRANCE_CATEGORIES = [
   ['tram_train', '트램트레인'], ['international', '국제철도'], ['custom', '커스텀'],
 ];
 
-let franceEdits = new Map();
+let franceLineEdits = new Map();
+let franceSharedEdits = new Map();
 let franceNameGroups = new Map();
+const franceKo=value=>typeof value==='string'?value.normalize('NFC').trim():'';
 
-export function configureFranceNames(edits, stationNameGroups = {}) {
-  franceEdits = new Map();
-  franceNameGroups = new Map(Object.entries(stationNameGroups));
-  const knownGroups = new Set(franceNameGroups.values());
-  for (const [line, stations] of Object.entries(edits.stations || {}).sort()) {
-    if (!line.startsWith('fr-')) continue;
-    for (const [id, name] of Object.entries(stations)) {
-      if ((id.startsWith('fr-stop-') || knownGroups.has(id)) && typeof name === 'string' && name.trim()) {
-        franceEdits.set(franceNameGroups.get(id) || id, name.trim());
-      }
-    }
+export function configureFranceNames(edits={}, stationNameGroups = {}) {
+ franceLineEdits = new Map();
+ franceSharedEdits = new Map();
+ franceNameGroups = new Map(Object.entries(stationNameGroups));
+ const groupIds=new Set(franceNameGroups.values());
+ for(const [line, stations] of Object.entries(edits.stations || {})) {
+  if(!line.startsWith('fr-'))continue;
+  const direct=new Map();
+  for(const [id,name] of Object.entries(stations||{})) {
+   const ko=franceKo(name);if(!ko)continue;
+   if(groupIds.has(id))franceSharedEdits.set(id,ko);
+   else direct.set(id,ko);
   }
+  franceLineEdits.set(line,direct);
+ }
 }
 
-export function franceStationPresentation(station) {
-  return {
-    ...station, ko: franceEdits.get(franceNameGroups.get(station.id) || station.id) || station.ko, kana: '',
-    routeSpecificStationName: true,
-  };
+export function franceStationPresentation(station, routeId) {
+ const direct=franceLineEdits.get(routeId);
+ const explicit=franceKo(direct?.get(station.id)||direct?.get(station.stationMasterId));
+ const group=franceNameGroups.get(station.id);
+ const ko=explicit||(station.editorStationNameOverride?station.ko:null)||
+  franceSharedEdits.get(group)||franceSharedEdits.get(station.id)||station.ko;
+ return {...station,ko,names:{...(station.names||{}),ko},kana:'',
+  routeSpecificStationName:!!(explicit||station.editorStationNameOverride||franceSharedEdits.has(group)),
+  editorStationNameOverride:!!(explicit||station.editorStationNameOverride)};
 }
 
 export function franceSearchNames(route) {
-  return [...new Set([...route.searchStations,
-    ...route.stationSequence.map(id => franceEdits.get(franceNameGroups.get(id) || id)).filter(Boolean)])];
+ const direct=franceLineEdits.get(route.id)||new Map();
+ return [...new Set([...(route.searchStations||[]),
+  ...(route.stationSequence||[]).map(id=>direct.get(id)||franceSharedEdits.get(franceNameGroups.get(id))||franceSharedEdits.get(id)).filter(Boolean)])];
 }
 
 export function francePatternRoute(owner, pattern) {
