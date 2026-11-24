@@ -28,10 +28,10 @@ function patchStation(st,changes){
  const keys=[st.id,st.station_id,st.stationMasterId,st.ja,st.en];
  const want=keys.map(key=>changes[key]).find(value=>clean(value));
  if(!want)return;
+ if(!st.canonicalStationNames)st.canonicalStationNames={ko:st.ko||'',ja:st.ja||'',kana:st.kana||'',en:st.en||st.romaji||''};
  if(st.ko!==want){st.ko=want;stats.stationFields++}
  if(st.nameKo!==undefined)set(st,'nameKo',want,'stationFields');
  if(st.names?.ko!==undefined)set(st.names,'ko',want,'stationFields');
- if(!st.canonicalStationNames)st.canonicalStationNames={ko:st.ko,ja:st.ja||'',kana:st.kana||'',en:st.en||st.romaji||''};
  st.routeSpecificStationName=true;
  st.editorStationNameOverride=true;
 }
@@ -98,7 +98,7 @@ const sources=[
 ];
 const routeFiles=new Set();
 function stringifyLike(before,value){
- return JSON.stringify(value,before.startsWith('{\n')||before.startsWith('[\n')?null:null,before.startsWith('{\n')||before.startsWith('[\n')?2:0)+(before.endsWith('\n')?'\n':'');
+ return JSON.stringify(value,null,(before.startsWith('{\n')||before.startsWith('[\n'))?2:0)+(before.endsWith('\n')?'\n':'');
 }
 function writeIfChanged(file,content){
  const current=read(file);if(current===content)return false;
