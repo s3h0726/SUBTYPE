@@ -6,6 +6,13 @@ on:
       - 'data/editor-overrides.json'
       - 'tools/build-line-workspaces.js'
       - 'js/data-loader.js'
+      - 'js/uk-network.js'
+      - 'js/france-network.js'
+      - 'tools/reconcile-editor-name-table.cjs'
+      - 'tools/materialize-editor-names.cjs'
+      - 'reports/korean-names/lines.csv'
+      - 'reports/korean-names/operators.csv'
+      - 'reports/korean-names/stations-by-line.csv'
       - 'tools/test-editor-station-runtime.cjs'
       - 'tools/test-editor-live-runtime.cjs'
       - '.github/workflows/apply-editor-korean-names.yml'
@@ -27,8 +34,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Build complete application from canonical files with editor overrides
+      - name: Verify name synchronization scripts
+        run: |
+          node --check tools/reconcile-editor-name-table.cjs
+          node --check tools/materialize-editor-names.cjs
+      - name: Treat the published Korean name table as canonical
+        run: node tools/reconcile-editor-name-table.cjs
+      - name: Build complete application from reconciled sources
         run: node tools/build-static.js
+      - name: Write names into the actual playable country catalogs and route data
+        run: node tools/materialize-editor-names.cjs
+      - name: Refresh bundle hashes after the final country data sync
+        run: node tools/build-app-bundle.js
+      - name: Verify the published name table matches gameplay route data
+        run: node tools/reconcile-editor-name-table.cjs --check
       - name: Verify local editor drafts modify game name and typing objects
         run: node tools/test-editor-live-runtime.cjs
       - name: Validate editor names are present in built route catalog
@@ -60,12 +79,14 @@ jobs:
           NODE
       - name: Test resolved gameplay station names
         run: node tools/test-editor-station-runtime.cjs
+      - name: Refresh public name editor rows from synchronized game data
+        run: node tools/export-korean-names.js
       - name: Publish game-generated data only if validation passed
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/generated/ js/line-workspace-data.js js/app.bundle.js js/nationwide-data.js index.html
+          git add data/editor-overrides.json data/operators/ data/lines/ data/shared-stations/ data/generated/ data/kr/generated/ data/hk/generated/ data/uk/generated/ data/fr/generated/ data/th/generated/ data/tw/generated/network.json data/route-overrides/ js/line-workspace-data.js js/korea-index-data.js js/hong-kong-index-data.js js/app.bundle.js js/nationwide-data.js index.html reports/korean-names/
           if git diff --cached --quiet; then echo 'No regenerated game data changes'; exit 0; fi
           git commit -m 'build(jp): synchronize Korean editor names with playable game'
           # Multiple Japan/Korea publishers update main concurrently. Never
@@ -80,9 +101,15 @@ jobs:
             # bundle. Rebuild from its newer canonical main instead of forcing
             # a stale bundle over someone else's work.
             git reset --hard origin/main
+            node tools/reconcile-editor-name-table.cjs
             node tools/build-static.js
+            node tools/materialize-editor-names.cjs
+            node tools/build-app-bundle.js
+            node tools/reconcile-editor-name-table.cjs --check
+            node tools/test-editor-live-runtime.cjs
             node tools/test-editor-station-runtime.cjs
-            git add data/generated/ js/line-workspace-data.js js/app.bundle.js js/nationwide-data.js index.html
+            node tools/export-korean-names.js
+            git add data/editor-overrides.json data/operators/ data/lines/ data/shared-stations/ data/generated/ data/kr/generated/ data/hk/generated/ data/uk/generated/ data/fr/generated/ data/th/generated/ data/tw/generated/network.json data/route-overrides/ js/line-workspace-data.js js/korea-index-data.js js/hong-kong-index-data.js js/app.bundle.js js/nationwide-data.js index.html reports/korean-names/
             if git diff --cached --quiet; then
               echo 'Latest main already contains the generated names'
               exit 0
