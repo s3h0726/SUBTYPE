@@ -104,7 +104,7 @@ for(const fileName of fs.readdirSync(stationDir).filter(f=>/^stations-\d+\.json$
  if(edits)changed.add(file);
 }
 const normalizedRoute=new Map(),loadRoute=(lineId,file)=>{
- if(!file||!fs.existsSync(path.join(root,file)))return null;
+ if(!file||!file.endsWith('.json')||!fs.existsSync(path.join(root,file)))return null;
  const data=json(file);
  if(!data)return null;
  if(data.route?.id===lineId)return data.route;
