@@ -1,15 +1,14 @@
 name: Publish SUBTYPE runtime to Pages
 on:
-  # 2026-11-22: Republish the current main to ensure the PR #113 typography rollback reaches Pages.
-  # One-time recovery path: workflow changes produce a fresh Pages artifact,
-  # rather than rerunning an old job with duplicate github-pages artifacts.
+  # Publish the exact current main after *every* code/data merge. The previous
+  # path filter only ran on edits to this workflow itself, leaving gameplay
+  # changes unpublished until an unrelated version/release completed.
   push:
     branches: [main]
-    paths: ['.github/workflows/deploy-pages.yml']
   workflow_dispatch:
-  workflow_run:
-    workflows: ['Publish updated Hangang east canonical data', 'Auto-release SUBTYPE version']
-    types: [completed]
+  # Do not also subscribe to Auto-release workflow_run. Auto-release runs on
+  # every main push and used to schedule a second Pages deployment, racing the
+  # first build and sometimes uploading outdated assets.
 permissions:
   contents: read
   pages: write
@@ -19,7 +18,6 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -1,0 +1,34 @@
+name: Verify Pages runtime staging
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/deploy-pages.yml'
+      - '.github/workflows/verify-pages-build.yml'
+      - 'tools/build-app-bundle.js'
+      - 'tools/stage-pages.cjs'
+      - 'js/rail-data-repository.js'
+      - 'js/app.js'
+      - 'index.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Build the exact Pages browser bundle
+        run: node tools/build-app-bundle.js
+      - name: Check the generated runtime and page references
+        run: |
+          node --check js/app.bundle.js
+          node tools/stage-pages.cjs
+          test -s _site/js/app.bundle.js
+          test -s _site/index.html
+          grep -q 'app.bundle.js?v=' _site/index.html
+      - name: Show published output size and file count
+        run: |
+          du -sh _site
+          find _site -type f | wc -l
