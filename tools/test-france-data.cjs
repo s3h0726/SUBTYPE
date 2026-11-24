@@ -107,29 +107,34 @@ async function run() {
   const station = [...stationDefinitions.values()][0];
   const massy = [...stationDefinitions.values()].filter(station => station.physicalStationId === 'fr-massy-palaiseau');
   assert.equal(massy.length, 2, 'SNCF and IDFM Massy-Palaiseau must share the signed interchange');
-  runtime.configureFranceNames({stations:{'fr-ouigo-edit':{[massy[0].id]:'마시 공통 수정'}}}, index.stationNameGroups);
-  assert.ok(massy.every(station => runtime.franceStationPresentation(station).ko === '마시 공통 수정'));
+  // A station-ID edit belongs to one route; it must not rename another
+  // operator's transfer platform simply because they share a physical ID.
+  runtime.configureFranceNames({stations:{'fr-ouigo-edit':{[massy[0].id]:'마시 개별 수정'}}}, index.stationNameGroups);
+  assert.equal(runtime.franceStationPresentation(massy[0],'fr-ouigo-edit').ko,'마시 개별 수정');
+  assert.equal(runtime.franceStationPresentation(massy[1],'fr-ouigo-edit').ko,massy[1].ko);
+  // An explicit named group edit is the only broadcast mechanism.
   runtime.configureFranceNames({stations:{'fr-ouigo-edit':{'fr-massy-palaiseau':'마시 그룹 수정'}}}, index.stationNameGroups);
-  assert.ok(massy.every(station => runtime.franceStationPresentation(station).ko === '마시 그룹 수정'));
-  const lazare = [...stationDefinitions.values()].filter(station => index.stationNameGroups[station.id] === 'fr-name-gare-saint-lazare');
-  const haussmann = [...stationDefinitions.values()].find(station => station.fr === 'Haussmann Saint-Lazare');
-  assert.equal(lazare.length, 2, 'SNCF and IDFM Gare Saint-Lazare names must remain linked');
-  runtime.configureFranceNames({stations:{'fr-editor':{[lazare[0].id]:'생라자르 공통 수정'}}}, index.stationNameGroups);
-  assert.ok(lazare.every(station => runtime.franceStationPresentation(station).ko === '생라자르 공통 수정'));
-  assert.equal(runtime.franceStationPresentation(haussmann).ko, haussmann.ko,
-    'A shared interchange must not rename the separate Haussmann station');
-  runtime.configureFranceNames({stations:{'fr-edited':{[station.id]:'한국어 수정 이름'}}});
-  assert.equal(runtime.franceStationPresentation(station).ko, '한국어 수정 이름');
-  assert.equal(runtime.franceStationPresentation(station).fr, station.fr);
-  assert.deepEqual(runtime.franceSearchNames({searchStations:[station.fr],stationSequence:[station.id]}),
+  assert.ok(massy.every(stop=>runtime.franceStationPresentation(stop).ko==='마시 그룹 수정'));
+  const lazare = [...stationDefinitions.values()].filter(stop => index.stationNameGroups[stop.id] === 'fr-name-gare-saint-lazare');
+  const haussmann = [...stationDefinitions.values()].find(stop => stop.fr === 'Haussmann Saint-Lazare');
+  assert.equal(lazare.length,2,'SNCF and IDFM Gare Saint-Lazare names must remain linked for transfers');
+  runtime.configureFranceNames({stations:{'fr-editor':{[lazare[0].id]:'생라자르 개별 수정'}}},index.stationNameGroups);
+  assert.equal(runtime.franceStationPresentation(lazare[0],'fr-editor').ko,'생라자르 개별 수정');
+  assert.equal(runtime.franceStationPresentation(lazare[1],'fr-editor').ko,lazare[1].ko);
+  assert.equal(runtime.franceStationPresentation(haussmann,'fr-editor').ko,haussmann.ko,
+    'A nearby but separate Haussmann station must keep its name');
+  runtime.configureFranceNames({stations:{'fr-edited':{[station.id]:'한국어 수정 이름'}}}, index.stationNameGroups);
+  assert.equal(runtime.franceStationPresentation(station,'fr-edited').ko,'한국어 수정 이름');
+  assert.equal(runtime.franceStationPresentation(station,'fr-edited').fr,station.fr);
+  assert.deepEqual(runtime.franceSearchNames({id:'fr-edited',searchStations:[station.fr],stationSequence:[station.id]}),
     [station.fr,'한국어 수정 이름']);
-  const grouped = Object.entries(index.stationNameGroups || {});
-  const repeatedGroup = grouped.find(([id, group]) => grouped.some(([other, value]) => id !== other && value === group));
-  if (repeatedGroup) {
-    const [id, group] = repeatedGroup;
-    const [other] = grouped.find(([other, value]) => id !== other && value === group);
-    runtime.configureFranceNames({stations:{'fr-marseille-metro-1':{[id]:'수정된 공통 역명'}}}, index.stationNameGroups);
-    assert.equal(runtime.franceStationPresentation(stationDefinitions.get(other)).ko, '수정된 공통 역명');
+  const grouped=Object.entries(index.stationNameGroups||{});
+  const repeatedGroup=grouped.find(([id,group])=>grouped.some(([other,value])=>id!==other&&value===group));
+  if(repeatedGroup){
+    const [id,group]=repeatedGroup;
+    const [other]=grouped.find(([other,value])=>id!==other&&value===group);
+    runtime.configureFranceNames({stations:{'fr-marseille-metro-1':{[group]:'수정된 공통 역명'}}},index.stationNameGroups);
+    assert.equal(runtime.franceStationPresentation(stationDefinitions.get(other)).ko,'수정된 공통 역명');
   }
   console.log(JSON.stringify({lines:index.routes.length, directions:directionIds.size, stationIds:stationDefinitions.size}));
 }
