@@ -13,6 +13,7 @@ const source=read('js/free-drive.js')
 const context={
   console,
   koreanRouteBlockReason:()=>false,
+  hongKongRouteBlockReason:()=>'',
   $:()=>null,
   addEventListener:()=>{},
   normalize:s=>String(s||'').normalize('NFC').toLowerCase(),
