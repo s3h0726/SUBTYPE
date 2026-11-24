@@ -38,12 +38,14 @@ test('Japanese route resolution never overwrites route names with shared station
   assert.equal(repo.resolveRoute(jr).stations[0].ja,'大阪','loading order must not change the sign');
   assert.equal(repo.resolveRoute(subway).stations[0].ja,'梅田','loading order must not change the sign');
 });
-test('non-Japanese canonical behavior and explicit sign overrides remain intact',async()=>{
+test('non-Japanese routes also keep station labels separate from shared master IDs',async()=>{
   const repo=await importRepository(),station=stop('shared','Source sign','원래역');
   const common={id:'shared',names:{ja:'Canonical',ko:'대표역',en:'Canonical'}};
   const foreign={...railway('non-jp','metro',[station]),countryId:'kr'};
   repo.configure({stations:[common],lines:[foreign]});
-  assert.equal(repo.resolveRoute(foreign).stations[0].ja,'Canonical');
+  assert.equal(repo.resolveRoute(foreign).stations[0].ja,'Source sign');
+  assert.equal(repo.resolveRoute(foreign).stations[0].ko,'원래역');
+  assert.equal(repo.getStation('shared').names.ja,'Canonical');
   foreign.stations[0]={...station,routeSpecificStationName:true};
   assert.equal(repo.resolveRoute(foreign).stations[0].ja,'Source sign');
 });
