@@ -13,6 +13,8 @@ const source=read('js/free-drive.js')
 const context={
   console,
   koreanRouteBlockReason:()=>false,
+  hongKongRouteBlockReason:()=>'',
+  hongKongTransferAllowed:()=>true,
   $:()=>null,
   addEventListener:()=>{},
   normalize:s=>String(s||'').normalize('NFC').toLowerCase(),
@@ -86,7 +88,15 @@ for(const [label,[idA,nameA],[idB,nameB]] of cases){
     label+': independent platforms collapsed');
 }
 const names=JSON.parse(read('data/japan-route-station-names.json')).routes;
+const currentIndex=JSON.parse(read('js/japan-lite-index.js')
+  .split('window.TRT_JAPAN_LITE_INDEX=')[1].trim().replace(/;\s*$/,''));
+const liveLineIds=new Set(currentIndex.routes.map(route=>route.id));
+assert.ok(Object.keys(names).filter(id=>liveLineIds.has(id)).length>=40,
+  'active line-specific station-name coverage decreased');
 for(const [id,overrides] of Object.entries(names)){
+  // Keep historical overrides as source data, but never require a removed or
+  // merged line to have a generated route payload in the published catalog.
+  if(!liveLineIds.has(id))continue;
   const route=fixture(id);
   for(const [stationId,expected] of Object.entries(overrides)){
     const stop=route.stations.find(x=>x.id===stationId);
