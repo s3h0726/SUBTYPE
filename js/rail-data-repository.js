@@ -38,17 +38,20 @@ class Repository{
     if(!route)return route;this.registerRoute(route);const operator=this.getOperator(route.operatorId),line=this.getLine(route.id),operatorAsset=this.getOperatorLogoAsset(route.operatorId),symbolAsset=this.getLineSymbolAsset(route.id);
     const stations=(route.stations||[]).map(station=>{
       const canonical=this.registerStation(station);if(!canonical)return station;
-      // The master station ID is only a transfer/search identity. Japanese
-      // platforms may use a different official name on each operating line
-      // (Osaka/Umeda, Sapporo/Sapporo subway). Never overwrite that sign with
-      // whichever route registered the shared master ID first.
-      if(route.countryId==='jp'||station.routeSpecificStationName===true)
-        return{...station,ja:clean(station.ja||station.names?.ja)||canonical.names.ja,
-          kana:clean(station.kana||station.names?.kana)||canonical.names.kana,
-          ko:clean(station.ko||station.names?.ko)||canonical.names.ko,
-          romaji:clean(station.romaji||station.names?.en)||canonical.names.en};
-      return{...station,ja:canonical.names.ja,kana:canonical.names.kana,
-        ko:canonical.names.ko,romaji:canonical.names.en}
+      // Every route has its own station-sign and typing labels. A shared
+      // stationMasterId identifies a transfer, NOT a globally named stop.
+      // This applies to all countries and all station occurrences, including
+      // lines without an explicit routeSpecificStationName flag.
+      const local=(field,nested=field)=>{
+        const own=clean(station[field]),structured=clean(station.names?.[nested]);
+        const master=clean(canonical.names?.[nested]);
+        // Missing translations are not official local station names.
+        if(field==='ko'&&own==='MISSING_KOREAN_NAME')
+          return structured&&structured!=='MISSING_KOREAN_NAME'?structured:master||own;
+        return own||structured||master;
+      };
+      return{...station,ja:local('ja'),kana:local('kana'),ko:local('ko'),
+        romaji:local('romaji','en')};
     });
     const resolved={...route,operator:operator?.names||route.operator,line:line?.names||route.line,operatorAsset,symbolAsset,stations};this.routes.set(route.id,resolved);return resolved
   }
