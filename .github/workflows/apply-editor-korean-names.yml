@@ -42,7 +42,7 @@ jobs:
       - name: Treat the published Korean name table as canonical
         run: node tools/reconcile-editor-name-table.cjs
       - name: Build complete application from reconciled sources
-        run: node tools/build-static.js
+        run: SUBTYPE_EDITOR_NAMES_ONLY=1 node tools/build-static.js
       - name: Write names into the actual playable country catalogs and route data
         run: node tools/materialize-editor-names.cjs
       - name: Refresh bundle hashes after the final country data sync
@@ -105,7 +105,7 @@ jobs:
             # a stale bundle over someone else's work.
             git reset --hard origin/main
             node tools/reconcile-editor-name-table.cjs
-            node tools/build-static.js
+            SUBTYPE_EDITOR_NAMES_ONLY=1 node tools/build-static.js
             node tools/materialize-editor-names.cjs
             node tools/build-app-bundle.js
             node tools/reconcile-editor-name-table.cjs --check
