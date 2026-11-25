@@ -4,8 +4,10 @@
 const SUSEO_TRACK_FILE='data/kr/physical/suseo-pyeongtaek.json';
 let suseoTrackSourcePromise;
 const suseoStationName=station=>String(station?.ko||station?.names?.ko||station?.nameKo||'').trim();
-const suseoClose=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&Math.hypot(
-  (a[0]-b[0])*111.195,(a[1]-b[1])*88)<0.35;
+// A station or junction may be accepted only at its exact source OSM vertex.
+// Proximity (even a few metres) does not prove track continuity.
+// An endpoint source node ID is provenance for that endpoint, not for every
+// intermediate geometry vertex; source-way edge validation is a separate test.
 // An OSM vertex must match exactly; proximity is not proof of a railway junction.
 const suseoSameVertex=(a,b)=>Array.isArray(a)&&Array.isArray(b)&&a.length>=2&&b.length>=2&&a[0]===b[0]&&a[1]===b[1];
 const reverseSuseoGeometry=geometry=>geometry.map(point=>[...point]).reverse();
@@ -16,14 +18,21 @@ export function verifySuseoTrack(record){
  for(const kind of ['srt','gtx']){
   const service=record[kind];
   if(service?.stations?.length!==4||service?.segments?.length!==3)throw Error('SUSEO_HSR_STATIONS');
+  if(service.stations.some(stop=>!/^\\d+$/.test(String(stop?.osmNodeId??''))))
+   throw Error('SUSEO_HSR_SOURCE_NODE_ID');
   for(let i=0;i<3;i++){
-   const part=service.segments[i],points=part?.geometry;
+   const part=service.segments[i],points=part?.geometry,sourceIds=part?.sourceNodeIds;
+   if(!Array.isArray(sourceIds)||sourceIds.length!==2||
+      String(sourceIds[0])!==String(service.stations[i].osmNodeId)||
+      String(sourceIds[1])!==String(service.stations[i+1].osmNodeId))
+    throw Error('SUSEO_HSR_SOURCE_NODE_ID');
    if(part?.from!==service.stations[i].ko||part?.to!==service.stations[i+1].ko||
       !Array.isArray(points)||points.length<2||!part.wayIds?.length||
-      !suseoClose(points[0],[service.stations[i].latitude,service.stations[i].longitude])||
-      !suseoClose(points.at(-1),[service.stations[i+1].latitude,service.stations[i+1].longitude]))
+      !suseoSameVertex(points[0],[service.stations[i].latitude,service.stations[i].longitude])||
+      !suseoSameVertex(points.at(-1),[service.stations[i+1].latitude,service.stations[i+1].longitude]))
      throw Error('SUSEO_HSR_OSM_CONTINUITY');
-   if(i&&!suseoClose(service.segments[i-1].geometry.at(-1),points[0]))throw Error('SUSEO_HSR_JUNCTION');
+   if(i&&!suseoSameVertex(service.segments[i-1].geometry.at(-1),points[0]))
+    throw Error('SUSEO_HSR_JUNCTION');
   }
  }
  return record;
