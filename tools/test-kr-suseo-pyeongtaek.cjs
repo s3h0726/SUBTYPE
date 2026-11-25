@@ -10,6 +10,22 @@ const ctx={};vm.runInNewContext(source+'\nglobalThis.TEST_SUSEO={verifySuseoTrac
 const api=ctx.TEST_SUSEO;
 assert.equal(api.verifySuseoTrack(track),track);
 assert.equal(track.officialLengthKm,61.1);
+// A near-miss is not a shared OSM node. The previous 350m tolerance
+// incorrectly marked such a broken station anchor as ready.
+const nearMiss=structuredClone(track);
+nearMiss.srt.segments[0].geometry[0][0]+=0.0001;
+assert.throws(()=>api.verifySuseoTrack(nearMiss),/SUSEO_HSR_OSM_CONTINUITY/);
+// Coordinates alone are insufficient: segment endpoint node IDs must match
+// their declared source OSM station/junction IDs.
+const mismatchedNode=structuredClone(track);
+mismatchedNode.srt.segments[2].sourceNodeIds[1]='999999999';
+assert.throws(()=>api.verifySuseoTrack(mismatchedNode),/SUSEO_HSR_SOURCE_NODE_ID/);
+const missingProvenance=structuredClone(track);
+delete missingProvenance.gtx.segments[1].sourceNodeIds;
+assert.throws(()=>api.verifySuseoTrack(missingProvenance),/SUSEO_HSR_SOURCE_NODE_ID/);
+const mismatchedStop=structuredClone(track);
+mismatchedStop.srt.stations[2].osmNodeId='999999999';
+assert.throws(()=>api.verifySuseoTrack(mismatchedStop),/SUSEO_HSR_SOURCE_NODE_ID/);
 const geometry=new Map(json('data/kr/v2/geometry.json').map(w=>[w.id.replace(/^kr-geometry-/,'') ,w]));
 const infrastructure=new Map(json('data/kr/v2/infrastructure.json').map(w=>[w.geometryId.replace(/^kr-geometry-/,''),w]));
 let segments=0,sourceEdges=0;
