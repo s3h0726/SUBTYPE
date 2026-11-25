@@ -346,7 +346,7 @@ function nativeLineName(route){
  // Field names differ by country and by legacy/normalized catalog.
  // Empty flat fields must NOT shadow populated names/displayNames fields.
  const line=route?.line||{},names=line.names||{},display=line.displayNames||{};
- const localeKeys=({jp:['ja','en'],fr:['fr','en'],uk:['en'],th:['th','en'],tw:['zh-Hant','zh','en'],hk:['zh-Hant','zh','ja','en'],mo:['zh-Hant','zh','ja','en'],kr:[]})[route?.countryId]||['native','original','en','ja','fr','zh'];
+ const localeKeys=({jp:['ja','en'],fr:['fr','en','ja'],uk:['en','ja'],th:['th','en'],tw:['zh-Hant','zh','en'],hk:['zh-Hant','zh','ja','en'],mo:['zh-Hant','zh','ja','en'],kr:[]})[route?.countryId]||['native','original','en','ja','fr','zh'];
  const korean=String(line.ko||names.ko||'').normalize('NFC').trim();
  const candidates=[];
  for(const key of localeKeys)for(const source of [line,names,display,route?.displayNames||{}]){

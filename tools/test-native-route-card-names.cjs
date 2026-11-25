@@ -38,6 +38,32 @@ const th={id:'th-bts-test',countryId:'th',line:{ko:'수쿰윗선',th:'BTS สา
 assert.ok(sandbox.routeCard(th).includes('<p class="route-card-native-name" lang="th">BTS สายสุขุมวิท</p>'));
 const hk={countryId:'hk',line:{ko:'췬완선',ja:'荃灣綫'},operator:{ko:'홍콩 MTR'},lineColor:'#aaa'};
 assert.ok(sandbox.hongKongCard(hk,'data-hk-line-family="hk-tsuen-wan"','2개 운행 방향','운행계통 선택').includes('<p class="route-card-native-name" lang="zh-Hant">荃灣綫</p>'));
+// The preview must keep native text distinct too, not just the route list.
+const selectedPanel={innerHTML:'',style:{setProperty(){}},closest(){return {style:{setProperty(){}}}}};
+sandbox.$=()=>selectedPanel;
+sandbox.thailandPresentation=route=>route;
+sandbox.koreanRouteDisplayText=value=>value;
+sandbox.selectedGroup=null;
+sandbox.NETWORK_GROUPS={};
+sandbox.routes=[];
+vm.runInContext(functionText('renderSelected'),sandbox);
+for(const [countryId,line,lang,native] of examples){
+ sandbox.countryId=countryId;
+ sandbox.selected={id:'preview-'+countryId,countryId,operator:{ko:'운영사'},line,stationCount:2,serviceCount:2,stations:[{id:'s1'},{id:'s2'}],lineColor:'#123456'};
+ selectedPanel.innerHTML='';
+ sandbox.renderSelected();
+ assert.ok(selectedPanel.innerHTML.includes('<h3 id="selected-line-heading" lang="ko">'+line.ko+'</h3>'),countryId+' preview Korean primary');
+ assert.ok(selectedPanel.innerHTML.includes('<p class="selected-line-native-name" lang="'+lang+'">'+native+'</p>'),countryId+' preview native subtitle');
+}
+sandbox.countryId='th';
+sandbox.selected={id:'preview-th',countryId:'th',operator:{ko:'운영사'},line:th.line,stations:[{id:'s1'},{id:'s2'}],lineColor:'#123456',patterns:[{id:'p1'}]};
+sandbox.renderSelected();
+assert.ok(selectedPanel.innerHTML.includes('<p class="selected-line-native-name" lang="th">BTS สายสุขุมวิท</p>'),'Thailand preview native');
+sandbox.countryId='hk';
+sandbox.selected={id:'preview-hk',countryId:'hk',operator:hk.operator,line:hk.line,stationCount:2,stations:[{id:'s1'},{id:'s2'}],lineColor:'#123456'};
+sandbox.renderSelected();
+assert.ok(selectedPanel.innerHTML.includes('<p class="selected-line-native-name" lang="zh-Hant">荃灣綫</p>'),'Hong Kong preview native');
+
 assert.ok(!sandbox.routeCard({id:'kr-test',countryId:'kr',line:{ko:'경부선'},operator:{ko:'코레일'},stations:[{},{},{}],geometryReady:true}).includes('route-card-native-name'),'Keep Korean card unchanged');
 for(const k of ['route-card-native-name','selected-line-native-name','lang="th"','lang="zh-Hant"','lang="fr"'])assert.ok(css.includes(k),'Missing native subtitle styling '+k);
 for(const k of ['France selected panel','selected-line-native-name','Hong Kong']){/* markup assertions above cover card templates */}

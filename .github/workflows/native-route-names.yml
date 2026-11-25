@@ -1,0 +1,26 @@
+name: Non-Korean route original names
+on:
+  pull_request:
+    paths:
+      - 'js/app.js'
+      - 'css/route-card-typography.css'
+      - 'tools/test-native-route-card-names.cjs'
+  push:
+    branches: [main]
+    paths:
+      - 'js/app.js'
+      - 'css/route-card-typography.css'
+      - 'tools/test-native-route-card-names.cjs'
+jobs:
+  route-original-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - name: Check app source syntax
+        run: node --check js/app.js
+      - name: Regression test original names and selected previews
+        run: node tools/test-native-route-card-names.cjs
+      - name: Existing typography regression
+        run: node tools/test-route-card-typography.cjs
