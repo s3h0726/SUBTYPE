@@ -254,3 +254,27 @@
 @media(max-width:620px){
   #screen-select #route-grid.line-card-grid{grid-template-columns:minmax(0,1fr)!important}
 }
+
+/* Explicit native-language subtitle, now present in the actual card markup. */
+#screen-select #route-grid.line-card-grid > .line-card > .route-card-native-name,
+#screen-select #selected-line-preview .selected-line-card > .selected-line-native-name {
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  max-height:none!important;
+  color:var(--rct-muted)!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card > .route-card-native-name[lang="zh-Hant"],
+#screen-select #selected-line-preview .selected-line-card > .selected-line-native-name[lang="zh-Hant"] {
+  font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card > .route-card-native-name[lang="th"],
+#screen-select #selected-line-preview .selected-line-card > .selected-line-native-name[lang="th"] {
+  font-family:"Noto Sans Thai",Tahoma,sans-serif!important;
+}
+#screen-select #route-grid.line-card-grid > .line-card > .route-card-native-name[lang="fr"],
+#screen-select #selected-line-preview .selected-line-card > .selected-line-native-name[lang="fr"] {
+  font-family:"Noto Sans",system-ui,sans-serif!important;
+}
