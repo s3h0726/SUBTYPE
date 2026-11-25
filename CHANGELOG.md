@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH.REVISION` (SUBTYPE 앱의 4자리 형식; npm 패키지는 표준 3자리 SemVer 유지)
 
+## [v0.20.0.0] — 2026-11-25
+
+- feat: redesign station sign typing and free/custom rail journey screens * style: redesign station sign typing, free-drive cockpit and custom route studio * feat: integrate nameplat
+
 ## [v0.19.0.9] — 2026-11-25
 
 - fix(ui): restore compact multi-column route-card layout
