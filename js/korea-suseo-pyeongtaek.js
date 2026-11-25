@@ -18,7 +18,7 @@ export function verifySuseoTrack(record){
  for(const kind of ['srt','gtx']){
   const service=record[kind];
   if(service?.stations?.length!==4||service?.segments?.length!==3)throw Error('SUSEO_HSR_STATIONS');
-  if(service.stations.some(stop=>!/^\\d+$/.test(String(stop?.osmNodeId??''))))
+  if(service.stations.some(stop=>!/^\d+$/.test(String(stop?.osmNodeId??''))))
    throw Error('SUSEO_HSR_SOURCE_NODE_ID');
   for(let i=0;i<3;i++){
    const part=service.segments[i],points=part?.geometry,sourceIds=part?.sourceNodeIds;
