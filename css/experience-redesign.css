@@ -425,3 +425,105 @@
 @media(prefers-reduced-motion:reduce){
   #screen-free-drive .free-drive-line button,#screen-custom .station-search-result{transition:none!important}
 }
+/* 4. In-game FREE DRIVE — the actual station-typing navigation cockpit.
+   Move the next-stop chooser to a side dock on desktops, so the route
+   and moving vehicle remain legible in the center of the OSM map. */
+#screen-game.active.free-drive-active{
+  --fd-panel-accent:var(--route-color,#40c389);
+  background:color-mix(in srgb,var(--paper) 94%,#c3dfd3 6%)!important;
+}
+#screen-game.active.free-drive-active .game-top{
+  position:relative;z-index:4;padding-inline:clamp(12px,2vw,28px)!important;
+  border-bottom:1px solid var(--line)!important;
+  background:var(--surface)!important;
+}
+#screen-game.active.free-drive-active .game-top h2{
+  font-weight:850;letter-spacing:-.045em;
+}
+#screen-game.active.free-drive-active .game-top #game-operator{
+  color:var(--fd-panel-accent)!important;font-weight:800;letter-spacing:.09em;
+}
+#screen-game.active.free-drive-active .service-summary{
+  padding-inline:clamp(12px,2vw,28px)!important;
+  background:var(--paper)!important;
+}
+#screen-game.active.free-drive-active .hud-strip{
+  border:1px solid var(--line)!important;
+  background:color-mix(in srgb,var(--surface) 91%,transparent)!important;
+  backdrop-filter:blur(12px);
+  box-shadow:0 6px 22px #00000012;
+}
+#screen-game.active.free-drive-active .game-map-shell{
+  min-width:0!important;overflow:hidden!important;
+  border:1px solid var(--line)!important;
+  border-radius:16px!important;
+  margin:8px clamp(10px,1.6vw,22px)!important;
+  box-shadow:0 8px 30px #00000010;
+}
+#screen-game.active.free-drive-active .station-sign-hud{
+  border-radius:15px!important;
+  box-shadow:0 10px 24px #00000014;
+}
+#screen-game.active.free-drive-active #game-free-drive-options:not([hidden]){
+  position:absolute!important;left:auto!important;
+  right:clamp(17px,2.4vw,36px)!important;top:clamp(132px,20dvh,220px)!important;
+  bottom:auto!important;transform:none!important;
+  width:min(345px,30vw)!important;max-width:calc(100% - 32px)!important;
+  max-height:min(38dvh,375px)!important;
+  padding:11px!important;
+  border:1px solid var(--line)!important;
+  border-top:5px solid var(--fd-panel-accent)!important;
+  border-radius:17px!important;
+  background:color-mix(in srgb,var(--surface) 96%,transparent)!important;
+  box-shadow:0 15px 45px #00000030!important;
+  backdrop-filter:blur(16px);
+  overscroll-behavior:contain;
+}
+#screen-game.active.free-drive-active #game-free-drive-options:not([hidden])::before{
+  content:"NEXT STOP  /  환승·이동";
+  display:block;margin:0 2px 9px;padding-bottom:9px;
+  border-bottom:1px solid var(--line);
+  font:850 11px/1.3 "IBM Plex Mono","Noto Sans KR",monospace;
+  color:var(--ink);letter-spacing:.04em;
+}
+#screen-game.active.free-drive-active #game-free-drive-options .free-drive-station-buttons{
+  grid-template-columns:1fr!important;
+}
+#screen-game.active.free-drive-active #game-free-drive-options .free-drive-station-buttons button{
+  min-height:51px!important;border:1px solid var(--line)!important;
+  border-left:4px solid var(--route-color)!important;
+  border-radius:11px!important;margin-bottom:6px;
+  padding:9px 11px!important;
+  background:var(--paper)!important;
+  color:var(--ink)!important;
+}
+#screen-game.active.free-drive-active #game-free-drive-options .free-drive-station-buttons button:hover{
+  background:color-mix(in srgb,var(--route-color) 12%,var(--paper))!important;
+}
+#screen-game.active.free-drive-active #game-free-drive-options .free-drive-station-buttons button.selected{
+  background:color-mix(in srgb,var(--route-color) 17%,var(--surface))!important;
+}
+#screen-game.active.free-drive-active .game-free-drive-tabs button{
+  border-radius:9px!important;
+}
+@media(max-width:900px){
+  #screen-game.active.free-drive-active #game-free-drive-options:not([hidden]){
+    left:50%!important;right:auto!important;top:auto!important;
+    transform:translateX(-50%)!important;
+    bottom:calc(var(--fd-nameplate-height,250px) + 18px)!important;
+    width:calc(100% - 22px)!important;
+    max-height:min(22dvh,174px)!important;padding:8px!important;
+  }
+  #screen-game.active.free-drive-active #game-free-drive-options .free-drive-station-buttons{
+    grid-template-columns:repeat(auto-fit,minmax(135px,1fr))!important;
+  }
+  #screen-game.active.free-drive-active #game-free-drive-options:not([hidden])::before{
+    font-size:9px;margin-bottom:5px;padding-bottom:5px;
+  }
+  #screen-game.active.free-drive-active .game-map-shell{border-radius:9px!important;margin:4px 8px!important}
+}
+@media(max-height:640px) and (min-width:901px){
+  #screen-game.active.free-drive-active #game-free-drive-options:not([hidden]){
+    top:110px!important;max-height:32dvh!important;
+  }
+}
