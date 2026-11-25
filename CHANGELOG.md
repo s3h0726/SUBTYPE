@@ -2,6 +2,10 @@
 
 버전 형식: `vMAJOR.MINOR.PATCH.REVISION` (SUBTYPE 앱의 4자리 형식; npm 패키지는 표준 3자리 SemVer 유지)
 
+## [v0.19.0.9] — 2026-11-25
+
+- fix(ui): restore compact multi-column route-card layout
+
 ## [v0.19.0.8] — 2026-11-24
 
 - fix(pages): unblock release on official RER names and per-route station edits (#121) * fix(fr): accept verified official RER A–E identifiers in Korean-name validation * ci(pages): 
