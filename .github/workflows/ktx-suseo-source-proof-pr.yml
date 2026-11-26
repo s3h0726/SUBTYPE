@@ -1,0 +1,31 @@
+name: Validate KTX Suseo OSM source anchors
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'js/korea-suseo-pyeongtaek.js'
+      - 'data/kr/physical/suseo-pyeongtaek.json'
+      - 'tools/test-kr-suseo-pyeongtaek.cjs'
+      - 'tools/test-kr-ktx-runtime-display.cjs'
+      - '.github/workflows/ktx-suseo-source-proof-pr.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  suseo-osm-provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NODE_OPTIONS: --max-old-space-size=6144
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify physical source-way geometry and exact station node anchors
+        run: node tools/test-kr-suseo-pyeongtaek.cjs
+      - name: Verify runtime Suseo KTX journeys and station positions
+        run: node tools/test-kr-ktx-runtime-display.cjs
